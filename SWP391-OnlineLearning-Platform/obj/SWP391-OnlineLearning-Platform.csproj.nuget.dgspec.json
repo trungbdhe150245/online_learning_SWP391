@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\trung\\source\\repos\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {}
+    "E:\\Project\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {}
   },
   "projects": {
-    "C:\\Users\\trung\\source\\repos\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {
+    "E:\\Project\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\trung\\source\\repos\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+        "projectUniqueName": "E:\\Project\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
         "projectName": "SWP391-OnlineLearning-Platform",
-        "projectPath": "C:\\Users\\trung\\source\\repos\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+        "projectPath": "E:\\Project\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
         "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\trung\\source\\repos\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
+        "outputPath": "E:\\Project\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,9 +40,21 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[5.0.13, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.1.0, )"
             }
           },
           "imports": [
