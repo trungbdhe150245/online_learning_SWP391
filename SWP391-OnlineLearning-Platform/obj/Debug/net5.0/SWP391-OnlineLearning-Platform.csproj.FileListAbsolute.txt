@@ -402,3 +402,7 @@ E:\Project\online_learning_SWP391\SWP391-OnlineLearning-Platform\bin\Debug\net5.
 E:\Project\online_learning_SWP391\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 E:\Project\online_learning_SWP391\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 E:\Project\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Example\Index.cshtml.g.cs
+E:\Project\online_learning_SWP391\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\MailKit.dll
+E:\Project\online_learning_SWP391\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\MimeKit.dll
+E:\Project\online_learning_SWP391\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\BouncyCastle.Crypto.dll
+E:\Project\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using SWP391_OnlineLearning_Platform.Utils;
 using static SWP391_OnlineLearning_Platform.Controllers.ExampleController;
 
 namespace SWP391_OnlineLearning_Platform.Controllers
@@ -13,12 +14,17 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
-
+		readonly Utils.SmtpHandling _smtpHandling;
+		/*
 		public HomeController(ILogger<HomeController> logger)
 		{
 			_logger = logger;
 		}
-
+		*/
+		public HomeController(SmtpHandling smtpHandling)
+		{
+			_smtpHandling = smtpHandling;
+		}
 		public IActionResult Index()
 		{
 			var students = new List<Student>
@@ -35,7 +41,16 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 			//using model
 			return View(students);
 		}
-
+		[HttpPost]
+		public IActionResult Contact(Contact formContact)
+		{
+			_smtpHandling.SendEmail(formContact.Email, "Test1", "lmao", "");
+			return Json(formContact);
+		}
+		public IActionResult Contact()
+		{
+			return View();
+		}
 		public IActionResult Privacy()
 		{
 			return View();
