@@ -10,8 +10,8 @@ using SWP391_OnlineLearning_Platform.Data;
 namespace SWP391_OnlineLearning_Platform.Migrations
 {
     [DbContext(typeof(OnlineLearningDbContext))]
-    [Migration("20220118055606_AddAll")]
-    partial class AddAll
+    [Migration("20220118071838_Addalls")]
+    partial class Addalls
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

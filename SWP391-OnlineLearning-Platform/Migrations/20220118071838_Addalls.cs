@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SWP391_OnlineLearning_Platform.Migrations
 {
-    public partial class AddAll : Migration
+    public partial class Addalls : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -109,13 +109,13 @@ namespace SWP391_OnlineLearning_Platform.Migrations
                         column: x => x.Category_Id,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Courses_Statuss_Status_Id",
                         column: x => x.Status_Id,
                         principalTable: "Statuss",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
