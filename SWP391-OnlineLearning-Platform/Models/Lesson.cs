@@ -8,31 +8,28 @@ using System.Threading.Tasks;
 
 namespace SWP391_OnlineLearning_Platform.Models
 {
-    public class Price_Package
+    public class Lesson
     {
         [Key]
         [Required]
-        public int Id { get; set; }
+        public int Lesson_Id { get; set; }
         [Required]
-        [MaxLength(255,ErrorMessage = "Not exceed 255")]
-        public string Discount { get; set; }
-        [Required]
-        public string Duration { get; set; }
-        [Required]
-        public float List_price { get; set; }
+        public string Html_Content { get; set; }
         [Required]
         [MaxLength(255, ErrorMessage = "Not exceed 255")]
-        public string Name { get; set; }
+        public string Lesson_Name { get; set; }
         [Required]
-        public float Sale_Price { get; set; }
+        public int Lesson_Order { get; set; }
         [Required]
         [MaxLength(255, ErrorMessage = "Not exceed 255")]
-        public string Text { get; set; }
+        public string Video_Link { get; set; }
         [DisplayName("Status")]
-        public int Status_Id { get; set; }
+        public  int Status_Id { get; set; }
+        [DisplayName("Topic")]
+        public int Topic_Id { get; set; }
         [ForeignKey("Status_Id")]
         public virtual Status Status { get; set; }
-
-        public List<Course_Package> Course_Packages { get; set; }
+        [ForeignKey("Topic_Id")]
+        public virtual Topic Topic { get; set; }
     }
 }

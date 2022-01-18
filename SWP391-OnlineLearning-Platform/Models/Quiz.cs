@@ -37,5 +37,7 @@ namespace SWP391_OnlineLearning_Platform.Models
         public virtual Quiz_Level Quiz_Level { get; set; }
         [ForeignKey("Quiz_Type_Id")]
         public virtual Quiz_Type Quiz_Type { get; set; }
+
+        public List<Quiz_Question> Quiz_Questions { get; set; }
     }
 }

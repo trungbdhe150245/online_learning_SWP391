@@ -40,5 +40,9 @@ namespace SWP391_OnlineLearning_Platform.Models
         public virtual Status Status { get; set; }
 
         public List<Owner> Owners { get; set; }
+
+        public List<Course_Package> Course_Packages { get; set; }
+
+        public List<Course_Dimension> Course_Dimensions { get; set; }
     }
 }
