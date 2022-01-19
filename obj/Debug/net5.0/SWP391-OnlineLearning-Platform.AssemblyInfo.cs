@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("58c5dfb9-83c9-4046-9194-b7ae597f8f53")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("SWP391-OnlineLearning-Platform")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

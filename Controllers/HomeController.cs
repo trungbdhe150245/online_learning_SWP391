@@ -28,6 +28,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 			return View();
 		}
 
+
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
