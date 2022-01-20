@@ -9,11 +9,12 @@ namespace SWP391_OnlineLearning_Platform.Models
 	/// <summary>
 	/// Model for questions
 	/// Update: remove option 1->4 (for adding essay questions)
+	/// Update: field name changed: Answer -> Solution
 	/// </summary>
 	public class Question
 	{
 		public int Id { get; set; }
-		public string Answer { get; set; }
+		public string Solution { get; set; } 
 		public string Content { get; set; }
 		public string Explanation { get; set; }
 		public int CourseId { get; set; }
