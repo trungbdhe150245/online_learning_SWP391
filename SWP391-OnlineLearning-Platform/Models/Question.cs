@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace SWP391_OnlineLearning_Platform.Models
+{
+	/// <summary>
+	/// Model for questions
+	/// Update: remove option 1->4 (for adding essay questions)
+	/// </summary>
+	public class Question
+	{
+		public int Id { get; set; }
+		public string Answer { get; set; }
+		public string Content { get; set; }
+		public string Explanation { get; set; }
+		public int CourseId { get; set; }
+		public int LevelId { get; set; }
+		public int StatusId { get; set; }
+	}
+}
