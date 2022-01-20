@@ -13,13 +13,21 @@ namespace SWP391_OnlineLearning_Platform.Models
 	{
 		[Key]
 		public int Id { get; set; }
+		[Required]
 		public string Description { get; set; }
+		[Required]
 		public float Duration { get; set; }
+		[Required]
 		public string Name { get; set; }
+		[Required]
 		public int Question_Number { get; set; }
+		[Required]
 		public string Pass_Rate { get; set; }
+		[Required]
 		public string Course_Id { get; set; }
+		[Required]
 		public int Level_Id { get; set; }
+		[Required]
 		public int Quiz_Type_ID { get; set; }
 
 

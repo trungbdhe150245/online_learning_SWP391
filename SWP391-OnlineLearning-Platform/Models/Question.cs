@@ -13,6 +13,7 @@ namespace SWP391_OnlineLearning_Platform.Models
 	/// </summary>
 	public class Question
 	{
+		[Key]
 		public int Id { get; set; }
 		public string Solution { get; set; } 
 		public string Content { get; set; }

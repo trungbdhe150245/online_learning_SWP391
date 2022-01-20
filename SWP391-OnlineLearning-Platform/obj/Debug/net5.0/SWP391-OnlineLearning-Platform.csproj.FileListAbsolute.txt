@@ -843,3 +843,5 @@ E:\FPTLearning\Spring2022\SWP391\Week2\SourceCode\online_learning_SWP391\SWP391-
 E:\FPTLearning\Spring2022\SWP391\Week2\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 E:\FPTLearning\Spring2022\SWP391\Week2\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 E:\FPTLearning\Spring2022\SWP391\Week2\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_Shared.cshtml.g.cs
+E:\FPTLearning\Spring2022\SWP391\Week2\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\CourseView\Index.cshtml.g.cs
+E:\FPTLearning\Spring2022\SWP391\Week2\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_CourseViewLayout.cshtml.g.cs
