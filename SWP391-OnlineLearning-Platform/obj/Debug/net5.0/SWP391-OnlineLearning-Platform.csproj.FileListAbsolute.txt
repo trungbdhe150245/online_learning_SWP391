@@ -1210,3 +1210,4 @@ E:\FPTLearning\Spring2022\SWP391\Week3\SourceCode\online_learning_SWP391\SWP391-
 E:\FPTLearning\Spring2022\SWP391\Week3\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
 E:\FPTLearning\Spring2022\SWP391\Week3\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_CourseViewLayout.cshtml.g.cs
 E:\FPTLearning\Spring2022\SWP391\Week3\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_Shared.cshtml.g.cs
+E:\FPTLearning\Spring2022\SWP391\Week3\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Lesson\Index.cshtml.g.cs
