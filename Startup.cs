@@ -60,6 +60,15 @@ namespace SWP391_OnlineLearning_Platform
 				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller=AccountManagement}/{action=resetPassword}/{id?}");
+				
+				endpoints.MapControllerRoute(
+					name: "default",
+					pattern: "{controller=AccountManagement}/{action=resetNewPassword}/{id?}");
+
+				endpoints.MapControllerRoute(
+					name: "default",
+					pattern: "{controller=AccountManagement}/{action=userProfile}/{id?}");
+
 			});
 		}
 	}

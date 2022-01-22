@@ -17,5 +17,19 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         {
             return View();
         }
+
+        public IActionResult userProfile()
+        {
+            return View();
+        }
+
+        public IActionResult editProfile()
+        {
+            return View();
+        }
+        public IActionResult changePassword()
+        {
+            return View();
+        }
     }
 }
