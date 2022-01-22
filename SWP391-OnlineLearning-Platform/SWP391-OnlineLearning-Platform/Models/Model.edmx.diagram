@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bef9bf4f7bab4199a9386ec7aff9a32b" Name="Diagram1">
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Blog" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Category" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Cours" Width="1.5" PointX="6" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Dimension_Types" Width="1.5" PointX="6" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Dimension" Width="1.5" PointX="8.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Lesson" Width="1.5" PointX="10.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Persistent_Logins" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Price_Packages" Width="1.5" PointX="11.25" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Question_Banks" Width="1.5" PointX="13.5" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Quiz_Levels" Width="1.5" PointX="11.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Quiz_Types" Width="1.5" PointX="16.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Quizze" Width="1.5" PointX="18.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Role" Width="1.5" PointX="6" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Slide" Width="1.5" PointX="3" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Statuss" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.Topic" Width="1.5" PointX="8.25" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.User_Courses" Width="1.5" PointX="16.5" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.User_Question_Answers" Width="1.5" PointX="15.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.User_Quizzes" Width="1.5" PointX="21" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SWP391_OnlineLearning_PlatformmModel.User" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Blogs_Categories_Category_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Blogs_Statuss_Status_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Blogs_Users_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Courses_Categories_Category_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Courses_Statuss_Status_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Question_Banks_Courses_Course_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Quizzes_Courses_Course_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Topics_Courses_Course_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_User_Courses_Courses_Course_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Dimensions_Dimension_Types_Type_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Lessons_Statuss_Status_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Lessons_Topics_Topic_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Price_Packages_Statuss_Status_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_User_Courses_Price_Packages_Price_Package_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Question_Banks_Quiz_Levels_Level_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Question_Banks_Statuss_Status_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_User_Question_Answers_Question_Banks_Question_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Quizzes_Quiz_Levels_Quiz_Level_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Quizzes_Quiz_Types_Quiz_Type_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_User_Quizzes_Quizzes_Quiz_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Slides_Statuss_Status_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_Users_Statuss_Status_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_User_Courses_Users_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_User_Question_Answers_User_Quizzes_User_Quiz_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.FK_User_Quizzes_Users_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.Course_Dimensions" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.Course_Packages" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.Owners" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.Question_Dimensions" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.Quiz_Questions" ManuallyRouted="false" />
+        <AssociationConnector Association="SWP391_OnlineLearning_PlatformmModel.User_Roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

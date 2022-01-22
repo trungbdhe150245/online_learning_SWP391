@@ -1,0 +1,812 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SWP391_OnlineLearning_PlatformmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Brief" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Featured" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Thumbnail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Category_Id" Type="Int32" Nullable="false" />
+    <Property Name="Status_Id" Type="Int32" Nullable="false" />
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Blogs_Categories_Category_Id" FromRole="Blogs" ToRole="Categories" />
+    <NavigationProperty Name="Statuss" Relationship="Self.FK_Blogs_Statuss_Status_Id" FromRole="Blogs" ToRole="Statuss" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Blogs_Users_User_Id" FromRole="Blogs" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Blogs" Relationship="Self.FK_Blogs_Categories_Category_Id" FromRole="Categories" ToRole="Blogs" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_Courses_Categories_Category_Id" FromRole="Categories" ToRole="Courses" />
+  </EntityType>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Created_Date" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Featured" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Short_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Thumbnail_URL" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Category_Id" Type="Int32" Nullable="false" />
+    <Property Name="Status_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Courses_Categories_Category_Id" FromRole="Courses" ToRole="Categories" />
+    <NavigationProperty Name="Statuss" Relationship="Self.FK_Courses_Statuss_Status_Id" FromRole="Courses" ToRole="Statuss" />
+    <NavigationProperty Name="Question_Banks" Relationship="Self.FK_Question_Banks_Courses_Course_Id" FromRole="Courses" ToRole="Question_Banks" />
+    <NavigationProperty Name="Quizzes" Relationship="Self.FK_Quizzes_Courses_Course_Id" FromRole="Courses" ToRole="Quizzes" />
+    <NavigationProperty Name="Topics" Relationship="Self.FK_Topics_Courses_Course_Id" FromRole="Courses" ToRole="Topics" />
+    <NavigationProperty Name="User_Courses" Relationship="Self.FK_User_Courses_Courses_Course_Id" FromRole="Courses" ToRole="User_Courses" />
+    <NavigationProperty Name="Dimensions" Relationship="Self.Course_Dimensions" FromRole="Courses" ToRole="Dimensions" />
+    <NavigationProperty Name="Price_Packages" Relationship="Self.Course_Packages" FromRole="Courses" ToRole="Price_Packages" />
+    <NavigationProperty Name="Users" Relationship="Self.Owners" FromRole="Courses" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Dimension_Types">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Dimensions" Relationship="Self.FK_Dimensions_Dimension_Types_Type_Id" FromRole="Dimension_Types" ToRole="Dimensions" />
+  </EntityType>
+  <EntityType Name="Dimension">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Dimension_Types" Relationship="Self.FK_Dimensions_Dimension_Types_Type_Id" FromRole="Dimensions" ToRole="Dimension_Types" />
+    <NavigationProperty Name="Courses" Relationship="Self.Course_Dimensions" FromRole="Dimensions" ToRole="Courses" />
+    <NavigationProperty Name="Question_Banks" Relationship="Self.Question_Dimensions" FromRole="Dimensions" ToRole="Question_Banks" />
+  </EntityType>
+  <EntityType Name="Lesson">
+    <Key>
+      <PropertyRef Name="Lesson_Id" />
+    </Key>
+    <Property Name="Lesson_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Html_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lesson_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lesson_Order" Type="Int32" Nullable="false" />
+    <Property Name="Video_Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status_Id" Type="Int32" Nullable="false" />
+    <Property Name="Topic_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Statuss" Relationship="Self.FK_Lessons_Statuss_Status_Id" FromRole="Lessons" ToRole="Statuss" />
+    <NavigationProperty Name="Topic" Relationship="Self.FK_Lessons_Topics_Topic_Id" FromRole="Lessons" ToRole="Topics" />
+  </EntityType>
+  <EntityType Name="Persistent_Logins">
+    <Key>
+      <PropertyRef Name="Series" />
+    </Key>
+    <Property Name="Series" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Last_Used" Type="DateTime" Nullable="false" Precision="7" />
+  </EntityType>
+  <EntityType Name="Price_Packages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Discount" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Duration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="List_price" Type="Single" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sale_Price" Type="Single" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Statuss" Relationship="Self.FK_Price_Packages_Statuss_Status_Id" FromRole="Price_Packages" ToRole="Statuss" />
+    <NavigationProperty Name="User_Courses" Relationship="Self.FK_User_Courses_Price_Packages_Price_Package_Id" FromRole="Price_Packages" ToRole="User_Courses" />
+    <NavigationProperty Name="Courses" Relationship="Self.Course_Packages" FromRole="Price_Packages" ToRole="Courses" />
+  </EntityType>
+  <EntityType Name="Question_Banks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Answer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Explanation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Option1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Option2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Option3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Option4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Course_Id" Type="Int32" Nullable="false" />
+    <Property Name="Level_Id" Type="Int32" Nullable="false" />
+    <Property Name="Status_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK_Question_Banks_Courses_Course_Id" FromRole="Question_Banks" ToRole="Courses" />
+    <NavigationProperty Name="Quiz_Levels" Relationship="Self.FK_Question_Banks_Quiz_Levels_Level_Id" FromRole="Question_Banks" ToRole="Quiz_Levels" />
+    <NavigationProperty Name="Statuss" Relationship="Self.FK_Question_Banks_Statuss_Status_Id" FromRole="Question_Banks" ToRole="Statuss" />
+    <NavigationProperty Name="User_Question_Answers" Relationship="Self.FK_User_Question_Answers_Question_Banks_Question_Id" FromRole="Question_Banks" ToRole="User_Question_Answers" />
+    <NavigationProperty Name="Dimensions" Relationship="Self.Question_Dimensions" FromRole="Question_Banks" ToRole="Dimensions" />
+    <NavigationProperty Name="Quizzes" Relationship="Self.Quiz_Questions" FromRole="Question_Banks" ToRole="Quizzes" />
+  </EntityType>
+  <EntityType Name="Quiz_Levels">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Question_Banks" Relationship="Self.FK_Question_Banks_Quiz_Levels_Level_Id" FromRole="Quiz_Levels" ToRole="Question_Banks" />
+    <NavigationProperty Name="Quizzes" Relationship="Self.FK_Quizzes_Quiz_Levels_Quiz_Level_Id" FromRole="Quiz_Levels" ToRole="Quizzes" />
+  </EntityType>
+  <EntityType Name="Quiz_Types">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Quizzes" Relationship="Self.FK_Quizzes_Quiz_Types_Quiz_Type_Id" FromRole="Quiz_Types" ToRole="Quizzes" />
+  </EntityType>
+  <EntityType Name="Quizze">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Number_question" Type="Int32" Nullable="false" />
+    <Property Name="Pass_rate" Type="Single" Nullable="false" />
+    <Property Name="Course_Id" Type="Int32" Nullable="false" />
+    <Property Name="Quiz_Level_Id" Type="Int32" Nullable="false" />
+    <Property Name="Quiz_Type_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK_Quizzes_Courses_Course_Id" FromRole="Quizzes" ToRole="Courses" />
+    <NavigationProperty Name="Quiz_Levels" Relationship="Self.FK_Quizzes_Quiz_Levels_Quiz_Level_Id" FromRole="Quizzes" ToRole="Quiz_Levels" />
+    <NavigationProperty Name="Quiz_Types" Relationship="Self.FK_Quizzes_Quiz_Types_Quiz_Type_Id" FromRole="Quizzes" ToRole="Quiz_Types" />
+    <NavigationProperty Name="User_Quizzes" Relationship="Self.FK_User_Quizzes_Quizzes_Quiz_Id" FromRole="Quizzes" ToRole="User_Quizzes" />
+    <NavigationProperty Name="Question_Banks" Relationship="Self.Quiz_Questions" FromRole="Quizzes" ToRole="Question_Banks" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Role_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.User_Roles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Slide">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Course_link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Image_Url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Statuss" Relationship="Self.FK_Slides_Statuss_Status_Id" FromRole="Slides" ToRole="Statuss" />
+  </EntityType>
+  <EntityType Name="Statuss">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Blogs" Relationship="Self.FK_Blogs_Statuss_Status_Id" FromRole="Statuss" ToRole="Blogs" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_Courses_Statuss_Status_Id" FromRole="Statuss" ToRole="Courses" />
+    <NavigationProperty Name="Lessons" Relationship="Self.FK_Lessons_Statuss_Status_Id" FromRole="Statuss" ToRole="Lessons" />
+    <NavigationProperty Name="Price_Packages" Relationship="Self.FK_Price_Packages_Statuss_Status_Id" FromRole="Statuss" ToRole="Price_Packages" />
+    <NavigationProperty Name="Question_Banks" Relationship="Self.FK_Question_Banks_Statuss_Status_Id" FromRole="Statuss" ToRole="Question_Banks" />
+    <NavigationProperty Name="Slides" Relationship="Self.FK_Slides_Statuss_Status_Id" FromRole="Statuss" ToRole="Slides" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Statuss_Status_Id" FromRole="Statuss" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Topic">
+    <Key>
+      <PropertyRef Name="Topic_Id" />
+    </Key>
+    <Property Name="Topic_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Topic_Order" Type="Int32" Nullable="false" />
+    <Property Name="Topic_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Course_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK_Topics_Courses_Course_Id" FromRole="Topics" ToRole="Courses" />
+    <NavigationProperty Name="Lessons" Relationship="Self.FK_Lessons_Topics_Topic_Id" FromRole="Topics" ToRole="Lessons" />
+  </EntityType>
+  <EntityType Name="User_Courses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="End_Date" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Registration_Status" Type="Int32" Nullable="false" />
+    <Property Name="Start_Date" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Course_Id" Type="Int32" Nullable="false" />
+    <Property Name="Price_Package_Id" Type="Int32" Nullable="false" />
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK_User_Courses_Courses_Course_Id" FromRole="User_Courses" ToRole="Courses" />
+    <NavigationProperty Name="Price_Packages" Relationship="Self.FK_User_Courses_Price_Packages_Price_Package_Id" FromRole="User_Courses" ToRole="Price_Packages" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Courses_Users_User_Id" FromRole="User_Courses" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User_Question_Answers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Choice" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Question_Id" Type="Int32" Nullable="false" />
+    <Property Name="User_Quiz_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Question_Banks" Relationship="Self.FK_User_Question_Answers_Question_Banks_Question_Id" FromRole="User_Question_Answers" ToRole="Question_Banks" />
+    <NavigationProperty Name="User_Quizzes" Relationship="Self.FK_User_Question_Answers_User_Quizzes_User_Quiz_Id" FromRole="User_Question_Answers" ToRole="User_Quizzes" />
+  </EntityType>
+  <EntityType Name="User_Quizzes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mark" Type="Single" Nullable="false" />
+    <Property Name="Start_Time" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Quiz_Id" Type="Int32" Nullable="false" />
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Quizze" Relationship="Self.FK_User_Quizzes_Quizzes_Quiz_Id" FromRole="User_Quizzes" ToRole="Quizzes" />
+    <NavigationProperty Name="User_Question_Answers" Relationship="Self.FK_User_Question_Answers_User_Quizzes_User_Quiz_Id" FromRole="User_Quizzes" ToRole="User_Question_Answers" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Quizzes_Users_User_Id" FromRole="User_Quizzes" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Auth_Provider" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Avatar_Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Full_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Reset_password_token" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Verification_code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Blogs" Relationship="Self.FK_Blogs_Users_User_Id" FromRole="Users" ToRole="Blogs" />
+    <NavigationProperty Name="Statuss" Relationship="Self.FK_Users_Statuss_Status_Id" FromRole="Users" ToRole="Statuss" />
+    <NavigationProperty Name="User_Courses" Relationship="Self.FK_User_Courses_Users_User_Id" FromRole="Users" ToRole="User_Courses" />
+    <NavigationProperty Name="User_Quizzes" Relationship="Self.FK_User_Quizzes_Users_User_Id" FromRole="Users" ToRole="User_Quizzes" />
+    <NavigationProperty Name="Courses" Relationship="Self.Owners" FromRole="Users" ToRole="Courses" />
+    <NavigationProperty Name="Roles" Relationship="Self.User_Roles" FromRole="Users" ToRole="Roles" />
+  </EntityType>
+  <Association Name="FK_Blogs_Categories_Category_Id">
+    <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+    <End Role="Blogs" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blogs">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blogs_Statuss_Status_Id">
+    <End Role="Statuss" Type="Self.Statuss" Multiplicity="1" />
+    <End Role="Blogs" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuss">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blogs">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Blogs_Users_User_Id">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Blogs" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Blogs">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Categories_Category_Id">
+    <End Role="Categories" Type="Self.Category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Statuss_Status_Id">
+    <End Role="Statuss" Type="Self.Statuss" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuss">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Banks_Courses_Course_Id">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
+    <End Role="Question_Banks" Type="Self.Question_Banks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Question_Banks">
+        <PropertyRef Name="Course_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quizzes_Courses_Course_Id">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
+    <End Role="Quizzes" Type="Self.Quizze" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quizzes">
+        <PropertyRef Name="Course_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Topics_Courses_Course_Id">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Topics" Type="Self.Topic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Topics">
+        <PropertyRef Name="Course_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Courses_Courses_Course_Id">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
+    <End Role="User_Courses" Type="Self.User_Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Courses">
+        <PropertyRef Name="Course_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dimensions_Dimension_Types_Type_Id">
+    <End Role="Dimension_Types" Type="Self.Dimension_Types" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Dimensions" Type="Self.Dimension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dimension_Types">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Dimensions">
+        <PropertyRef Name="Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lessons_Statuss_Status_Id">
+    <End Role="Statuss" Type="Self.Statuss" Multiplicity="1" />
+    <End Role="Lessons" Type="Self.Lesson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuss">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lessons">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lessons_Topics_Topic_Id">
+    <End Role="Topics" Type="Self.Topic" Multiplicity="1" />
+    <End Role="Lessons" Type="Self.Lesson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topics">
+        <PropertyRef Name="Topic_Id" />
+      </Principal>
+      <Dependent Role="Lessons">
+        <PropertyRef Name="Topic_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Price_Packages_Statuss_Status_Id">
+    <End Role="Statuss" Type="Self.Statuss" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Price_Packages" Type="Self.Price_Packages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuss">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Price_Packages">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Courses_Price_Packages_Price_Package_Id">
+    <End Role="Price_Packages" Type="Self.Price_Packages" Multiplicity="1" />
+    <End Role="User_Courses" Type="Self.User_Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Price_Packages">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Courses">
+        <PropertyRef Name="Price_Package_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Banks_Quiz_Levels_Level_Id">
+    <End Role="Quiz_Levels" Type="Self.Quiz_Levels" Multiplicity="1" />
+    <End Role="Question_Banks" Type="Self.Question_Banks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quiz_Levels">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Question_Banks">
+        <PropertyRef Name="Level_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Banks_Statuss_Status_Id">
+    <End Role="Statuss" Type="Self.Statuss" Multiplicity="1" />
+    <End Role="Question_Banks" Type="Self.Question_Banks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuss">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Question_Banks">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Question_Answers_Question_Banks_Question_Id">
+    <End Role="Question_Banks" Type="Self.Question_Banks" Multiplicity="1" />
+    <End Role="User_Question_Answers" Type="Self.User_Question_Answers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question_Banks">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Question_Answers">
+        <PropertyRef Name="Question_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quizzes_Quiz_Levels_Quiz_Level_Id">
+    <End Role="Quiz_Levels" Type="Self.Quiz_Levels" Multiplicity="1" />
+    <End Role="Quizzes" Type="Self.Quizze" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quiz_Levels">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quizzes">
+        <PropertyRef Name="Quiz_Level_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quizzes_Quiz_Types_Quiz_Type_Id">
+    <End Role="Quiz_Types" Type="Self.Quiz_Types" Multiplicity="1" />
+    <End Role="Quizzes" Type="Self.Quizze" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quiz_Types">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quizzes">
+        <PropertyRef Name="Quiz_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Quizzes_Quizzes_Quiz_Id">
+    <End Role="Quizzes" Type="Self.Quizze" Multiplicity="1" />
+    <End Role="User_Quizzes" Type="Self.User_Quizzes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quizzes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Quizzes">
+        <PropertyRef Name="Quiz_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Slides_Statuss_Status_Id">
+    <End Role="Statuss" Type="Self.Statuss" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Slides" Type="Self.Slide" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuss">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Slides">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Statuss_Status_Id">
+    <End Role="Statuss" Type="Self.Statuss" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuss">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Courses_Users_User_Id">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="User_Courses" Type="Self.User_Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Courses">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Question_Answers_User_Quizzes_User_Quiz_Id">
+    <End Role="User_Quizzes" Type="Self.User_Quizzes" Multiplicity="1" />
+    <End Role="User_Question_Answers" Type="Self.User_Question_Answers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Quizzes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Question_Answers">
+        <PropertyRef Name="User_Quiz_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Quizzes_Users_User_Id">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="User_Quizzes" Type="Self.User_Quizzes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User_Quizzes">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Course_Dimensions">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+    <End Role="Dimensions" Type="Self.Dimension" Multiplicity="*" />
+  </Association>
+  <Association Name="Course_Packages">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+    <End Role="Price_Packages" Type="Self.Price_Packages" Multiplicity="*" />
+  </Association>
+  <Association Name="Owners">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <Association Name="Question_Dimensions">
+    <End Role="Dimensions" Type="Self.Dimension" Multiplicity="*" />
+    <End Role="Question_Banks" Type="Self.Question_Banks" Multiplicity="*" />
+  </Association>
+  <Association Name="Quiz_Questions">
+    <End Role="Question_Banks" Type="Self.Question_Banks" Multiplicity="*" />
+    <End Role="Quizzes" Type="Self.Quizze" Multiplicity="*" />
+  </Association>
+  <Association Name="User_Roles">
+    <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Db_Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Blogs" EntityType="Self.Blog" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Courses" EntityType="Self.Cours" />
+    <EntitySet Name="Dimension_Types" EntityType="Self.Dimension_Types" />
+    <EntitySet Name="Dimensions" EntityType="Self.Dimension" />
+    <EntitySet Name="Lessons" EntityType="Self.Lesson" />
+    <EntitySet Name="Persistent_Logins" EntityType="Self.Persistent_Logins" />
+    <EntitySet Name="Price_Packages" EntityType="Self.Price_Packages" />
+    <EntitySet Name="Question_Banks" EntityType="Self.Question_Banks" />
+    <EntitySet Name="Quiz_Levels" EntityType="Self.Quiz_Levels" />
+    <EntitySet Name="Quiz_Types" EntityType="Self.Quiz_Types" />
+    <EntitySet Name="Quizzes" EntityType="Self.Quizze" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Slides" EntityType="Self.Slide" />
+    <EntitySet Name="Statusses" EntityType="Self.Statuss" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Topics" EntityType="Self.Topic" />
+    <EntitySet Name="User_Courses" EntityType="Self.User_Courses" />
+    <EntitySet Name="User_Question_Answers" EntityType="Self.User_Question_Answers" />
+    <EntitySet Name="User_Quizzes" EntityType="Self.User_Quizzes" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Blogs_Categories_Category_Id" Association="Self.FK_Blogs_Categories_Category_Id">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Blogs" EntitySet="Blogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blogs_Statuss_Status_Id" Association="Self.FK_Blogs_Statuss_Status_Id">
+      <End Role="Statuss" EntitySet="Statusses" />
+      <End Role="Blogs" EntitySet="Blogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Blogs_Users_User_Id" Association="Self.FK_Blogs_Users_User_Id">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Blogs" EntitySet="Blogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Categories_Category_Id" Association="Self.FK_Courses_Categories_Category_Id">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Statuss_Status_Id" Association="Self.FK_Courses_Statuss_Status_Id">
+      <End Role="Statuss" EntitySet="Statusses" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Banks_Courses_Course_Id" Association="Self.FK_Question_Banks_Courses_Course_Id">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Question_Banks" EntitySet="Question_Banks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quizzes_Courses_Course_Id" Association="Self.FK_Quizzes_Courses_Course_Id">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Quizzes" EntitySet="Quizzes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Topics_Courses_Course_Id" Association="Self.FK_Topics_Courses_Course_Id">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Topics" EntitySet="Topics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Courses_Courses_Course_Id" Association="Self.FK_User_Courses_Courses_Course_Id">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="User_Courses" EntitySet="User_Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dimensions_Dimension_Types_Type_Id" Association="Self.FK_Dimensions_Dimension_Types_Type_Id">
+      <End Role="Dimension_Types" EntitySet="Dimension_Types" />
+      <End Role="Dimensions" EntitySet="Dimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lessons_Statuss_Status_Id" Association="Self.FK_Lessons_Statuss_Status_Id">
+      <End Role="Statuss" EntitySet="Statusses" />
+      <End Role="Lessons" EntitySet="Lessons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lessons_Topics_Topic_Id" Association="Self.FK_Lessons_Topics_Topic_Id">
+      <End Role="Topics" EntitySet="Topics" />
+      <End Role="Lessons" EntitySet="Lessons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Price_Packages_Statuss_Status_Id" Association="Self.FK_Price_Packages_Statuss_Status_Id">
+      <End Role="Statuss" EntitySet="Statusses" />
+      <End Role="Price_Packages" EntitySet="Price_Packages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Courses_Price_Packages_Price_Package_Id" Association="Self.FK_User_Courses_Price_Packages_Price_Package_Id">
+      <End Role="Price_Packages" EntitySet="Price_Packages" />
+      <End Role="User_Courses" EntitySet="User_Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Banks_Quiz_Levels_Level_Id" Association="Self.FK_Question_Banks_Quiz_Levels_Level_Id">
+      <End Role="Quiz_Levels" EntitySet="Quiz_Levels" />
+      <End Role="Question_Banks" EntitySet="Question_Banks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Banks_Statuss_Status_Id" Association="Self.FK_Question_Banks_Statuss_Status_Id">
+      <End Role="Statuss" EntitySet="Statusses" />
+      <End Role="Question_Banks" EntitySet="Question_Banks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Question_Answers_Question_Banks_Question_Id" Association="Self.FK_User_Question_Answers_Question_Banks_Question_Id">
+      <End Role="Question_Banks" EntitySet="Question_Banks" />
+      <End Role="User_Question_Answers" EntitySet="User_Question_Answers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quizzes_Quiz_Levels_Quiz_Level_Id" Association="Self.FK_Quizzes_Quiz_Levels_Quiz_Level_Id">
+      <End Role="Quiz_Levels" EntitySet="Quiz_Levels" />
+      <End Role="Quizzes" EntitySet="Quizzes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quizzes_Quiz_Types_Quiz_Type_Id" Association="Self.FK_Quizzes_Quiz_Types_Quiz_Type_Id">
+      <End Role="Quiz_Types" EntitySet="Quiz_Types" />
+      <End Role="Quizzes" EntitySet="Quizzes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Quizzes_Quizzes_Quiz_Id" Association="Self.FK_User_Quizzes_Quizzes_Quiz_Id">
+      <End Role="Quizzes" EntitySet="Quizzes" />
+      <End Role="User_Quizzes" EntitySet="User_Quizzes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Slides_Statuss_Status_Id" Association="Self.FK_Slides_Statuss_Status_Id">
+      <End Role="Statuss" EntitySet="Statusses" />
+      <End Role="Slides" EntitySet="Slides" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Statuss_Status_Id" Association="Self.FK_Users_Statuss_Status_Id">
+      <End Role="Statuss" EntitySet="Statusses" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Courses_Users_User_Id" Association="Self.FK_User_Courses_Users_User_Id">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="User_Courses" EntitySet="User_Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Question_Answers_User_Quizzes_User_Quiz_Id" Association="Self.FK_User_Question_Answers_User_Quizzes_User_Quiz_Id">
+      <End Role="User_Quizzes" EntitySet="User_Quizzes" />
+      <End Role="User_Question_Answers" EntitySet="User_Question_Answers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Quizzes_Users_User_Id" Association="Self.FK_User_Quizzes_Users_User_Id">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="User_Quizzes" EntitySet="User_Quizzes" />
+    </AssociationSet>
+    <AssociationSet Name="Course_Dimensions" Association="Self.Course_Dimensions">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Dimensions" EntitySet="Dimensions" />
+    </AssociationSet>
+    <AssociationSet Name="Course_Packages" Association="Self.Course_Packages">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Price_Packages" EntitySet="Price_Packages" />
+    </AssociationSet>
+    <AssociationSet Name="Owners" Association="Self.Owners">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="Question_Dimensions" Association="Self.Question_Dimensions">
+      <End Role="Dimensions" EntitySet="Dimensions" />
+      <End Role="Question_Banks" EntitySet="Question_Banks" />
+    </AssociationSet>
+    <AssociationSet Name="Quiz_Questions" Association="Self.Quiz_Questions">
+      <End Role="Question_Banks" EntitySet="Question_Banks" />
+      <End Role="Quizzes" EntitySet="Quizzes" />
+    </AssociationSet>
+    <AssociationSet Name="User_Roles" Association="Self.User_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SWP391_OnlineLearning_PlatformmModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SWP391_OnlineLearning_PlatformmModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
