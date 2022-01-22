@@ -36,7 +36,7 @@ namespace SWP391_OnlineLearning_Platform.Utils
             }
             return vocab.Trim().Split(" ");
         }
-        public static int countWords(String document, String pattern)
+        public static int CountWords(string document, string pattern)
         {
             int count = 0;
             String[] words = document.Split(" ");
@@ -58,7 +58,7 @@ namespace SWP391_OnlineLearning_Platform.Utils
             {
                 for (int j = 0; j < vocabulary.Length; j++)
                 {
-                    vectors[i,j] = countWords(documents[i], vocabulary[j]);
+                    vectors[i,j] = CountWords(documents[i], vocabulary[j]);
                 }
             }
             return vectors;
@@ -71,7 +71,7 @@ namespace SWP391_OnlineLearning_Platform.Utils
 
             for (int j = 0; j < vocabulary.Length; j++)
             {
-                vector[j] = countWords(document, vocabulary[j]);
+                vector[j] = CountWords(document, vocabulary[j]);
             }
             return vector;
         }

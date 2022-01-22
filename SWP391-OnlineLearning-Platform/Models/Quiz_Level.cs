@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace SWP391_OnlineLearning_Platform.Models
 {
-	public class Quiz_Level
-	{
-		public int Id { get; set; }
-		public string Name { get; set; }
-	}
+    public class Quiz_Level
+    {
+        [Key]
+        [Required]
+        public int Id { get; set; }
+        [Required]
+        [MaxLength(255, ErrorMessage = "Not exceed 255")]
+        public string Name { get; set; }
+    }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pT0hMVO+hk+l72iFW2rh4wkQRlohJi710OfoFGUkbgHHc0tUBgK/cg/lyrQaDRI9lX2aibo3fcIbZhxSm0CaOw==",
+  "dgSpecHash": "NX0VZZxcgaood58iELXeCS198i4dxE+1hXSY1M2LbJxL3Ci9RMWbaqEf+OYqlmX8/4ypb2vb1VbrRJNoRbusvw==",
   "success": true,
-  "projectFilePath": "E:\\FPTLearning\\Spring2022\\SWP391\\Week2\\SourceCode\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+  "projectFilePath": "E:\\FPTLearning\\Spring2022\\SWP391\\Week3\\SourceCode\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\trung\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\trung\\.nuget\\packages\\mailkit\\3.1.0\\mailkit.3.1.0.nupkg.sha512",
