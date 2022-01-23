@@ -4,44 +4,92 @@
     ViewData["Title"] = "Index";
 }
 
+
+@*
+
+    <head>
+      <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+
+      <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+      <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
+    </head>
+
+    <body>
+      <video
+        id="my-video"
+        class="video-js"
+        controls
+        preload="auto"
+        width="640"
+        height="264"
+        poster="MY_VIDEO_POSTER.jpg"
+        data-setup="{}"
+      >
+        <source src="https://drive.google.com/u/0/uc?id=1Fs7-iicL37cLXndyMEO7vi4wP66J0nai&export=download" type="video/mp4" />
+        <source src="MY_VIDEO.webm" type="video/webm" />
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a
+          web browser that
+          <a href="https://drive.google.com/file/d/1gvv9KhO42kNGxS_uRSKKPDP9SIoFTC2h/preview" target="_blank"
+            >supports HTML5 video</a
+          >
+        </p>
+      </video>
+
+      <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+    </body>*@
+<style>
+    video {
+        width: 100%;
+        max-height: 100%;
+        height: 560px;
+    }
+</style>
 <div class="page-heading text-center">
     <h2>SINGLE COURSE</h2>
-    <div class="container">
-        <div class="col-md-9">
-            <div class="">
-                <iframe class="embed-responsive-item" src="https://drive.google.com/file/d/1Fs7-iicL37cLXndyMEO7vi4wP66J0nai/preview" width="100%" height="480" allowfullscreen="" frameborder="0">
-                </iframe>
-            </div>
-            <p class="class-details">
-                <span class="lessons"><i class="zmdi zmdi-assignment"></i>12 LESSONS</span>
-                <span class="duration"><i class="zmdi zmdi-time"></i>3:15h</span>
-                <span class="views"><i class="zmdi zmdi-eye"></i>2241 VIEWS</span>
-                <span class="tag"><i class="zmdi zmdi-label"></i>ADOBE PHOTOSHOP</span>
-            </p>
-            <h3 class="text-left">lmao</h3>
-        </div>
-            <div class="col-md-3">
-                <div class="categories">
-                    <ul>
-                        <li><a href="#">Business (18)</a></li>
-                        <li><a href="#">CMS (14)</a></li>
-                        <li><a href="#">Design (17)</a></li>
-                        <li><a href="#">Development (23)</a></li>
-                        <li><a href="#">Humanities (17)</a></li>
-                        <li><a href="#">Mecidine (8)</a></li>
-                        <li><a href="#">Music (47)</a></li>
-                        <li><a href="#">Photography (68)</a></li>
-                        <li><a href="#">Photoshop (87)</a></li>
-                        <li><a href="#">IT &amp; Software (41)</a></li>
-                        <li><a href="#">Lifestyle (54)</a></li>
-                        <li><a href="#">Languages (83)</a></li>
-                        <li><a href="#">SEO (39)</a></li>
-                        <li><a href="#">Marketing (44)</a></li>
-                        <li><a href="#">Video Production (33)</a></li>
-                    </ul>
-
-                </div>
-           
-        </div>
 </div>
+<div class="container-fluid">
+    <div class="col-md-9">
+
+            @*<iframe src="https://drive.google.com/file/d/1gvv9KhO42kNGxS_uRSKKPDP9SIoFTC2h/preview" width="100%" height="480px" allowfullscreen="" frameborder="0">
+        </iframe>*@
+            <video id="my-video"
+                   class="video-js"
+                   controls
+                   preload="auto"
+                   @*poster="MY_VIDEO_POSTER.jpg"*@
+                   data-setup="{}">
+                <source src="https://drive.google.com/u/0/uc?id=1Fs7-iicL37cLXndyMEO7vi4wP66J0nai&export=download" type="video/mp4" />
+            </video>
+        <p class="class-details">
+            <span class="lessons"><i class="zmdi zmdi-assignment"></i>12 LESSONS</span>
+            <span class="duration"><i class="zmdi zmdi-time"></i>3:15h</span>
+            <span class="views"><i class="zmdi zmdi-eye"></i>2241 VIEWS</span>
+            <span class="tag"><i class="zmdi zmdi-label"></i>ADOBE PHOTOSHOP</span>
+        </p>
+        <h3 class="text-left">lmao</h3>
     </div>
+    <div class="col-md-3">
+        <div class="categories">
+            <ul>
+                <li><a href="#">Business (18)</a></li>
+                <li><a href="#">CMS (14)</a></li>
+                <li><a href="#">Design (17)</a></li>
+                <li><a href="#">Development (23)</a></li>
+                <li><a href="#">Humanities (17)</a></li>
+                <li><a href="#">Mecidine (8)</a></li>
+                <li><a href="#">Music (47)</a></li>
+                <li><a href="#">Photography (68)</a></li>
+                <li><a href="#">Photoshop (87)</a></li>
+                <li><a href="#">IT &amp; Software (41)</a></li>
+                <li><a href="#">Lifestyle (54)</a></li>
+                <li><a href="#">Languages (83)</a></li>
+                <li><a href="#">SEO (39)</a></li>
+                <li><a href="#">Marketing (44)</a></li>
+                <li><a href="#">Video Production (33)</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
