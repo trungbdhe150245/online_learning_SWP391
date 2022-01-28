@@ -1,9 +1,9 @@
 ﻿
 @{
-
-    ViewData["Title"] = "editProfile";
+    ViewData["Title"] = "changePhoto";
 }
-@model SWP391_OnlineLearning_Platform.Models.User
+
+
 <style>
 
     body {
@@ -121,17 +121,23 @@
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    <img class="img-responsive" src="~/img/@Model.Avatar_Url" />
+                    <img class="img-responsive" src="~/img/userlogo.png" />
                 </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        @Model.Full_Name
+                        Marcus Doe
                     </div>
                     <div class="profile-usertitle-job">
                         Student
                     </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                    <button type="button" class="btn btn-success btn-sm">Follow</button>
+                    <button type="button" class="btn btn-danger btn-sm">Message</button>
                 </div>
                 <!-- END SIDEBAR BUTTONS -->
                 <!-- SIDEBAR MENU -->
@@ -145,14 +151,20 @@
                         </li>
                         <li>
                             <a href="#">
-                                <i class="glyphicon glyphicon-ok"></i>
+                                <i class="glyphicon glyphicon-pencil"></i>
                                 Edit Profile
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <i class="glyphicon glyphicon-flag"></i>
+                                <i class="glyphicon glyphicon-briefcase"></i>
                                 Change Password
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-picture"></i>
+                                Change Photo
                             </a>
                         </li>
                     </ul>
@@ -162,77 +174,19 @@
         </div>
         <div class="col-md-9">
             <div class="profile-content">
-                <div class="text-center">
-                    <h3 style="margin-top:20px">EDIT PROFILE</h3>
-                </div>
-                <form method="post" asp-action="editProfile">
-                    @*PHẦN CHƯA UPDATE DATABASE:
-                        Auth_Provider
-                        Avatar_Url
-                        Reset_password_token
-                        Verification_code
-                        Status_Id
-                        Email*@
-                    <input asp-for="Id" hidden>
-                    <input asp-for="Auth_Provider" hidden>
-                    <input asp-for="Avatar_Url" hidden>
-                    <input asp-for="Reset_password_token" hidden>
-                    <input asp-for="Verification_code" hidden>
-                    <input asp-for="Status_Id" hidden>
-                    <input asp-for="Email" hidden>
- 
+                <div class="container mt-5">
+                    <div class="text-center">
+                        <h3 style="margin-top:20px">CHANGE PHOTO</h3>
+                    </div>
 
-                    <div class="form-group">
-                        <label asp-for="Username" class="control-label"></label>
-                        <input asp-for="Username" class="form-control" />
-                        <span asp-validation-for="Username" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Full_Name" class="control-label"></label>
-                        <input asp-for="Full_Name" class="form-control" />
-                        <span asp-validation-for="Full_Name" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Gender" class="control-label"></label>
-                        <select asp-for="Full_Name" class="form-control">
-                            <option selected>--Gender--</option>
-                            <option value="1">Male</option>
-                            <option value="0">Female</option>
-                            <option value="2">Non-binary</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Phone" class="control-label"></label>
-                        <input asp-for="Phone" class="form-control" />
-                        <span asp-validation-for="Phone" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Dob" class="control-label"></label>
-                        <input asp-for="Dob" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" disabled class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Phone" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Update" class="btn btn-danger" />
-                        <a asp-action="userProfile" asp-route-id="Id" class="btn btn-success">Cancel</a>
-                    </div>
-                </form>
+                    
+                </div>
 
             </div>
         </div>
     </div>
 </div>
 
+<script>
 
-@section Scripts{
-    @{
-        <partial name="_ValidationScriptsPartial" />
-    }
-}
+</script>

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +25,7 @@ namespace SWP391_OnlineLearning_Platform
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+
 			services.AddControllersWithViews();
 			services.AddDbContext<OnlineLearningDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
@@ -45,6 +46,8 @@ namespace SWP391_OnlineLearning_Platform
 				app.UseHsts();
 			}
 			app.UseHttpsRedirection();
+
+			//.net 5.0 hỗ trợ sử dụng static files, ko cần cài đặt NuGet packages
 			app.UseStaticFiles();
 
 			app.UseRouting();
@@ -55,20 +58,7 @@ namespace SWP391_OnlineLearning_Platform
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
-
-				endpoints.MapControllerRoute(
-					name: "default",
-					pattern: "{controller=AccountManagement}/{action=resetPassword}/{id?}");
-				
-				endpoints.MapControllerRoute(
-					name: "default",
-					pattern: "{controller=AccountManagement}/{action=resetNewPassword}/{id?}");
-
-				endpoints.MapControllerRoute(
-					name: "default",
-					pattern: "{controller=AccountManagement}/{action=userProfile}/{id?}");
-
+					pattern: "{controller=AccountManagement}/{action=userProfile}/{id=30}");
 			});
 		}
 	}

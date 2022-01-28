@@ -1203,7 +1203,14 @@ D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platfo
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
-D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\AccountManagement\Index.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\AccountManagement\userProfile.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\AccountManagement\editProfile.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\AccountManagement\changePassword.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\AccountManagement\changePhoto.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Users\Create.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Users\Delete.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Users\Details.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Users\Edit.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Users\Index.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.Design.dll
