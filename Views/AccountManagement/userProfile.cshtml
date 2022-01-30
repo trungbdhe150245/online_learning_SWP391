@@ -139,25 +139,25 @@
                 <div class="profile-usermenu">
                     <ul class="nav">
                         <li>
-                            <a href="#">
+                            <a asp-action="userProfile" asp-route-id="@Model.Id">
                                 <i class="glyphicon glyphicon-home"></i>
                                 Profile
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a asp-action="editProfile" asp-route-id="@Model.Id">
                                 <i class="glyphicon glyphicon-pencil"></i>
                                 Edit Profile
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a asp-action="changePassword" asp-route-id="@Model.Id">
                                 <i class="glyphicon glyphicon-briefcase"></i>
                                 Change Password
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a asp-action="changePhoto" asp-route-id="@Model.Id">
                                 <i class="glyphicon glyphicon-picture"></i>
                                 Change Photo
                             </a>
