@@ -171,22 +171,8 @@
                 <div class="text-center">
                     <h3 style="margin-top:20px">EDIT PROFILE</h3>
                 </div>
-                <form method="post" asp-action="editProfile">
-                    @*PHẦN CHƯA UPDATE DATABASE:
-                        Auth_Provider
-                        Avatar_Url
-                        Reset_password_token
-                        Verification_code
-                        Status_Id
-                        Email*@
-                    <input asp-for="Id" hidden>
-                    <input asp-for="Auth_Provider" hidden>
-                    <input asp-for="Avatar_Url" hidden>
-                    <input asp-for="Reset_password_token" hidden>
-                    <input asp-for="Verification_code" hidden>
-                    <input asp-for="Status_Id" hidden>
-                    <input asp-for="Email" hidden>
-
+                <form method="post" asp-action="editProfile" onsubmit="return confirm('Are you sure?');">
+                    <input asp-for="Id" disabled hidden>
 
                     <div class="form-group">
                         <label asp-for="Username" class="control-label"></label>
@@ -221,13 +207,8 @@
                         <input asp-for="Email" disabled class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" id="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
                         <input type="submit" value="Update" class="btn btn-danger" />
-                        <a asp-action="userProfile" asp-route-id="Id" class="btn btn-success">Cancel</a>
+                        <a asp-action="userProfile" asp-route-id="@Model.Id" class="btn btn-success">Cancel</a>
                     </div>
                 </form>
 
@@ -235,6 +216,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    function MyFunct() {
+        if (document.getElementById('Password').value == @Model.Password) {
+            var x = window.confirm("Are you sure?");
+            if (x == true) {
+                document.getElementById("editProfile").value.submit();
+            }
+        }
+        else {
+            document.getElementById("ErrorMess").innerHTML = "Password is not correct";
+        }
+    }
+</script>
 
 
 @section Scripts{

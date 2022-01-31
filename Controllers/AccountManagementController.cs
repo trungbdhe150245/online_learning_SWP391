@@ -20,12 +20,12 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 
         public IActionResult userProfile(int? id)
         {
-            if(id == 0 || id == null)
+            if (id == 0 || id == null)
             {
                 return NotFound();
             }
             var user = _db.Users.Find(id);
-            if(user == null)
+            if (user == null)
             {
                 return NotFound();
             }
@@ -53,29 +53,53 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult editProfile(User obj)
         {
-            _db.Users.Update(obj);
-            //CHƯA UPDATE DATABASE:
-            //Auth_Provider
-            //Avatar_Url
-            //Reset_password_token
-            //Verification_code
-            //Status_Id
-            obj.Auth_Provider = "xx";
-            obj.Reset_password_token = "xx";
+            var temp = _db.Users.Find(obj.Id);
+            temp.Username = obj.Username;
+            temp.Full_Name = obj.Full_Name;
+            temp.Gender = obj.Gender;
+            temp.Phone = obj.Phone;
+            temp.Dob = obj.Dob;
+            _db.Users.Update(temp);
             _db.SaveChanges();
             return RedirectToAction("userProfile");
+
         }
 
-        public IActionResult changePassword()
+        //GET - CHANGE PASSWORD
+        [HttpGet]
+        public IActionResult changePassword(int? id)
         {
-            return View();
+            if (id == 0 || id == null)
+            {
+                return NotFound();
+            }
+            var user = _db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
         }
+
+        //POST - CHANGE PASSWORD
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult changePassword(User obj)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("userProfile");
+            }
+            return View(obj);
+        }
+
 
         public IActionResult changePhoto()
         {
             return View();
         }
-        
+
         public IActionResult resetNewPassword()
         {
             return View();
@@ -84,7 +108,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         {
             return View();
         }
-        
+
 
     }
 }
