@@ -48,7 +48,6 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             return View(user);
         }
 
-
         //POST - EDIT PROFILE
         [HttpPost]
         [ValidateAntiForgeryToken]
