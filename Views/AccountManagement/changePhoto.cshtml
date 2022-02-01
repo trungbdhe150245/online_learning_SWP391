@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "changePhoto";
 }
-
+@model SWP391_OnlineLearning_Platform.Models.User
 
 <style>
 
@@ -121,23 +121,17 @@
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    <img class="img-responsive" src="~/img/userlogo.png" />
+                    <img class="img-responsive" src="~/img/@Model.Avatar_Url" />
                 </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        Marcus Doe
+                        @Model.Full_Name
                     </div>
                     <div class="profile-usertitle-job">
                         Student
                     </div>
-                </div>
-                <!-- END SIDEBAR USER TITLE -->
-                <!-- SIDEBAR BUTTONS -->
-                <div class="profile-userbuttons">
-                    <button type="button" class="btn btn-success btn-sm">Follow</button>
-                    <button type="button" class="btn btn-danger btn-sm">Message</button>
                 </div>
                 <!-- END SIDEBAR BUTTONS -->
                 <!-- SIDEBAR MENU -->
@@ -174,15 +168,23 @@
         </div>
         <div class="col-md-9">
             <div class="profile-content">
-                <div class="container mt-5">
-                    <div class="text-center">
-                        <h3 style="margin-top:20px">CHANGE PHOTO</h3>
-                    </div>
-
-                    
+                <div class="text-center">
+                    <h3 style="margin-top:20px">CHANGE PHOTO</h3>
+                </div>
+                <div class="col-md-12">
+                    <form method="post" asp-action="changePhoto">
+                        <div class="form-group">
+                            <label for="Avatar_Url" class="form-label">Default file input example</label>
+                            <input class="form-control" type="file" id="Avatar_Url">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="SAVE" class="btn btn-success" style="margin-left:35%; padding:5px 20px" />
+                        </div>
+                    </form>
                 </div>
 
             </div>
+
         </div>
     </div>
 </div>

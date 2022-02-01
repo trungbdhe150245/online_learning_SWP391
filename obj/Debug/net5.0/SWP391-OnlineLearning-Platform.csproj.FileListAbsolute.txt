@@ -1214,3 +1214,7 @@ D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platfo
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Users\Index.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.Design.dll
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\PublicFeature\BlogList.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_FooterPartial.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_HeaderPartial.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\PublicFeature\BlogDetail.cshtml.g.cs

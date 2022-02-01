@@ -23,5 +23,9 @@ namespace SWP391_OnlineLearning_Platform.Models.ViewModels
         [Display(Name ="Confirm New Password")]
         [Compare("NewPassword",ErrorMessage = "The password and confirm password do not match")]
         public string ConfirmPassword { get; set; }
+
+        public string Avatar_Url { get; set; }
+        public string Full_Name { get; set; }
+        public int Id { get; set; }
     }
 }

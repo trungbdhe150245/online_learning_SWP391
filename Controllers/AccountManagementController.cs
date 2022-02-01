@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SWP391_OnlineLearning_Platform.Data;
 using SWP391_OnlineLearning_Platform.Models;
+using SWP391_OnlineLearning_Platform.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,35 +79,72 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             {
                 return NotFound();
             }
-
-            return View(user);
+            Change_Password x = new Change_Password();
+            x.Id = user.Id;
+            x.Full_Name = user.Full_Name;
+            x.Avatar_Url = user.Avatar_Url;
+            return View(x);
         }
 
         //POST - CHANGE PASSWORD
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult changePassword(User obj)
+        public IActionResult changePassword(Change_Password obj)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("userProfile");
+                var temp = _db.Users.Find(obj.Id);
+                if (obj.OldPassword == temp.Password)
+                {
+                    temp.Password = obj.NewPassword;
+                    _db.Users.Update(temp);
+                    _db.SaveChanges();
+                    return RedirectToAction("userProfile");
+                }
+                else
+                {
+                    ViewBag.ErrorMess = "Password is not correct";
+                    obj.Id = temp.Id;
+                    obj.Full_Name = temp.Full_Name;
+                    obj.Avatar_Url = temp.Avatar_Url;
+                    return View(obj);
+                }
             }
             return View(obj);
         }
 
-
-        public IActionResult changePhoto()
+        //GET - CHANGE PHOTO
+        public IActionResult changePhoto(int? id)
         {
-            return View();
+            if (id == 0 || id == null)
+            {
+                return NotFound();
+            }
+            var user = _db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
         }
 
-        public IActionResult resetNewPassword()
+        //POST - CHANGE PHOTO
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult changePhoto(User obj)
         {
-            return View();
-        }
-        public IActionResult resetPassword()
-        {
-            return View();
+            if(obj.Auth_Provider == null)
+            {
+                return RedirectToAction("userProfile");
+            }
+            else
+            {
+                var temp = _db.Users.Find(obj.Id);
+                temp.Password = obj.Avatar_Url;
+                _db.Users.Update(temp);
+                _db.SaveChanges();
+                return RedirectToAction("userProfile");
+            }
         }
 
 
