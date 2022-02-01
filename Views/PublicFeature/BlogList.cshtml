@@ -1,6 +1,6 @@
 ﻿@{ ViewData["Title"] = "BlogList"; }
 
-
+@model SWP391_OnlineLearning_Platform.Models.Blog
 
 <div class="page-heading text-center">
     <div class="container">
@@ -9,6 +9,39 @@
 </div>
 <div class="container">
     <div class="row">
+
+        @*BLOG LIST'S INFOR*@
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model !=null){
+                @foreach (var blog in Model)
+                {
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td></td>
+                </tr>
+                }
+
+                }else{
+                    <div>No information</div>
+                }
+            </tbody>
+        </table>
+
+
+       
+
+
+
         <div class="col-lg-9">
             <div class="blog-item clearfix">
                 <img src="http://placehold.it/871x401" alt="blog-single" class="resp-img">
@@ -17,11 +50,7 @@
                     <a href="#">WEBDESIGN</a><span> - 4 JANUARY 2016 BY JONATHAN DOE</span>
                 </div>
                 <p class="abs">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-                    gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-                    elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos
-                    et accusam et justo duo dolores et ea rebum.
+                    BRIREF.............................................
                 </p>
                 <a href="#" class="pull-right greybutton">READ MORE</a>
             </div>
@@ -66,7 +95,9 @@
                 <a class="next" href="#">NEXT<i class="zmdi zmdi-chevron-right"></i></a>
             </div>
         </div>
+
         <div class="col-lg-3 blog-sidebar">
+            @*SEARCH BAR*@
             <div class="search-something">
                 <input type="search" placeholder="search for something">
                 <a href="#"><i class="zmdi zmdi-search"></i></a>
