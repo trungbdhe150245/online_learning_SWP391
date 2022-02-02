@@ -3,6 +3,7 @@
 *@
 
 @{ ViewData["Title"] = "Blog Detail"; }
+@model SWP391_OnlineLearning_Platform.Models.Blog
 
 <main>
     <div class="page-heading text-center">
@@ -13,32 +14,19 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9">
-                <img src="http://placehold.it/871x401" alt="blog-single" class="resp-img">
-                <h3>Creative webdesign workshop 2017</h3>
+                <img src="~/img/@Html.DisplayFor(model => model.Thumbnail)" alt="blog-single" class="resp-img">
+                <h3>@Html.DisplayFor(model => model.Title)</h3>
                 <div class="author">
-                    <a href="#">WEBDESIGN</a><span> - 4 JANUARY 2016 BY JONATHAN DOE</span>
+                    <a href="#">@Html.DisplayFor(model => model.Category.Value)</a><span> - 4 JANUARY 2016 BY @Html.DisplayFor(model => model.User.Full_Name)</span>
                 </div>
                 <p class="abs">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-                    gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-                    elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos
-                    et accusam et justo duo dolores et ea rebum. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
-                    molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui
-                    blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,
-                    consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                    @Html.DisplayFor(model => model.Content)
                 </p>
                 <p class="abs">
-                    Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-                    consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
-                    feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit
-                    augue duis dolore te feugait nulla facilisi.
+                    
                 </p>
                 <p class="abs">
-                    Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                    aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                    aliquip ex ea commodo consequat.
+                    
                 </p>
                 <div class="about-author">
                     <ul class="social pull-right">

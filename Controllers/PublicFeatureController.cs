@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Diagnostics.Tracing.Parsers.Kernel;
+using Microsoft.EntityFrameworkCore;
 using PagedList.Core;
 using SWP391_OnlineLearning_Platform.Data;
 using SWP391_OnlineLearning_Platform.Models;
@@ -31,13 +32,22 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         }
         public IActionResult BlogList()
         {
-            
-            return View();
+            var blogs = _db.Blogs.Include(a => a.Category).Include(b => b.User).Include(c => c.Status);
+            return View(blogs);
         }
 
-        public IActionResult BlogDetail()
+        public IActionResult BlogDetail(int? id)
         {
-            return View();
+            if (id == 0 || id == null)
+            {
+                return NotFound();
+            }
+            var blog = _db.Blogs.Where(s => s.Id == id).Include(a => a.Category).Include(b => b.User).Include(c => c.Status).FirstOrDefault();
+            if (blog == null)
+            {
+                return NotFound();
+            }
+            return View(blog);
         }
     }
 }
