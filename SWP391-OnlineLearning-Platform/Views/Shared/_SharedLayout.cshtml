@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -10,13 +14,14 @@
     <link rel="stylesheet" href="~/libs/rslides/responsiveslides.css">
     <link rel="stylesheet" href="~/libs/slick/slick.css">
     <link rel="stylesheet" href="~/css/main.css">
+    <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600%7CMontserrat:300,400,600%7CRaleway:300,400,400i,600%7COpen+Sans:400,400i%7CVarela+Round">
     <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
 
     <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
     <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
-</head>
 
+</head>
 
 <body id="course-single" class="page">
 
@@ -227,7 +232,6 @@
                 </div>
             </div>
         </div>
-
     </footer>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_EN/sdk.js#xfbml=1&version=v12.0&appId=352954726366289&autoLogAppEvents=1" nonce="HcoX54O9"></script>
@@ -237,6 +241,7 @@
     <script src="~/libs/jquery-ui/jquery-ui.min.js"></script>
     <script src="~/libs/slick/slick.min.js"></script>
     <script src="~/js/main.js"></script>
+    <script src="~/js/app.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

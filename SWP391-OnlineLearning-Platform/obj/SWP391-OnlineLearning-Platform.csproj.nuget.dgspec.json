@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\FPTLearning\\Spring2022\\SWP391\\Week3\\SourceCode\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {}
+    "C:\\Users\\trung\\Desktop\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {}
   },
   "projects": {
-    "E:\\FPTLearning\\Spring2022\\SWP391\\Week3\\SourceCode\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {
+    "C:\\Users\\trung\\Desktop\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\FPTLearning\\Spring2022\\SWP391\\Week3\\SourceCode\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+        "projectUniqueName": "C:\\Users\\trung\\Desktop\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
         "projectName": "SWP391-OnlineLearning-Platform",
-        "projectPath": "E:\\FPTLearning\\Spring2022\\SWP391\\Week3\\SourceCode\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+        "projectPath": "C:\\Users\\trung\\Desktop\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
         "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-        "outputPath": "E:\\FPTLearning\\Spring2022\\SWP391\\Week3\\SourceCode\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
+        "outputPath": "C:\\Users\\trung\\Desktop\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
