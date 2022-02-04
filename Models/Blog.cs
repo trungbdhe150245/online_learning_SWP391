@@ -38,7 +38,7 @@ namespace SWP391_OnlineLearning_Platform.Models
         [ForeignKey("User_Id")]
         public virtual User User { get; set; }
 
-
+        public DateTime Date { get; set; }
 
 
     }

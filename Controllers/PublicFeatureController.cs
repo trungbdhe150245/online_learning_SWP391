@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PagedList.Core;
 using SWP391_OnlineLearning_Platform.Data;
 using SWP391_OnlineLearning_Platform.Models;
+using SWP391_OnlineLearning_Platform.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +33,12 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         }
         public IActionResult BlogList()
         {
-            var blogs = _db.Blogs.Include(a => a.Category).Include(b => b.User).Include(c => c.Status);
-            return View(blogs);
+            var blogs = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date);
+            var category = _db.Categories;
+            Blog_Elements be = new Blog_Elements();
+            be.category = category;
+            be.blogs = blogs;
+            return View(be);
         }
 
         public IActionResult BlogDetail(int? id)
@@ -42,12 +47,36 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             {
                 return NotFound();
             }
+            var blogs = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date);
             var blog = _db.Blogs.Where(s => s.Id == id).Include(a => a.Category).Include(b => b.User).Include(c => c.Status).FirstOrDefault();
+            var category = _db.Categories;
+            Blog_Elements be = new Blog_Elements();
+            be.category = category;
+            be.blogs = blogs;
+            be.blog = blog;
             if (blog == null)
             {
                 return NotFound();
             }
-            return View(blog);
+            return View(be);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BlogList(string searchString)
+        {
+            var blogs = from m in _db.Blogs
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                blogs = blogs.Where(s => s.Title!.Contains(searchString));
+            }
+            var category = _db.Categories;
+            Blog_Elements be = new Blog_Elements();
+            be.category = category;
+            be.blogs = blogs;
+            return View(be);
         }
     }
 }
