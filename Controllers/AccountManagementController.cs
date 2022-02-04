@@ -16,7 +16,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 
         public AccountManagementController(OnlineLearningDbContext db)
         {
-            _db = db;
+            _db = db;   
         }
 
         public IActionResult userProfile(int? id)
@@ -90,9 +90,12 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult changePassword(Change_Password obj)
         {
+            var temp = _db.Users.Find(obj.Id);
+            obj.Id = temp.Id;
+            obj.Full_Name = temp.Full_Name;
+            obj.Avatar_Url = temp.Avatar_Url;
             if (ModelState.IsValid)
             {
-                var temp = _db.Users.Find(obj.Id);
                 if (obj.OldPassword == temp.Password)
                 {
                     temp.Password = obj.NewPassword;
@@ -103,9 +106,6 @@ namespace SWP391_OnlineLearning_Platform.Controllers
                 else
                 {
                     ViewBag.ErrorMess = "Password is not correct";
-                    obj.Id = temp.Id;
-                    obj.Full_Name = temp.Full_Name;
-                    obj.Avatar_Url = temp.Avatar_Url;
                     return View(obj);
                 }
             }

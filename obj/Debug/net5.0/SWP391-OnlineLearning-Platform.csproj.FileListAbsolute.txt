@@ -1238,4 +1238,3 @@ D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platfo
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\amd64\vcruntime140_1.dll
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\Microsoft.Diagnostics.FastSerialization.dll
 D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\Microsoft.Diagnostics.Tracing.TraceEvent.dll
-D:\FPTLearning\Spring2022\SWP391\Week 3\Source Code\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\PublicFeature\BlogDetail2.cshtml.g.cs
