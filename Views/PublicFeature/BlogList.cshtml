@@ -3,8 +3,8 @@
     var count = 0;
 }
 
-@model SWP391_OnlineLearning_Platform.Models.ViewModels.Blog_Elements
-
+@model PagedList.IPagedList<SWP391_OnlineLearning_Platform.Models.ViewModels.Blog_Elements>
+@using PagedList.Mvc;
 
 
 <div class="page-heading text-center">
@@ -15,8 +15,29 @@
 <div class="container">
     <div class="row">
 
+        @*CATEGORY*@
+        <div>
+            <form asp-controller="publicfeature" method="post" asp-action="bloglist ">
+                <p>Sorted by:</p>
+                <select name="categoryId" class="form-select  form-select-sm" onchange="this.form.submit()" aria-label="Default  form-select-lg mb-3" style="padding:20px;">
+                    <option selected>---Category---</option>
+                    @foreach (var item in Model.category)
+                    {
+                        if (item.Id == Model.selectedCategoryId)
+                        {
+                            <option value="@item.Id" selected>@item.Value</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Id and @item.Value</option>
+                        }
+                    }
+                </select>
+            </form>
+        </div>
+
         <div class="col-lg-9">
-            @if(Model.blogs.Count() == 0)
+            @if (Model.blogs.Count() == 0)
             {
                 <h1>No information</h1>
             }
@@ -25,7 +46,7 @@
 
                 <div class="blog-item clearfix">
                     <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id">
-                        <img src="~/img/@Html.DisplayFor(modelItem => item.Thumbnail)" alt="blog-single" class="img-thumbnail" style="width:871px;height:401px;">
+                        <img src="~/img/@Html.DisplayFor(modelItem => item.Thumbnail)" alt="blog-single" class="img-thumbnail" style="width: 871px; height: 401px; object-fit: cover; object-position: 50% 50%;">
                     </a>
                     <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
                     <div class="author">
@@ -47,6 +68,12 @@
                     <a href="#">6</a>
                     <a class="next" href="#">NEXT<i class="zmdi zmdi-chevron-right"></i></a>
                 </div>*@
+
+            <!-- Thêm phân trang vào -->
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page }))
         </div>
 
 
@@ -54,10 +81,10 @@
         <div class="col-lg-3 blog-sidebar">
             @*SEARCH BAR*@
             <div class="search-something">
-                <form id="my_form" asp-controller="PublicFeature" asp-action="bloglist">
-                    <a class="search" onclick="document.getElementById('my_form').submit();" ><i class="zmdi zmdi-search zmdi-hc-lg"></i></a>
+                <form asp-controller="PublicFeature" asp-action="bloglist">
+                    <a class="search" onclick="this.form.submit();"><i class="zmdi zmdi-search zmdi-hc-lg"></i></a>
                     <div class="search-something">
-                        <input type="text" name="searchString" placeholder="search for something" >
+                        <input type="text" name="searchString" placeholder="search for something">
                     </div>
                 </form>
             </div>
@@ -69,7 +96,7 @@
                 if (count <= 5)
                 {
                     <div class="recent-post clearfix">
-                        <img src="~/img/@Html.DisplayFor(modelItem => item.Thumbnail)" alt="recent" class="pull-left" style="width:70px;height:70px;">
+                        <img src="~/img/@Html.DisplayFor(modelItem => item.Thumbnail)" alt="recent" class="pull-left" style="width: 70px; height: 70px; object-fit: cover; object-position: 50% 50%;">
                         <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
                         <div class="author">
                             <a href="#">@Html.DisplayFor(modelItem => item.Category.Value)</a><span> @Html.DisplayFor(modelItem => item.Date)</span>

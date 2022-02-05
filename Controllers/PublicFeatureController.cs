@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PagedList;
 
 namespace SWP391_OnlineLearning_Platform.Controllers
 {
@@ -21,21 +22,33 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             _db = db;
         }
 
-        //PHÂN TRANG
         public IActionResult Index(int? page)
         {
-            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-            var pageSize = 20;
-            var IsBlogs = _db.Blogs.OrderByDescending(x => x.Id);
-            PagedList<Blog> models = new PagedList<Blog>(IsBlogs, pageNumber, pageSize);
-            return View(models);
+            // 1. Tham số int? dùng để thể hiện null và kiểu int
+            // page có thể có giá trị là null và kiểu int.
 
+            // 2. Nếu page = null thì đặt lại là 1.
+            if (page == null) page = 1;
+            // 3. Tạo truy vấn, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
+            // theo BookID mới có thể phân trang.
+            var books = _db.Books.Include(b => b.Author).Include(b => b.Category).OrderBy(b => b.BookID);
+            // 4. Tạo kích thước trang (pageSize) hay là số Link hiển thị trên 1 trang
+            int pageSize = 3;
+
+            // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
+            // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
+            int pageNumber = (page ?? 1);
+
+            // 5. Trả về các Link được phân trang theo kích thước và số trang.
+            return View(books.ToPagedList(pageNumber, pageSize));
         }
+
         public IActionResult BlogList()
         {
-            var blogs = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date);
-            var category = _db.Categories;
+            IEnumerable<Blog> blogs;
             Blog_Elements be = new Blog_Elements();
+            blogs = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date);
+            var category = _db.Categories;
             be.category = category;
             be.blogs = blogs;
             return View(be);
@@ -63,11 +76,14 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> BlogList(string searchString)
+        public async Task<IActionResult> BlogList(string? searchString, int? categoryId)
         {
             var blogs = from m in _db.Blogs
-                         select m;
-
+                        select m;
+            if (categoryId != null)
+            {
+                blogs = blogs.Where(s => s.Category_Id == categoryId);
+            }
             if (!String.IsNullOrEmpty(searchString))
             {
                 blogs = blogs.Where(s => s.Title!.Contains(searchString));
@@ -78,5 +94,6 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             be.blogs = blogs;
             return View(be);
         }
+
     }
 }
