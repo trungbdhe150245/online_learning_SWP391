@@ -1,10 +1,11 @@
-﻿@{
+﻿@using PagedList.Core.Mvc
+@using SWP391_OnlineLearning_Platform.Models;
+@{
+    int CurrentPage = ViewBag.CurrentPage;
     ViewData["Title"] = "BlogList";
     var count = 0;
 }
-
-@model PagedList.IPagedList<SWP391_OnlineLearning_Platform.Models.ViewModels.Blog_Elements>
-@using PagedList.Mvc;
+@model PagedList.Core.IPagedList<SWP391_OnlineLearning_Platform.Models.Blog>
 
 
 <div class="page-heading text-center">
@@ -19,31 +20,19 @@
         <div>
             <form asp-controller="publicfeature" method="post" asp-action="bloglist ">
                 <p>Sorted by:</p>
-                <select name="categoryId" class="form-select  form-select-sm" onchange="this.form.submit()" aria-label="Default  form-select-lg mb-3" style="padding:20px;">
+                <select name="categoryId" class="form-select  form-select-sm" asp-items="ViewBag.selectedCategory" onchange="this.form.submit()" aria-label="Default  form-select-lg mb-3" style="padding:20px;">
                     <option selected>---Category---</option>
-                    @foreach (var item in Model.category)
-                    {
-                        if (item.Id == Model.selectedCategoryId)
-                        {
-                            <option value="@item.Id" selected>@item.Value</option>
-                        }
-                        else
-                        {
-                            <option value="@item.Id">@item.Id and @item.Value</option>
-                        }
-                    }
                 </select>
             </form>
         </div>
 
         <div class="col-lg-9">
-            @if (Model.blogs.Count() == 0)
+            @if (Model == null)
             {
                 <h1>No information</h1>
             }
-            @foreach (var item in Model.blogs)
+            @foreach (var item in Model)
             {
-
                 <div class="blog-item clearfix">
                     <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id">
                         <img src="~/img/@Html.DisplayFor(modelItem => item.Thumbnail)" alt="blog-single" class="img-thumbnail" style="width: 871px; height: 401px; object-fit: cover; object-position: 50% 50%;">
@@ -57,23 +46,11 @@
                     </p>
                     <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id" class="pull-right greybutton">READ MORE</a>
                 </div>}
-            @*
-                <div class="paginations">
-                    <a class="prev" href="#"><i class="zmdi zmdi-chevron-left"></i>PREV</a>
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a class="next" href="#">NEXT<i class="zmdi zmdi-chevron-right"></i></a>
-                </div>*@
+            <h3>Trang số: @CurrentPage</h3>
+            <ul class="pagination">
+                <pager list="@Model" asp-controller="publicfeature" asp-action="bloglist" />
 
-            <!-- Thêm phân trang vào -->
-            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-
-            @Html.PagedListPager(Model, page => Url.Action("Index",
-                new { page }))
+            </ul>
         </div>
 
 
@@ -90,7 +67,7 @@
             </div>
             <h4>RECENT POSTS</h4>
 
-            @foreach (var item in Model.blogs)
+            @foreach (var item in ViewData["recentBlogs"] as List<Blog>)
             {
                 ++count;
                 if (count <= 5)
@@ -108,7 +85,7 @@
             <div class="categories">
                 <h6>CATEGORIES</h6>
                 <ul>
-                    @foreach (var item in Model.category)
+                    @foreach (var item in ViewData["category"] as List<Category>)
                     {
                         <li><a href="#">@Html.DisplayFor(modelItem => item.Value)</a></li>
                     }

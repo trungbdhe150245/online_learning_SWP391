@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PagedList;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SWP391_OnlineLearning_Platform.Controllers
 {
@@ -22,36 +23,17 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             _db = db;
         }
 
-        public IActionResult Index(int? page)
+        public IActionResult BlogList(int? page)
         {
-            // 1. Tham số int? dùng để thể hiện null và kiểu int
-            // page có thể có giá trị là null và kiểu int.
-
-            // 2. Nếu page = null thì đặt lại là 1.
-            if (page == null) page = 1;
-            // 3. Tạo truy vấn, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
-            // theo BookID mới có thể phân trang.
-            var books = _db.Books.Include(b => b.Author).Include(b => b.Category).OrderBy(b => b.BookID);
-            // 4. Tạo kích thước trang (pageSize) hay là số Link hiển thị trên 1 trang
-            int pageSize = 3;
-
-            // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
-            // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
-            int pageNumber = (page ?? 1);
-
-            // 5. Trả về các Link được phân trang theo kích thước và số trang.
-            return View(books.ToPagedList(pageNumber, pageSize));
-        }
-
-        public IActionResult BlogList()
-        {
-            IEnumerable<Blog> blogs;
-            Blog_Elements be = new Blog_Elements();
-            blogs = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date);
-            var category = _db.Categories;
-            be.category = category;
-            be.blogs = blogs;
-            return View(be);
+            var blogs = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date);
+            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
+            var pageSize = 2;
+            PagedList<Blog> models = new PagedList<Blog>(blogs, pageNumber, pageSize);
+            ViewBag.CurrentPage = pageNumber;
+            ViewData["selectedCategory"] = new SelectList(_db.Categories, "Id", "Value");
+            ViewData["category"] = _db.Categories.ToList();
+            ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date).ToList();
+            return View(models);
         }
 
         public IActionResult BlogDetail(int? id)
@@ -74,26 +56,23 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             return View(be);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> BlogList(string? searchString, int? categoryId)
-        {
-            var blogs = from m in _db.Blogs
-                        select m;
-            if (categoryId != null)
-            {
-                blogs = blogs.Where(s => s.Category_Id == categoryId);
-            }
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                blogs = blogs.Where(s => s.Title!.Contains(searchString));
-            }
-            var category = _db.Categories;
-            Blog_Elements be = new Blog_Elements();
-            be.category = category;
-            be.blogs = blogs;
-            return View(be);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> BlogList(string? searchString)
+        //{
+        //    var blogs = from m in _db.Blogs
+        //                select m;
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        blogs = blogs.Where(s => s.Title!.Contains(searchString));
+        //    }
+        //    var category = _db.Categories;
+        //    Blog_Elements be = new Blog_Elements();
+        //    be.category = category;
+        //    be.blogs = blogs;
+        //    return View(blogs);
+        //}
 
     }
 }
