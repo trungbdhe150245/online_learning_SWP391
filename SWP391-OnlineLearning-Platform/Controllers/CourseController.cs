@@ -18,12 +18,60 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             _db = db;
         }
 
-        public IActionResult CourseList()
+        public IActionResult CourseList(string key, string sortOrder, string cate,int page)
         {
             dynamic dy = new ExpandoObject();
             dy.categories = GetCategories();
-            dy.courses = GetCourses();
+            dy.courses = Search(key, sortOrder,cate,page);
             return View(dy);
+        }
+
+        public IEnumerable<Course> Search(string key,string sortOrder,string cate, int page)
+        {
+            ViewData["TitleSort"] = String.IsNullOrEmpty(sortOrder) ? "titleDesc" : "";
+            ViewData["DateSort"] = sortOrder == "date" ? "dateDesc" : "date";
+            IEnumerable<Course> list = GetCourses();
+            
+            if(!string.IsNullOrEmpty(key))
+            {
+                list = GetCourses().Where(l => l.Title.Contains(key));
+            }
+            if (!string.IsNullOrEmpty(cate))
+            {
+                list = list.Where(l => l.Category_Id.Equals(Int32.Parse(cate)));
+            }
+            switch (sortOrder)
+            {
+                case "titleDesc":
+                    list = list.OrderByDescending(s => s.Title);
+                    break;
+                case "date":
+                    list = list.OrderBy(s => s.Created_Date);
+                    break;
+                case "dateDesc":
+                    list = list.OrderByDescending(s => s.Created_Date);
+                    break;
+                default:
+                    list = list.OrderBy(s => s.Title);
+                    break;
+            }
+
+            const int pageSize = 3;
+            if(page < 1)
+            {
+                page = 1;
+            }
+
+            int resCount = list.Count();
+
+            var pager = new Paginated(resCount, page, pageSize);
+            int recSkip = (page - 1) * pageSize;
+
+            var data = list.Skip(recSkip).Take(pager.PageSize);
+            this.ViewBag.Paginated = pager;
+
+            return data;
+
         }
 
         public IEnumerable<Category> GetCategories()
