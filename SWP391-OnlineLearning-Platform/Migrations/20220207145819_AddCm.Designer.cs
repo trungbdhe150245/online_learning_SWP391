@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SWP391_OnlineLearning_Platform.Data;
 
 namespace SWP391_OnlineLearning_Platform.Migrations
 {
     [DbContext(typeof(OnlineLearningDbContext))]
-    partial class OnlineLearningDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220207145819_AddCm")]
+    partial class AddCm
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,9 +38,6 @@ namespace SWP391_OnlineLearning_Platform.Migrations
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date_Create")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Featured")
                         .IsRequired()
@@ -618,9 +617,6 @@ namespace SWP391_OnlineLearning_Platform.Migrations
                     b.Property<string>("Avatar_Url")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Dob")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()

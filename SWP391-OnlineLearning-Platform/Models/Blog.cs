@@ -18,9 +18,12 @@ namespace SWP391_OnlineLearning_Platform.Models
         [Required]
         public string Content { get; set; }
         [Required]
+        public DateTime Date_Create { get; set; }
+
+        [Required]
         public string Featured { get; set; }
         [Required]
-        [MaxLength(255,ErrorMessage = "Not exceed 255")]
+        [MaxLength(255, ErrorMessage = "Not exceed 255")]
         public string Thumbnail { get; set; }
         [Required]
         [MaxLength(255, ErrorMessage = "Not exceed 255")]
@@ -37,7 +40,6 @@ namespace SWP391_OnlineLearning_Platform.Models
         public virtual Status Status { get; set; }
         [ForeignKey("User_Id")]
         public virtual User User { get; set; }
-
 
 
 

@@ -20,9 +20,12 @@ namespace SWP391_OnlineLearning_Platform.Models
         public string Avatar_Url { get; set; }
         [Required]
         [MaxLength(255, ErrorMessage = "Not exceed 255")]
+        [EmailAddress]
         public string Email { get; set; }
         [Required]
-        [EmailAddress]
+        public DateTime Dob { get; set; }
+
+        [Required]
         public string Full_Name { get; set; }
         [Required]
         [Range(0,2)]
