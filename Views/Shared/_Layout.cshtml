@@ -32,5 +32,7 @@
     <script src="~/assets/libs/jquery-ui/jquery-ui.min.js"></script>
     <script src="~/assets/libs/slick/slick.min.js"></script>
     <script src="~/assets/js/main.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -23,13 +23,46 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             _db = db;
         }
 
-        public IActionResult BlogList(int? page)
+        public IActionResult Filter(int CatID = 0)
         {
-            var blogs = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date);
-            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
+            var url = $"/publicfeature/blogList?catID={CatID}";
+            if (CatID == 0)
+            {
+                url = $"/publicfeature/blogList";
+            }
+            return Json(new { status = "success", redirectUrl = url });
+        }
+
+        public IActionResult BlogList(int page = 1, int CatID = 0)
+        {
+            //PHÂN TRANG
+            var pageNumber = page;
             var pageSize = 2;
-            PagedList<Blog> models = new PagedList<Blog>(blogs, pageNumber, pageSize);
             ViewBag.CurrentPage = pageNumber;
+
+            //LỌC BLOG THEO CATEGORY
+            List<Blog> blogs = new List<Blog>();
+            if (CatID != 0)
+            {
+                blogs = _db.Blogs.Where(a => a.Category_Id == CatID)
+                .Include(a => a.Category)
+                .Include(a => a.User)
+                .Include(a => a.Status)
+                .OrderByDescending(a => a.Date)
+                .ToList();
+            }
+            else
+            {
+                blogs = _db.Blogs.Include(a => a.Category)
+                .Include(a => a.User)
+                .Include(a => a.Status)
+                .OrderByDescending(a => a.Date)
+                .ToList();
+            }
+            
+            PagedList<Blog> models = new PagedList<Blog>(blogs.AsQueryable(), pageNumber, pageSize);
+
+            ViewBag.CurrentCateID = CatID;
             ViewData["selectedCategory"] = new SelectList(_db.Categories, "Id", "Value");
             ViewData["category"] = _db.Categories.ToList();
             ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date).ToList();

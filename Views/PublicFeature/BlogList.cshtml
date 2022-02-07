@@ -18,13 +18,15 @@
 
         @*CATEGORY*@
         <div>
-            <form asp-controller="publicfeature" method="post" asp-action="bloglist ">
-                <p>Sorted by:</p>
-                <select name="categoryId" class="form-select  form-select-sm" asp-items="ViewBag.selectedCategory" onchange="this.form.submit()" aria-label="Default  form-select-lg mb-3" style="padding:20px;">
-                    <option selected>---Category---</option>
+            <p>
+                Sorted by:
+                <select class="custom-select"  id="categoryList" name="categoryList" asp-items="ViewBag.selectedCategory"  style="padding:9px 15px; border-radius:10px;">
+                    <option selected disabled>---Category---</option>
+                    <option value="0">All</option>
                 </select>
-            </form>
+            </p>
         </div>
+        <br/>
 
         <div class="col-lg-9">
             @if (Model == null)
@@ -48,8 +50,8 @@
                 </div>}
             <h3>Trang số: @CurrentPage</h3>
             <ul class="pagination">
-                <pager list="@Model" asp-controller="publicfeature" asp-action="bloglist" />
-
+                <pager list="@Model" asp-route-CatID="@ViewBag.CurrentCateID" asp-controller="publicfeature" asp-action="bloglist" />
+                 
             </ul>
         </div>
 
@@ -87,7 +89,7 @@
                 <ul>
                     @foreach (var item in ViewData["category"] as List<Category>)
                     {
-                        <li><a href="#">@Html.DisplayFor(modelItem => item.Value)</a></li>
+                        <li><a asp-route-CatID="@item.Id" asp-controller="publicfeature" asp-action="bloglist" >@Html.DisplayFor(modelItem => item.Value)</a></li>
                     }
                 </ul>
             </div>
@@ -98,3 +100,31 @@
 </div>
 
 
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            jQuery("#categoryList").change(function(){
+                var catID = jQuery(this).children(":selected").attr("value");
+                $("#categoryList option").removeAttr("selected");
+                $("#categoryList option > [value=" + catID + "]").attr("selected", "true");
+                $.ajax({
+                    url: '/publicfeature/filter',
+                    dataType: 'json',
+                    type: 'GET',
+                    data: {
+                        CatID: catID
+                    },
+                    async: true,
+                    success: function (results) {
+                        if (results.status == "success") {
+                            window.location.href = results.redirectUrl;
+                        }
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
+}
