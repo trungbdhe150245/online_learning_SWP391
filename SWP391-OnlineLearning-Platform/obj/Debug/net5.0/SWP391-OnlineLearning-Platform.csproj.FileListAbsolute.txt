@@ -1652,3 +1652,4 @@ C:\Users\trung\Desktop\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj
 C:\Users\trung\Desktop\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.pdb
 C:\Users\trung\Desktop\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.genruntimeconfig.cache
 C:\Users\trung\Desktop\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_Layout1.cshtml.g.cs
+C:\Users\trung\Desktop\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Quiz\Index.cshtml.g.cs
