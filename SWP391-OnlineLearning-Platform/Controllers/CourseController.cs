@@ -26,9 +26,12 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             return View(dy);
         }
 
-        public IActionResult CourseDetail(string key, string sortOrder, string cate, int page)
+        public IActionResult CourseDetail(int id)
         {
-            return View();
+            dynamic dy = new ExpandoObject();
+            dy.categories = GetCategories();
+            dy.course = GetCourse(id);
+            return View(dy);
         }
 
         public IEnumerable<Course> Search(string key,string sortOrder,string cate, int page)
@@ -89,6 +92,13 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         {
             IEnumerable<Course> list = _db.Courses;
             return list;
+        }
+
+        public Course GetCourse(int id)
+        {
+            Course c = _db.Courses.Find(id);
+            c.Category = _db.Categories.Find(c.Category_Id);
+            return _db.Courses.Find(id);
         }
     }
 }

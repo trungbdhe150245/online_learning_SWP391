@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "CourseList";
     Paginated pager = new Paginated();
-
+    
     int pageNo = 0;
 
     if (ViewBag.Paginated != null)
@@ -104,7 +104,7 @@
                                 <p class="abs">
                                     @course.Description
                                 </p>
-                                <a href="#" class="greybutton">VIEW COURSE</a>
+                                <a asp-action="CourseDetail" asp-controller="Course" class="greybutton" asp-route-id="@course.Id">VIEW COURSE</a>
                             </div>
                         </div>
                     </div>

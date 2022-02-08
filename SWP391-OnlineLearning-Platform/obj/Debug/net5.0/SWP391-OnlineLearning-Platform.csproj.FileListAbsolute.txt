@@ -815,3 +815,4 @@ D:\FPTU-Learning\Spring2022\SWP391\Week2\Source Code\online_learning_SWP391\SWP3
 D:\FPTU-Learning\Spring2022\SWP391\Week2\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\FPTU-Learning\Spring2022\SWP391\Week2\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\FPTU-Learning\Spring2022\SWP391\Week2\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Course\CourseList.cshtml.g.cs
+D:\FPTU-Learning\Spring2022\SWP391\Week2\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Course\CourseDetail.cshtml.g.cs
