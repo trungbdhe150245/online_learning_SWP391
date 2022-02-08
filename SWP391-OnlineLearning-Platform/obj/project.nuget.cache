@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iW4GPKT+z78RQaqqvWjo+y8sKcmC4dZupcNXnx+TePfcZfaHo5EBW520e/zZ22VbyeANuKtD5ogBfgdPXQQ0zg==",
+  "dgSpecHash": "3UG6ZLvbsTS1RJXw9pEcRuuDuOwY0UUbHPd0/UHe3EhC/QA0iFWo6Ad2Qz9hT8Gtc5mqYT16Jd69RU5lrl3iug==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\online_learning_SWP391-datdthe151528\\SWP391-OnlineLearning-Platform.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\SWP391\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
