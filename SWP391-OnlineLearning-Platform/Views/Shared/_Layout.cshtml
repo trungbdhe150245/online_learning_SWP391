@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bromine | Blog Single</title>
+    <link rel="stylesheet" href="~/assets/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/libs/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/assets/libs/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="~/assets/libs/rslides/responsiveslides.css">
+    <link rel="stylesheet" href="~/assets/libs/slick/slick.css">
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600%7CMontserrat:300,400,600%7CRaleway:300,400,400i,600%7COpen+Sans:400,400i%7CVarela+Round">
+</head>
+
+<body id="blog-2" class="page">
+
+    @await Html.PartialAsync("_HeaderPartial.cshtml")
+
+
+    <main>
+
+        @RenderBody()
+
+    </main>
+
+    @await Html.PartialAsync("_FooterPartial.cshtml")
+
+    <script src="~/assets/libs/jquery/jquery.js"></script>
+    <script src="~/assets/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/libs/rslides/responsiveslides.min.js"></script>
+    <script src="~/assets/libs/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/assets/libs/slick/slick.min.js"></script>
+    <script src="~/assets/js/main.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
