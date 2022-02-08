@@ -1252,3 +1252,4 @@ C:\Users\trung\Desktop\New folder (2)\online_learning_SWP391\SWP391-OnlineLearni
 C:\Users\trung\Desktop\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.Views.pdb
 C:\Users\trung\Desktop\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.csproj.CopyComplete
 C:\Users\trung\Desktop\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.genruntimeconfig.cache
+C:\Users\trung\Desktop\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Quiz\Index.cshtml.g.cs
