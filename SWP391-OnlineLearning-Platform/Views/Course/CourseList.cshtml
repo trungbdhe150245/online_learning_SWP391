@@ -1,0 +1,221 @@
+﻿@*@model IEnumerable<SWP391_OnlineLearning_Platform.Models.Category>*@
+@model dynamic
+@{
+    ViewData["Title"] = "CourseList";
+    Paginated pager = new Paginated();
+    
+    int pageNo = 0;
+
+    if (ViewBag.Paginated != null)
+    {
+        pager = ViewBag.Paginated;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+<main>
+
+    <div class="page-heading text-center">
+        <div class="container">
+            <div class="pull-right">
+                <ul class="grid-opts">
+                    <li><a class="active" href="#"><i class="zmdi zmdi-view-list zmdi-hc-lg"></i></a></li>
+                    <li>
+                        <a href="#"><i class="zmdi zmdi-view-module zmdi-hc-lg"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <h2>OUR COURSES</h2>
+        </div>
+    </div>
+    <div class="container courses-browse popular no-gutters">
+        <form asp-action="CourseList" asp-controller="Course" method="post">
+            <div class="row toolbar">
+                <div class="col-md-4 col-sm-6 col-xs-12 select-categories">
+                    <select class="jquery-select" name="cate">
+                        <option value="">choose a category</option>
+                        @foreach (var category in Model.categories)
+                        {
+                            <option value="@category.Id">@category.Value</option>
+                        }
+                        @*<option value="1">Category 1</option>
+                            <option value="2">Category 2</option>
+                            <option value="3">Category 3</option>*@
+                    </select>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 select-numofvids">
+                    <select class="jquery-select">
+                        <option>choose a teacher</option>
+                        <option value="1">Teacher 1</option>
+                        <option value="2">Teacher 2</option>
+                        <option value="3">Teacher 3</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12 select-name">
+                    <select class="jquery-select" name="sortOrder">
+                        <option>sort by</option>
+                        <option value="titleDesc">sort by Title Desc</option>
+                        <option value="">sort by Title Asc</option>
+                        <option value="date">sort by Date Asc</option>
+                        <option value="dateDesc">sort by Date Desc</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 col-xs-12 text-keywords">
+                    <input class="keywords" name="key" type="text" placeholder="keywords">
+                </div>
+                <div class="col-sm-6 col-xs-12 search-button">
+                    @*<button class="search-teachers">SEARCH</button>*@
+                    <input type="submit" class="search-teachers" value="SEARCH" />
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-sm-3">
+                <aside class="categories">
+                    <h6>CATEGORIES</h6>
+                    @foreach (var category in Model.categories)
+                    {
+                        <ul>
+                            <li><a href="CourseList?cate=@category.Id">@category.Value</a></li>
+                        </ul>
+                    }
+
+                </aside>
+                <div class="start-today">
+                    <p class="price">59</p>
+                    <p class="readytostart">Are you ready<br>to start learning?</p>
+                    <a href="#">SIGN UP TODAY</a>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                @foreach (var course in Model.courses)
+                {
+                    <div class="row tutorial">
+                        <div class="col-sm-5">
+                            <img src="~/img/@course.Thumbnail_URL" class="resp-img" alt="Tutorial">
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="tutorial-details">
+                                <div class="pull-right fav favorite">
+                                    <i class="zmdi zmdi-star"></i><span>IN FAVORITES</span>
+                                </div>
+                                <h6>@course.Title</h6>
+                                <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>12 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>3:15h</span></p>
+                                <p class="abs">
+                                    @course.Description
+                                </p>
+                                <a asp-action="CourseDetail" asp-controller="Course" class="greybutton" asp-route-id="@course.Id">VIEW COURSE</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @*<div class="row tutorial">
+                        <div class="col-sm-5">
+                            <img src="http://placehold.it/370x271" class="resp-img" alt="Tutorial">
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="tutorial-details">
+                                <div class="pull-right fav favorite">
+                                    <i class="zmdi zmdi-star"></i><span>IN FAVORITES</span>
+                                </div>
+                                <h6>How to become an UX engineer</h6>
+                                <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>12 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>3:15h</span></p>
+                                <p class="abs">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                                    sanctus est. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie feuga.
+                                </p>
+                                <a href="#" class="greybutton">VIEW COURSE</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row tutorial">
+                        <div class="col-sm-5">
+                            <img src="http://placehold.it/370x271" class="resp-img" alt="Tutorial">
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="tutorial-details">
+                                <div class="pull-right fav">
+                                    <a href="#"><i class="zmdi zmdi-star"></i></a><span>ADD TO FAVORITES</span>
+                                </div>
+                                <h6>How to create wooden things</h6>
+                                <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>3 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>1:41h</span></p>
+                                <p class="abs">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                                    sanctus est. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie feuga.
+                                </p>
+                                <a href="#" class="greybutton">VIEW COURSE</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row tutorial">
+                        <div class="col-sm-5">
+                            <img src="http://placehold.it/370x271" class="resp-img" alt="Tutorial">
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="tutorial-details">
+                                <div class="pull-right fav">
+                                    <a href="#"><i class="zmdi zmdi-star"></i></a><span>ADD TO FAVORITES</span>
+                                </div>
+                                <h6>Repair your own things</h6>
+                                <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>47 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>10:15h</span></p>
+                                <p class="abs">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                                    sanctus est. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie feuga.
+                                </p>
+                                <a href="#" class="greybutton">VIEW COURSE</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row tutorial">
+                        <div class="col-sm-5">
+                            <img src="http://placehold.it/370x271" class="resp-img" alt="Tutorial">
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="tutorial-details">
+                                <div class="pull-right fav">
+                                    <a href="#"><i class="zmdi zmdi-star"></i></a><span>ADD TO FAVORITES</span>
+                                </div>
+                                <h6>Working with Adobe Photoshop</h6>
+                                <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>32 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>8:15h</span></p>
+                                <p class="abs">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                                    sanctus est. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie feuga.
+                                </p>
+                                <a href="#" class="greybutton">VIEW COURSE</a>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    @if (pager.TotalPages > 0)
+                    {
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item @(pager.CurrentPage <= 1 ? "disabled" : "")">
+                            <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@(pager.CurrentPage - 1)"> Previous </a>
+                        </li>
+                        @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                        {
+                            <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                                <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@pge"> @pge </a>
+                            </li>
+                        }
+                        <li class="page-item @(pager.CurrentPage == pager.EndPage ? "disabled" : "")">
+                            <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@(pager.CurrentPage + 1)"> Next </a>
+                        </li>
+                        @*<a class="prev" href="#"><i class="zmdi zmdi-chevron-left"></i>PREV</a>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a class="next" href="#">NEXT<i class="zmdi zmdi-chevron-right"></i></a>*@
+                    </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
