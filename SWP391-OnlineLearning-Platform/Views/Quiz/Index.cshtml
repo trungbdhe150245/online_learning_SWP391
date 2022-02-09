@@ -5,14 +5,17 @@
 }
 <style>
     .pull-left {
-        float: left!important;
+        float: left !important;
     }
+
     #topbar > .pull-left {
         line-height: 98px;
     }
+
     .container {
         width: 2000px;
     }
+
     .quiz-nav {
         background-color: white;
         padding: 9px 10px;
@@ -23,23 +26,34 @@
         transition: background-color 0.5s ease;
         border-radius: 3px;
     }
-    .center-title {
-        align-content:center;
+
+    .title {
+        color: white;
+        text-align: center;
+        padding: 20px 10px;
+    }
+
+    .wrapper {
+        vertical-align: top;
+        margin-left: auto;
+        margin-right: auto;
+        width: 960px;
     }
 </style>
 <header>
     <div class="container">
         <div id="topbar">
-            <div class="pull-left">
+            <div class="navigation wrapper pull-left">
                 <a href="#" class="quiz-nav">BACK</a>
                 <a href="#" class="quiz-nav">SUBMIT</a>
             </div>
-            <div class="center-title">
+            <div class="navigation title">
+                <h1>lmao</h1>
                 <p id="demo"></p>
             </div>
         </div>
 
-        </div>
+    </div>
 </header>
 
 <h1>Header</h1>
