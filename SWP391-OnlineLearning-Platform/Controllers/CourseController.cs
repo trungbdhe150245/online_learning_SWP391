@@ -96,7 +96,10 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 
         public Course GetCourse(int id)
         {
-            return _db.Courses.Find(id);
+            Course c = _db.Courses.Find(id);
+            c.Category = _db.Categories.Find(c.Category_Id);
+            this.ViewBag.Category = c.Category;
+            return c;
         }
     }
 }

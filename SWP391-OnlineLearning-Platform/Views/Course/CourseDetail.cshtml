@@ -3,8 +3,9 @@
     ViewData["Title"] = "CourseDetail";
 }
 @model dynamic
-@{ 
+@{
     var course = Model.course;
+    var cate = ViewBag.Category;
 }
 <main>
 
@@ -14,11 +15,11 @@
             <p class="breadcrumbs">
                 <a href="#">Home</a>
                 <i class="zmdi zmdi-chevron-right"></i>
-                <a href="#">Courses</a>
+                <a asp-action="CourseList" asp-controller="Course">Courses</a>
                 <i class="zmdi zmdi-chevron-right"></i>
-                <a href="#">Adobe Photoshop</a>
+                <a asp-action="CourseList" asp-controller="Course" asp-route-cate="@cate.Id">@cate.Value</a>
                 <i class="zmdi zmdi-chevron-right"></i>
-                <span>Adobe Photoshop CC for Professionals</span>
+                <span>@course.Title</span>
             </p>
         </div>
     </div>
@@ -31,14 +32,11 @@
                     <span class="lessons"><i class="zmdi zmdi-assignment"></i>12 LESSONS</span>
                     <span class="duration"><i class="zmdi zmdi-time"></i>3:15h</span>
                     <span class="views"><i class="zmdi zmdi-eye"></i>2241 VIEWS</span>
-                    <span class="tag"><i class="zmdi zmdi-label"></i>A</span>
+                    <span class="tag"><i class="zmdi zmdi-label"></i>@cate.Value</span>
                 </p>
                 <h4>COURSE DETAILS</h4>
                 <p class="abs">
-                    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore
-                    eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum
-                    zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing
-                    elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                    @course.Title
                 </p>
                 <h5>What does this course include?</h5>
                 <ul class="includes">
@@ -304,21 +302,10 @@
                 <div class="categories">
                     <h6>CATEGORIES</h6>
                     <ul>
-                        <li><a href="#">Business (18)</a></li>
-                        <li><a href="#">CMS (14)</a></li>
-                        <li><a href="#">Design (17)</a></li>
-                        <li><a href="#">Development (23)</a></li>
-                        <li><a href="#">Humanities (17)</a></li>
-                        <li><a href="#">Mecidine (8)</a></li>
-                        <li><a href="#">Music (47)</a></li>
-                        <li><a href="#">Photography (68)</a></li>
-                        <li><a href="#">Photoshop (87)</a></li>
-                        <li><a href="#">IT &amp; Software (41)</a></li>
-                        <li><a href="#">Lifestyle (54)</a></li>
-                        <li><a href="#">Languages (83)</a></li>
-                        <li><a href="#">SEO (39)</a></li>
-                        <li><a href="#">Marketing (44)</a></li>
-                        <li><a href="#">Video Production (33)</a></li>
+                        @foreach (var category in Model.categories)
+                        {
+                            <li><a asp-action="CourseList" asp-controller="Course" asp-route-cate="@category.Id">@category.Value</a></li>
+                        }
                     </ul>
                 </div>
             </div>

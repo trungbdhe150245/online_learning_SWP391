@@ -128,14 +128,6 @@
                             <li class="page-item @(pager.CurrentPage == pager.EndPage ? "hidden" : "")">
                                 <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@(pager.CurrentPage + 1)" asp-route-cate="@cate"> Next </a>
                             </li>
-                            @*<a class="prev" href="#"><i class="zmdi zmdi-chevron-left"></i>PREV</a>
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">5</a>
-                                <a href="#">6</a>
-                                <a class="next" href="#">NEXT<i class="zmdi zmdi-chevron-right"></i></a>*@
                         </ul>
                     }
                 </div>
