@@ -3,9 +3,9 @@
 @{
     ViewData["Title"] = "CourseList";
     Paginated pager = new Paginated();
-    
-    int pageNo = 0;
 
+    int pageNo = 0;
+    string cate = ViewBag.Category;
     if (ViewBag.Paginated != null)
     {
         pager = ViewBag.Paginated;
@@ -76,7 +76,7 @@
                     @foreach (var category in Model.categories)
                     {
                         <ul>
-                            <li><a href="CourseList?cate=@category.Id">@category.Value</a></li>
+                            <li><a href="CourseList?cate=@category.Id&page=1">@category.Value</a></li>
                         </ul>
                     }
 
@@ -109,109 +109,34 @@
                         </div>
                     </div>
                 }
-                @*<div class="row tutorial">
-                        <div class="col-sm-5">
-                            <img src="http://placehold.it/370x271" class="resp-img" alt="Tutorial">
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="tutorial-details">
-                                <div class="pull-right fav favorite">
-                                    <i class="zmdi zmdi-star"></i><span>IN FAVORITES</span>
-                                </div>
-                                <h6>How to become an UX engineer</h6>
-                                <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>12 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>3:15h</span></p>
-                                <p class="abs">
-                                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                    sanctus est. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie feuga.
-                                </p>
-                                <a href="#" class="greybutton">VIEW COURSE</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row tutorial">
-                        <div class="col-sm-5">
-                            <img src="http://placehold.it/370x271" class="resp-img" alt="Tutorial">
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="tutorial-details">
-                                <div class="pull-right fav">
-                                    <a href="#"><i class="zmdi zmdi-star"></i></a><span>ADD TO FAVORITES</span>
-                                </div>
-                                <h6>How to create wooden things</h6>
-                                <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>3 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>1:41h</span></p>
-                                <p class="abs">
-                                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                    sanctus est. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie feuga.
-                                </p>
-                                <a href="#" class="greybutton">VIEW COURSE</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row tutorial">
-                        <div class="col-sm-5">
-                            <img src="http://placehold.it/370x271" class="resp-img" alt="Tutorial">
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="tutorial-details">
-                                <div class="pull-right fav">
-                                    <a href="#"><i class="zmdi zmdi-star"></i></a><span>ADD TO FAVORITES</span>
-                                </div>
-                                <h6>Repair your own things</h6>
-                                <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>47 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>10:15h</span></p>
-                                <p class="abs">
-                                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                    sanctus est. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie feuga.
-                                </p>
-                                <a href="#" class="greybutton">VIEW COURSE</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row tutorial">
-                        <div class="col-sm-5">
-                            <img src="http://placehold.it/370x271" class="resp-img" alt="Tutorial">
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="tutorial-details">
-                                <div class="pull-right fav">
-                                    <a href="#"><i class="zmdi zmdi-star"></i></a><span>ADD TO FAVORITES</span>
-                                </div>
-                                <h6>Working with Adobe Photoshop</h6>
-                                <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>32 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>8:15h</span></p>
-                                <p class="abs">
-                                    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                    sanctus est. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie feuga.
-                                </p>
-                                <a href="#" class="greybutton">VIEW COURSE</a>
-                            </div>
-                        </div>
-                    </div>*@
+
             </div>
             <div class="row text-center">
                 <div class="col-xs-12">
                     @if (pager.TotalPages > 0)
                     {
-                    <ul class="pagination justify-content-end">
-                        <li class="page-item @(pager.CurrentPage <= 1 ? "disabled" : "")">
-                            <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@(pager.CurrentPage - 1)"> Previous </a>
-                        </li>
-                        @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
-                        {
-                            <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
-                                <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@pge"> @pge </a>
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item @(pager.CurrentPage <= 1 ? "hidden" : "")">
+                                <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@(pager.CurrentPage - 1)" asp-route-cate="@cate"> Previous </a>
                             </li>
-                        }
-                        <li class="page-item @(pager.CurrentPage == pager.EndPage ? "disabled" : "")">
-                            <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@(pager.CurrentPage + 1)"> Next </a>
-                        </li>
-                        @*<a class="prev" href="#"><i class="zmdi zmdi-chevron-left"></i>PREV</a>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a class="next" href="#">NEXT<i class="zmdi zmdi-chevron-right"></i></a>*@
-                    </ul>
+                            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                            {
+                                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                                    <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@pge" asp-route-cate="@cate"> @pge </a>
+                                </li>
+                            }
+                            <li class="page-item @(pager.CurrentPage == pager.EndPage ? "hidden" : "")">
+                                <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@(pager.CurrentPage + 1)" asp-route-cate="@cate"> Next </a>
+                            </li>
+                            @*<a class="prev" href="#"><i class="zmdi zmdi-chevron-left"></i>PREV</a>
+                                <a href="#">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a class="next" href="#">NEXT<i class="zmdi zmdi-chevron-right"></i></a>*@
+                        </ul>
                     }
                 </div>
             </div>

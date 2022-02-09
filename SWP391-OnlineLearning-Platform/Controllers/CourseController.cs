@@ -44,10 +44,6 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             {
                 list = GetCourses().Where(l => l.Title.Contains(key));
             }
-            if (!string.IsNullOrEmpty(cate))
-            {
-                list = list.Where(l => l.Category_Id.Equals(Int32.Parse(cate)));
-            }
             switch (sortOrder)
             {
                 case "titleDesc":
@@ -69,7 +65,11 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             {
                 page = 1;
             }
-
+            if (!string.IsNullOrEmpty(cate))
+            {
+                list = list.Where(l => l.Category_Id.Equals(Int32.Parse(cate)));
+            }
+            
             int resCount = list.Count();
 
             var pager = new Paginated(resCount, page, pageSize);
@@ -77,7 +77,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 
             var data = list.Skip(recSkip).Take(pager.PageSize);
             this.ViewBag.Paginated = pager;
-
+            this.ViewBag.Category = cate;
             return data;
 
         }
