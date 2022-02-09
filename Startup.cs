@@ -29,7 +29,7 @@ namespace SWP391_OnlineLearning_Platform
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +62,7 @@ namespace SWP391_OnlineLearning_Platform
             );
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=AccountManagement}/{action=userProfile}/{id=30}");
+                    pattern: "{controller=PublicFeature}/{action=BlogList}/{id?}");
             });
         }
     }

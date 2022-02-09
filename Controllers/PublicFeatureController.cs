@@ -33,7 +33,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             return Json(new { status = "success", redirectUrl = url });
         }
 
-        public IActionResult BlogList(int page = 1, int CatID = 0)
+        public IActionResult BlogList(string? keyWord, int CatID = 0, int page = 1)
         {
             //PHÂN TRANG
             var pageNumber = page;
@@ -59,7 +59,13 @@ namespace SWP391_OnlineLearning_Platform.Controllers
                 .OrderByDescending(a => a.Date)
                 .ToList();
             }
-            
+
+            //TÌM KIẾM KEYWORD
+            if (!String.IsNullOrEmpty(keyWord))
+            {
+                blogs = blogs.Where(s => s.Title!.Contains(keyWord)).ToList();
+            }
+
             PagedList<Blog> models = new PagedList<Blog>(blogs.AsQueryable(), pageNumber, pageSize);
 
             ViewBag.CurrentCateID = CatID;
@@ -75,37 +81,17 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             {
                 return NotFound();
             }
-            var blogs = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date);
             var blog = _db.Blogs.Where(s => s.Id == id).Include(a => a.Category).Include(b => b.User).Include(c => c.Status).FirstOrDefault();
-            var category = _db.Categories;
-            Blog_Elements be = new Blog_Elements();
-            be.category = category;
-            be.blogs = blogs;
-            be.blog = blog;
             if (blog == null)
             {
                 return NotFound();
             }
-            return View(be);
+            ViewData["selectedCategory"] = new SelectList(_db.Categories, "Id", "Value");
+            ViewData["category"] = _db.Categories.ToList();
+            ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date).ToList();
+            return View(blog);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> BlogList(string? searchString)
-        //{
-        //    var blogs = from m in _db.Blogs
-        //                select m;
-
-        //    if (!String.IsNullOrEmpty(searchString))
-        //    {
-        //        blogs = blogs.Where(s => s.Title!.Contains(searchString));
-        //    }
-        //    var category = _db.Categories;
-        //    Blog_Elements be = new Blog_Elements();
-        //    be.category = category;
-        //    be.blogs = blogs;
-        //    return View(blogs);
-        //}
 
     }
 }

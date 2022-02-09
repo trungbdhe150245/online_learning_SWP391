@@ -20,7 +20,7 @@ namespace SWP391_OnlineLearning_Platform.Models
         [Required]
         public string Featured { get; set; }
         [Required]
-        [MaxLength(255,ErrorMessage = "Not exceed 255")]
+        [MaxLength(255, ErrorMessage = "Not exceed 255")]
         public string Thumbnail { get; set; }
         [Required]
         [MaxLength(255, ErrorMessage = "Not exceed 255")]

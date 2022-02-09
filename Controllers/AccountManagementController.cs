@@ -16,7 +16,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 
         public AccountManagementController(OnlineLearningDbContext db)
         {
-            _db = db;   
+            _db = db;
         }
 
         public IActionResult userProfile(int? id)
@@ -61,8 +61,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             temp.Dob = obj.Dob;
             _db.Users.Update(temp);
             _db.SaveChanges();
-            return RedirectToAction("userProfile");
-
+            return Redirect($"~/AccountManagement/userProfile?id={obj.Id}");
         }
 
         //GET - CHANGE PASSWORD
@@ -101,7 +100,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
                     temp.Password = obj.NewPassword;
                     _db.Users.Update(temp);
                     _db.SaveChanges();
-                    return RedirectToAction("userProfile");
+                    return Redirect($"~/AccountManagement/userProfile?id={obj.Id}");
                 }
                 else
                 {
@@ -132,18 +131,11 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult changePhoto(User obj)
         {
-            if(obj.Auth_Provider == null)
-            {
-                return RedirectToAction("userProfile");
-            }
-            else
-            {
-                var temp = _db.Users.Find(obj.Id);
-                temp.Password = obj.Avatar_Url;
-                _db.Users.Update(temp);
-                _db.SaveChanges();
-                return RedirectToAction("userProfile");
-            }
+            var temp = _db.Users.Find(obj.Id);
+            temp.Avatar_Url = obj.Avatar_Url;
+            _db.Users.Update(temp);
+            _db.SaveChanges();
+            return Redirect($"~/AccountManagement/userProfile?id={obj.Id}");
         }
 
 
