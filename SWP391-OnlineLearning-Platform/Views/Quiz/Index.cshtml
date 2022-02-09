@@ -1,9 +1,48 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_QuizLayout.cshtml";
     ViewData["Title"] = "Index";
 }
+<style>
+    .pull-left {
+        float: left!important;
+    }
+    #topbar > .pull-left {
+        line-height: 98px;
+    }
+    .container {
+        width: 2000px;
+    }
+    .quiz-nav {
+        background-color: white;
+        padding: 9px 10px;
+        margin-right: 24px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 11px;
+        color: black;
+        transition: background-color 0.5s ease;
+        border-radius: 3px;
+    }
+    .center-title {
+        align-content:center;
+    }
+</style>
+<header>
+    <div class="container">
+        <div id="topbar">
+            <div class="pull-left">
+                <a href="#" class="quiz-nav">BACK</a>
+                <a href="#" class="quiz-nav">SUBMIT</a>
+            </div>
+            <div class="center-title">
+                <p id="demo"></p>
+            </div>
+        </div>
 
-<h1>Timer</h1>
-<p id="demo"></p>
-<script src="~/js/JavaScript.js"></script>
+        </div>
+</header>
+
+<h1>Header</h1>
+
+
+<script src="~/js/timer.js"></script>
