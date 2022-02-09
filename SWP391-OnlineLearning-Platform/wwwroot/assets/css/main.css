@@ -2384,10 +2384,10 @@ aside.categories ul li:not(:last-child),
 	color: #202020;
 	font-size: 11px;
 	position: relative;
-	left: -7px;
+	left: 0px;
 	border: 1px solid #e6e6e6;
 	border-radius: 1px;
-	margin: 22px 0 30px 0;
+	margin: 22px 0 22px 0;
 	display: inline-block;
 }
 
@@ -2442,7 +2442,7 @@ aside.categories ul li:not(:last-child),
 	font-size: 12px;
 	border-radius: 2px;
 	transition: all 0.3s ease;
-	margin-top: 22px;
+	margin-top: 20px;
 }
 
 .order .greybutton:hover{

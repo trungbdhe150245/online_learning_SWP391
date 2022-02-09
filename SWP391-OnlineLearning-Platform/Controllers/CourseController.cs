@@ -34,6 +34,12 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             return View(dy);
         }
 
+        public IActionResult CourseRegister(int id)
+        {
+            
+            return View();
+        }
+
         public IEnumerable<Course> Search(string key,string sortOrder,string cate, int page)
         {
             ViewData["TitleSort"] = String.IsNullOrEmpty(sortOrder) ? "titleDesc" : "";
