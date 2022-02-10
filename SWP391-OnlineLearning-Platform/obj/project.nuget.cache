@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0THnD96JUywKtoEH1EcwKMOtFWdjMzFKhUF6AlcwOHrSeVfoZA570FZPWfKh1OlsamwFWcR5Cj7fRq06D9lqLQ==",
+  "dgSpecHash": "bvHFOYOpAtRAOWwtjmCipz6Qx6fsw/iw7jSrcw5l57TTTMFTCud32+qIlSkOBTlLG1ao5KOPS7z268CAVxvweg==",
   "success": true,
   "projectFilePath": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 4\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
   "expectedPackageFiles": [
@@ -59,6 +59,8 @@
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\mimekit\\3.1.1\\mimekit.3.1.1.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\pagedlist.core\\1.17.4\\pagedlist.core.1.17.4.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\pagedlist.core.mvc\\3.0.0\\pagedlist.core.mvc.3.0.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

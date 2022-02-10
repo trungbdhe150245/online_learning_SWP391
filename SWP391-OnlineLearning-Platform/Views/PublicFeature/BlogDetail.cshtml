@@ -148,7 +148,7 @@
                             <img src="~/img/@Html.DisplayFor(modelItem => item.Thumbnail)" alt="recent" class="pull-left" style="width: 70px; height: 70px; object-fit: cover; object-position: 50% 50%;">
                             <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
                             <div class="author">
-                                <a href="#">@Html.DisplayFor(modelItem => item.Category.Value)</a><span> @Html.DisplayFor(modelItem => item.Date)</span>
+                                <a href="#">@Html.DisplayFor(modelItem => item.Category.Value)</a><span> @Html.DisplayFor(modelItem => item.Date_Create)</span>
                             </div>
                         </div>}
                 }
