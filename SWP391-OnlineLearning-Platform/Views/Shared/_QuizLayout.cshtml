@@ -12,11 +12,72 @@
     <link rel="stylesheet" href="assets/libs/rslides/responsiveslides.css">
     <link rel="stylesheet" href="assets/libs/slick/slick.css">
     <link rel="stylesheet" href="assets/css/main.css">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600%7CMontserrat:300,400,600%7CRaleway:300,400,400i,600%7COpen+Sans:400,400i%7CVarela+Round">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body id="courses-list-sidebar" class="page">
 
-        @RenderBody()
+    @RenderBody()
+    <script src="~/js/timer.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myList li").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ddlCountry,#ddlAge").on("change", function () {
+                var country = $('#ddlCountry').find("option:selected").val();
+                var age = $('#ddlAge').find("option:selected").val();
+                SearchData(country, age)
+            });
+        });
+        function SearchData(country, age) {
+            if (country.toUpperCase() == 'ALL' && age.toUpperCase() == 'ALL') {
+                $('#table11 tbody tr').show();
+            } else {
+                $('#table11 tbody tr:has(td)').each(function () {
+                    var rowCountry = $.trim($(this).find('td:eq(1)').text());
+                    var rowAge = $.trim($(this).find('td:eq(2)').text());
+                    if (country.toUpperCase() != 'ALL' && age.toUpperCase() != 'ALL') {
+                        if (rowCountry.toUpperCase() == country.toUpperCase() && rowAge == age) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    } else if ($(this).find('td:eq(1)').text() != '' || $(this).find('td:eq(1)').text() != '') {
+                        if (country != 'all') {
+                            if (rowCountry.toUpperCase() == country.toUpperCase()) {
+                                $(this).show();
+                            } else {
+                                $(this).hide();
+                            }
+                        }
+                        if (age != 'all') {
+                            if (rowAge == age) {
+                                $(this).show();
+                            }
+                            else {
+                                $(this).hide();
+                            }
+                        }
+                    }
+
+                });
+            }
+        }
+    </script>
 </body>
+
 </html>
