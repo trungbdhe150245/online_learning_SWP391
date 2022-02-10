@@ -3,71 +3,6 @@
     Layout = "~/Views/Shared/_QuizLayout.cshtml";
     ViewData["Title"] = "Index";
 }
-<style>
-    .pull-left {
-        float: left !important;
-    }
-
-    #topbar > .pull-left {
-        line-height: 98px;
-    }
-
-    .container {
-        width: 2000px;
-    }
-
-    .quiz-nav {
-        background-color: white;
-        padding: 9px 10px;
-        margin-right: 24px;
-        font-family: "Montserrat", sans-serif;
-        font-size: 11px;
-        color: black;
-        transition: background-color 0.5s ease;
-        border-radius: 3px;
-    }
-
-    .title {
-        color: white;
-        text-align: center;
-        padding: 20px 10px;
-    }
-
-    .wrapper {
-        vertical-align: top;
-        margin-left: auto;
-        margin-right: auto;
-        width: 960px;
-    }
-</style>
-<header>
-    <div class="container">
-        <div id="topbar">
-            <div class="pull-right">
-                <div class="navigation">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <i class="zmdi zmdi-menu zmdi-hc-lg"></i>
-                    </button>
-                    <nav class="collapse navbar-collapse" id="myNavbar">
-                        <ul>
-                            <li class="active">
-                                <a href="">START</a>
-                            </li>
-                            <li class="active">
-                                <a href="">SUBMIT</a>
-                            </li>
-                            <li class="active">
-                                <a href="">RESET</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <h1 class="logo"><a href="index1.html"><img src="http://placehold.it/112x28" alt="Logo"></a></h1>
-        </div>
-    </div>
-</header>
-
 <div class="page-heading text-center">
     <div class="container">
         <h2>Type of quiz: As or prac</h2>
@@ -82,42 +17,80 @@
         <li class="list-group-item">Fourth</li>
     </ul>*@
 
-    <div class="row">
-        <div class="col-xs-10" style="margin-bottom:10px">
-            @*<input class="form-control" id="myInput" type="text" placeholder="Search..">*@
-            <div class="lmao" style="margin-top:10px">
-                <div class="col-xs-6">
-                    <div class="col-sm-3">
-                        <select class="form-control cl_country" id="ddlCountry" style="float:left">
-                            <option value="all" selected>Question</option>
-                            <option value="India">india</option>
-                            <option value="usa">usa</option>
-                            <option value="uk">uk</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <select class="form-control cl_age" id="ddlAge">
-                            <option value="all" selected>Status</option>
-                            <option value="50">50</option>
-                            <option value="60">60</option>
-                            <option value="80">80</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-2">
-                        <button class="btn btn-block">Start</button>
-                    </div>
-                    <div class="col-sm-2">
-                        <button class="btn btn-block">Reset</button>
-                    </div>
-                    <div class="col-sm-2">
-                        <button class="btn btn-block">Submit</button>
-                    </div>
-                </div>
-                    
-                </div>
-
-            </div>
-    </div>
 <div class="row">
-    
+    <div class="col-xs-10" style="margin-bottom:10px">
+        @*<input class="form-control" id="myInput" type="text" placeholder="Search..">*@
+        <div class="lmao" style="margin-top:10px">
+            <div class="col-xs-6">
+                <div class="col-sm-3">
+                    <select class="form-control cl_country" id="ddlCountry" style="float:left">
+                        <option value="all" selected>Question</option>
+                        <option value="India">india</option>
+                        <option value="usa">usa</option>
+                        <option value="uk">uk</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <select class="form-control cl_age" id="ddlAge">
+                        <option value="all" selected>Status</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="80">80</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-block">Start</button>
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-block">Reset</button>
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-block">Submit</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-8">
+        <table class="table table-bordered" style="width: 100%" id="table11" border="1">
+            <tr>
+                <th>name</th>
+                <th>country</th>
+                <th>Age</th>
+            </tr>
+            <tr>
+                <td>Jill</td>
+                <td>USA</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Eve</td>
+                <td>UK</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>INDIA</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>sam</td>
+                <td>AUSTRALIA</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>joe</td>
+                <td>INDIA</td>
+                <td>60</td>
+            </tr>
+            <tr>
+                <td>alan</td>
+                <td>USA</td>
+                <td>60</td>
+            </tr>
+        </table>
+    </div>
 </div>
