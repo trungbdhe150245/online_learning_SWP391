@@ -1,17 +1,15 @@
 ﻿@*@model IEnumerable<SWP391_OnlineLearning_Platform.Models.Category>*@
 @model dynamic
-@{
-    ViewData["Title"] = "CourseList";
-    Paginated pager = new Paginated();
+@{ ViewData["Title"] = "CourseList";
+                Paginated pager = new Paginated();
 
-    int pageNo = 0;
-    string cate = ViewBag.Category;
-    if (ViewBag.Paginated != null)
-    {
-        pager = ViewBag.Paginated;
-        pageNo = pager.CurrentPage;
-    }
-}
+                int pageNo = 0;
+                string cate = ViewBag.Category;
+                if (ViewBag.Paginated != null)
+                {
+                    pager = ViewBag.Paginated;
+                    pageNo = pager.CurrentPage;
+                } }
 
 <main>
 
@@ -36,8 +34,7 @@
                         <option value="">choose a category</option>
                         @foreach (var category in Model.categories)
                         {
-                            <option value="@category.Id">@category.Value</option>
-                        }
+            <option value="@category.Id">@category.Value</option>}
                         @*<option value="1">Category 1</option>
                             <option value="2">Category 2</option>
                             <option value="3">Category 3</option>*@
@@ -75,10 +72,9 @@
                     <h6>CATEGORIES</h6>
                     @foreach (var category in Model.categories)
                     {
-                        <ul>
-                            <li><a href="CourseList?cate=@category.Id&page=1">@category.Value</a></li>
-                        </ul>
-                    }
+        <ul>
+            <li><a href="CourseList?cate=@category.Id&page=1">@category.Value</a></li>
+        </ul>}
 
                 </aside>
                 <div class="start-today">
@@ -90,46 +86,51 @@
             <div class="col-sm-9">
                 @foreach (var course in Model.courses)
                 {
-                    <div class="row tutorial">
-                        <div class="col-sm-5">
-                            <img src="~/img/@course.Thumbnail_URL" class="resp-img" alt="Tutorial">
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="tutorial-details">
-                                <div class="pull-right fav favorite">
-                                    <i class="zmdi zmdi-star"></i><span>IN FAVORITES</span>
-                                </div>
-                                <h6>@course.Title</h6>
-                                <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>12 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>3:15h</span></p>
-                                <p class="abs">
-                                    @course.Description
-                                </p>
-                                <a asp-action="CourseDetail" asp-controller="Course" class="greybutton" asp-route-id="@course.Id">VIEW COURSE</a>
-                            </div>
-                        </div>
-                    </div>
-                }
+    <div class="row tutorial">
+        <div class="col-sm-5">
+            <img src="~/img/@course.Thumbnail_URL" class="resp-img" alt="Tutorial">
+        </div>
+        <div class="col-sm-7">
+            <div class="tutorial-details">
+                <div class="pull-right fav favorite">
+                    <i class="zmdi zmdi-star"></i><span>IN FAVORITES</span>
+                </div>
+                <h6>@course.Title</h6>
+                <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>12 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>3:15h</span></p>
+                <p class="abs">
+                    @course.Description
+                </p>
+                <a asp-action="CourseDetail" asp-controller="Course" class="greybutton" asp-route-id="@course.Id">VIEW COURSE</a>
+            </div>
+        </div>
+    </div>}
 
             </div>
             <div class="row text-center">
                 <div class="col-xs-12">
                     @if (pager.TotalPages > 0)
                     {
-                        <ul class="pagination justify-content-end">
-                            <li class="page-item @(pager.CurrentPage <= 1 ? "hidden" : "")">
-                                <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@(pager.CurrentPage - 1)" asp-route-cate="@cate"> Previous </a>
-                            </li>
-                            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
-                            {
-                                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
-                                    <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@pge" asp-route-cate="@cate"> @pge </a>
-                                </li>
-                            }
-                            <li class="page-item @(pager.CurrentPage == pager.EndPage ? "hidden" : "")">
-                                <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@(pager.CurrentPage + 1)" asp-route-cate="@cate"> Next </a>
-                            </li>
-                        </ul>
-                    }
+        <ul class="pagination justify-content-end">
+            <li class="page-item @(pager.CurrentPage <= 1 ? "hidden" : "")">
+                <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@(pager.CurrentPage - 1)" asp-route-cate="@cate"> Previous </a>
+            </li>
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+<li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+    <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@pge" asp-route-cate="@cate"> @pge </a>
+</li>}
+            <li class="page-item @(pager.CurrentPage == pager.EndPage ? "hidden" : "")">
+                <a class="page-link" asp-action="CourseList" asp-controller="Course" asp-route-page="@(pager.CurrentPage + 1)" asp-route-cate="@cate"> Next </a>
+            </li>
+            @*<a class="prev" href="#"><i class="zmdi zmdi-chevron-left"></i>PREV</a>
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a class="next" href="#">NEXT<i class="zmdi zmdi-chevron-right"></i></a>*@
+        </ul>}
                 </div>
             </div>
         </div>

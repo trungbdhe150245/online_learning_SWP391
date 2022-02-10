@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>SWP391_OnlineLearning_Platform</RootNamespace>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>a03f4b3a-d941-4f8d-928c-0ed07337687a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

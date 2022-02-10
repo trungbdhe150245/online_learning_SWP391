@@ -5,16 +5,14 @@
 }
 <style>
     .pull-left {
-        float: left !important;
+        float: left!important;
     }
-
     #topbar > .pull-left {
         line-height: 98px;
     }
-
     .container {
+        width: 2000px;
     }
-
     .quiz-nav {
         background-color: white;
         padding: 9px 10px;
@@ -25,12 +23,11 @@
         transition: background-color 0.5s ease;
         border-radius: 3px;
     }
-
     .title {
         color: white;
+        text-align: center;
         padding: 20px 10px;
     }
-
     .wrapper {
         vertical-align: top;
         margin-left: auto;
@@ -41,101 +38,20 @@
 <header>
     <div class="container">
         <div id="topbar">
-            <div class="pull-right">
-                <div class="navigation">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <i class="zmdi zmdi-menu zmdi-hc-lg"></i>
-                    </button>
-                    <nav class="collapse navbar-collapse" id="myNavbar">
-                        <ul>
-                            <li class="active">
-                                <a href="">START</a>
-                            </li>
-                            <li class="active">
-                                <a href="">SUBMIT</a>
-                            </li>
-                            <li class="active">
-                                <a href="">RESET</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+            <div class="navigation wrapper pull-left">
+                <a href="#" class="quiz-nav">BACK</a>
+                <a href="#" class="quiz-nav">SUBMIT</a>
             </div>
-            <h1 class="logo"><a href="index1.html"><img src="http://placehold.it/112x28" alt="Logo"></a></h1>
+            <div class="navigation title">
+                <h1>lmao</h1>
+                <p id="demo"></p>
+            </div>
         </div>
-    </div>
+
+        </div>
 </header>
-@*<input class="form-control" id="myInput" type="text" placeholder="Search..">
-    <br>
-    <ul class="list-group" id="myList">
-        <li class="list-group-item">First item</li>
-        <li class="list-group-item">Second item</li>
-        <li class="list-group-item">Third item</li>
-        <li class="list-group-item">Fourth</li>
-    </ul>*@
 
-<div class="col-xs-6">
-    <h1>Question Search:</h1>
+<h1>Header</h1>
 
 
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
-    <br>
-    <ul class="list-group" id="myList">
-        <li class="list-group-item">First item</li>
-        <li class="list-group-item">Second item</li>
-        <li class="list-group-item">Third item</li>
-        <li class="list-group-item">Fourth</li>
-    </ul>
-
-    <div class="row">
-        <ul class="list-group" id="myList">
-            <li>
-                <div class="col-12">
-                    <p class="fw-bold">1. Which of the following sentences is correct</p>
-                    <div>
-                        <input type="radio" name="box" id="one"> <input type="radio" name="box" id="two"> <input type="radio" name="box" id="three"> <input type="radio" name="box" id="four"> <label for="one" class="box first">
-                            <div class="course"> <span class="circle"></span> <span class="subject"> When its raining ,people's umbrella are all you're going to see from above </span> </div>
-                        </label> <label for="two" class="box second">
-                            <div class="course"> <span class="circle"></span> <span class="subject"> When its raining,people's umbrella are all your going to see from above </span> </div>
-                        </label> <label for="three" class="box third">
-                            <div class="course"> <span class="circle"></span> <span class="subject"> When its raining,peoples umbrella's are all you're going to see from above </span> </div>
-                        </label> <label for="four" class="box forth">
-                            <div class="course"> <span class="circle"></span> <span class="subject"> None of the above </span> </div>
-                        </label>
-                    </div>
-                </div>
-            </li>
-            <li>
-            <div class="col-12">
-                <p class="fw-bold mt-5">2. Complete the following sentences:Alice couldn't _______ the humilation any longer and stormed out of the room red as a bed</p>
-                <div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="radio" name="box" id="five"> <label for="five" class="box fifth w-100">
-                                <div class="course"> <span class="circle"></span> <span class="subject">is</span> </div>
-                            </label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="radio" name="box" id="six"> <label for="six" class="box sixth w-100">
-                                <div class="course"> <span class="circle"></span> <span class="subject"> was </span> </div>
-                            </label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="radio" name="box" id="seven"> <label for="seven" class="box seveth w-100">
-                                <div class="course"> <span class="circle"></span> <span class="subject"> will </span> </div>
-                            </label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="radio" name="box" id="eight"> <label for="eight" class="box eighth w-100">
-                                <div class="course"> <span class="circle"></span> <span class="subject"> None of the above </span> </div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </li>
-        </ul>
-    </div>
-</div>
-
-
+<script src="~/js/timer.js"></script>
