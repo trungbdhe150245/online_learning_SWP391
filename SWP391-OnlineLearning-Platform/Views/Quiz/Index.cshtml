@@ -5,14 +5,17 @@
 }
 <style>
     .pull-left {
-        float: left!important;
+        float: left !important;
     }
+
     #topbar > .pull-left {
         line-height: 98px;
     }
+
     .container {
         width: 2000px;
     }
+
     .quiz-nav {
         background-color: white;
         padding: 9px 10px;
@@ -23,11 +26,13 @@
         transition: background-color 0.5s ease;
         border-radius: 3px;
     }
+
     .title {
         color: white;
         text-align: center;
         padding: 20px 10px;
     }
+
     .wrapper {
         vertical-align: top;
         margin-left: auto;
@@ -63,7 +68,105 @@
     </div>
 </header>
 
-<h1>Header</h1>
+<div class="page-heading text-center">
+    <div class="container">
+        <h2>Type of quiz: As or prac</h2>
+    </div>
+</div>
+@*<input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <ul class="list-group" id="myList">
+        <li class="list-group-item">First item</li>
+        <li class="list-group-item">Second item</li>
+        <li class="list-group-item">Third item</li>
+        <li class="list-group-item">Fourth</li>
+    </ul>*@
+<div class="lmao" style="margin-top:20px">
+    <div class="row">
+        <div class="col-xs-8">
+            @*<input class="form-control" id="myInput" type="text" placeholder="Search..">*@
+            <div class="col-xs-6">
+                <div class="col-sm-3">
+                    <select class="form-control cl_country" id="ddlCountry" style="float:left">
+                        <option value="all" selected>Question</option>
+                        <option value="India">india</option>
+                        <option value="usa">usa</option>
+                        <option value="uk">uk</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <select class="form-control cl_age" id="ddlAge">
+                        <option value="all" selected>Status</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="80">80</option>
+                    </select>
+                </div>
+                <table style="width: 100%" id="table11" border="1">
+                    <tr>
+                        <th>name</th>
+                        <th>country</th>
+                        <th>Age</th>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>USA</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>UK</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>John</td>
+                        <td>INDIA</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>sam</td>
+                        <td>AUSTRALIA</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>joe</td>
+                        <td>INDIA</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>alan</td>
+                        <td>USA</td>
+                        <td>60</td>
+                    </tr>
+                </table>
+            </div>
 
+        </div>
 
-<script src="~/js/timer.js"></script>
+        <div class="col-xs-4">
+            <h4>Timer: </h4>
+            <table class="table">
+                <thead class="thead-light" style="background-color: #213c50; color:white">
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                    </tr>
+                    <tr>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                    </tr>
+                    <tr>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
