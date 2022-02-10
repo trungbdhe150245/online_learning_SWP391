@@ -138,6 +138,41 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             return Redirect($"~/AccountManagement/UserProfile?id={obj.Id}");
         }
 
+        /*LOGIN*/
+        public ActionResult Login()
+        {
+            return View();
+        }
+       
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(FormCollection obj)
+        {
+            string Email = obj["Email"].ToString();
+            string PassWord= obj["PassWord"].ToString();
+            var isLogin = _db.Users.SingleOrDefault(x => x.Email.Equals(Email) && x.Password.Equals(PassWord));
+            if (ModelState.IsValid)
+            {
+                if(isLogin != null)
+                /*if (_db.Users.Any.Email.Equals(obj.Email) && _db.Users.FirstOrDefault().Password.Equals(obj.Password))*/
+
+                /*var data = _db.Users.Where(s => s.Email.Equals(obj.Email) && s.Password.Equals(obj.Password)).ToList();
+				if (data.Count() > 0)*/
+                {
+                    /*//add session
+					Session["FullName"] = data.FirstOrDefault().Full_Name;
+					Session["Email"] = data.FirstOrDefault().Email;
+					Session["UserID"] = data.FirstOrDefault().Id;*/
+                    return RedirectToAction("Home");
+                }
+                else
+                {
+                    ViewBag.error = "Login failed";
+                    return View("Login");
+                }
+            }
+            return View();
+        }
     }
 }
