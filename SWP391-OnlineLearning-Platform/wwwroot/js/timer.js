@@ -1,29 +1,44 @@
-﻿
-// Set the date we're counting down to
-var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
+﻿var hours = 0, // obtain these values somewhere else 
+    minutes = 1,
+    seconds = 20,
+    target = new Date(),
+    timerDiv = document.getElementById("timer"),
+    handler;
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+function init() {
+    // set the target date time with the counter values
+    // counters more then 24h should have a date setup or it wont work
+    target.setHours(hours);
+    target.setMinutes(minutes);
+    target.setSeconds(seconds);
+    target.setMilliseconds(0); // make sure that miliseconds is 0
+    timerDiv.innerHTML = target.toTimeString().split(" ")[0]; // print the value
+}
 
-  // Get today's date and time
-  var now = new Date().getTime();
+function updateTimer() {
+    var time = target.getTime();
+    target.setTime(time - 1000); // subtract 1 second with every thick
+    timerDiv.innerHTML = target.toTimeString().split(" ")[0];
+    if (
+        target.getHours() === 0 &&
+        target.getMinutes() === 0 &&
+        target.getSeconds() === 0
+    ) { // counter should stop
+        clearInterval(handler);
+    }
+}
 
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+handler = setInterval(updateTimer, 1000);
 
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Display the result in the element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
-}, 1000);
+document.getElementById("stop-button").addEventListener("click", function () {
+    clearInterval(handler);
+});
+document.getElementById("start-button").addEventListener("click", function () {
+    clearInterval(handler);
+    handler = setInterval(updateTimer, 1000);
+});
+document.getElementById("reset-button").addEventListener("click", function () {
+    init();
+    clearInterval(handler);
+});
+init();

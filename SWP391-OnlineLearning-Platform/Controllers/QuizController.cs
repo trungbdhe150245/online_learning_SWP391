@@ -10,7 +10,8 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 	{
 		public IActionResult Index()
 		{
-			return View();
+			int time = 50;
+			return View(time);
 		}
 	}
 }
