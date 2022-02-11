@@ -33,7 +33,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             return Json(new { status = "success", redirectUrl = url });
         }
 
-        public IActionResult BlogList(string? keyWord, int CatID = 0, int page = 1)
+        public IActionResult BlogList(string keyWord, int CatID = 0, int page = 1)
         {
             //PHÂN TRANG
             var pageNumber = page;

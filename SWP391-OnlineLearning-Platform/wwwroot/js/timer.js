@@ -13,6 +13,7 @@ function init() {
     target.setSeconds(seconds);
     target.setMilliseconds(0); // make sure that miliseconds is 0
     timerDiv.innerHTML = target.toTimeString().split(" ")[0]; // print the value
+    clearInterval(handler);
 }
 
 function updateTimer() {
@@ -24,7 +25,9 @@ function updateTimer() {
         target.getMinutes() === 0 &&
         target.getSeconds() === 0
     ) { // counter should stop
+        $('#theButton').click();
         clearInterval(handler);
+
     }
 }
 
