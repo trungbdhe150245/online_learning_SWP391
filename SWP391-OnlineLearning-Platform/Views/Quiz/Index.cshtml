@@ -3,6 +3,11 @@
     Layout = "~/Views/Shared/_QuizLayout.cshtml";
     ViewData["Title"] = "Index";
 }
+<style>
+    .btn {
+        display: inline-block;
+    }
+</style>
 <div class="page-heading text-center">
     <div class="container">
         <h2>Type of quiz: As or prac</h2>
@@ -22,31 +27,23 @@
         @*<input class="form-control" id="myInput" type="text" placeholder="Search..">*@
         <div class="lmao" style="margin-top:20px">
             <div class="col-xs-6">
-                <div class="col-sm-3">
-                    <select class="form-control cl_country" id="ddlCountry" style="float:left">
-                        <option value="all" selected>Question</option>
-                        <option value="India">india</option>
-                        <option value="usa">usa</option>
-                        <option value="uk">uk</option>
-                    </select>
+                <div class="col-sm-6">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary">Start</button>
+                        <button type="button" class="btn btn-secondary">Reset</button>
+                        <button type="button" class="btn btn-secondary">Submit</button>
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <select class="form-control cl_age" id="ddlAge">
-                        <option value="all" selected>Status</option>
-                        <option value="50">50</option>
-                        <option value="60">60</option>
-                        <option value="80">80</option>
-                    </select>
+
+                @*<div class="col-sm-2">
+                    <button type="button" class="btn btn-primary">Start</button>
                 </div>
                 <div class="col-sm-2">
-                    <button class="btn btn-block">Start</button>
+                    <button type="button" class="btn btn-danger">Reset</button>
                 </div>
                 <div class="col-sm-2">
-                    <button class="btn btn-block">Reset</button>
-                </div>
-                <div class="col-sm-2">
-                    <button class="btn btn-block">Submit</button>
-                </div>
+                    <button type="button" class="btn btn-success">Submit</button>
+                </div>*@
             </div>
 
         </div>
@@ -56,60 +53,44 @@
 <hr />
 <div class="row">
     <div class="col-xs-8">
-        <table class="table table-bordered" style="width: 100%" id="table11" border="1">
-            <tr>
-                <th>name</th>
-                <th>country</th>
-                <th>Age</th>
-            </tr>
-            <tr>
-                <td>Jill</td>
-                <td>USA</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>Eve</td>
-                <td>UK</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>John</td>
-                <td>INDIA</td>
-                <td>80</td>
-            </tr>
-            <tr>
-                <td>sam</td>
-                <td>AUSTRALIA</td>
-                <td>80</td>
-            </tr>
-            <tr>
-                <td>joe</td>
-                <td>INDIA</td>
-                <td>60</td>
-            </tr>
-            <tr>
-                <td>alan</td>
-                <td>USA</td>
-                <td>60</td>
-            </tr>
-        </table>
+        <div id="div1" class="infoDiv" style="display:none;">
+            <div class="company-story-content"><h2 class="story-title">Store <span class="color-text">Username</span> </h2></div>
+            <p>Store username is unique and it will be used to find your store.</p>
+            <p>For example www.flashcart.com/<span class="color-text">abc</span> to find store that has <span class="color-text">abc</span> username.</p>
+            <p>Please keep in mind before choosing username.</p>
+            <ul>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;Username can contain <span class="color-text">Alphabets</span>
+                <li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;Username can contain <span class="color-text">Numbers</span>.</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;Username can contain <span class="color-text">Underscores</span>.</li>
+            </ul>
+        </div>
+
+        <div id="div2" class="infoDiv" style="display:none;">
+            <div class="company-story-content">
+                <h2 class="story-title">Some other<span class="color-text">Username</span> </h2>
+            </div>
+            <p>Div</p>
+        </div>
     </div>
     <div class="col-xs-4">
-        <h4 style="margin-bottom: 10px">Question indicator:</h4>
-        <table class="table table-bordered">
-            <thead style="background-color:olive;padding-right:10px">
-                <tr>
-                    <td>No.</td>
-                    <td>Status</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                </tr>
-                
-            </tbody>
-        </table>
+        <div class="col-xs-6">
+            <h4>Navigation</h4>
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-secondary info" id="1">1</button>
+                    <button type="button" class="btn btn-secondary info" id="2">2</button>
+                    <button type="button" class="btn btn-secondary info" id="3">3</button>
+                    <button type="button" class="btn btn-secondary info" id="4">4</button>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text" id="btnGroupAddon"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
