@@ -147,7 +147,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(FormCollection obj)
+        public ActionResult Login(IFormCollection obj)
         {
             string Email = obj["Email"].ToString();
             string PassWord= obj["PassWord"].ToString();
@@ -173,6 +173,40 @@ namespace SWP391_OnlineLearning_Platform.Controllers
                 }
             }
             return View();
+        }
+        //GET: Register
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+        //POST: Register
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(User _user)
+        {
+            if (ModelState.IsValid)
+            {
+                var check = _db.Users.FirstOrDefault(s => s.Email == _user.Email);
+                if (check == null)
+                {
+                    /*_user.Password = GetMD5(_user.Password);
+					*//*_db.Configuration.ValidateOnSaveEnabled = false;*/
+                    _db.Users.Add(_user);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.error = "Email already exists";
+                    return View();
+                }
+
+
+            }
+            return View();
+
+
         }
     }
 }

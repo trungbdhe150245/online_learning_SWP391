@@ -23,6 +23,7 @@ namespace SWP391_OnlineLearning_Platform.Models
         [EmailAddress]
         public string Email { get; set; }
         [Required]
+        [DisplayName("Date Of Birth")]
         public DateTime Dob { get; set; }
 
         [Required]
