@@ -156,9 +156,9 @@
 
 </script>
 <script>
-    var question = ["div1", "div2", "div3", "q4"]
+    var question_constructed = ["div1", "div2", "div3", "q4"]
 
-    $.each(question, function (index, value) {
+    $.each(question_constructed, function (index, value) {
         $('input[name=' + value + ']').keyup(function () {
             if ($(this).val().length)
                 //$('#yeah').show();
@@ -167,6 +167,20 @@
                 $("#" + (index + 1)).attr('class', 'btn btn-secondary info');
         });
     });
+
+    var question_mcq = ["q", "q2", "q3", "q4"]
+    $.each(question_mcq, function (index, value) {
+        $("input[name=" + value + "]").on('change', function () {
+            if ($(this).attr('checked')) {
+                $("#" + (index + 1)).attr('class', 'btn btn-primary info');
+            }
+            else {
+                $("#" + (index + 1)).attr('class', 'btn btn-secondary info');
+            }
+        });
+    });
+
+
     //$('input[name=amount]').keyup(function () {
     //    if ($(this).val().length)
     //        //$('#yeah').show();
@@ -178,3 +192,4 @@
 
 
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
