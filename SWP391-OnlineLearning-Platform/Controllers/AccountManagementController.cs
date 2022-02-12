@@ -77,7 +77,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             {
                 return NotFound();
             }
-            Change_Password x = new Change_Password();
+            Change_PasswordVM x = new Change_PasswordVM();
             x.Id = user.Id;
             x.Full_Name = user.Full_Name;
             x.Avatar_Url = user.Avatar_Url;
@@ -87,7 +87,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         //POST - CHANGE PASSWORD
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ChangePassword(Change_Password obj)
+        public IActionResult ChangePassword(Change_PasswordVM obj)
         {
             var temp = _db.Users.Find(obj.Id);
             obj.Id = temp.Id;
@@ -123,7 +123,11 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             {
                 return NotFound();
             }
-            return View(user);
+            Change_PhotoVM cp = new Change_PhotoVM();
+            cp.Avatar_Url = user.Avatar_Url;
+            cp.Full_Name = user.Full_Name;
+            cp.Id = user.Id;
+            return View(cp);
         }
 
         //POST - CHANGE PHOTO

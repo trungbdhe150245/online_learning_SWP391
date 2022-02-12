@@ -10,7 +10,7 @@
 
 <style>
     .page-link {
-        margin:auto !important; 
+        margin: auto !important;
         height: auto !important;
     }
 </style>
@@ -27,7 +27,7 @@
         <div>
             <p>
                 Sorted by:
-                <select class="custom-select"  id="categoryList" name="categoryList" asp-items="ViewBag.selectedCategory"  style="padding:9px 15px; border-radius:10px;">
+                <select class="custom-select" id="categoryList" name="categoryList" asp-items="ViewBag.selectedCategory" style="padding:9px 15px; border-radius:10px;">
                     <option selected disabled>---Category---</option>
                     <option value="0">All</option>
                 </select>
@@ -56,9 +56,9 @@
                     <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id" class="pull-right greybutton">READ MORE</a>
                 </div>}
             <h3>Trang số: @CurrentPage</h3>
-       
-                <pager list="@Model" asp-route-CatID="@ViewBag.CurrentCateID" asp-controller="publicfeature" asp-action="bloglist" />
-                 
+
+            <pager list="@Model" asp-route-CatID="@ViewBag.CurrentCateID" asp-controller="publicfeature" asp-action="bloglist" />
+
         </div>
 
 
@@ -95,7 +95,7 @@
                 <ul>
                     @foreach (var item in ViewData["category"] as List<Category>)
                     {
-                        <li><a asp-route-CatID="@item.Id" asp-controller="publicfeature" asp-action="bloglist" >@Html.DisplayFor(modelItem => item.Value)</a></li>
+                        <li><a asp-route-CatID="@item.Id" asp-controller="publicfeature" asp-action="bloglist">@Html.DisplayFor(modelItem => item.Value)</a></li>
                     }
                 </ul>
             </div>
@@ -109,7 +109,7 @@
 @section Scripts{
     <script>
         $(document).ready(function () {
-            jQuery("#categoryList").change(function(){
+            jQuery("#categoryList").change(function () {
                 var catID = jQuery(this).children(":selected").attr("value");
                 $("#categoryList option").removeAttr("selected");
                 $("#categoryList option > [value=" + catID + "]").attr("selected", "true");

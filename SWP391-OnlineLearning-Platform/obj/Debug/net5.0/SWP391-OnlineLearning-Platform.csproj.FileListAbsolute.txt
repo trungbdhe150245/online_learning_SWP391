@@ -2564,7 +2564,6 @@ D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP39
 D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_FooterPartial.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_HeaderPartial.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
-D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_QuizLayout.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_UserProfilePartial.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
@@ -3491,3 +3490,10 @@ E:\FPTLearning\Spring2022\SWP391\Week4\SourceCode\Merge\online_learning_SWP391\S
 E:\FPTLearning\Spring2022\SWP391\Week4\SourceCode\Merge\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\ref\SWP391-OnlineLearning-Platform.dll
 E:\FPTLearning\Spring2022\SWP391\Week4\SourceCode\Merge\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.pdb
 E:\FPTLearning\Spring2022\SWP391\Week4\SourceCode\Merge\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.genruntimeconfig.cache
+D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\AccountManagement\Login.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\AccountManagement\Register.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\QuizComponent\_ModalInstruction.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\QuizComponent\_ModalReset.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\QuizComponent\_ModalStart.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\QuizComponent\_ModalSubmit.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 4\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Shared\QuizComponent\_QuizLayout.cshtml.g.cs

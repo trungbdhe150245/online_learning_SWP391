@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SWP391_OnlineLearning_Platform.Models.ViewModels
 {
-    public class Change_Password
+    public class Change_PasswordVM
     {
         [Required]
         [DataType(DataType.Password)]

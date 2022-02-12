@@ -1,15 +1,21 @@
 ﻿
 @{
     ViewData["Title"] = "changePhoto";
+    User u = new User()
+    {
+        Id = Model.Id,
+        Full_Name = Model.Full_Name,
+        Avatar_Url = Model.Avatar_Url
+    };
 }
-@model SWP391_OnlineLearning_Platform.Models.User
+@model SWP391_OnlineLearning_Platform.Models.ViewModels.Change_PhotoVM
 
 
 
 <div class="container">
     <div class="row profile">
 
-        @await Html.PartialAsync("~/Views/Shared/_UserProfilePartial.cshtml", Model)
+        @await Html.PartialAsync("~/Views/Shared/_UserProfilePartial.cshtml", u)
 
         <div class="col-md-9">
             <div class="profile-content">
@@ -20,8 +26,9 @@
                     <form method="post" asp-action="changePhoto" enctype="multipart/form-data">
                         <input asp-for="@Model.Id" disabled hidden/>
                         <div class="form-group">
-                            <label for="Avatar_Url" class="form-label">Default file input example</label>
-                            <input asp-for="Avatar_Url" class="form-control" type="text" >
+                            <label for="Photo" class="form-label">Default file input example</label>
+                            <input asp-for="Photo" class="form-control custom-file-input" type="file">
+                            <label class="custom-file-label">Choose File ...</label>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="SAVE" class="btn btn-success" style="margin-left:35%; padding:5px 20px" />
@@ -35,6 +42,14 @@
     </div>
 </div>
 
-<script>
 
+@section Scripts{
+<script>
+    $(document).ready(function () {
+        $('.custom-file-input').on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html("Name file: " + fileName);
+        });
+    })
 </script>
+ }
