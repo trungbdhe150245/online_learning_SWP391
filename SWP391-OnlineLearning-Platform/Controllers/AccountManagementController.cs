@@ -139,6 +139,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             temp.Avatar_Url = obj.Avatar_Url;
             _db.Users.Update(temp);
             _db.SaveChanges();
+
             return Redirect($"~/AccountManagement/UserProfile?id={obj.Id}");
         }
 
