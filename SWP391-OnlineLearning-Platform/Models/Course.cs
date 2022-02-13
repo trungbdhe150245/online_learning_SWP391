@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace SWP391_OnlineLearning_Platform.Models
 {
+    public enum SortOrder { Asc=0,Desc=1 }
     public class Course
     {
         [Key]
@@ -17,9 +18,8 @@ namespace SWP391_OnlineLearning_Platform.Models
         public DateTime Created_Date { get; set; }
         [Required]
         public string Description { get; set; }
-        [Required]
-        public string Featured { get; set; }
-        [Required]
+        public int Featured { get; set; }
+        
         [Display(Name = "Short Description")]
         public string Short_Description { get; set; }
         [Required]

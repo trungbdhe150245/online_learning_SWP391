@@ -22,18 +22,6 @@ namespace SWP391_OnlineLearning_Platform.Models
         [Required]
         [MaxLength(255, ErrorMessage = "Not exceed 255")]
         public string Explanation { get; set; }
-        [Required]
-        [MaxLength(255, ErrorMessage = "Not exceed 255")]
-        public string Option1 { get; set; }
-        [Required]
-        [MaxLength(255, ErrorMessage = "Not exceed 255")]
-        public string Option2 { get; set; }
-        [Required]
-        [MaxLength(255, ErrorMessage = "Not exceed 255")]
-        public string Option3 { get; set; }
-        [Required]
-        [MaxLength(255, ErrorMessage = "Not exceed 255")]
-        public string Option4 { get; set; }
         [DisplayName("Course")]
         public int Course_Id { get; set; }
         [DisplayName("Quiz_Level")]

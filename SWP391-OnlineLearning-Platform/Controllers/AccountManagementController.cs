@@ -16,10 +16,10 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 
         public AccountManagementController(OnlineLearningDbContext db)
         {
-            _db = db;   
+            _db = db;
         }
 
-        public IActionResult userProfile(int? id)
+        public IActionResult UserProfile(int? id)
         {
             if (id == 0 || id == null)
             {
@@ -34,7 +34,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         }
 
         //GET - EDIT PROFILE
-        public IActionResult editProfile(int? id)
+        public IActionResult EditProfile(int? id)
         {
             if (id == 0 || id == null)
             {
@@ -51,7 +51,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         //POST - EDIT PROFILE
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult editProfile(User obj)
+        public IActionResult EditProfile(User obj)
         {
             var temp = _db.Users.Find(obj.Id);
             temp.Username = obj.Username;
@@ -61,13 +61,12 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             temp.Dob = obj.Dob;
             _db.Users.Update(temp);
             _db.SaveChanges();
-            return RedirectToAction("userProfile");
-
+            return Redirect($"~/AccountManagement/UserProfile?id={obj.Id}");
         }
 
         //GET - CHANGE PASSWORD
         [HttpGet]
-        public IActionResult changePassword(int? id)
+        public IActionResult ChangePassword(int? id)
         {
             if (id == 0 || id == null)
             {
@@ -88,7 +87,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         //POST - CHANGE PASSWORD
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult changePassword(Change_Password obj)
+        public IActionResult ChangePassword(Change_Password obj)
         {
             var temp = _db.Users.Find(obj.Id);
             obj.Id = temp.Id;
@@ -101,7 +100,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
                     temp.Password = obj.NewPassword;
                     _db.Users.Update(temp);
                     _db.SaveChanges();
-                    return RedirectToAction("userProfile");
+                    return Redirect($"~/AccountManagement/UserProfile?id={obj.Id}");
                 }
                 else
                 {
@@ -113,7 +112,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         }
 
         //GET - CHANGE PHOTO
-        public IActionResult changePhoto(int? id)
+        public IActionResult ChangePhoto(int? id)
         {
             if (id == 0 || id == null)
             {
@@ -130,22 +129,84 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         //POST - CHANGE PHOTO
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult changePhoto(User obj)
+        public IActionResult ChangePhoto(User obj)
         {
-            if(obj.Auth_Provider == null)
-            {
-                return RedirectToAction("userProfile");
-            }
-            else
-            {
-                var temp = _db.Users.Find(obj.Id);
-                temp.Password = obj.Avatar_Url;
-                _db.Users.Update(temp);
-                _db.SaveChanges();
-                return RedirectToAction("userProfile");
-            }
+            var temp = _db.Users.Find(obj.Id);
+            temp.Avatar_Url = obj.Avatar_Url;
+            _db.Users.Update(temp);
+            _db.SaveChanges();
+            return Redirect($"~/AccountManagement/UserProfile?id={obj.Id}");
         }
 
+        /*LOGIN*/
+        public ActionResult Login()
+        {
+            return View();
+        }
+       
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(IFormCollection obj)
+        {
+            string Email = obj["Email"].ToString();
+            string PassWord= obj["PassWord"].ToString();
+            var isLogin = _db.Users.SingleOrDefault(x => x.Email.Equals(Email) && x.Password.Equals(PassWord));
+            if (ModelState.IsValid)
+            {
+                if(isLogin != null)
+                /*if (_db.Users.Any.Email.Equals(obj.Email) && _db.Users.FirstOrDefault().Password.Equals(obj.Password))*/
+
+                /*var data = _db.Users.Where(s => s.Email.Equals(obj.Email) && s.Password.Equals(obj.Password)).ToList();
+				if (data.Count() > 0)*/
+                {
+                    /*//add session
+					Session["FullName"] = data.FirstOrDefault().Full_Name;
+					Session["Email"] = data.FirstOrDefault().Email;
+					Session["UserID"] = data.FirstOrDefault().Id;*/
+                    return RedirectToAction("Home");
+                }
+                else
+                {
+                    ViewBag.error = "Login failed";
+                    return View("Login");
+                }
+            }
+            return View();
+        }
+        //GET: Register
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+        //POST: Register
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(User _user)
+        {
+            if (ModelState.IsValid)
+            {
+                var check = _db.Users.FirstOrDefault(s => s.Email == _user.Email);
+                if (check == null)
+                {
+                   /* _user.Password = GetMD5(_user.Password);*//*
+                    _db.IConfiguration.ValidateOnSaveEnabled = false;*/
+                    _db.Users.Add(_user);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.error = "Email already exists";
+                    return View();
+                }
+
+
+            }
+            return View();
+
+
+        }
     }
 }

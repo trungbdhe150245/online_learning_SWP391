@@ -40,13 +40,13 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
               "version": "[5.0.13, )"
-            },
-            "Microsoft.Diagnostics.Tracing.TraceEvent": {
-              "target": "Package",
-              "version": "[2.0.74, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -54,27 +54,27 @@
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.12, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer.Design": {
-              "target": "Package",
-              "version": "[1.1.6, )"
+              "version": "[5.0.13, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.12, )"
+              "version": "[5.0.13, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"
             },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
             "PagedList.Core.Mvc": {
               "target": "Package",
               "version": "[3.0.0, )"
             },
-            "System.Diagnostics.Tools": {
+            "System.Diagnostics.Tracing": {
               "target": "Package",
               "version": "[4.3.0, )"
             }
@@ -97,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     }

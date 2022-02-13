@@ -37,6 +37,9 @@ namespace SWP391_OnlineLearning_Platform.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Date_Create")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Featured")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -85,6 +88,34 @@ namespace SWP391_OnlineLearning_Platform.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("SWP391_OnlineLearning_Platform.Models.Comment", b =>
+                {
+                    b.Property<int>("Comment_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Blog_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date_Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("User_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Comment_Id");
+
+                    b.HasIndex("Blog_Id");
+
+                    b.HasIndex("User_Id");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("SWP391_OnlineLearning_Platform.Models.Course", b =>
                 {
                     b.Property<int>("Id")
@@ -102,12 +133,10 @@ namespace SWP391_OnlineLearning_Platform.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Featured")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Featured")
+                        .HasColumnType("int");
 
                     b.Property<string>("Short_Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status_Id")
@@ -291,15 +320,6 @@ namespace SWP391_OnlineLearning_Platform.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Discount")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Duration")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<float>("List_price")
                         .HasColumnType("real");
 
@@ -307,9 +327,6 @@ namespace SWP391_OnlineLearning_Platform.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<float>("Sale_Price")
-                        .HasColumnType("real");
 
                     b.Property<int>("Status_Id")
                         .HasColumnType("int");
@@ -353,26 +370,6 @@ namespace SWP391_OnlineLearning_Platform.Migrations
 
                     b.Property<int>("Level_Id")
                         .HasColumnType("int");
-
-                    b.Property<string>("Option1")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Option2")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Option3")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Option4")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int>("Status_Id")
                         .HasColumnType("int");
@@ -610,6 +607,9 @@ namespace SWP391_OnlineLearning_Platform.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Dob")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -784,6 +784,25 @@ namespace SWP391_OnlineLearning_Platform.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Status");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SWP391_OnlineLearning_Platform.Models.Comment", b =>
+                {
+                    b.HasOne("SWP391_OnlineLearning_Platform.Models.Blog", "Blog")
+                        .WithMany()
+                        .HasForeignKey("Blog_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SWP391_OnlineLearning_Platform.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("User_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
 
                     b.Navigation("User");
                 });

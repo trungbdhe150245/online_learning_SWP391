@@ -138,5 +138,7 @@ namespace SWP391_OnlineLearning_Platform.Data
         public DbSet<Lesson> Lessons { get; set; }
 
         public DbSet<User_Question_Answer> User_Question_Answers { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
     }
 }

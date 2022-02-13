@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-@model SWP391_OnlineLearning_Platform.Models.ViewModels.Blog_Elements
+@model SWP391_OnlineLearning_Platform.Models.Blog
 
 @{
     ViewData["Title"] = "Blog Detail";
@@ -21,13 +21,13 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9">
-                <img src="~/img/@Html.DisplayFor(model => model.blog.Thumbnail)" alt="blog-single" class="resp-img">
-                <h3>@Html.DisplayFor(model => model.blog.Title)</h3>
+                <img src="~/img/@Html.DisplayFor(model => model.Thumbnail)" alt="blog-single" class="resp-img">
+                <h3>@Html.DisplayFor(model => model.Title)</h3>
                 <div class="author">
-                    <a href="#">@Html.DisplayFor(model => model.blog.Category.Value)</a><span> - 4 JANUARY 2016 BY @Html.DisplayFor(model => model.blog.User.Full_Name)</span>
+                    <a href="#">@Html.DisplayFor(model => model.Category.Value)</a><span> - 4 JANUARY 2016 BY @Html.DisplayFor(model => model.User.Full_Name)</span>
                 </div>
                 <p class="abs">
-                    @Html.DisplayFor(model => model.blog.Content)
+                    @Html.DisplayFor(model => model.Content)
                 </p>
                 <p class="abs">
 
@@ -56,8 +56,8 @@
                     </ul>
                     <br>
                     <h4>ABOUT THE AUTHOR</h4>
-                    <img src="~/img/@Html.DisplayFor(model => model.blog.User.Avatar_Url)" alt="Avatar" class="pull-left profile-usertitle-name" style="width:auto;height:150px">
-                    <p style="font-weight: bold; text-transform: uppercase;">@Html.DisplayFor(model => model.blog.User.Full_Name)</p>
+                    <img src="~/img/@Html.DisplayFor(model => model.User.Avatar_Url)" alt="Avatar" class="pull-left profile-usertitle-name" style="width:auto;height:150px">
+                    <p style="font-weight: bold; text-transform: uppercase;">@Html.DisplayFor(model => model.User.Full_Name)</p>
                     <p class="abs">
                         Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
                         consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore
@@ -66,7 +66,9 @@
                     </p>
                 </div>
                 <br/>
-                <h4>COMMENTS</h4>
+
+
+                @*<h4>COMMENTS</h4>
                 <div class="comment clearfix">
                     <img src="http://placehold.it/65x65" alt="Avatar" class="pull-left">
                     <a href="#">Jack Porter</a>
@@ -117,7 +119,10 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </form>*@
+
+
+
             </div>
 
 
@@ -125,16 +130,16 @@
             <div class="col-lg-3 blog-sidebar">
                 @*SEARCH BAR*@
                 <div class="search-something">
-                    <form id="my_form" asp-controller="PublicFeature" asp-action="bloglist">
-                        <a class="search" onclick="document.getElementById('my_form').submit();"><i class="zmdi zmdi-search zmdi-hc-lg"></i></a>
+                    <form asp-controller="PublicFeature" asp-action="bloglist">
                         <div class="search-something">
-                            <input type="text" name="searchString" placeholder="search for something">
+                            <input type="text" name="keyWord" placeholder="search for something">
+                            <input type="button" value="Search">
                         </div>
                     </form>
                 </div>
                 <h4>RECENT POSTS</h4>
 
-                @foreach (var item in Model.blogs)
+                @foreach (var item in ViewData["recentBlogs"] as List<Blog>)
                 {
                     ++count;
                     if (count <= 5)
@@ -143,7 +148,7 @@
                             <img src="~/img/@Html.DisplayFor(modelItem => item.Thumbnail)" alt="recent" class="pull-left" style="width: 70px; height: 70px; object-fit: cover; object-position: 50% 50%;">
                             <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
                             <div class="author">
-                                <a href="#">@Html.DisplayFor(modelItem => item.Category.Value)</a><span> @Html.DisplayFor(modelItem => item.Date)</span>
+                                <a href="#">@Html.DisplayFor(modelItem => item.Category.Value)</a><span> @Html.DisplayFor(modelItem => item.Date_Create)</span>
                             </div>
                         </div>}
                 }
@@ -152,9 +157,9 @@
                 <div class="categories">
                     <h6>CATEGORIES</h6>
                     <ul>
-                        @foreach (var item in Model.category)
+                        @foreach (var item in ViewData["category"] as List<Category>)
                         {
-                            <li><a href="#">@Html.DisplayFor(modelItem => item.Value)</a></li>
+                            <li><a asp-route-CatID="@item.Id" asp-controller="publicfeature" asp-action="bloglist">@Html.DisplayFor(modelItem => item.Value)</a></li>
                         }
                     </ul>
                 </div>

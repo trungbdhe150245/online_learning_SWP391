@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -13,7 +13,6 @@ namespace SWP391_OnlineLearning_Platform
 	{
 		public static void Main(string[] args)
 		{
-			//tạo máy chủ web với các cấu hình mặc định
 			CreateHostBuilder(args).Build().Run();
 		}
 

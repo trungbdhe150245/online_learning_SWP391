@@ -14,5 +14,6 @@ namespace SWP391_OnlineLearning_Platform.Models
         [Required]
         [MaxLength(255, ErrorMessage = "Not exceed 255")]
         public string Value { get; set; }
+
     }
 }
