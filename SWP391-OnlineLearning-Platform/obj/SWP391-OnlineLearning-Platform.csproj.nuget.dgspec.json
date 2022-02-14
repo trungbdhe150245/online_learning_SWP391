@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FPTLearning\\Spring2022\\SWP391\\Week 4\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {}
+    "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {}
   },
   "projects": {
-    "D:\\FPTLearning\\Spring2022\\SWP391\\Week 4\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {
+    "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 4\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+        "projectUniqueName": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
         "projectName": "SWP391-OnlineLearning-Platform",
-        "projectPath": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 4\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+        "projectPath": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 4\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
+        "outputPath": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
