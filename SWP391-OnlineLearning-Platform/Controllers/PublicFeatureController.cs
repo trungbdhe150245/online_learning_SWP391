@@ -63,7 +63,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             //TÌM KIẾM KEYWORD
             if (!String.IsNullOrEmpty(keyWord))
             {
-                blogs = blogs.Where(s => s.Title!.Contains(keyWord)).ToList();
+                blogs = blogs.Where(s => s.Title!.ToLower().Contains(keyWord.ToLower())).ToList();
             }
 
             PagedList<Blog> models = new PagedList<Blog>(blogs.AsQueryable(), pageNumber, pageSize);
@@ -72,6 +72,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             ViewData["selectedCategory"] = new SelectList(_db.Categories, "Id", "Value");
             ViewData["category"] = _db.Categories.ToList();
             ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.Date_Create).ToList();
+            if (keyWord != null) { ViewBag.KeyWord = keyWord; }
             return View(models);
         }
 

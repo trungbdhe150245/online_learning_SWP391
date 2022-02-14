@@ -4,6 +4,7 @@
     int CurrentPage = ViewBag.CurrentPage;
     ViewData["Title"] = "BlogList";
     var count = 0;
+    int numberResult = Model.Count();
 }
 @model PagedList.Core.IPagedList<SWP391_OnlineLearning_Platform.Models.Blog>
 
@@ -33,12 +34,12 @@
                 </select>
             </p>
         </div>
-        <br/>
+        <br />
 
         <div class="col-lg-9">
-            @if (Model.Count() == 0)
+            @if (ViewBag.KeyWord != null)
             {
-                <h1>No information.</h1>
+                <h3>@numberResult results for <span style="color: gray;">"@ViewBag.KeyWord"</span></h3><br/>
             }
             @foreach (var item in Model)
             {
