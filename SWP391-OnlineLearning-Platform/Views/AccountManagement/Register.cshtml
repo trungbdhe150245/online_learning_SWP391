@@ -35,8 +35,12 @@
                             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "badge badge-danger" })
                             @if (ViewBag.error != null)
                             {
-                                <span class="badge badge-danger">@ViewBag.error</span>
-                            }
+                    <span class="badge badge-danger">@ViewBag.error</span>}
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Dob)
+                            @Html.TextBoxFor(m => m.Dob, new { @class = "form-control", @placeholder = "Date of birth" })
+                            @Html.ValidationMessageFor(m => m.Dob, "", new { @class = "badge badge-danger" })
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(m => m.Password)
