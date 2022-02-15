@@ -169,12 +169,12 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 					Session["FullName"] = data.FirstOrDefault().Full_Name;
 					Session["Email"] = data.FirstOrDefault().Email;
 					Session["UserID"] = data.FirstOrDefault().Id;*/
-                    return RedirectToAction("Home");
+                    return RedirectToAction("Index");
                 }
                 else
                 {
                     ViewBag.error = "Login failed";
-                    return View("Login");
+                    return NotFound();
                 }
             }
             return View();
@@ -199,7 +199,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 					*//*_db.Configuration.ValidateOnSaveEnabled = false;*/
                     _db.Users.Add(_user);
                     _db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return Redirect($"~/AccountManagement/UserProfile?id={_user.Id}");
                 }
                 else
                 {
