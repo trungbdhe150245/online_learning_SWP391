@@ -87,8 +87,10 @@
                 <input type="text" name="div2" />
             </div>
             <div id="div3" class="infoDiv" style="display:none;">
-                <h1>constructed-response</h1>
-                <input type="text" name="div3" />
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                    <textarea class="form-control" id="div2" rows="3" name="div2"></textarea>
+                </div>
             </div>
         </div>
 
@@ -159,12 +161,14 @@
     var question_constructed = ["div1", "div2", "div3", "q4"]
 
     $.each(question_constructed, function (index, value) {
-        $('input[name=' + value + ']').keyup(function () {
+        //$('textarea#message').val()
+        //$('textarea[name="product_question"]', this).val()
+        $('textarea[name=' + value + ']').keyup(function () {
             if ($(this).val().length)
                 //$('#yeah').show();
                 $("#" + (index + 1)).attr('class', 'btn btn-primary info');
-            else
-                $("#" + (index + 1)).attr('class', 'btn btn-secondary info');
+            //else
+            //    $("#" + (index + 1)).attr('class', 'btn btn-secondary info');
         });
     });
 
