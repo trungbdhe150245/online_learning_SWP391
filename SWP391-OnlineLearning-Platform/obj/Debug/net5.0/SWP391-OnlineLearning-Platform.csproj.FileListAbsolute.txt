@@ -4885,3 +4885,4 @@ E:\FPTLearning\Spring2022\SWP391\Week5\SourceCode\online_learning_SWP391\SWP391-
 E:\FPTLearning\Spring2022\SWP391\Week5\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\ref\SWP391-OnlineLearning-Platform.dll
 E:\FPTLearning\Spring2022\SWP391\Week5\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.pdb
 E:\FPTLearning\Spring2022\SWP391\Week5\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.genruntimeconfig.cache
+D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Test\QuestionList.cshtml.g.cs
