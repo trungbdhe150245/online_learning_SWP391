@@ -62,7 +62,18 @@
 <hr />
 <div class="row">
     <div class="col-xs-8">
-        <div class="col-xs-8">
+        <div class="col-xs-6">
+            <h1>lamo</h1>
+        </div>
+        <div class="col-xs-4" style="float:right; text-align:right">
+            <h1>Weight:</h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+     
+    <div class="col-xs-8">
+        <div class="col-xs-10">
             <div id="div1" class="infoDiv" name="div1" style="display:none;">
                 <h1>MCQ quiz</h1>
                 <div class="form-check">
@@ -93,10 +104,13 @@
                 </div>
             </div>
         </div>
-
+        <div class="col-xs-2">
+            <span class="vertical-line"></span>
+        </div>
     </div>
-    <div class="col-xs-4">
-        <div class="col-xs-6">
+
+    <div class="col-xs-4" style="padding-left:5px">
+        <div class="col-xs-6" style="padding-left:5px">
             <div>Timer</div>
             <div id="timer"></div>
             <div hidden>
@@ -112,6 +126,8 @@
                     <button type="button" class="btn btn-secondary info" id="3">3</button>
                     <button type="button" class="btn btn-secondary info" id="4">4</button>
                 </div>
+                <input type="range" orient="vertical" min="1.2" max="2.6" step=".2" id="slider" />
+                <p id="p1">lamof</p>
                 @*<div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text" id="btnGroupAddon"></div>
@@ -122,19 +138,18 @@
         </div>
     </div>
 </div>
-<p>Click the button to turn the confirm on and off</p>
-<div style="display: None">
-    <button id="theButton">true</button>
-</div>
+@*<p>Click the button to turn the confirm on and off</p>
+    <div style="display: None">
+        <button id="theButton">true</button>
+    </div>*@
 
 
-<label for="db">Type whatever</label>
+@*<label for="db">Type whatever</label>*@
 @*<input type="text" name="amount" />*@
-<div id="yeah" style="display:none;">
-    <input type="submit" />
-</div>
-<input type="range" min="1.2" max="2.6" step=".2" id="slider" />
-<p>lamof</p>
+@*<div id="yeah" style="display:none;">
+        <input type="submit" />
+    </div>*@
+
 <script src="~/js/trung.js"></script>
 <script src="~/js/timer.js"></script>
 <script>
@@ -184,12 +199,12 @@
         });
     });
 
-    
-        $.each(['div', 'p'], function (index, value) {
-            
-            $('input').on('input', function () {
-                var v = $(this).val();
-                $(value).css('font-size', v + 'em');
+
+    $.each(['div', 'p'], function (index, value) {
+
+        $('input').on('input', function () {
+            var v = $(this).val();
+            $("#" + value + 1).css('font-size', v + 'em');
         });
         //$('p').css('font-size', v + 'em')
     });
@@ -207,3 +222,18 @@
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+    .vertical-line {
+        display: inline-block;
+        border-left: 1px solid #ccc;
+        height: 125px;
+    }
+
+    .col-xs-2 {
+        width: 0px;
+        padding: 0px;
+        margin: 0px;
+        float: right;
+    }
+</style>
