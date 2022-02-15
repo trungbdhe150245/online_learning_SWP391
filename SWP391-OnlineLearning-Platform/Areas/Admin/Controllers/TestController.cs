@@ -17,7 +17,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         }
         public IActionResult QuestionList()
         {
-            return View();
+            return View(_db.Question_Banks);
         }
     }
 }
