@@ -36,8 +36,8 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 
         public IActionResult CourseRegister(int id)
         {
-            
-            return View();
+            IEnumerable<Price_Package> list = _db.Price_Packages;
+            return View(list);
         }
 
         public IEnumerable<Course> Search(string key,string sortOrder,string cate, int page)
