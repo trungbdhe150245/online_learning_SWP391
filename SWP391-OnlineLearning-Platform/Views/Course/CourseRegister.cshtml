@@ -13,7 +13,26 @@
     </div>
     <div class="container pricings">
         <div class="row text-center">
-            <div class="col-md-3 col-sm-6">
+            @foreach (var p in Model)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div class="plan">
+                        <p class="ribbon">MOST POPULAR</p>
+                        <p class="price">@p.List_price</p>
+                        <p class="crew">@p.Name</p>
+                        <div class="plan-details">
+                            <p>Unlimited Courses</p>
+                            <p>Online pass purchases</p>
+                            <p>Online class reservations</p>
+                            <p>Full Library Entry</p>
+                            <p>Promo Code feature</p>
+                        </div>
+                        <a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>
+                        <a href="#"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</a>
+                    </div>
+                </div>
+            }
+            @*<div class="col-md-3 col-sm-6">
                 <div class="plan">
                     <p class="ribbon">MOST POPULAR</p>
                     <p class="price">45</p>
@@ -76,7 +95,7 @@
                     <a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>
                     <a href="#"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</a>
                 </div>
-            </div>
+            </div>*@
         </div>
     </div>
 
