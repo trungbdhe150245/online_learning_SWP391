@@ -5,6 +5,7 @@
     ViewData["Title"] = "BlogList";
     var count = 0;
     int numberResult = Model.Count();
+
 }
 @model PagedList.Core.IPagedList<SWP391_OnlineLearning_Platform.Models.Blog>
 
@@ -56,6 +57,8 @@
                     </p>
                     <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id" class="pull-right greybutton">READ MORE</a>
                 </div>}
+
+            @*PHÂN TRANG*@
             <h3>Trang số: @CurrentPage</h3>
 
             <pager list="@Model" asp-route-CatID="@ViewBag.CurrentCateID" asp-controller="publicfeature" asp-action="bloglist" />

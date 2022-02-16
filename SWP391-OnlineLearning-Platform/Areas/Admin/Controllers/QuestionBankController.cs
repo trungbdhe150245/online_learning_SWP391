@@ -22,12 +22,13 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         }
 
         // GET: Admin/QuestionBank
-        public async Task<IActionResult> QuestionList(string keyWord, int page = 1)
+        public IActionResult QuestionList(string keyWord, int page = 1)
         {
             //PHÂN TRANG
             var pageNumber = page;
             var pageSize = 2;
             ViewBag.CurrentPage = pageNumber;
+
             List<Question_Bank> questions = new List<Question_Bank>();
             questions = _context.Question_Banks.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Status).ToList();
 
@@ -36,9 +37,9 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
                 questions = questions.Where(s => s.Content!.ToLower().Contains(keyWord.ToLower())).ToList();
             }
             PagedList<Question_Bank> models = new PagedList<Question_Bank>(questions.AsQueryable(), pageNumber, pageSize);
-            
 
-            return View(questions);
+
+            return View(models);
         }
 
 
