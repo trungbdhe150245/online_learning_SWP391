@@ -4889,5 +4889,5 @@ D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP39
 D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\Create.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\Delete.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\Details.cshtml.g.cs
-D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\Edit.cshtml.g.cs
-D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\Index.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\QuestionDetail.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\QuestionList.cshtml.g.cs

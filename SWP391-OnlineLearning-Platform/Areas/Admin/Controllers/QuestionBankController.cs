@@ -21,7 +21,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         }
 
         // GET: Admin/QuestionBank
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> QuestionList()
         {
             var onlineLearningDbContext = _context.Question_Banks.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Status);
             return View(await onlineLearningDbContext.ToListAsync());
@@ -95,7 +95,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             return View(question_Bank);
         }
 
-        // POST: Admin/QuestionBank/Edit/5
+        // POST: Admin/QuestionBank/QuestionDetail/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
