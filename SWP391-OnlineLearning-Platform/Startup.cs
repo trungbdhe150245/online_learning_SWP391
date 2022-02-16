@@ -73,7 +73,7 @@ namespace SWP391_OnlineLearning_Platform
 			}
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
-
+			//app.UseAuthentication();
 			app.UseRouting();
 
 			app.UseAuthorization();
