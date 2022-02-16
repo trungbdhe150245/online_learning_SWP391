@@ -31,6 +31,31 @@ namespace SWP391_OnlineLearning_Platform
 			);
 			services.Configure<Utils.SmtpConfigurations>(Configuration);
 			services.AddSingleton<Utils.SmtpHandling, Utils.SmtpHandling>();
+
+
+
+			//services.AddIdentity<ApplicationUser, IdentityRole>()
+			//	.AddEntityFrameworkStores<ApplicationDbContext>()
+			//	.AddDefaultTokenProviders();
+
+			//services.Configure<IdentityOptions>(options =>
+			//{
+			//	// Password settings
+			//	options.Password.RequireDigit = true;
+			//	options.Password.RequiredLength = 10;
+			//	options.Password.RequireNonAlphanumeric = true;
+			//	options.Password.RequireUppercase = false;
+			//	options.Password.RequireLowercase = false;
+			//	options.Password.RequiredUniqueChars = 6;
+
+			//	// Lockout settings
+			//	options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+			//	options.Lockout.MaxFailedAccessAttempts = 10;
+			//	options.Lockout.AllowedForNewUsers = true;
+
+			//	// User settings
+			//	options.User.RequireUniqueEmail = true;
+			//});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
