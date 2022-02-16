@@ -76,8 +76,8 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             return View(question_Bank);
         }
 
-        // GET: Admin/QuestionBank/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Admin/QuestionBank/QuestionDetail/5
+        public async Task<IActionResult> QuestionDetail(int? id)
         {
             if (id == null)
             {
@@ -100,7 +100,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Answer,Content,Explanation,Course_Id,Level_Id,Status_Id")] Question_Bank question_Bank)
+        public async Task<IActionResult> QuestionDetail(int id, [Bind("Id,Answer,Content,Explanation,Course_Id,Level_Id,Status_Id")] Question_Bank question_Bank)
         {
             if (id != question_Bank.Id)
             {
