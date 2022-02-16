@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PagedList.Core;
 using SWP391_OnlineLearning_Platform.Data;
 using SWP391_OnlineLearning_Platform.Models;
 
@@ -21,11 +22,26 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         }
 
         // GET: Admin/QuestionBank
-        public async Task<IActionResult> QuestionList()
+        public async Task<IActionResult> QuestionList(string keyWord, int page = 1)
         {
-            var onlineLearningDbContext = _context.Question_Banks.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Status);
-            return View(await onlineLearningDbContext.ToListAsync());
+            //PHÂN TRANG
+            var pageNumber = page;
+            var pageSize = 2;
+            ViewBag.CurrentPage = pageNumber;
+            List<Question_Bank> questions = new List<Question_Bank>();
+            questions = _context.Question_Banks.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Status).ToList();
+
+            if (!String.IsNullOrEmpty(keyWord))
+            {
+                questions = questions.Where(s => s.Content!.ToLower().Contains(keyWord.ToLower())).ToList();
+            }
+            PagedList<Question_Bank> models = new PagedList<Question_Bank>(questions.AsQueryable(), pageNumber, pageSize);
+            
+
+            return View(questions);
         }
+
+
 
         // GET: Admin/QuestionBank/Details/5
         public async Task<IActionResult> Details(int? id)

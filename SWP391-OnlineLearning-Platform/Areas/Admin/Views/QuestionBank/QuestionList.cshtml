@@ -7,11 +7,18 @@
     int count = 0;
 }
 
-<h2>Index</h2>
+<h2>Question List</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
+    <a asp-action="Import">| Import File</a>
 </p>
+<form asp-controller="QuestionBank" asp-action="QuestionList">
+    <div class="search-something">
+        <input type="text" name="keyWord" placeholder="search for something">
+        <input type="submit" value="Search">
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
