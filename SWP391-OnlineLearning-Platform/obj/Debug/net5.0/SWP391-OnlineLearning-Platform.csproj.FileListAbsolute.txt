@@ -4885,4 +4885,9 @@ E:\FPTLearning\Spring2022\SWP391\Week5\SourceCode\online_learning_SWP391\SWP391-
 E:\FPTLearning\Spring2022\SWP391\Week5\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\ref\SWP391-OnlineLearning-Platform.dll
 E:\FPTLearning\Spring2022\SWP391\Week5\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.pdb
 E:\FPTLearning\Spring2022\SWP391\Week5\SourceCode\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.genruntimeconfig.cache
-D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Test\QuestionList.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Course\SubjectList.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\Create.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\Delete.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\Details.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\Edit.cshtml.g.cs
+D:\FPTLearning\Spring2022\SWP391\Week 5\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\Index.cshtml.g.cs

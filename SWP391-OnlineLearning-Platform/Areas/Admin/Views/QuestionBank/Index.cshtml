@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<SWP391_OnlineLearning_Platform.Models.Question_Bank>
 
 @{
-    ViewData["Title"] = "QuestionList";
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
 }
 
-<h2>QuestionList</h2>
+<h2>Index</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,13 +15,13 @@
     <thead>
         <tr>
             <th>
+                No.
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Answer)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Explanation)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Course)
@@ -36,6 +38,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>@(++count)</td>
             <td>
                 @Html.DisplayFor(modelItem => item.Answer)
             </td>
@@ -43,10 +46,7 @@
                 @Html.DisplayFor(modelItem => item.Content)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Explanation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Course.Description)
+                @Html.DisplayFor(modelItem => item.Course.Title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quiz_Level.Name)
@@ -55,8 +55,7 @@
                 @Html.DisplayFor(modelItem => item.Status.Value)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Update</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
