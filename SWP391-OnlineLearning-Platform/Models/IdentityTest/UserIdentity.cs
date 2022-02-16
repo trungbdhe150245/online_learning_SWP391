@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SWP391_OnlineLearning_Platform.Models.IdentityTest
 {
-	public class UserIdentity
+	public class UserIdentity: 
 	{
 	}
 }
