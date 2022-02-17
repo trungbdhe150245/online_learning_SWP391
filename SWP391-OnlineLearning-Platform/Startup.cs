@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SWP391_OnlineLearning_Platform.Data;
+using SWP391_OnlineLearning_Platform.Utility.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace SWP391_OnlineLearning_Platform
 			{
 				options.IdleTimeout = TimeSpan.FromSeconds(3600);
 			});
-
+			services.AddTransient<IBraintreeService, BraintreeService>();
 
 			//services.AddIdentity<ApplicationUser, IdentityRole>()
 			//	.AddEntityFrameworkStores<ApplicationDbContext>()
