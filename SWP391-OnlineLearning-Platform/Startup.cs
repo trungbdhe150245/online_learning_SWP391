@@ -30,6 +30,56 @@ namespace SWP391_OnlineLearning_Platform
 			services.AddDbContext<OnlineLearningDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
 			);
+
+
+			/*
+			services.adddbcontext<applicationdbcontext>(options =>
+			{
+
+				string connectstring = configuration.getconnectionstring("appdbcontext");
+
+				options.usesqlserver(connectstring);
+			});
+
+			services.addidentity<appuser, identityrole>()
+				.addentityframeworkstores<appdbcontext>()
+				.adddefaulttokenproviders();
+
+			services.addrazorpages();
+
+			
+			services.Configure<IdentityOptions>(options => {
+				
+				options.Password.RequireDigit = false;
+				options.Password.RequireLowercase = false; 
+				options.Password.RequireNonAlphanumeric = false; 
+				options.Password.RequireUppercase = false;
+				options.Password.RequiredLength = 3;
+				options.Password.RequiredUniqueChars = 1;
+
+				
+				options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+				options.Lockout.MaxFailedAccessAttempts = 5;
+				options.Lockout.AllowedForNewUsers = true;
+
+				
+				options.User.AllowedUserNameCharacters = 
+					"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+				options.User.RequireUniqueEmail = true;  
+
+				
+				options.SignIn.RequireConfirmedEmail = true;           
+				options.SignIn.RequireConfirmedPhoneNumber = false;    
+
+			});
+
+
+			app.UseAuthentication();   
+			app.UseAuthorization();   
+			*/
+
+
+
 			services.Configure<Utils.SmtpConfigurations>(Configuration);
 			services.AddSingleton<Utils.SmtpHandling, Utils.SmtpHandling>();
 			services.AddDistributedMemoryCache();
