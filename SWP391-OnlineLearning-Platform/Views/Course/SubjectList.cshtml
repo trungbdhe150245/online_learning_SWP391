@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="container courses-browse popular no-gutters">
-        <form asp-action="SubjectList" asp-controller="Course" method="post">
+        <form asp-action="SubjectList" asp-controller="Subject" method="post">
             <div class="row toolbar">
                 <div class="col-md-4 col-sm-6 col-xs-12 select-categories">
                     <select class="jquery-select" name="cate">
@@ -101,7 +101,7 @@
                                 <p class="abs">
                                     @course.Description
                                 </p>
-                                <a asp-action="SubjectDetail" asp-controller="Course" class="greybutton" asp-route-id="@course.Id">VIEW COURSE</a>
+                                <a asp-action="SubjectDetail" asp-controller="Subject" class="greybutton" asp-route-id="@course.Id">VIEW COURSE</a>
                             </div>
                         </div>
                     </div>}
@@ -113,16 +113,16 @@
                     {
                         <ul class="pagination justify-content-end">
                             <li class="page-item @(pager.CurrentPage <= 1 ? "hidden" : "")">
-                                <a class="page-link" asp-action="SubjectList" asp-controller="Course" asp-route-page="@(pager.CurrentPage - 1)" asp-route-cate="@cate"> Previous </a>
+                                <a class="page-link" asp-action="SubjectList" asp-controller="Subject" asp-route-page="@(pager.CurrentPage - 1)" asp-route-cate="@cate"> Previous </a>
                             </li>
                             @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
                             {
                                 <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
-                                    <a class="page-link" asp-action="SubjectList" asp-controller="Course" asp-route-page="@pge" asp-route-cate="@cate"> @pge </a>
+                                    <a class="page-link" asp-action="SubjectList" asp-controller="Subject" asp-route-page="@pge" asp-route-cate="@cate"> @pge </a>
                                 </li>
                             }
                             <li class="page-item @(pager.CurrentPage == pager.EndPage ? "hidden" : "")">
-                                <a class="page-link" asp-action="SubjectList" asp-controller="Course" asp-route-page="@(pager.CurrentPage + 1)" asp-route-cate="@cate"> Next </a>
+                                <a class="page-link" asp-action="SubjectList" asp-controller="Subject" asp-route-page="@(pager.CurrentPage + 1)" asp-route-cate="@cate"> Next </a>
                             </li>
                             @*<a class="prev" href="#"><i class="zmdi zmdi-chevron-left"></i>PREV</a>
                                 <a href="#">1</a>
