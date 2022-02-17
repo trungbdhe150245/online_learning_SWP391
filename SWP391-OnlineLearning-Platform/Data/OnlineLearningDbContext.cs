@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SWP391_OnlineLearning_Platform.Data
 {
-    public class OnlineLearningDbContext : DbContext
+    public class OnlineLearningDbContext : ApplicationDbContext
     {
         public OnlineLearningDbContext(DbContextOptions<OnlineLearningDbContext> options) : base(options)
         {
