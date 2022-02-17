@@ -8940,19 +8940,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\trung\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\SWP391\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+      "projectUniqueName": "E:\\FPTLearning\\Spring2022\\SWP391\\Week5\\SourceCode\\lastest\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
       "projectName": "SWP391-OnlineLearning-Platform",
-      "projectPath": "C:\\Users\\Admin\\Desktop\\SWP391\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Desktop\\SWP391\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
+      "projectPath": "E:\\FPTLearning\\Spring2022\\SWP391\\Week5\\SourceCode\\lastest\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+      "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
+      "outputPath": "E:\\FPTLearning\\Spring2022\\SWP391\\Week5\\SourceCode\\lastest\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9101,7 +9101,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }
