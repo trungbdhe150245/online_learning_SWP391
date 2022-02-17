@@ -20,11 +20,11 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             _db = db;
         }
 
-        public IActionResult CourseList(string key, string sortOrder, string cate,int page)
+        public IActionResult CourseList(string key, string sortOrder, string cate, int page)
         {
             dynamic dy = new ExpandoObject();
             dy.categories = GetCategories();
-            dy.courses = Search(key, sortOrder,cate,page);
+            dy.courses = Search(key, sortOrder, cate, page);
             return View(dy);
         }
 
@@ -36,7 +36,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             return View(dy);
         }
 
-        public IActionResult CourseRegister()
+        public IActionResult CourseRegister(int courseId)
         {
 
             IEnumerable<Price_Package> list = _db.Price_Packages;
@@ -45,33 +45,45 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             //{
             //    return Redirect($"~/AccountManagement/Register");
             //}
+            var userInfor = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionUser"));
+            this.ViewBag.User = userInfor;
+            this.ViewBag.CourseId = courseId;
             return View(list);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CourseRegister(int priceId)
+        public IActionResult CourseRegister(int priceId, int courseId, int userId)
         {
             IEnumerable<Price_Package> list = _db.Price_Packages;
-            var userInfor = HttpContext.Session.GetString("SessionUser");
-            if (userInfor == null)
+            //var userInfor = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionUser"));
+            var check = HttpContext.Session.GetString("SessionUser");
+            if (check == null)
             {
-                return Redirect($"~/AccountManagement/Register");
-            } else
+                return Redirect($"~/AccountManagement/Login");
+            }
+            else
             {
                 User_Course uc = new User_Course();
-                
-                
+                uc.Price_Package = _db.Price_Packages.Find(priceId);
+                uc.User = _db.Users.Find(userId);
+                uc.Course = _db.Courses.Find(courseId);
+                uc.Registration_Status = 1;
+                uc.Start_Date = DateTime.Now;
+                uc.End_Date = DateTime.Now.AddMonths(1);
+                _db.User_Courses.Add(uc);
+                _db.SaveChanges();
+                return Redirect($"~/Home/Index");
             }
-            return View(list);
+            //return View(list);
         }
 
-        public IEnumerable<Course> Search(string key,string sortOrder,string cate, int page)
+        public IEnumerable<Course> Search(string key, string sortOrder, string cate, int page)
         {
             ViewData["TitleSort"] = String.IsNullOrEmpty(sortOrder) ? "titleDesc" : "";
             ViewData["DateSort"] = sortOrder == "date" ? "dateDesc" : "date";
             IEnumerable<Course> list = GetCourses();
-            
-            if(!string.IsNullOrEmpty(key))
+
+            if (!string.IsNullOrEmpty(key))
             {
                 list = GetCourses().Where(l => l.Title.Contains(key));
             }
@@ -92,7 +104,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             }
 
             const int pageSize = 3;
-            if(page < 1)
+            if (page < 1)
             {
                 page = 1;
             }
@@ -100,7 +112,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             {
                 list = list.Where(l => l.Category_Id.Equals(Int32.Parse(cate)));
             }
-            
+
             int resCount = list.Count();
 
             var pager = new Paginated(resCount, page, pageSize);

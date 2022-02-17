@@ -2,6 +2,8 @@
 @model IEnumerable<SWP391_OnlineLearning_Platform.Models.Price_Package>
 @{
     ViewData["Title"] = "CourseRegister";
+    var courseId = ViewBag.CourseId;
+    var user = ViewBag.User;
 }
 
 <main>
@@ -13,6 +15,8 @@
     </div>
     <div class="container pricings">
         <div class="row text-center">
+            <form>
+            </form>
             @foreach (var p in Model)
             {
                 <div class="col-md-4 col-sm-6">
@@ -27,75 +31,77 @@
                             <p>Full Library Entry</p>
                             <p>Promo Code feature</p>
                         </div>
-                        <a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>
-                        <a asp-action="CourseRegister" asp-controller="Course" asp-route-price_Id="@p.Id"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</a>
+                        <form method="post" asp-action="CourseRegister">
+                            @*<a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>*@
+                            <button type="submit" asp-action="CourseRegister" asp-controller="Course" asp-route-priceId="@p.Id" asp-route-courseId="@courseId" asp-route-userId="@user.Id"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</button>
+                        </form>
                     </div>
                 </div>
             }
             @*<div class="col-md-3 col-sm-6">
-                <div class="plan">
-                    <p class="ribbon">MOST POPULAR</p>
-                    <p class="price">45</p>
-                    <p class="crew">1-5 PROFESSIONALS</p>
-                    <div class="plan-details">
-                        <p>Unlimited Courses</p>
-                        <p>Online pass purchases</p>
-                        <p>Online class reservations</p>
-                        <p>Full Library Entry</p>
-                        <p>Promo Code feature</p>
+                    <div class="plan">
+                        <p class="ribbon">MOST POPULAR</p>
+                        <p class="price">45</p>
+                        <p class="crew">1-5 PROFESSIONALS</p>
+                        <div class="plan-details">
+                            <p>Unlimited Courses</p>
+                            <p>Online pass purchases</p>
+                            <p>Online class reservations</p>
+                            <p>Full Library Entry</p>
+                            <p>Promo Code feature</p>
+                        </div>
+                        <a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>
+                        <a href="#"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</a>
                     </div>
-                    <a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>
-                    <a href="#"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</a>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="plan mostpopular">
-                    <p class="ribbon">MOST POPULAR</p>
-                    <p class="price">59</p>
-                    <p class="crew">6-10 PROFESSIONALS</p>
-                    <div class="plan-details">
-                        <p>Unlimited Courses</p>
-                        <p>Online pass purchases</p>
-                        <p>Online class reservations</p>
-                        <p>Full Library Entry</p>
-                        <p>Promo Code feature</p>
+                <div class="col-md-3 col-sm-6">
+                    <div class="plan mostpopular">
+                        <p class="ribbon">MOST POPULAR</p>
+                        <p class="price">59</p>
+                        <p class="crew">6-10 PROFESSIONALS</p>
+                        <div class="plan-details">
+                            <p>Unlimited Courses</p>
+                            <p>Online pass purchases</p>
+                            <p>Online class reservations</p>
+                            <p>Full Library Entry</p>
+                            <p>Promo Code feature</p>
+                        </div>
+                        <a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>
+                        <a href="#"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</a>
                     </div>
-                    <a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>
-                    <a href="#"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</a>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="plan">
-                    <p class="ribbon">MOST POPULAR</p>
-                    <p class="price">99</p>
-                    <p class="crew">11-15 PROFESSIONALS</p>
-                    <div class="plan-details">
-                        <p>Unlimited Courses</p>
-                        <p>Online pass purchases</p>
-                        <p>Online class reservations</p>
-                        <p>Full Library Entry</p>
-                        <p>Promo Code feature</p>
+                <div class="col-md-3 col-sm-6">
+                    <div class="plan">
+                        <p class="ribbon">MOST POPULAR</p>
+                        <p class="price">99</p>
+                        <p class="crew">11-15 PROFESSIONALS</p>
+                        <div class="plan-details">
+                            <p>Unlimited Courses</p>
+                            <p>Online pass purchases</p>
+                            <p>Online class reservations</p>
+                            <p>Full Library Entry</p>
+                            <p>Promo Code feature</p>
+                        </div>
+                        <a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>
+                        <a href="#"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</a>
                     </div>
-                    <a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>
-                    <a href="#"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</a>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="plan">
-                    <p class="ribbon">MOST POPULAR</p>
-                    <p class="price">119</p>
-                    <p class="crew">OVER 15 PROFESSIONALS</p>
-                    <div class="plan-details">
-                        <p>Unlimited Courses</p>
-                        <p>Online pass purchases</p>
-                        <p>Online class reservations</p>
-                        <p>Full Library Entry</p>
-                        <p>Promo Code feature</p>
+                <div class="col-md-3 col-sm-6">
+                    <div class="plan">
+                        <p class="ribbon">MOST POPULAR</p>
+                        <p class="price">119</p>
+                        <p class="crew">OVER 15 PROFESSIONALS</p>
+                        <div class="plan-details">
+                            <p>Unlimited Courses</p>
+                            <p>Online pass purchases</p>
+                            <p>Online class reservations</p>
+                            <p>Full Library Entry</p>
+                            <p>Promo Code feature</p>
+                        </div>
+                        <a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>
+                        <a href="#"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</a>
                     </div>
-                    <a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>
-                    <a href="#"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</a>
-                </div>
-            </div>*@
+                </div>*@
         </div>
     </div>
 

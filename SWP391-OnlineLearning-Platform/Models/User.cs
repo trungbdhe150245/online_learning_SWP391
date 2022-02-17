@@ -10,8 +10,9 @@ namespace SWP391_OnlineLearning_Platform.Models
 {
     public class User
     {
-        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
+        [Key]
         public int Id { get; set; }
         [MaxLength(255, ErrorMessage = "Not exceed 255")]
         public string Auth_Provider { get; set; }
@@ -54,5 +55,6 @@ namespace SWP391_OnlineLearning_Platform.Models
         public List<User_Role> User_Roles { get; set; }
 
         public List<Owner> Owners { get; set; }
+
     }
 }

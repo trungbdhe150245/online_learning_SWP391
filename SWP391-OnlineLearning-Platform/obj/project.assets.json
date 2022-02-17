@@ -850,11 +850,11 @@
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Relational.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.SqlServer/5.0.12": {
+      "Microsoft.EntityFrameworkCore.SqlServer/5.0.13": {
         "type": "package",
         "dependencies": {
           "Microsoft.Data.SqlClient": "2.0.1",
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.12"
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.13"
         },
         "compile": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
@@ -3828,17 +3828,17 @@
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.SqlServer/5.0.12": {
-      "sha512": "leJohwUxtdDQcpnkzvx0Kkq92AZ8akgaxR8TChts3fD07iqWktPMqs+u5CLcGQwGFd8GuCXUZXBJxvUM1/UNJg==",
+    "Microsoft.EntityFrameworkCore.SqlServer/5.0.13": {
+      "sha512": "FFp/OjApCET1K5iFlwpmC3bVY+Gb/8z1XFuFzVV49V6pTB+htucW0Z2ROMz+AyIJLZiIvZcDd15M/dmgPmG6nA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlserver/5.0.12",
+      "path": "microsoft.entityframeworkcore.sqlserver/5.0.13",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/netstandard2.1/Microsoft.EntityFrameworkCore.SqlServer.dll",
         "lib/netstandard2.1/Microsoft.EntityFrameworkCore.SqlServer.xml",
-        "microsoft.entityframeworkcore.sqlserver.5.0.12.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlserver.5.0.13.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
     },
@@ -8929,7 +8929,7 @@
       "Microsoft.AspNetCore.Session >= 2.2.0",
       "Microsoft.EntityFrameworkCore >= 5.0.13",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.13",
-      "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.12",
+      "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.13",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.12",
       "Microsoft.Extensions.DependencyInjection >= 6.0.0",
       "Microsoft.Extensions.Logging.Console >= 6.0.0",
@@ -9050,7 +9050,7 @@
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
-            "version": "[5.0.12, )"
+            "version": "[5.0.13, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

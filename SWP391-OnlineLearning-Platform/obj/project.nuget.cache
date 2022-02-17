@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "laZ2NrQeB7A0mahPq3kmCeBkjz80Nkjk+ciyZCQiMXWQ41qiTIYEVrBIcKUJma+uFq8a2BjfH1Cg0PhBMeFcmQ==",
+  "dgSpecHash": "Y5Rfc37wf/MV4fNOEQMeoys0rm+ArSKv4IDVlqGSexfSOYE0vuDyE7S3DahT4IHJRXcAHeyxWPC3Zk+/FV5XSQ==",
   "success": true,
   "projectFilePath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week5\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
   "expectedPackageFiles": [
@@ -52,7 +52,7 @@
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.13\\microsoft.entityframeworkcore.analyzers.5.0.13.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.13\\microsoft.entityframeworkcore.design.5.0.13.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.13\\microsoft.entityframeworkcore.relational.5.0.13.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.12\\microsoft.entityframeworkcore.sqlserver.5.0.12.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.13\\microsoft.entityframeworkcore.sqlserver.5.0.13.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.12\\microsoft.entityframeworkcore.tools.5.0.12.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
