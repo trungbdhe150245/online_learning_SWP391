@@ -33,6 +33,14 @@ namespace SWP391_OnlineLearning_Platform
 
 
 			/*
+			services.AddOptions ();                                        
+			var mailsettings = Configuration.GetSection ("MailSettings"); 
+			services.Configure<MailSettings> (mailsettings);               
+
+			services.AddTransient<IEmailSender, SendMailService>();        			 
+			 */
+
+			/*
 			services.adddbcontext<applicationdbcontext>(options =>
 			{
 
