@@ -183,6 +183,12 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //xử lý file import:
+        public IActionResult Import()
+        {
+            return View();
+        }
+
         private bool Question_BankExists(int id)
         {
             return _context.Question_Banks.Any(e => e.Id == id);

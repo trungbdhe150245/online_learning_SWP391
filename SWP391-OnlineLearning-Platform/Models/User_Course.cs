@@ -13,7 +13,6 @@ namespace SWP391_OnlineLearning_Platform.Models
         [Key]
         [Required]
         public int Id { get; set; }
-
         public DateTime End_Date { get; set; }
         public int Registration_Status { get; set; }
         public DateTime Start_Date { get; set; }
