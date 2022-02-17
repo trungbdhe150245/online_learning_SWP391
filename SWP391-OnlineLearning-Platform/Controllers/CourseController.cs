@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SWP391_OnlineLearning_Platform.Data;
 using SWP391_OnlineLearning_Platform.Models;
 using System;
@@ -34,9 +36,32 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             return View(dy);
         }
 
-        public IActionResult CourseRegister(int id)
+        public IActionResult CourseRegister()
+        {
+
+            IEnumerable<Price_Package> list = _db.Price_Packages;
+            //var userInfor = HttpContext.Session.GetString("SessionUser");
+            //if (userInfor == null && price_Id != null)
+            //{
+            //    return Redirect($"~/AccountManagement/Register");
+            //}
+            return View(list);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CourseRegister(int priceId)
         {
             IEnumerable<Price_Package> list = _db.Price_Packages;
+            var userInfor = HttpContext.Session.GetString("SessionUser");
+            if (userInfor == null)
+            {
+                return Redirect($"~/AccountManagement/Register");
+            } else
+            {
+                User_Course uc = new User_Course();
+                
+                
+            }
             return View(list);
         }
 

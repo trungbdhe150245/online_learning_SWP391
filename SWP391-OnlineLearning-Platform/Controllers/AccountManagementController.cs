@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SWP391_OnlineLearning_Platform.Data;
 using SWP391_OnlineLearning_Platform.Models;
 using SWP391_OnlineLearning_Platform.Models.ViewModels;
@@ -169,7 +170,9 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 					Session["FullName"] = data.FirstOrDefault().Full_Name;
 					Session["Email"] = data.FirstOrDefault().Email;
 					Session["UserID"] = data.FirstOrDefault().Id;*/
-                    return RedirectToAction("Index");
+                    HttpContext.Session.SetString("SessionUser",JsonConvert.SerializeObject(isLogin));
+                    return Redirect($"~/Home/Index");
+                    //return RedirectToAction("Index");
                 }
                 else
                 {

@@ -31,7 +31,11 @@ namespace SWP391_OnlineLearning_Platform
 			);
 			services.Configure<Utils.SmtpConfigurations>(Configuration);
 			services.AddSingleton<Utils.SmtpHandling, Utils.SmtpHandling>();
-
+			services.AddDistributedMemoryCache();
+			services.AddSession(options =>
+			{
+				options.IdleTimeout = TimeSpan.FromSeconds(3600);
+			});
 
 
 			//services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -75,7 +79,7 @@ namespace SWP391_OnlineLearning_Platform
 			app.UseStaticFiles();
 			//app.UseAuthentication();
 			app.UseRouting();
-
+			app.UseSession();
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
