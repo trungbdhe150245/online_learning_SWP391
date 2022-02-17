@@ -8940,19 +8940,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week5\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+      "projectUniqueName": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
       "projectName": "SWP391-OnlineLearning-Platform",
-      "projectPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week5\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week5\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
+      "projectPath": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+      "outputPath": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9093,12 +9093,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.12, 5.0.12]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -9107,7 +9101,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

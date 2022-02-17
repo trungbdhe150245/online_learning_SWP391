@@ -17,7 +17,8 @@
     <a asp-action="Create">Create Question</a>
     <a asp-action="Import">| Import File</a>
 </p>
-<form asp-controller="QuestionBank" asp-action="QuestionList">
+<form asp-controller="QuestionBank" asp-action="QuestionList"> 
+
     <div class="search-something">
         <input type="text" name="keyWord">
         <button class="btn-primary" type="submit">Search</button>
@@ -78,4 +79,5 @@
 
 <h3>Trang số: @CurrentPage</h3>
 
-<pager list="@Model" asp-controller="QuestionBank" asp-action="QuestionList" />//thiếu bootstrap
+<pager list="@Model" asp-controller="QuestionBank" asp-action="QuestionList" />
+//thiếu bootstrap
