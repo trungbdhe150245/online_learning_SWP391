@@ -91,9 +91,15 @@ h3::after{
     align-items: center;
 }
 
-.resp-img{
+.resp {
+	height: 240px;
+	margin-bottom: 30px;
+}
+
+.resp-img {
 	width: 100%;
-	height: auto;
+	height: 100%;
+	margin-bottom: 30px;
 }
 
 .pos-r{

@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "CourseRegister";
     var courseId = ViewBag.CourseId;
-    var user = ViewBag.User;
+    var userId = ViewBag.UserId;
 }
 
 <main>
@@ -33,7 +33,7 @@
                         </div>
                         <form method="post" asp-action="CourseRegister">
                             @*<a href="#"><i class="zmdi zmdi-arrow-right"></i>FREE TRIAL</a>*@
-                            <button type="submit" asp-action="CourseRegister" asp-controller="Course" asp-route-priceId="@p.Id" asp-route-courseId="@courseId" asp-route-userId="@user.Id"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</button>
+                            <button type="submit" asp-action="CourseRegister" asp-controller="Course" asp-route-priceId="@p.Id" asp-route-courseId="@courseId" asp-route-userId="@userId"><i class="zmdi zmdi-arrow-right"></i>ORDER NOW</button>
                         </form>
                     </div>
                 </div>

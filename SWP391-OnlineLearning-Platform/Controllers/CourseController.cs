@@ -45,14 +45,20 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             //{
             //    return Redirect($"~/AccountManagement/Register");
             //}
-            var userInfor = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionUser"));
-            this.ViewBag.User = userInfor;
+            var userInfor = HttpContext.Session.GetString("SessionUser");
+            if (userInfor != null)
+            {
+                var obj = userInfor.Replace("\"", string.Empty).Replace("{", string.Empty).Replace("}", string.Empty);
+                string[] prop = obj.Split(",");
+                var userId = prop[0].Replace("Id:", string.Empty);
+                this.ViewBag.UserId = userId;
+            }
             this.ViewBag.CourseId = courseId;
             return View(list);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CourseRegister(int priceId, int courseId, int userId)
+        public IActionResult CourseRegister(int priceId, int courseId, string userId)
         {
             IEnumerable<Price_Package> list = _db.Price_Packages;
             //var userInfor = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionUser"));
@@ -65,7 +71,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             {
                 User_Course uc = new User_Course();
                 uc.Price_Package = _db.Price_Packages.Find(priceId);
-                uc.User = _db.Users.Find(userId);
+                uc.User = _db.Users.Find(Int32.Parse(userId));
                 uc.Course = _db.Courses.Find(courseId);
                 uc.Registration_Status = 1;
                 uc.Start_Date = DateTime.Now;
@@ -103,7 +109,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
                     break;
             }
 
-            const int pageSize = 3;
+            const int pageSize = 5;
             if (page < 1)
             {
                 page = 1;
