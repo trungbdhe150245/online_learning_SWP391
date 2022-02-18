@@ -1,9 +1,11 @@
 using Album.Data;
+using Album.Mail.Album.Mail;
 using Album.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -57,10 +59,17 @@ namespace Album
 
 
 			options.SignIn.RequireConfirmedEmail = true;            
-			options.SignIn.RequireConfirmedPhoneNumber = false;     
+			options.SignIn.RequireConfirmedPhoneNumber = false;
 
 
-			services.AddRazorPages();
+				services.AddOptions();                                        
+				var mailsettings = Configuration.GetSection("MailSettings"); 
+				services.Configure<MailSettings>(mailsettings);              
+
+				services.AddTransient<IEmailSender, SendMailService>();        
+
+
+				services.AddRazorPages();
 			services.AddControllersWithViews();
 			});
 

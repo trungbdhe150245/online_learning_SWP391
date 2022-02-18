@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\trung\\source\\repos\\Album\\Album\\Album.csproj": {}
+    "C:\\Users\\trung\\source\\repos\\online_learning_SWP391\\Authorization_Test\\Album\\Album\\Album.csproj": {}
   },
   "projects": {
-    "C:\\Users\\trung\\source\\repos\\Album\\Album\\Album.csproj": {
+    "C:\\Users\\trung\\source\\repos\\online_learning_SWP391\\Authorization_Test\\Album\\Album\\Album.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\trung\\source\\repos\\Album\\Album\\Album.csproj",
+        "projectUniqueName": "C:\\Users\\trung\\source\\repos\\online_learning_SWP391\\Authorization_Test\\Album\\Album\\Album.csproj",
         "projectName": "Album",
-        "projectPath": "C:\\Users\\trung\\source\\repos\\Album\\Album\\Album.csproj",
+        "projectPath": "C:\\Users\\trung\\source\\repos\\online_learning_SWP391\\Authorization_Test\\Album\\Album\\Album.csproj",
         "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\trung\\source\\repos\\Album\\Album\\obj\\",
+        "outputPath": "C:\\Users\\trung\\source\\repos\\online_learning_SWP391\\Authorization_Test\\Album\\Album\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
             "Microsoft.AspNetCore.Authentication": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -93,6 +97,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.1.1, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
