@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AppDbContext = Album.Models.AppDbContext;
 
 namespace Album
 {
@@ -37,9 +38,9 @@ namespace Album
 				options.UseSqlServer(connectstring);
 			});
 
-			services.AddIdentity<AppUser, IdentityRole>()
-				.AddEntityFrameworkStores<AppDbContext>()
-				.AddDefaultTokenProviders();
+			//services.AddIdentity<AppUser, IdentityRole>()
+			//	.AddEntityFrameworkStores<AppDbContext>()
+			//	.AddDefaultTokenProviders();
 
 			services.Configure<IdentityOptions>(options => {
 				options.Password.RequireDigit = false; 
