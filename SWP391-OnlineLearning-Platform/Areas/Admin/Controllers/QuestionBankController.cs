@@ -95,7 +95,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             {
                 _context.Add(question_Bank);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("QuestionList");
             }
             ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description", question_Bank.Course_Id);
             ViewData["Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name", question_Bank.Level_Id);
@@ -152,7 +152,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("QuestionList");
             }
             ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description", question_Bank.Course_Id);
             ViewData["Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name", question_Bank.Level_Id);
@@ -189,7 +189,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             var question_Bank = await _context.Question_Banks.FindAsync(id);
             _context.Question_Banks.Remove(question_Bank);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("QuestionList");
         }
 
         //xử lý file import:
