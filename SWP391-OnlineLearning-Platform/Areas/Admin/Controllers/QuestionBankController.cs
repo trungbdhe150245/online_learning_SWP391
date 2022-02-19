@@ -36,8 +36,17 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             {
                 questions = questions.Where(s => s.Content!.ToLower().Contains(keyWord.ToLower())).ToList();
             }
+
+            foreach (var item in questions)
+            {
+                var s = item.Content.Split("\\");
+                item.Content = s[0];
+                item.Answer = item.Answer.ToUpper();
+            }
+
             PagedList<Question_Bank> models = new PagedList<Question_Bank>(questions.AsQueryable(), pageNumber, pageSize);
 
+            
 
 
             return View(models);
