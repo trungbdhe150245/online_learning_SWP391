@@ -18,6 +18,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         public QuizsController(OnlineLearningDbContext context)
         {
             _context = context;
+
         }
 
         // GET: Admin/Quizs
@@ -25,6 +26,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         {
             var onlineLearningDbContext = _context.Quizzes.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Quiz_Type);
             return View(await onlineLearningDbContext.ToListAsync());
+
         }
 
         // GET: Admin/Quizs/Details/5
