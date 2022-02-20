@@ -26,7 +26,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         {
             //PHÂN TRANG
             var pageNumber = page;
-            var pageSize = 2;
+            var pageSize = 30;
             ViewBag.CurrentPage = pageNumber;
 
             List<Question_Bank> questions = new List<Question_Bank>();
