@@ -46,8 +46,6 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
 
             PagedList<Question_Bank> models = new PagedList<Question_Bank>(questions.AsQueryable(), pageNumber, pageSize);
 
-            
-
 
             return View(models);
         }
