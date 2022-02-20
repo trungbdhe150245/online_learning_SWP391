@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 }*/
 namespace SWP391_OnlineLearning_Platform.Models
 {
-    public class User: IdentityUser
+    public class User/*: IdentityUser*/
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
@@ -69,7 +69,7 @@ namespace SWP391_OnlineLearning_Platform.Models
         [ForeignKey("Status_Id")]
         public virtual Status Status { get; set; }
 
-        public List<User_Role> User_Roles { get; set; }
+        //public List<User_Role> User_Roles { get; set; }
 
         public List<Owner> Owners { get; set; }
 

@@ -16,17 +16,17 @@ namespace SWP391_OnlineLearning_Platform.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User_Role>().HasKey(ur => new { ur.Role_Id, ur.User_Id });
+            //modelBuilder.Entity<User_Role>().HasKey(ur => new { ur.Role_Id, ur.User_Id });
 
-            modelBuilder.Entity<User_Role>()
-                .HasOne(u => u.User)
-                .WithMany(ur => ur.User_Roles)
-                .HasForeignKey(ui => ui.User_Id);
+            //modelBuilder.Entity<User_Role>()
+            //    .HasOne(u => u.User)
+            //    .WithMany(ur => ur.User_Roles)
+            //    .HasForeignKey(ui => ui.User_Id);
 
-            modelBuilder.Entity<User_Role>()
-                .HasOne(u => u.Role)
-                .WithMany(ur => ur.User_Roles)
-                .HasForeignKey(ui => ui.Role_Id);
+            //modelBuilder.Entity<User_Role>()
+            //    .HasOne(u => u.Role)
+            //    .WithMany(ur => ur.User_Roles)
+            //    .HasForeignKey(ui => ui.Role_Id);
 
             modelBuilder.Entity<Owner>().HasKey(uc => new { uc.User_Id, uc.Course_Id });
 
@@ -101,17 +101,17 @@ namespace SWP391_OnlineLearning_Platform.Data
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Role> Roles { get; set; }
+        //public DbSet<Role> Roles { get; set; }
 
         public DbSet<User_Quiz> User_Quizzes { get; set; }
 
-        public DbSet<User_Role> User_Roles { get; set; }
+        //public DbSet<User_Role> User_Roles { get; set; }
 
         public DbSet<Owner> Owners { get; set; }
 
         public DbSet<Blog> Blogs { get; set; }
 
-        public DbSet<Persistent_Login> Persistent_Logins { get; set; }
+        //public DbSet<Persistent_Login> Persistent_Logins { get; set; }
 
         public DbSet<User_Course> User_Courses { get; set; }
 
