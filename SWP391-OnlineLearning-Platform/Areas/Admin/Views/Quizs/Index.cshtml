@@ -3,24 +3,21 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    int count=0;
+    int count=1;
 }
 
-<h1>Index</h1>
+<h2>Quizzes List (for expert/admin)</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table table-striped">
-    <thead>
+<table class="table table-striped text-center">
+    <thead class="thead-dark">
         <tr style="font-weight:bold;">
             <td>No.</td>
             <td>Subject</td>
             <td>
                 Quiz Name
-            </td>
-            <td>
-                Quiz ID
             </td>
             <td>
                 Level
@@ -29,7 +26,8 @@
                 Total Question
             </td>
             <td>
-                Duration
+                Duration<br/>
+                (minutes)
             </td>
             <td>
                 Pass Rate
@@ -54,9 +52,6 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Quiz_Level.Name)
             </td>
             <td>
@@ -66,13 +61,10 @@
                 @Html.DisplayFor(modelItem => item.Duration)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Pass_rate)
+                @Html.DisplayFor(modelItem => item.Pass_rate) %
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quiz_Type.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Course.Description)
             </td>
             
             <td>

@@ -64,6 +64,11 @@
                 @Html.DisplayFor(modelItem => item.Quiz_Level.Name)
             </td>
             <td>
+                @if (item.Status_Id == 1)
+                {
+                    <i class="fa fa-circle text-success"> </i>
+                }
+
                 @Html.DisplayFor(modelItem => item.Status.Value)
             </td>
             <td>
