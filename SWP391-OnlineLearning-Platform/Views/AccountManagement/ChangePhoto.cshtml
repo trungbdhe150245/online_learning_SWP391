@@ -5,7 +5,8 @@
     {
         Id = Model.Id,
         Full_Name = Model.Full_Name,
-        Avatar_Url = Model.Avatar_Url
+        Avatar_Url = Model.Avatar_Url,
+        Dob = Model.Dob
     };
 }
 @model SWP391_OnlineLearning_Platform.Models.ViewModels.Change_PhotoVM
@@ -28,7 +29,6 @@
                         <div class="form-group">
                             <label for="Photo" class="form-label">Default file input example</label>
                             <input asp-for="Photo" class="form-control custom-file-input" type="file">
-                            <label class="custom-file-label">Choose File ...</label>
                         </div>
                         <div class="form-group">
                             <input type="submit" value="SAVE" class="btn btn-success" style="margin-left:35%; padding:5px 20px" />

@@ -82,6 +82,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             x.Id = user.Id;
             x.Full_Name = user.Full_Name;
             x.Avatar_Url = user.Avatar_Url;
+            x.Dob = user.Dob;
             return View(x);
         }
 
@@ -128,6 +129,8 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             cp.Avatar_Url = user.Avatar_Url;
             cp.Full_Name = user.Full_Name;
             cp.Id = user.Id;
+            cp.Dob = user.Dob;
+
             return View(cp);
         }
 

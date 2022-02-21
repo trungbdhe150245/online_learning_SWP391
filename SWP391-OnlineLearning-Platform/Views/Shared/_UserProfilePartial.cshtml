@@ -121,10 +121,10 @@
         <!-- SIDEBAR USER TITLE -->
         <div class="profile-usertitle">
             <div class="profile-usertitle-name">
-                @Model.Full_Name
+                Welcome, @Model.Full_Name
             </div>
             <div class="profile-usertitle-job">
-                Student
+                Age: @(DateTime.Today.Year - Model.Dob.Year)
             </div>
         </div>
         <!-- END SIDEBAR BUTTONS -->

@@ -21,7 +21,7 @@ namespace SWP391_OnlineLearning_Platform.Models
         public int Quiz_Id { get; set; }
         [DisplayName("User")]
         public int User_Id { get; set; }
-        //[ForeignKey("User_Id")]
+        [ForeignKey("User_Id")]
         public virtual User User { get; set; }
         [ForeignKey("Quiz_Id")]
         public virtual Quiz Quiz { get; set; }

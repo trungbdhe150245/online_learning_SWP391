@@ -27,7 +27,7 @@ namespace SWP391_OnlineLearning_Platform.Models
         public virtual Course Course { get; set; }
         [ForeignKey("Price_Package_Id")]
         public virtual Price_Package Price_Package { get; set; }
-        //[ForeignKey("User_Id")]
+        [ForeignKey("User_Id")]
         public virtual User User { get; set; }
 
 

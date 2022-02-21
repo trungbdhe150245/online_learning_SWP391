@@ -46,14 +46,13 @@
           "Microsoft.AspNetCore.Authentication.Twitter": "5.0.13",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Identity": "2.2.0",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.13",
           "Microsoft.AspNetCore.Identity.UI": "5.0.13",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.13",
           "Microsoft.AspNetCore.Session": "2.2.0",
           "Microsoft.EntityFrameworkCore": "5.0.13",
           "Microsoft.EntityFrameworkCore.Design": "5.0.13",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.12",
-          "Microsoft.EntityFrameworkCore.Tools": "5.0.13",
+          "Microsoft.EntityFrameworkCore.Tools": "5.0.12",
           "Microsoft.Extensions.DependencyInjection": "6.0.0",
           "Microsoft.Extensions.Logging.Console": "6.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
@@ -568,21 +567,6 @@
           "Microsoft.Extensions.Identity.Core": "5.0.13"
         }
       },
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/5.0.13": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.13",
-          "Microsoft.Extensions.Identity.Stores": "5.0.13"
-        },
-        "runtime": {
-          "lib/net5.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
-            "assemblyVersion": "5.0.13.0",
-            "fileVersion": "5.0.1321.57202"
-          }
-        },
-        "compile": {
-          "lib/net5.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
-        }
-      },
       "Microsoft.AspNetCore.Identity.UI/5.0.13": {
         "dependencies": {
           "Microsoft.Extensions.FileProviders.Embedded": "5.0.13",
@@ -1088,7 +1072,7 @@
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/5.0.13": {
+      "Microsoft.EntityFrameworkCore.Tools/5.0.12": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "5.0.13"
         }
@@ -4268,13 +4252,6 @@
       "path": "microsoft.aspnetcore.identity/2.2.0",
       "hashPath": "microsoft.aspnetcore.identity.2.2.0.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/5.0.13": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-mMoIdZD4j9rSvhjmDeRFNXV/dKFpV+2az/njsCpVBVwl5LamMRu0gfrsqC6JGelZzUtJD6grXYoVQPXgU8rjyg==",
-      "path": "microsoft.aspnetcore.identity.entityframeworkcore/5.0.13",
-      "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.5.0.13.nupkg.sha512"
-    },
     "Microsoft.AspNetCore.Identity.UI/5.0.13": {
       "type": "package",
       "serviceable": true,
@@ -4443,12 +4420,12 @@
       "path": "microsoft.entityframeworkcore.sqlserver/5.0.12",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.5.0.12.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Tools/5.0.13": {
+    "Microsoft.EntityFrameworkCore.Tools/5.0.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-i/46k4pfCBMb2LVjLqHAbBO8WsAaB+CKbe8oF9ZBTtjVqyEJAxSpn8IZcvajY2KJmM7lc3zgyUdaommvxH2ClA==",
-      "path": "microsoft.entityframeworkcore.tools/5.0.13",
-      "hashPath": "microsoft.entityframeworkcore.tools.5.0.13.nupkg.sha512"
+      "sha512": "sha512-fk6P7PZmbN/148oR2RBTnCWsTMdNKlOL/OgF6HJOY8HBbNLIdW720hYIbckmwQ6kad2gaKGXYoW9tDDu69cCQA==",
+      "path": "microsoft.entityframeworkcore.tools/5.0.12",
+      "hashPath": "microsoft.entityframeworkcore.tools.5.0.12.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
       "type": "package",

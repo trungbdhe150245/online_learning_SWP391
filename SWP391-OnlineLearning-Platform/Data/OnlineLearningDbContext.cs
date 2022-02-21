@@ -1,16 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SWP391_OnlineLearning_Platform.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 
 namespace SWP391_OnlineLearning_Platform.Data
 {
-    public class OnlineLearningDbContext : IdentityDbContext<AppUser>
+    public class OnlineLearningDbContext : DbContext
     {
         public OnlineLearningDbContext(DbContextOptions<OnlineLearningDbContext> options) : base(options)
         {
@@ -30,19 +27,9 @@ namespace SWP391_OnlineLearning_Platform.Data
             //    .HasOne(u => u.Role)
             //    .WithMany(ur => ur.User_Roles)
             //    .HasForeignKey(ui => ui.Role_Id);
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>().ToTable("User");
-            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
-            {
-                var tableName = entityType.GetTableName();
-                if (tableName.StartsWith("AspNet"))
-                {
-                    entityType.SetTableName(tableName.Substring(6));
-                }
-            }
 
             modelBuilder.Entity<Owner>().HasKey(uc => new { uc.User_Id, uc.Course_Id });
-            
+
             modelBuilder.Entity<Owner>()
                 .HasOne(u => u.User)
                 .WithMany(ur => ur.Owners)
@@ -104,7 +91,7 @@ namespace SWP391_OnlineLearning_Platform.Data
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Status> Status { get; set; }
+        public DbSet<Status> Statuss { get; set; }
 
         public DbSet<Quiz> Quizzes { get; set; }
 

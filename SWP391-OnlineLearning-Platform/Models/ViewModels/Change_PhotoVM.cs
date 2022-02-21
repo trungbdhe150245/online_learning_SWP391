@@ -8,6 +8,8 @@ namespace SWP391_OnlineLearning_Platform.Models.ViewModels
 {
     public class Change_PhotoVM
     {
+        public DateTime Dob { get; set; }
+
         public string Avatar_Url { get; set; }
         public string Full_Name { get; set; }
         public int Id { get; set; }

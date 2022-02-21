@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\trung\\Desktop\\New folder (3)\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {}
+    "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {}
   },
   "projects": {
-    "C:\\Users\\trung\\Desktop\\New folder (3)\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {
+    "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\trung\\Desktop\\New folder (3)\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+        "projectUniqueName": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
         "projectName": "SWP391-OnlineLearning-Platform",
-        "projectPath": "C:\\Users\\trung\\Desktop\\New folder (3)\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
-        "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\trung\\Desktop\\New folder (3)\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
+        "projectPath": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 5\\Source Code\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,10 +92,6 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.13, )"
-            },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[5.0.13, )"
@@ -126,7 +122,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.13, )"
+              "version": "[5.0.12, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",

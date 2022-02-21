@@ -35,7 +35,7 @@ namespace SWP391_OnlineLearning_Platform.Models
         public virtual Category Category { get; set; }
         [ForeignKey("Status_Id")]
         public virtual Status Status { get; set; }
-        //[ForeignKey("User_Id")]
+        [ForeignKey("User_Id")]
         public virtual User User { get; set; }
 
         public DateTime Date_Create { get; set; }
