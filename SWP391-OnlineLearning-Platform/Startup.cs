@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SWP391_OnlineLearning_Platform.Data;
+using SWP391_OnlineLearning_Platform.Models;
 using SWP391_OnlineLearning_Platform.Utility.Services;
 using System;
 using System.Collections.Generic;
@@ -30,8 +32,10 @@ namespace SWP391_OnlineLearning_Platform
 			services.AddDbContext<OnlineLearningDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
 			);
-
-
+			services.AddIdentity<AppUser, IdentityRole>()
+	.AddEntityFrameworkStores<OnlineLearningDbContext>()
+	.AddDefaultTokenProviders();
+			services.AddRazorPages();
 			/*
 			services.AddOptions ();                                        
 			var mailsettings = Configuration.GetSection ("MailSettings"); 
@@ -48,12 +52,8 @@ namespace SWP391_OnlineLearning_Platform
 
 				options.usesqlserver(connectstring);
 			});
+			*/
 
-			services.addidentity<appuser, identityrole>()
-				.addentityframeworkstores<appdbcontext>()
-				.adddefaulttokenproviders();
-
-			services.addrazorpages();
 
 			
 			services.Configure<IdentityOptions>(options => {
@@ -82,9 +82,8 @@ namespace SWP391_OnlineLearning_Platform
 			});
 
 
-			app.UseAuthentication();   
-			app.UseAuthorization();   
-			*/
+
+			
 
 
 
@@ -136,10 +135,12 @@ namespace SWP391_OnlineLearning_Platform
 			}
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
-			//app.UseAuthentication();
+
 			app.UseRouting();
-			app.UseSession();
+			app.UseAuthentication();   
 			app.UseAuthorization();
+			app.UseSession();
+
 
 			app.UseEndpoints(endpoints =>
 			{

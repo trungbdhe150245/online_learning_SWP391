@@ -78,7 +78,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         {
             ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description");
             ViewData["Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name");
-            ViewData["Status_Id"] = new SelectList(_context.Statuss, "Id", "Value");
+            ViewData["Status_Id"] = new SelectList(_context.Status, "Id", "Value");
             return View();
         }
 
@@ -97,7 +97,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             }
             ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description", question_Bank.Course_Id);
             ViewData["Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name", question_Bank.Level_Id);
-            ViewData["Status_Id"] = new SelectList(_context.Statuss, "Id", "Value", question_Bank.Status_Id);
+            ViewData["Status_Id"] = new SelectList(_context.Status, "Id", "Value", question_Bank.Status_Id);
             return View(question_Bank);
         }
 
@@ -116,7 +116,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             }
             ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description", question_Bank.Course_Id);
             ViewData["Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name", question_Bank.Level_Id);
-            ViewData["Status_Id"] = new SelectList(_context.Statuss, "Id", "Value", question_Bank.Status_Id);
+            ViewData["Status_Id"] = new SelectList(_context.Status, "Id", "Value", question_Bank.Status_Id);
             return View(question_Bank);
         }
 
@@ -154,7 +154,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             }
             ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description", question_Bank.Course_Id);
             ViewData["Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name", question_Bank.Level_Id);
-            ViewData["Status_Id"] = new SelectList(_context.Statuss, "Id", "Value", question_Bank.Status_Id);
+            ViewData["Status_Id"] = new SelectList(_context.Status, "Id", "Value", question_Bank.Status_Id);
             return View(question_Bank);
         }
 

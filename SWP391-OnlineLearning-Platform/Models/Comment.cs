@@ -19,7 +19,7 @@ namespace SWP391_OnlineLearning_Platform.Models
         public string Content { get; set; }
         public DateTime Date_Created { get; set; }
 
-        [ForeignKey("User_Id")]
+        //[ForeignKey("User_Id")]
         public virtual User User { get; set; }
 
         [ForeignKey("Blog_Id")]
