@@ -1535,7 +1535,27 @@ h3 + p {
 	font-family: "Montserrat", sans-serif;
 	font-size: 11px;
 	text-decoration: none;
-}	
+}
+
+.pricings .plan button{
+	bottom: 0;
+	width: 137px;
+	line-height: 40px;
+	display: inline-block;
+	left: 0;
+	right: 0;
+	margin: 60px auto 27px auto;
+	border: 1px solid;
+	border-color: #cdcdcd;
+	border-radius: 4px;
+	font-family: "Montserrat", sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+}
+
+.pricings .plan button i {
+	margin-right: 15px;
+}
 
 .pricings .plan a i{
 	margin-right: 15px;
