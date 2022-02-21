@@ -3,12 +3,6 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 <header>
-    <ul class="pull-right lang">
-        <li class="selected"><a href="#">EN</a></li>
-        <li><a href="#">DE</a></li>
-        <li><a href="#">FR</a></li>
-        <li><a href="#">PO</a></li>
-    </ul>
     <div class="container">
         <div id="topbar">
             <div class="pull-right">
@@ -19,7 +13,8 @@
                     <nav class="collapse navbar-collapse" id="myNavbar">
                         <ul>
                             <li class="active">
-                                <a href="#">Home</a>
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+
                             </li>
                             <li>
                                 <a href="#">Online Courses</a>
@@ -90,8 +85,8 @@
                         </ul>
                     </nav>
                 </div>
-                <a href="#" class="blueplay login">LOGIN</a>
-                <a href="#" class="register">REGISTER</a>
+                <a asp-controller="AccountManagement" asp-action="Login" class="blueplay login">LOGIN</a>
+                <a asp-controller="AccountManagement" asp-action="Register" class="register">REGISTER</a>
                 <div class="cart">
                     <a href="#"><i class="zmdi zmdi-case zmdi-hc-lg"></i><span>4</span></a>
                     <div class="cart-container">

@@ -3,13 +3,13 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    int count=1;
+    int count=0;
 }
 
 <h2>Quizzes List (for expert/admin)</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create"><button class="btn btn-success">Create New</button></a>
 </p>
 <table class="table table-striped text-center">
     <thead class="thead-dark">

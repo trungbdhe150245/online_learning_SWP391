@@ -1,12 +1,9 @@
 ﻿@using PagedList.Core.Mvc
 @using SWP391_OnlineLearning_Platform.Models;
-@{
-    int CurrentPage = ViewBag.CurrentPage;
-    ViewData["Title"] = "BlogList";
-    var count = 0;
-    int numberResult = Model.Count();
-
-}
+@{ int CurrentPage = ViewBag.CurrentPage;
+                ViewData["Title"] = "BlogList";
+                var count = 0;
+                int numberResult = Model.Count(); }
 @model PagedList.Core.IPagedList<SWP391_OnlineLearning_Platform.Models.Blog>
 
 
@@ -40,23 +37,22 @@
         <div class="col-lg-9">
             @if (ViewBag.KeyWord != null)
             {
-                <h3>@numberResult results for <span style="color: gray;">"@ViewBag.KeyWord"</span></h3><br/>
-            }
+<h3>@numberResult results for <span style="color: gray;">"@ViewBag.KeyWord"</span></h3><br />            }
             @foreach (var item in Model)
             {
-                <div class="blog-item clearfix">
-                    <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id">
-                        <img src="~/img/@Html.DisplayFor(modelItem => item.Thumbnail)" alt="blog-single" class="img-thumbnail" style="width: 871px; height: 401px; object-fit: cover; object-position: 50% 50%;">
-                    </a>
-                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
-                    <div class="author">
-                        <a href="#">@Html.DisplayFor(modelItem => item.Category.Value)</a><span> - @Html.DisplayFor(modelItem => item.Date_Create) BY @Html.DisplayFor(modelItem => item.User.Full_Name)</span>
-                    </div>
-                    <p class="abs">
-                        @Html.DisplayFor(modelItem => item.Brief)
-                    </p>
-                    <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id" class="pull-right greybutton">READ MORE</a>
-                </div>}
+<div class="blog-item clearfix">
+    <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id">
+        <img src="~/img/@Html.DisplayFor(modelItem => item.Thumbnail)" alt="blog-single" class="img-thumbnail" style="width: 871px; height: 401px; object-fit: cover; object-position: 50% 50%;">
+    </a>
+    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+    <div class="author">
+        <a href="#">@Html.DisplayFor(modelItem => item.Category.Value)</a><span> - @Html.DisplayFor(modelItem => item.Date_Create) BY @Html.DisplayFor(modelItem => item.User.Full_Name)</span>
+    </div>
+    <p class="abs">
+        @Html.DisplayFor(modelItem => item.Brief)
+    </p>
+    <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id" class="pull-right greybutton">READ MORE</a>
+</div>}
 
             @*PHÂN TRANG*@
             <h3>Trang số: @CurrentPage</h3>
@@ -69,14 +65,18 @@
 
         <div class="col-lg-3 blog-sidebar">
             @*SEARCH BAR*@
-            <div class="search-something">
-                <form asp-controller="PublicFeature" asp-action="bloglist">
-                    <div class="search-something">
-                        <input type="text" name="keyWord" placeholder="search for something">
+            <form asp-controller="PublicFeature" asp-action="bloglist">
+                <div class="search-something col-md-12">
+                    <div class="col-md-10">
+                        <input type="search" name="keyWord" placeholder="search for something">
+                    </div>
+                    <div class="col-md-2">
                         <input class="btn" type="submit" value="Search">
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
+            <br/>
+
             <h4>RECENT POSTS</h4>
 
             @foreach (var item in ViewData["recentBlogs"] as List<Blog>)
@@ -84,14 +84,14 @@
                 ++count;
                 if (count <= 5)
                 {
-                    <div class="recent-post clearfix">
-                        <img src="~/img/@Html.DisplayFor(modelItem => item.Thumbnail)" alt="recent" class="pull-left" style="width: 70px; height: 70px; object-fit: cover; object-position: 50% 50%;">
-                        <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
-                        <div class="author">
-                            <a href="#">@Html.DisplayFor(modelItem => item.Category.Value)</a><span> @Html.DisplayFor(modelItem => item.Date_Create)</span>
-                        </div>
-                    </div>}
-            }
+<div class="recent-post clearfix">
+    <img src="~/img/@Html.DisplayFor(modelItem => item.Thumbnail)" alt="recent" class="pull-left" style="width: 70px; height: 70px; object-fit: cover; object-position: 50% 50%;">
+    <a asp-controller="publicfeature" asp-action="BlogDetail" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
+    <div class="author">
+        <a href="#">@Html.DisplayFor(modelItem => item.Category.Value)</a><span> @Html.DisplayFor(modelItem => item.Date_Create)</span>
+    </div>
+</div>}
+}
 
 
             <div class="categories">
@@ -99,8 +99,8 @@
                 <ul>
                     @foreach (var item in ViewData["category"] as List<Category>)
                     {
-                        <li><a asp-route-CatID="@item.Id" asp-controller="publicfeature" asp-action="bloglist">@Html.DisplayFor(modelItem => item.Value)</a></li>
-                    }
+        <li><a asp-route-CatID="@item.Id" asp-controller="publicfeature" asp-action="bloglist">@Html.DisplayFor(modelItem => item.Value)</a></li>
+}
                 </ul>
             </div>
 
