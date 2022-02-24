@@ -11,8 +11,8 @@ namespace SWP391.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    CategoryId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CategoryId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Value = table.Column<string>(type: "varchar(100)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -23,8 +23,8 @@ namespace SWP391.Migrations
                 name: "DimensionTypes",
                 columns: table => new
                 {
-                    DimensionTypeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    DimensionTypeId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Name = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -32,11 +32,23 @@ namespace SWP391.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Featured",
+                columns: table => new
+                {
+                    FeaturedId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Value = table.Column<string>(type: "varchar(255)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Featured", x => x.FeaturedId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "QuizLevels",
                 columns: table => new
                 {
-                    QuizLevelId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    QuizLevelId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Name = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,8 +59,8 @@ namespace SWP391.Migrations
                 name: "QuizTypes",
                 columns: table => new
                 {
-                    QuizTypeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    QuizTypeId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Name = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -89,7 +101,7 @@ namespace SWP391.Migrations
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Sex = table.Column<bool>(type: "bit", nullable: false),
+                    Sex = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProfilePictureURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -115,9 +127,9 @@ namespace SWP391.Migrations
                 name: "Dimensions",
                 columns: table => new
                 {
-                    DimensionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DimensionId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "varchar(255)", nullable: true),
                     DimensionTypeId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -155,15 +167,14 @@ namespace SWP391.Migrations
                 name: "Courses",
                 columns: table => new
                 {
-                    CourseId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CourseId = table.Column<string>(type: "varchar(10)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Featured = table.Column<int>(type: "int", nullable: false),
-                    ShortDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ThumbnailURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    ShortDescription = table.Column<string>(type: "varchar(500)", nullable: true),
+                    ThumbnailURL = table.Column<string>(type: "text", nullable: true),
+                    Title = table.Column<string>(type: "varchar(255)", nullable: true),
+                    FeaturedId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    CategoryId = table.Column<string>(type: "varchar(10)", nullable: true),
                     StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -175,6 +186,11 @@ namespace SWP391.Migrations
                         principalTable: "Categories",
                         principalColumn: "CategoryId");
                     table.ForeignKey(
+                        name: "FK_Courses_Featured_FeaturedId",
+                        column: x => x.FeaturedId,
+                        principalTable: "Featured",
+                        principalColumn: "FeaturedId");
+                    table.ForeignKey(
                         name: "FK_Courses_Status_StatusId",
                         column: x => x.StatusId,
                         principalTable: "Status",
@@ -185,12 +201,12 @@ namespace SWP391.Migrations
                 name: "PricePackages",
                 columns: table => new
                 {
-                    PricePackageId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<float>(type: "real", nullable: false),
+                    PricePackageId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Name = table.Column<string>(type: "varchar(255)", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false),
                     Duration = table.Column<int>(type: "int", nullable: false),
-                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -207,11 +223,11 @@ namespace SWP391.Migrations
                 name: "Slides",
                 columns: table => new
                 {
-                    SlideId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CourseURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ThumbnailURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SlideId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Title = table.Column<string>(type: "varchar(255)", nullable: true),
+                    CourseURL = table.Column<string>(type: "text", nullable: true),
+                    ThumbnailURL = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
                     StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -228,15 +244,17 @@ namespace SWP391.Migrations
                 name: "Blogs",
                 columns: table => new
                 {
-                    BlogId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Brief = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BlogId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Title = table.Column<string>(type: "varchar(255)", nullable: true),
+                    Brief = table.Column<string>(type: "varchar(500)", nullable: true),
+                    Content = table.Column<string>(type: "text", nullable: true),
                     Featured = table.Column<int>(type: "int", nullable: false),
-                    ThumbnailURL = table.Column<int>(type: "int", nullable: false),
+                    ThumbnailURL = table.Column<string>(type: "varchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CategoryId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    CategoryId = table.Column<string>(type: "varchar(10)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    FeaturedId = table.Column<string>(type: "varchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -246,6 +264,12 @@ namespace SWP391.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "CategoryId");
+                    table.ForeignKey(
+                        name: "FK_Blogs_Featured_FeaturedId",
+                        column: x => x.FeaturedId,
+                        principalTable: "Featured",
+                        principalColumn: "FeaturedId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Blogs_Status_StatusId",
                         column: x => x.StatusId,
@@ -348,8 +372,8 @@ namespace SWP391.Migrations
                 columns: table => new
                 {
                     CouresId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    DimensionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CourseId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    DimensionId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    CourseId = table.Column<string>(type: "varchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -371,7 +395,7 @@ namespace SWP391.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CourseId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    CourseId = table.Column<string>(type: "varchar(10)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -392,13 +416,13 @@ namespace SWP391.Migrations
                 name: "QuestionBanks",
                 columns: table => new
                 {
-                    QuestionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Explanation = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Weight = table.Column<float>(type: "real", nullable: false),
-                    QuizLevelId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CourseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    QuestionId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Answer = table.Column<string>(type: "text", nullable: true),
+                    Content = table.Column<string>(type: "text", nullable: true),
+                    Explanation = table.Column<string>(type: "text", nullable: true),
+                    Weight = table.Column<double>(type: "float", nullable: false),
+                    QuizLevelId = table.Column<string>(type: "varchar(10)", nullable: true),
+                    CourseId = table.Column<string>(type: "varchar(10)", nullable: true),
                     OptionA = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OptionB = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OptionC = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -429,14 +453,14 @@ namespace SWP391.Migrations
                 name: "Quizzes",
                 columns: table => new
                 {
-                    QuizId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    QuizId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
                     Duration = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "varchar(255)", nullable: true),
                     QuestionNum = table.Column<int>(type: "int", nullable: false),
-                    CourseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    QuizTypeId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    QuizLevelId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    CourseId = table.Column<string>(type: "varchar(10)", nullable: true),
+                    QuizTypeId = table.Column<string>(type: "varchar(10)", nullable: true),
+                    QuizLevelId = table.Column<string>(type: "varchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -462,10 +486,10 @@ namespace SWP391.Migrations
                 name: "Topics",
                 columns: table => new
                 {
-                    TopicId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TopicId = table.Column<string>(type: "varchar(10)", nullable: false),
                     TopicOrder = table.Column<int>(type: "int", nullable: false),
-                    TopicName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CourseId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    TopicName = table.Column<string>(type: "varchar(255)", nullable: true),
+                    CourseId = table.Column<string>(type: "varchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -481,8 +505,8 @@ namespace SWP391.Migrations
                 name: "CoursePackages",
                 columns: table => new
                 {
-                    CourseId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PricePackageId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    CourseId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    PricePackageId = table.Column<string>(type: "varchar(10)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -503,10 +527,10 @@ namespace SWP391.Migrations
                 name: "UserCourses",
                 columns: table => new
                 {
-                    UserCourseId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CourseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UserCourseId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    CourseId = table.Column<string>(type: "varchar(10)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    PricePackageId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    PricePackageId = table.Column<string>(type: "varchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -532,9 +556,9 @@ namespace SWP391.Migrations
                 name: "Comments",
                 columns: table => new
                 {
-                    CommentId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CommentBody = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BlogId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CommentId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    CommentBody = table.Column<string>(type: "text", nullable: true),
+                    BlogId = table.Column<string>(type: "varchar(10)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -556,8 +580,8 @@ namespace SWP391.Migrations
                 name: "QuestionDimensions",
                 columns: table => new
                 {
-                    QuestionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    DimensionId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    QuestionId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    DimensionId = table.Column<string>(type: "varchar(10)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -578,11 +602,11 @@ namespace SWP391.Migrations
                 name: "Attempts",
                 columns: table => new
                 {
-                    AttemptId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    TotalMark = table.Column<float>(type: "real", nullable: false),
-                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AttemptId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    TotalMark = table.Column<double>(type: "float", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    QuizId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    QuizId = table.Column<string>(type: "varchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -603,8 +627,8 @@ namespace SWP391.Migrations
                 name: "QuizQuestions",
                 columns: table => new
                 {
-                    QuizId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    QuestionId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    QuizId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    QuestionId = table.Column<string>(type: "varchar(10)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -625,13 +649,13 @@ namespace SWP391.Migrations
                 name: "Lessons",
                 columns: table => new
                 {
-                    LessonId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LessonName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LessonId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    LessonName = table.Column<string>(type: "varchar(255)", nullable: true),
                     LessonOrder = table.Column<int>(type: "int", nullable: false),
-                    HtmlContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VideoLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HtmlContent = table.Column<string>(type: "text", nullable: true),
+                    VideoURL = table.Column<string>(type: "text", nullable: true),
                     StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    PricePackageId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PricePackageId = table.Column<string>(type: "varchar(10)", nullable: true),
                     TopicId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -653,13 +677,13 @@ namespace SWP391.Migrations
                 name: "AttemptDetaileds",
                 columns: table => new
                 {
-                    AttemptId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    QuestionBankId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    UserAnswer = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AttemptId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    QuestionBankId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    UserAnswer = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AttemptDetaileds", x => x.AttemptId);
+                    table.PrimaryKey("PK_AttemptDetaileds", x => new { x.AttemptId, x.QuestionBankId });
                     table.ForeignKey(
                         name: "FK_AttemptDetaileds_Attempts_AttemptId",
                         column: x => x.AttemptId,
@@ -691,6 +715,11 @@ namespace SWP391.Migrations
                 name: "IX_Blogs_CategoryId",
                 table: "Blogs",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Blogs_FeaturedId",
+                table: "Blogs",
+                column: "FeaturedId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Blogs_StatusId",
@@ -731,6 +760,11 @@ namespace SWP391.Migrations
                 name: "IX_Courses_CategoryId",
                 table: "Courses",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Courses_FeaturedId",
+                table: "Courses",
+                column: "FeaturedId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Courses_StatusId",
@@ -950,6 +984,9 @@ namespace SWP391.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Featured");
 
             migrationBuilder.DropTable(
                 name: "Status");

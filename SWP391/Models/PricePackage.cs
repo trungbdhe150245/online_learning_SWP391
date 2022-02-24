@@ -15,7 +15,7 @@ namespace SWP391.Models
 
 		public float Price { get; set; }
 		public int Duration { get; set; }
-		public DateTime StartTime { get; set; }
+		public DateTime? StartTime { get; set; }
 
 		public virtual Status Status { get; set; }
 		public string StatusId { get; set; }

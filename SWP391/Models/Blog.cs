@@ -14,8 +14,8 @@ namespace SWP391.Models
 		public string Brief { get; set; }
 		public string Content { get; set; }
 		public int Featured { get; set; }
-		public int ThumbnailURL { get; set; }
-		public int CreatedDate { get; set; }
+		public string ThumbnailURL { get; set; }
+		public DateTime? CreatedDate { get; set; }
 		public virtual Status Status { get; set; }
 		public string StatusId { get; set; }
 		public virtual Category Category { get; set; }

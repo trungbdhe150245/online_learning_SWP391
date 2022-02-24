@@ -233,16 +233,16 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Attempt", b =>
                 {
                     b.Property<string>("AttemptId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("QuizId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
-                    b.Property<DateTime>("StartTime")
+                    b.Property<DateTime?>("StartTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("TotalMark")
-                        .HasColumnType("real");
+                    b.Property<double>("TotalMark")
+                        .HasColumnType("float");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -259,15 +259,15 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.AttemptDetailed", b =>
                 {
                     b.Property<string>("AttemptId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("QuestionBankId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("UserAnswer")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.HasKey("AttemptId");
+                    b.HasKey("AttemptId", "QuestionBankId");
 
                     b.HasIndex("QuestionBankId");
 
@@ -277,31 +277,34 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Blog", b =>
                 {
                     b.Property<string>("BlogId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Brief")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<int>("CreatedDate")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Featured")
                         .HasColumnType("int");
 
+                    b.Property<string>("FeaturedId")
+                        .HasColumnType("varchar(10)");
+
                     b.Property<string>("StatusId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ThumbnailURL")
-                        .HasColumnType("int");
+                    b.Property<string>("ThumbnailURL")
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -309,6 +312,8 @@ namespace SWP391.Migrations
                     b.HasKey("BlogId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("FeaturedId");
 
                     b.HasIndex("StatusId");
 
@@ -320,10 +325,10 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Category", b =>
                 {
                     b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("CategoryId");
 
@@ -333,13 +338,13 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Comment", b =>
                 {
                     b.Property<string>("CommentId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("BlogId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("CommentBody")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -356,38 +361,38 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Course", b =>
                 {
                     b.Property<string>("CourseId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
-                    b.Property<int>("Featured")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("FeaturedId")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("ShortDescription")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("StatusId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ThumbnailURL")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("CourseId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("FeaturedId");
 
                     b.HasIndex("StatusId");
 
@@ -400,10 +405,10 @@ namespace SWP391.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("DimensionId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("CourseId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.HasKey("CouresId", "DimensionId");
 
@@ -417,10 +422,10 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.CoursePackage", b =>
                 {
                     b.Property<string>("CourseId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("PricePackageId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.HasKey("CourseId", "PricePackageId");
 
@@ -432,16 +437,16 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Dimension", b =>
                 {
                     b.Property<string>("DimensionId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("DimensionTypeId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("DimensionId");
 
@@ -451,32 +456,46 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.DimensionType", b =>
                 {
                     b.Property<string>("DimensionTypeId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("DimensionTypeId");
 
                     b.ToTable("DimensionTypes");
                 });
 
+            modelBuilder.Entity("SWP391.Models.Featured", b =>
+                {
+                    b.Property<string>("FeaturedId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("FeaturedId");
+
+                    b.ToTable("Featured");
+                });
+
             modelBuilder.Entity("SWP391.Models.Lesson", b =>
                 {
                     b.Property<string>("LessonId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("HtmlContent")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("LessonName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("LessonOrder")
                         .HasColumnType("int");
 
                     b.Property<string>("PricePackageId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("StatusId")
                         .HasColumnType("nvarchar(450)");
@@ -484,8 +503,8 @@ namespace SWP391.Migrations
                     b.Property<string>("TopicId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VideoLink")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("VideoURL")
+                        .HasColumnType("text");
 
                     b.HasKey("LessonId");
 
@@ -502,7 +521,7 @@ namespace SWP391.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CourseId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.HasKey("UserId", "CourseId");
 
@@ -514,21 +533,21 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.PricePackage", b =>
                 {
                     b.Property<string>("PricePackageId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
-                    b.Property<DateTime>("StartTime")
+                    b.Property<DateTime?>("StartTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("StatusId")
@@ -544,19 +563,19 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.QuestionBank", b =>
                 {
                     b.Property<string>("QuestionId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Answer")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("CourseId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Explanation")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("OptionA")
                         .HasColumnType("nvarchar(max)");
@@ -571,13 +590,13 @@ namespace SWP391.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("QuizLevelId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("StatusId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<float>("Weight")
-                        .HasColumnType("real");
+                    b.Property<double>("Weight")
+                        .HasColumnType("float");
 
                     b.HasKey("QuestionId");
 
@@ -593,10 +612,10 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.QuestionDimension", b =>
                 {
                     b.Property<string>("QuestionId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("DimensionId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.HasKey("QuestionId", "DimensionId");
 
@@ -608,28 +627,28 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Quiz", b =>
                 {
                     b.Property<string>("QuizId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("CourseId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("QuestionNum")
                         .HasColumnType("int");
 
                     b.Property<string>("QuizLevelId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("QuizTypeId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.HasKey("QuizId");
 
@@ -645,10 +664,10 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.QuizLevel", b =>
                 {
                     b.Property<string>("QuizLevelId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("QuizLevelId");
 
@@ -658,10 +677,10 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.QuizQuestion", b =>
                 {
                     b.Property<string>("QuizId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("QuestionId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.HasKey("QuizId", "QuestionId");
 
@@ -673,10 +692,10 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.QuizType", b =>
                 {
                     b.Property<string>("QuizTypeId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("QuizTypeId");
 
@@ -686,22 +705,22 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Slide", b =>
                 {
                     b.Property<string>("SlideId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("CourseURL")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("StatusId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ThumbnailURL")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("SlideId");
 
@@ -726,13 +745,13 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Topic", b =>
                 {
                     b.Property<string>("TopicId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("CourseId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("TopicName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("TopicOrder")
                         .HasColumnType("int");
@@ -747,13 +766,13 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.UserCourse", b =>
                 {
                     b.Property<string>("UserCourseId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("CourseId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("PricePackageId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -848,7 +867,8 @@ namespace SWP391.Migrations
                     b.HasOne("SWP391.Models.QuestionBank", "QuestionBank")
                         .WithMany("AttemptDetaileds")
                         .HasForeignKey("QuestionBankId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("Attempt");
 
@@ -861,6 +881,10 @@ namespace SWP391.Migrations
                         .WithMany("Blogs")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("SWP391.Models.Featured", null)
+                        .WithMany("Blogs")
+                        .HasForeignKey("FeaturedId");
 
                     b.HasOne("SWP391.Models.Status", "Status")
                         .WithMany("Blogs")
@@ -903,12 +927,20 @@ namespace SWP391.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.NoAction);
 
+                    b.HasOne("SWP391.Models.Featured", "Featured")
+                        .WithMany("Courses")
+                        .HasForeignKey("FeaturedId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("SWP391.Models.Status", "Status")
                         .WithMany("Courses")
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Category");
+
+                    b.Navigation("Featured");
 
                     b.Navigation("Status");
                 });
@@ -1194,6 +1226,13 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.DimensionType", b =>
                 {
                     b.Navigation("Dimensions");
+                });
+
+            modelBuilder.Entity("SWP391.Models.Featured", b =>
+                {
+                    b.Navigation("Blogs");
+
+                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("SWP391.Models.PricePackage", b =>

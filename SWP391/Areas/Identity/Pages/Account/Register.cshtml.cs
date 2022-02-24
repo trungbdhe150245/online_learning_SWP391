@@ -50,12 +50,17 @@ namespace SWP391.Areas.Identity.Pages.Account
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
             [DataType(DataType.Text)]
             [Display(Name = "Username")]
-            public string UserName { set; get; }
+            public string UserName { get; set; }
 
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            [DataType(DataType.Text)]
+            [Display(Name = "Full Name")]
+            public string FullName { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -68,24 +73,22 @@ namespace SWP391.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Display(Name = "Full name")]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
-            public string FullName { get; set; }
-
-			[Required]
+            [Required]
+            [DataType(DataType.Text)]
             [Display(Name = "Sex")]
-			public string Sex { get; set; }
+            public string Sex { get; set; }
 
-			[Required]
+            [Required]
             [DataType(DataType.Date)]
-            [Display(Name = "DOB")]
+            [Display(Name = "Dob")]
             public DateTime? Birthday { get; set; }
 
+            [Required]
+            [StringLength(500, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
             [DataType(DataType.Text)]
             [Display(Name = "Address")]
-            [StringLength(250, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            public string Address { get; set; }
-        }
+			public string Adress { get; set; }
+		}
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -99,7 +102,7 @@ namespace SWP391.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = Input.Email, Email = Input.Email };
+                var user = new AppUser { UserName = Input.UserName, Email = Input.Email, FullName = Input.FullName, Sex = Input.Sex, Birthday = Input.Birthday, Address = Input.Adress };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

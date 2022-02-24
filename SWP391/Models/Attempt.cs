@@ -11,7 +11,7 @@ namespace SWP391.Models
 	{
 		public string AttemptId { get; set; }
 		public float TotalMark { get; set; }
-		public DateTime StartTime { get; set; }
+		public DateTime? StartTime { get; set; }
 		public virtual AppUser User { get; set; }
 		public string UserId { get; set; }
 		public virtual Quiz Quiz { get; set; }
