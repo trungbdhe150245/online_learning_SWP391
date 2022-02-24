@@ -47,6 +47,12 @@ namespace SWP391.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            [DataType(DataType.Text)]
+            [Display(Name = "Username")]
+            public string UserName { set; get; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -61,6 +67,24 @@ namespace SWP391.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "Full name")]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            public string FullName { get; set; }
+
+			[Required]
+            [Display(Name = "Sex")]
+			public string Sex { get; set; }
+
+			[Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "DOB")]
+            public DateTime? Birthday { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Address")]
+            [StringLength(250, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            public string Address { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
