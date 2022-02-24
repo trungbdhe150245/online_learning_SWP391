@@ -30,6 +30,7 @@ public class IdentityUser
         [DataType(DataType.Date)]
         public DateTime? Birthday { set; get; }
 		public Boolean Sex { get; set; }
+		public string ProfilePictureURL { get; set; }
 		public ICollection<Owner> Owners { get; set; }
 		public ICollection<Attempt> Attempts { get; set; }
 		public ICollection<UserCourse> UserCourses { get; set; }

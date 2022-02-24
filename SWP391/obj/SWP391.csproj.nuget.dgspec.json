@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\trung\\source\\repos\\SWP391\\SWP391.csproj": {}
+    "C:\\Users\\trung\\source\\repos\\New folder\\online_learning_SWP391\\SWP391\\SWP391.csproj": {}
   },
   "projects": {
-    "C:\\Users\\trung\\source\\repos\\SWP391\\SWP391.csproj": {
+    "C:\\Users\\trung\\source\\repos\\New folder\\online_learning_SWP391\\SWP391\\SWP391.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\trung\\source\\repos\\SWP391\\SWP391.csproj",
+        "projectUniqueName": "C:\\Users\\trung\\source\\repos\\New folder\\online_learning_SWP391\\SWP391\\SWP391.csproj",
         "projectName": "SWP391",
-        "projectPath": "C:\\Users\\trung\\source\\repos\\SWP391\\SWP391.csproj",
+        "projectPath": "C:\\Users\\trung\\source\\repos\\New folder\\online_learning_SWP391\\SWP391\\SWP391.csproj",
         "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\trung\\source\\repos\\SWP391\\obj\\",
+        "outputPath": "C:\\Users\\trung\\source\\repos\\New folder\\online_learning_SWP391\\SWP391\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",

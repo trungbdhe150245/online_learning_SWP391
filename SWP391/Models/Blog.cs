@@ -10,6 +10,7 @@ namespace SWP391.Models
 	public class Blog
 	{
 		public string BlogId { get; set; }
+		public string Title { get; set; }
 		public string Brief { get; set; }
 		public string Content { get; set; }
 		public int Featured { get; set; }

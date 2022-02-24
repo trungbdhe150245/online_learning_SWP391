@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZFfb/6XHUGvF/p3YcBj8kUdzuAjlh8N2Oo/Lm/d2qA//+c4HBth7QcXNJi6H583vasfmIGCIOuwrHM2PtXzXMw==",
+  "dgSpecHash": "aSEjtP3HA7avqGR8Qkjl2v6xsLR1GoDIjWz3YvP0BC7A77Mts0MXPgOQoPr4ZbIpilt4fre10eJf9n5DEMk39g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\trung\\source\\repos\\SWP391\\SWP391.csproj",
+  "projectFilePath": "C:\\Users\\trung\\source\\repos\\New folder\\online_learning_SWP391\\SWP391\\SWP391.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\trung\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\trung\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
