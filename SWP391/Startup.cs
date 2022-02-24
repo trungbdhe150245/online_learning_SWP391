@@ -2,12 +2,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SWP391.Data;
 using SWP391.Models;
+using SWP391.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +54,11 @@ namespace SWP391
 
 			});
 
+			services.AddOptions();                                        
+			var mailsettings = Configuration.GetSection("MailSettings"); 
+			services.Configure<MailSettings>(mailsettings);               
 
+			services.AddTransient<IEmailSender, SendMailService>();        
 
 			services.AddRazorPages();
 			services.AddControllersWithViews();
@@ -83,6 +89,7 @@ namespace SWP391
 				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
+				endpoints.MapRazorPages();
 			});
 		}
 	}
