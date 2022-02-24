@@ -220,6 +220,17 @@ namespace SWP391.Data
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasKey(cd => new { cd.QuestionId, cd.DimensionId });
             });
+            modelBuilder.Entity<QuizQuestion>(entity => {
+                entity.HasOne(qq => qq.Quiz)
+                        .WithMany(q => q.QuizQuestions)
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.NoAction);
+                entity.HasOne(qq => qq.QuestionBank)
+                        .WithMany(qb => qb.QuizQuestions)
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.NoAction);
+                entity.HasKey(qq => new { qq.QuizId, qq.QuestionId });
+            });
         }
         public DbSet<Attempt> Attempts { get; set; }
         public DbSet<AttemptDetailed> AttemptDetaileds { get; set; }
@@ -243,5 +254,6 @@ namespace SWP391.Data
 		public DbSet<DimensionType> DimensionTypes { get; set; }
 		public DbSet<CourseDimension> CourseDimensions { get; set; }
 		public DbSet<QuestionDimension> QuestionDimensions { get; set; }
+		public DbSet<QuizQuestion> QuizQuestions { get; set; }
 	}
 }

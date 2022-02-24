@@ -17,6 +17,7 @@ namespace SWP391.Models
 		public virtual Course Course { get; set; }
 		public string CourseId { get; set; }
 		public ICollection<Attempt> Attempts { get; set; }
+		public ICollection<QuizQuestion> QuizQuestions { get; set; }
 		public virtual QuizType QuizType { get; set; }
 		public string QuizTypeId { get; set; }
 		public virtual QuizLevel QuizLevel { get; set; }

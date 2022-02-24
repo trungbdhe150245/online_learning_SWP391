@@ -555,6 +555,18 @@ namespace SWP391.Migrations
                     b.Property<string>("Explanation")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OptionA")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionB")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionD")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("QuizLevelId")
                         .HasColumnType("nvarchar(450)");
 
@@ -638,6 +650,21 @@ namespace SWP391.Migrations
                     b.HasKey("QuizLevelId");
 
                     b.ToTable("QuizLevels");
+                });
+
+            modelBuilder.Entity("SWP391.Models.QuizQuestion", b =>
+                {
+                    b.Property<string>("QuizId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("QuestionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("QuizId", "QuestionId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("QuizQuestions");
                 });
 
             modelBuilder.Entity("SWP391.Models.QuizType", b =>
@@ -1044,6 +1071,25 @@ namespace SWP391.Migrations
                     b.Navigation("QuizType");
                 });
 
+            modelBuilder.Entity("SWP391.Models.QuizQuestion", b =>
+                {
+                    b.HasOne("SWP391.Models.QuestionBank", "QuestionBank")
+                        .WithMany("QuizQuestions")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("SWP391.Models.Quiz", "Quiz")
+                        .WithMany("QuizQuestions")
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("QuestionBank");
+
+                    b.Navigation("Quiz");
+                });
+
             modelBuilder.Entity("SWP391.Models.Slide", b =>
                 {
                     b.HasOne("SWP391.Models.Status", "Status")
@@ -1159,11 +1205,15 @@ namespace SWP391.Migrations
                     b.Navigation("AttemptDetaileds");
 
                     b.Navigation("QuestionDimensions");
+
+                    b.Navigation("QuizQuestions");
                 });
 
             modelBuilder.Entity("SWP391.Models.Quiz", b =>
                 {
                     b.Navigation("Attempts");
+
+                    b.Navigation("QuizQuestions");
                 });
 
             modelBuilder.Entity("SWP391.Models.QuizLevel", b =>

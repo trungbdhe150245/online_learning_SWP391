@@ -90,6 +90,7 @@ namespace SWP391.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Sex = table.Column<bool>(type: "bit", nullable: false),
+                    ProfilePictureURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -228,6 +229,7 @@ namespace SWP391.Migrations
                 columns: table => new
                 {
                     BlogId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Brief = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Featured = table.Column<int>(type: "int", nullable: false),
@@ -397,6 +399,10 @@ namespace SWP391.Migrations
                     Weight = table.Column<float>(type: "real", nullable: false),
                     QuizLevelId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CourseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    OptionA = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OptionB = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OptionC = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OptionD = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -594,6 +600,28 @@ namespace SWP391.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "QuizQuestions",
+                columns: table => new
+                {
+                    QuizId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    QuestionId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuizQuestions", x => new { x.QuizId, x.QuestionId });
+                    table.ForeignKey(
+                        name: "FK_QuizQuestions_QuestionBanks_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "QuestionBanks",
+                        principalColumn: "QuestionId");
+                    table.ForeignKey(
+                        name: "FK_QuizQuestions_Quizzes_QuizId",
+                        column: x => x.QuizId,
+                        principalTable: "Quizzes",
+                        principalColumn: "QuizId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Lessons",
                 columns: table => new
                 {
@@ -750,6 +778,11 @@ namespace SWP391.Migrations
                 column: "DimensionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_QuizQuestions_QuestionId",
+                table: "QuizQuestions",
+                column: "QuestionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Quizzes_CourseId",
                 table: "Quizzes",
                 column: "CourseId");
@@ -851,6 +884,9 @@ namespace SWP391.Migrations
 
             migrationBuilder.DropTable(
                 name: "QuestionDimensions");
+
+            migrationBuilder.DropTable(
+                name: "QuizQuestions");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims");

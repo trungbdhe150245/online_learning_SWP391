@@ -18,9 +18,14 @@ namespace SWP391.Models
 		public string QuizLevelId { get; set; }
 		public virtual Course Course { get; set; }
 		public string CourseId { get; set; }
+		public string OptionA { get; set; }
+		public string OptionB { get; set; }
+		public string OptionC { get; set; }
+		public string OptionD { get; set; }
 		public ICollection<AttemptDetailed> AttemptDetaileds { get; set; }
 		public virtual Status Status { get; set; }
 		public string StatusId { get; set; }
 		public ICollection<QuestionDimension> QuestionDimensions { get; set; }
+		public ICollection<QuizQuestion> QuizQuestions { get; set; }
 	}
 }
