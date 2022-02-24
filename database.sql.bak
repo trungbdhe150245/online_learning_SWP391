@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [SWP391]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Database [SWP391]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE DATABASE [SWP391]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -80,7 +80,7 @@ ALTER DATABASE [SWP391] SET QUERY_STORE = OFF
 GO
 USE [SWP391]
 GO
-/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -94,7 +94,7 @@ CREATE TABLE [dbo].[__EFMigrationsHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AttemptDetaileds]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[AttemptDetaileds]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -109,7 +109,7 @@ CREATE TABLE [dbo].[AttemptDetaileds](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Attempts]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Attempts]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -126,13 +126,14 @@ CREATE TABLE [dbo].[Attempts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Blogs]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Blogs]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Blogs](
 	[BlogId] [nvarchar](450) NOT NULL,
+	[Title] [nvarchar](max) NULL,
 	[Brief] [nvarchar](max) NULL,
 	[Content] [nvarchar](max) NULL,
 	[Featured] [int] NOT NULL,
@@ -146,7 +147,7 @@ CREATE TABLE [dbo].[Blogs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Categories]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Categories]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -160,7 +161,7 @@ CREATE TABLE [dbo].[Categories](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Comments]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Comments]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -176,7 +177,7 @@ CREATE TABLE [dbo].[Comments](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CourseDimensions]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[CourseDimensions]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -192,7 +193,7 @@ CREATE TABLE [dbo].[CourseDimensions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CoursePackages]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[CoursePackages]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -207,7 +208,7 @@ CREATE TABLE [dbo].[CoursePackages](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Courses]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Courses]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -229,7 +230,7 @@ CREATE TABLE [dbo].[Courses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Dimensions]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Dimensions]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -245,7 +246,7 @@ CREATE TABLE [dbo].[Dimensions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[DimensionTypes]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[DimensionTypes]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -259,7 +260,7 @@ CREATE TABLE [dbo].[DimensionTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Lessons]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Lessons]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -279,7 +280,7 @@ CREATE TABLE [dbo].[Lessons](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Owners]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Owners]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -294,7 +295,7 @@ CREATE TABLE [dbo].[Owners](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PricePackages]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[PricePackages]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -313,7 +314,7 @@ CREATE TABLE [dbo].[PricePackages](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[QuestionBanks]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[QuestionBanks]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -326,6 +327,10 @@ CREATE TABLE [dbo].[QuestionBanks](
 	[Weight] [real] NOT NULL,
 	[QuizLevelId] [nvarchar](450) NULL,
 	[CourseId] [nvarchar](450) NULL,
+	[OptionA] [nvarchar](max) NULL,
+	[OptionB] [nvarchar](max) NULL,
+	[OptionC] [nvarchar](max) NULL,
+	[OptionD] [nvarchar](max) NULL,
 	[StatusId] [nvarchar](450) NULL,
  CONSTRAINT [PK_QuestionBanks] PRIMARY KEY CLUSTERED 
 (
@@ -333,7 +338,7 @@ CREATE TABLE [dbo].[QuestionBanks](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[QuestionDimensions]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[QuestionDimensions]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -348,7 +353,7 @@ CREATE TABLE [dbo].[QuestionDimensions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[QuizLevels]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[QuizLevels]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -362,7 +367,22 @@ CREATE TABLE [dbo].[QuizLevels](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[QuizTypes]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[QuizQuestions]    Script Date: 2/24/2022 4:19:37 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[QuizQuestions](
+	[QuizId] [nvarchar](450) NOT NULL,
+	[QuestionId] [nvarchar](450) NOT NULL,
+ CONSTRAINT [PK_QuizQuestions] PRIMARY KEY CLUSTERED 
+(
+	[QuizId] ASC,
+	[QuestionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[QuizTypes]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -376,7 +396,7 @@ CREATE TABLE [dbo].[QuizTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Quizzes]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Quizzes]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -396,7 +416,7 @@ CREATE TABLE [dbo].[Quizzes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RoleClaims]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[RoleClaims]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -412,7 +432,7 @@ CREATE TABLE [dbo].[RoleClaims](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -428,7 +448,7 @@ CREATE TABLE [dbo].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Slides]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Slides]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -446,7 +466,7 @@ CREATE TABLE [dbo].[Slides](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Status]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Status]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -460,7 +480,7 @@ CREATE TABLE [dbo].[Status](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Topics]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Topics]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -476,7 +496,7 @@ CREATE TABLE [dbo].[Topics](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserClaims]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[UserClaims]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -492,7 +512,7 @@ CREATE TABLE [dbo].[UserClaims](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserCourses]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[UserCourses]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -508,7 +528,7 @@ CREATE TABLE [dbo].[UserCourses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserLogins]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[UserLogins]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -525,7 +545,7 @@ CREATE TABLE [dbo].[UserLogins](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserRoles]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[UserRoles]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -540,7 +560,7 @@ CREATE TABLE [dbo].[UserRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -551,6 +571,7 @@ CREATE TABLE [dbo].[Users](
 	[Address] [nvarchar](max) NULL,
 	[Birthday] [datetime2](7) NULL,
 	[Sex] [bit] NOT NULL,
+	[ProfilePictureURL] [nvarchar](max) NULL,
 	[UserName] [nvarchar](256) NULL,
 	[NormalizedUserName] [nvarchar](256) NULL,
 	[Email] [nvarchar](256) NULL,
@@ -571,7 +592,7 @@ CREATE TABLE [dbo].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserTokens]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Table [dbo].[UserTokens]    Script Date: 2/24/2022 4:19:37 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -591,7 +612,7 @@ CREATE TABLE [dbo].[UserTokens](
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AttemptDetaileds_QuestionBankId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_AttemptDetaileds_QuestionBankId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_AttemptDetaileds_QuestionBankId] ON [dbo].[AttemptDetaileds]
 (
 	[QuestionBankId] ASC
@@ -599,7 +620,7 @@ CREATE NONCLUSTERED INDEX [IX_AttemptDetaileds_QuestionBankId] ON [dbo].[Attempt
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Attempts_QuizId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Attempts_QuizId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Attempts_QuizId] ON [dbo].[Attempts]
 (
 	[QuizId] ASC
@@ -607,7 +628,7 @@ CREATE NONCLUSTERED INDEX [IX_Attempts_QuizId] ON [dbo].[Attempts]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Attempts_UserId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Attempts_UserId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Attempts_UserId] ON [dbo].[Attempts]
 (
 	[UserId] ASC
@@ -615,7 +636,7 @@ CREATE NONCLUSTERED INDEX [IX_Attempts_UserId] ON [dbo].[Attempts]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Blogs_CategoryId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Blogs_CategoryId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Blogs_CategoryId] ON [dbo].[Blogs]
 (
 	[CategoryId] ASC
@@ -623,7 +644,7 @@ CREATE NONCLUSTERED INDEX [IX_Blogs_CategoryId] ON [dbo].[Blogs]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Blogs_StatusId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Blogs_StatusId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Blogs_StatusId] ON [dbo].[Blogs]
 (
 	[StatusId] ASC
@@ -631,7 +652,7 @@ CREATE NONCLUSTERED INDEX [IX_Blogs_StatusId] ON [dbo].[Blogs]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Blogs_UserId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Blogs_UserId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Blogs_UserId] ON [dbo].[Blogs]
 (
 	[UserId] ASC
@@ -639,7 +660,7 @@ CREATE NONCLUSTERED INDEX [IX_Blogs_UserId] ON [dbo].[Blogs]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Comments_BlogId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Comments_BlogId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Comments_BlogId] ON [dbo].[Comments]
 (
 	[BlogId] ASC
@@ -647,7 +668,7 @@ CREATE NONCLUSTERED INDEX [IX_Comments_BlogId] ON [dbo].[Comments]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Comments_UserId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Comments_UserId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Comments_UserId] ON [dbo].[Comments]
 (
 	[UserId] ASC
@@ -655,7 +676,7 @@ CREATE NONCLUSTERED INDEX [IX_Comments_UserId] ON [dbo].[Comments]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_CourseDimensions_CourseId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_CourseDimensions_CourseId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_CourseDimensions_CourseId] ON [dbo].[CourseDimensions]
 (
 	[CourseId] ASC
@@ -663,7 +684,7 @@ CREATE NONCLUSTERED INDEX [IX_CourseDimensions_CourseId] ON [dbo].[CourseDimensi
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_CourseDimensions_DimensionId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_CourseDimensions_DimensionId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_CourseDimensions_DimensionId] ON [dbo].[CourseDimensions]
 (
 	[DimensionId] ASC
@@ -671,7 +692,7 @@ CREATE NONCLUSTERED INDEX [IX_CourseDimensions_DimensionId] ON [dbo].[CourseDime
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_CoursePackages_PricePackageId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_CoursePackages_PricePackageId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_CoursePackages_PricePackageId] ON [dbo].[CoursePackages]
 (
 	[PricePackageId] ASC
@@ -679,7 +700,7 @@ CREATE NONCLUSTERED INDEX [IX_CoursePackages_PricePackageId] ON [dbo].[CoursePac
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Courses_CategoryId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Courses_CategoryId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Courses_CategoryId] ON [dbo].[Courses]
 (
 	[CategoryId] ASC
@@ -687,7 +708,7 @@ CREATE NONCLUSTERED INDEX [IX_Courses_CategoryId] ON [dbo].[Courses]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Courses_StatusId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Courses_StatusId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Courses_StatusId] ON [dbo].[Courses]
 (
 	[StatusId] ASC
@@ -695,7 +716,7 @@ CREATE NONCLUSTERED INDEX [IX_Courses_StatusId] ON [dbo].[Courses]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Lessons_PricePackageId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Lessons_PricePackageId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Lessons_PricePackageId] ON [dbo].[Lessons]
 (
 	[PricePackageId] ASC
@@ -703,7 +724,7 @@ CREATE NONCLUSTERED INDEX [IX_Lessons_PricePackageId] ON [dbo].[Lessons]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Lessons_StatusId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Lessons_StatusId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Lessons_StatusId] ON [dbo].[Lessons]
 (
 	[StatusId] ASC
@@ -711,7 +732,7 @@ CREATE NONCLUSTERED INDEX [IX_Lessons_StatusId] ON [dbo].[Lessons]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Owners_CourseId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Owners_CourseId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Owners_CourseId] ON [dbo].[Owners]
 (
 	[CourseId] ASC
@@ -719,7 +740,7 @@ CREATE NONCLUSTERED INDEX [IX_Owners_CourseId] ON [dbo].[Owners]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_PricePackages_StatusId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_PricePackages_StatusId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_PricePackages_StatusId] ON [dbo].[PricePackages]
 (
 	[StatusId] ASC
@@ -727,7 +748,7 @@ CREATE NONCLUSTERED INDEX [IX_PricePackages_StatusId] ON [dbo].[PricePackages]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_QuestionBanks_CourseId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_QuestionBanks_CourseId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_QuestionBanks_CourseId] ON [dbo].[QuestionBanks]
 (
 	[CourseId] ASC
@@ -735,7 +756,7 @@ CREATE NONCLUSTERED INDEX [IX_QuestionBanks_CourseId] ON [dbo].[QuestionBanks]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_QuestionBanks_QuizLevelId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_QuestionBanks_QuizLevelId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_QuestionBanks_QuizLevelId] ON [dbo].[QuestionBanks]
 (
 	[QuizLevelId] ASC
@@ -743,7 +764,7 @@ CREATE NONCLUSTERED INDEX [IX_QuestionBanks_QuizLevelId] ON [dbo].[QuestionBanks
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_QuestionBanks_StatusId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_QuestionBanks_StatusId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_QuestionBanks_StatusId] ON [dbo].[QuestionBanks]
 (
 	[StatusId] ASC
@@ -751,7 +772,7 @@ CREATE NONCLUSTERED INDEX [IX_QuestionBanks_StatusId] ON [dbo].[QuestionBanks]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_QuestionDimensions_DimensionId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_QuestionDimensions_DimensionId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_QuestionDimensions_DimensionId] ON [dbo].[QuestionDimensions]
 (
 	[DimensionId] ASC
@@ -759,7 +780,15 @@ CREATE NONCLUSTERED INDEX [IX_QuestionDimensions_DimensionId] ON [dbo].[Question
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Quizzes_CourseId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_QuizQuestions_QuestionId]    Script Date: 2/24/2022 4:19:37 PM ******/
+CREATE NONCLUSTERED INDEX [IX_QuizQuestions_QuestionId] ON [dbo].[QuizQuestions]
+(
+	[QuestionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_Quizzes_CourseId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Quizzes_CourseId] ON [dbo].[Quizzes]
 (
 	[CourseId] ASC
@@ -767,7 +796,7 @@ CREATE NONCLUSTERED INDEX [IX_Quizzes_CourseId] ON [dbo].[Quizzes]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Quizzes_QuizLevelId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Quizzes_QuizLevelId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Quizzes_QuizLevelId] ON [dbo].[Quizzes]
 (
 	[QuizLevelId] ASC
@@ -775,7 +804,7 @@ CREATE NONCLUSTERED INDEX [IX_Quizzes_QuizLevelId] ON [dbo].[Quizzes]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Quizzes_QuizTypeId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Quizzes_QuizTypeId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Quizzes_QuizTypeId] ON [dbo].[Quizzes]
 (
 	[QuizTypeId] ASC
@@ -783,7 +812,7 @@ CREATE NONCLUSTERED INDEX [IX_Quizzes_QuizTypeId] ON [dbo].[Quizzes]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_RoleClaims_RoleId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_RoleClaims_RoleId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_RoleClaims_RoleId] ON [dbo].[RoleClaims]
 (
 	[RoleId] ASC
@@ -791,7 +820,7 @@ CREATE NONCLUSTERED INDEX [IX_RoleClaims_RoleId] ON [dbo].[RoleClaims]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [RoleNameIndex]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [RoleNameIndex]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [RoleNameIndex] ON [dbo].[Roles]
 (
 	[NormalizedName] ASC
@@ -801,7 +830,7 @@ WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNOR
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Slides_StatusId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Slides_StatusId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Slides_StatusId] ON [dbo].[Slides]
 (
 	[StatusId] ASC
@@ -809,7 +838,7 @@ CREATE NONCLUSTERED INDEX [IX_Slides_StatusId] ON [dbo].[Slides]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_Topics_CourseId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_Topics_CourseId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_Topics_CourseId] ON [dbo].[Topics]
 (
 	[CourseId] ASC
@@ -817,7 +846,7 @@ CREATE NONCLUSTERED INDEX [IX_Topics_CourseId] ON [dbo].[Topics]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_UserClaims_UserId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_UserClaims_UserId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_UserClaims_UserId] ON [dbo].[UserClaims]
 (
 	[UserId] ASC
@@ -825,7 +854,7 @@ CREATE NONCLUSTERED INDEX [IX_UserClaims_UserId] ON [dbo].[UserClaims]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_UserCourses_CourseId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_UserCourses_CourseId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_UserCourses_CourseId] ON [dbo].[UserCourses]
 (
 	[CourseId] ASC
@@ -833,7 +862,7 @@ CREATE NONCLUSTERED INDEX [IX_UserCourses_CourseId] ON [dbo].[UserCourses]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_UserCourses_PricePackageId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_UserCourses_PricePackageId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_UserCourses_PricePackageId] ON [dbo].[UserCourses]
 (
 	[PricePackageId] ASC
@@ -841,7 +870,7 @@ CREATE NONCLUSTERED INDEX [IX_UserCourses_PricePackageId] ON [dbo].[UserCourses]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_UserCourses_UserId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_UserCourses_UserId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_UserCourses_UserId] ON [dbo].[UserCourses]
 (
 	[UserId] ASC
@@ -849,7 +878,7 @@ CREATE NONCLUSTERED INDEX [IX_UserCourses_UserId] ON [dbo].[UserCourses]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_UserLogins_UserId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_UserLogins_UserId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_UserLogins_UserId] ON [dbo].[UserLogins]
 (
 	[UserId] ASC
@@ -857,7 +886,7 @@ CREATE NONCLUSTERED INDEX [IX_UserLogins_UserId] ON [dbo].[UserLogins]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_UserRoles_RoleId]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [IX_UserRoles_RoleId]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [IX_UserRoles_RoleId] ON [dbo].[UserRoles]
 (
 	[RoleId] ASC
@@ -865,7 +894,7 @@ CREATE NONCLUSTERED INDEX [IX_UserRoles_RoleId] ON [dbo].[UserRoles]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [EmailIndex]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [EmailIndex]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE NONCLUSTERED INDEX [EmailIndex] ON [dbo].[Users]
 (
 	[NormalizedEmail] ASC
@@ -873,7 +902,7 @@ CREATE NONCLUSTERED INDEX [EmailIndex] ON [dbo].[Users]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UserNameIndex]    Script Date: 2/24/2022 5:39:16 AM ******/
+/****** Object:  Index [UserNameIndex]    Script Date: 2/24/2022 4:19:37 PM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex] ON [dbo].[Users]
 (
 	[NormalizedUserName] ASC
@@ -1010,6 +1039,16 @@ ALTER TABLE [dbo].[QuestionDimensions]  WITH CHECK ADD  CONSTRAINT [FK_QuestionD
 REFERENCES [dbo].[QuestionBanks] ([QuestionId])
 GO
 ALTER TABLE [dbo].[QuestionDimensions] CHECK CONSTRAINT [FK_QuestionDimensions_QuestionBanks_QuestionId]
+GO
+ALTER TABLE [dbo].[QuizQuestions]  WITH CHECK ADD  CONSTRAINT [FK_QuizQuestions_QuestionBanks_QuestionId] FOREIGN KEY([QuestionId])
+REFERENCES [dbo].[QuestionBanks] ([QuestionId])
+GO
+ALTER TABLE [dbo].[QuizQuestions] CHECK CONSTRAINT [FK_QuizQuestions_QuestionBanks_QuestionId]
+GO
+ALTER TABLE [dbo].[QuizQuestions]  WITH CHECK ADD  CONSTRAINT [FK_QuizQuestions_Quizzes_QuizId] FOREIGN KEY([QuizId])
+REFERENCES [dbo].[Quizzes] ([QuizId])
+GO
+ALTER TABLE [dbo].[QuizQuestions] CHECK CONSTRAINT [FK_QuizQuestions_Quizzes_QuizId]
 GO
 ALTER TABLE [dbo].[Quizzes]  WITH CHECK ADD  CONSTRAINT [FK_Quizzes_Courses_CourseId] FOREIGN KEY([CourseId])
 REFERENCES [dbo].[Courses] ([CourseId])

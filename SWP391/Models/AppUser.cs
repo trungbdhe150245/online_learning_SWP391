@@ -29,7 +29,7 @@ public class IdentityUser
         public string Address { set; get; }
         [DataType(DataType.Date)]
         public DateTime? Birthday { set; get; }
-		public Boolean Sex { get; set; }
+		public string Sex { get; set; }
 		public string ProfilePictureURL { get; set; }
 		public ICollection<Owner> Owners { get; set; }
 		public ICollection<Attempt> Attempts { get; set; }
