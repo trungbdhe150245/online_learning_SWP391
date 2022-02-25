@@ -115,7 +115,7 @@ namespace SWP391.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("Vừa tạo mới tài khoản thành công.");
+                    _logger.LogInformation("Created account successfully.");
 
                     // phát sinh token theo thông tin user để xác nhận email
                     // mỗi user dựa vào thông tin sẽ có một mã riêng, mã này nhúng vào link
@@ -132,8 +132,8 @@ namespace SWP391.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     // Gửi email    
-                    await _emailSender.SendEmailAsync(Input.Email, "Xác nhận địa chỉ email",
-                        $"Hãy xác nhận địa chỉ email bằng cách <a href='{callbackUrl}'>Bấm vào đây</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "Email verification",
+                        $"To verify your email <a href='{callbackUrl}'>click here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedEmail)
                     {

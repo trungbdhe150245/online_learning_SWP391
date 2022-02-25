@@ -44,17 +44,17 @@ namespace SWP391.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Không để trống")]
-            [Display(Name = "Nhập username hoặc email của bạn")]
-            [StringLength(100, MinimumLength = 1, ErrorMessage = "Nhập đúng thông tin")]
+            [Required(ErrorMessage = "Field can not be blank")]
+            [Display(Name = "Enter username or password")]
+            [StringLength(100, MinimumLength = 1, ErrorMessage = "Enter correct information")]
             public string UserNameOrEmail { set; get; }
 
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Mật khẩu")]
+            [Display(Name = "Password")]
             public string Password { get; set; }
 
-            [Display(Name = "Nhớ thông tin đăng nhập?")]
+            [Display(Name = "Remember me")]
             public bool RememberMe { get; set; }
         }
 
@@ -109,11 +109,11 @@ namespace SWP391.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User đã đăng nhập");
+                    _logger.LogInformation("User was logged in");
                     return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
                     {
-                        Title = "Đã đăng nhập",
-                        HtmlContent = "Đăng nhập thành công",
+                        Title = "Logged in",
+                        HtmlContent = "Login successfully",
                         UrlRedirect = returnUrl
                     });
                 }
@@ -124,13 +124,13 @@ namespace SWP391.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("Tài khoản bí tạm khóa.");
+                    _logger.LogWarning("Account is temporary locked.");
                     // Chuyển hướng đến trang Lockout - hiện thị thông báo
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Không đăng nhập được.");
+                    ModelState.AddModelError(string.Empty, "Cannot login now.");
                     return Page();
                 }
             }

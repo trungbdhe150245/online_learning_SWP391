@@ -29,14 +29,14 @@ namespace SWP391.Areas.Identity.Pages.Account
             if (!_signInManager.IsSignedIn(User)) return RedirectToPage("/Index");
 
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("Người dùng đăng xuất");
+            _logger.LogInformation("User logged out");
 
 
             return ViewComponent(MessagePage.COMPONENTNAME,
                 new MessagePage.Message()
                 {
-                    Title = "Đã đăng xuất",
-                    HtmlContent = "Đăng xuất thành công",
+                    Title = "Logged out",
+                    HtmlContent = "Logged out successfully",
                     UrlRedirect = (returnUrl != null) ? returnUrl : Url.Page("/Index")
                 }
             );

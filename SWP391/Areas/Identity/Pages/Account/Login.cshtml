@@ -2,7 +2,7 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "ĐĂNG NHẬP";
+    ViewData["Title"] = "LOGIN";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -10,7 +10,7 @@
     <div class="col-md-4">
         <section>
             <form id="account" method="post">
-                <h4>Điền thông tin để đăng nhập.</h4>
+                <h4>Enter your information to login</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
@@ -36,10 +36,10 @@
                 </div>
                 <div class="form-group">
                     <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Bạn quyên mật khẩu?</a>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot password?</a>
                     </p>
                     <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Chưa có tài khoản, đăng ký mới</a>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Don't have an account? Register.</a>
                     </p>
                 </div>
             </form>
@@ -47,14 +47,14 @@
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
-            <h4>Đăng nhập bằng.</h4>
+            <h4>Login with.</h4>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                     <div>
                         <p>
-                            Chưa cấu hình đăng nhập bằng dịch vụ khác. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            Not yet config services. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
                         </p>
                     </div>
                 }
