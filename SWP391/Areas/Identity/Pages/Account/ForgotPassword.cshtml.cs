@@ -33,6 +33,7 @@ namespace SWP391.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name = "Enter correct email address")]
             public string Email { get; set; }
         }
 
@@ -40,15 +41,13 @@ namespace SWP391.Areas.Identity.Pages.Account
         {
             if (ModelState.IsValid)
             {
+                // Tìm user theo email gửi đến
                 var user = await _userManager.FindByEmailAsync(Input.Email);
                 if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
                     return RedirectToPage("./ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please 
-                // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 var callbackUrl = Url.Page(
@@ -57,11 +56,13 @@ namespace SWP391.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
+                // Gửi email
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    "Reset password",
+                    $"To reset password for this account <a href='{callbackUrl}'>click here</a>.");
 
+                // Chuyển đến trang thông báo đã gửi mail để reset password
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }
 

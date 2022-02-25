@@ -35,6 +35,7 @@ namespace SWP391.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
+            [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
@@ -49,12 +50,14 @@ namespace SWP391.Areas.Identity.Pages.Account
         {
             if (code == null)
             {
-                return BadRequest("A code must be supplied for password reset.");
+                return BadRequest("Invalid token.");
             }
             else
             {
                 Input = new InputModel
                 {
+                    // Giải mã lại code từ code trong url (do mã này khi gửi mail
+                    // đã thực hiện Encode bằng WebEncoders.Base64UrlEncode)
                     Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code))
                 };
                 return Page();
@@ -68,16 +71,19 @@ namespace SWP391.Areas.Identity.Pages.Account
                 return Page();
             }
 
+            // Tìm User theo email
             var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
             {
-                // Don't reveal that the user does not exist
+                // Không thấy user
                 return RedirectToPage("./ResetPasswordConfirmation");
             }
-
+            // Đặt lại passowrd chu user - có kiểm tra mã token khi đổi
             var result = await _userManager.ResetPasswordAsync(user, Input.Code, Input.Password);
+
             if (result.Succeeded)
             {
+                // Chuyển đến trang thông báo đã reset thành công
                 return RedirectToPage("./ResetPasswordConfirmation");
             }
 

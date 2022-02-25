@@ -133,3 +133,4 @@ namespace SWP391.Areas.Identity.Pages.Account
             return Page();
         }
     }
+}
