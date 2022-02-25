@@ -4,14 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using SWP391.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using SWP391.Models;
+using XTLASPNET;
 
 namespace SWP391.Areas.Identity.Pages.Account
 {
@@ -22,7 +23,7 @@ namespace SWP391.Areas.Identity.Pages.Account
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<AppUser> signInManager, 
+        public LoginModel(SignInManager<AppUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<AppUser> userManager)
         {
@@ -43,15 +44,17 @@ namespace SWP391.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
+            [Required(ErrorMessage = "Không để trống")]
+            [Display(Name = "Nhập username hoặc email của bạn")]
+            [StringLength(100, MinimumLength = 1, ErrorMessage = "Nhập đúng thông tin")]
+            public string UserNameOrEmail { set; get; }
 
             [Required]
             [DataType(DataType.Password)]
+            [Display(Name = "Mật khẩu")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Nhớ thông tin đăng nhập?")]
             public bool RememberMe { get; set; }
         }
 
@@ -62,7 +65,7 @@ namespace SWP391.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-            returnUrl ??= Url.Content("~/");
+            returnUrl = returnUrl ?? Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
@@ -74,32 +77,60 @@ namespace SWP391.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl = returnUrl ?? Url.Content("~/");
+            // Đã đăng nhập nên chuyển hướng về Index
+            if (_signInManager.IsSignedIn(User)) return Redirect("Index");
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                // Thử login bằng username/password
+                var result = await _signInManager.PasswordSignInAsync(
+                    Input.UserNameOrEmail,
+                    Input.Password,
+                    Input.RememberMe,
+                    true
+                );
+
+                if (!result.Succeeded)
+                {
+                    // Thất bại username/password -> tìm user theo email, nếu thấy thì thử đăng nhập
+                    // bằng user tìm được
+                    var user = await _userManager.FindByEmailAsync(Input.UserNameOrEmail);
+                    if (user != null)
+                    {
+                        result = await _signInManager.PasswordSignInAsync(
+                            user,
+                            Input.Password,
+                            Input.RememberMe,
+                            true
+                        );
+                    }
+                }
+
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    _logger.LogInformation("User đã đăng nhập");
+                    return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
+                    {
+                        Title = "Đã đăng nhập",
+                        HtmlContent = "Đăng nhập thành công",
+                        UrlRedirect = returnUrl
+                    });
                 }
                 if (result.RequiresTwoFactor)
                 {
+                    // Nếu cấu hình đăng nhập hai yếu tố thì chuyển hướng đến LoginWith2fa
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("Tài khoản bí tạm khóa.");
+                    // Chuyển hướng đến trang Lockout - hiện thị thông báo
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Không đăng nhập được.");
                     return Page();
                 }
             }
