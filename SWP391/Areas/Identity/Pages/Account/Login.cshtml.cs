@@ -83,29 +83,24 @@ namespace SWP391.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                // Thử login bằng username/password
-                var result = await _signInManager.PasswordSignInAsync(
-                    Input.UserNameOrEmail,
-                    Input.Password,
-                    Input.RememberMe,
-                    true
-                );
 
-                if (!result.Succeeded)
+                IdentityUser user = await _userManager.FindByEmailAsync(Input.UserNameOrEmail);
+                if (user == null)
+                    user = await _userManager.FindByNameAsync(Input.UserNameOrEmail);
+
+                if (user == null)
                 {
-                    // Thất bại username/password -> tìm user theo email, nếu thấy thì thử đăng nhập
-                    // bằng user tìm được
-                    var user = await _userManager.FindByEmailAsync(Input.UserNameOrEmail);
-                    if (user != null)
-                    {
-                        result = await _signInManager.PasswordSignInAsync(
-                            user,
-                            Input.Password,
-                            Input.RememberMe,
-                            true
-                        );
-                    }
+                    ModelState.AddModelError(string.Empty, "Account is not exist.");
+                    return Page();
                 }
+
+                var result = await _signInManager.PasswordSignInAsync(
+                        user.UserName,
+                        Input.Password,
+                        Input.RememberMe,           // Có lưu cookie - khi đóng trình duyệt vẫn nhớ
+                        true                        // CÓ ÁP DỤNG LOCKOUT
+                    );
+
 
                 if (result.Succeeded)
                 {
@@ -113,7 +108,7 @@ namespace SWP391.Areas.Identity.Pages.Account
                     return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
                     {
                         Title = "Logged in",
-                        HtmlContent = "Login successfully",
+                        HtmlContent = "Logged in successfully",
                         UrlRedirect = returnUrl
                     });
                 }
@@ -124,19 +119,17 @@ namespace SWP391.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("Account is temporary locked.");
+                    _logger.LogWarning("Account was temporary locked.");
                     // Chuyển hướng đến trang Lockout - hiện thị thông báo
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Cannot login now.");
+                    ModelState.AddModelError(string.Empty, "Cannot logged in.");
                     return Page();
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }
-}

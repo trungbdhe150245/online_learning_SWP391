@@ -62,6 +62,11 @@ namespace SWP391
 
 			services.AddRazorPages();
 			services.AddControllersWithViews();
+			services.Configure<IdentityOptions>(options => {
+				options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);  // lock for 2 mins
+				options.Lockout.MaxFailedAccessAttempts = 3;                        // lock after 3times failed
+																					
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
