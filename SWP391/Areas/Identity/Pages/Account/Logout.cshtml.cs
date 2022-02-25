@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using SWP391.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using SWP391.Models;
+using XTLASPNET;
 
 namespace SWP391.Areas.Identity.Pages.Account
 {
@@ -23,22 +24,22 @@ namespace SWP391.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        public void OnGet()
-        {
-        }
-
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
+            if (!_signInManager.IsSignedIn(User)) return RedirectToPage("/Index");
+
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
-            if (returnUrl != null)
-            {
-                return LocalRedirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToPage();
-            }
+            _logger.LogInformation("Người dùng đăng xuất");
+
+
+            return ViewComponent(MessagePage.COMPONENTNAME,
+                new MessagePage.Message()
+                {
+                    Title = "Đã đăng xuất",
+                    HtmlContent = "Đăng xuất thành công",
+                    UrlRedirect = (returnUrl != null) ? returnUrl : Url.Page("/Index")
+                }
+            );
         }
     }
 }

@@ -7,13 +7,13 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using SWP391.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using SWP391.Models;
 
 namespace SWP391.Areas.Identity.Pages.Account
 {
@@ -25,6 +25,7 @@ namespace SWP391.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+        // Các dịch vụ được Inject vào: UserManger, SignInManager, ILogger, IEmailSender
         public RegisterModel(
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
@@ -37,13 +38,17 @@ namespace SWP391.Areas.Identity.Pages.Account
             _emailSender = emailSender;
         }
 
+        // InputModel được binding khi Form Post tới
+
         [BindProperty]
         public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
 
+        // Xác thực từ dịch vụ ngoài (Googe, Facebook ... bài này chứa thiết lập)
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
+        // Lớp InputModel chứa thông tin Post tới dùng để tạo User
         public class InputModel
         {
             [Required]
@@ -87,8 +92,8 @@ namespace SWP391.Areas.Identity.Pages.Account
             [StringLength(500, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
             [DataType(DataType.Text)]
             [Display(Name = "Address")]
-			public string Adress { get; set; }
-		}
+            public string Adress { get; set; }
+        }
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -96,46 +101,60 @@ namespace SWP391.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
+        // Đăng ký tài khoản theo dữ liệu form post tới
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = Input.UserName, Email = Input.Email, FullName = Input.FullName, Sex = Input.Sex, Birthday = Input.Birthday, Address = Input.Adress };
+                // Tạo AppUser sau đó tạo User mới (cập nhật vào db)
+                var user = new AppUser { UserName = Input.UserName, Email = Input.Email, 
+                    FullName = Input.FullName, Sex = Input.Sex, Birthday = Input.Birthday, Address = Input.Adress };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("Vừa tạo mới tài khoản thành công.");
 
+                    // phát sinh token theo thông tin user để xác nhận email
+                    // mỗi user dựa vào thông tin sẽ có một mã riêng, mã này nhúng vào link
+                    // trong email gửi đi để người dùng xác nhận
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+                    // callbackUrl = /Account/ConfirmEmail?userId=useridxx&code=codexxxx
+                    // Link trong email người dùng bấm vào, nó sẽ gọi Page: /Acount/ConfirmEmail để xác nhận
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    // Gửi email    
+                    await _emailSender.SendEmailAsync(Input.Email, "Xác nhận địa chỉ email",
+                        $"Hãy xác nhận địa chỉ email bằng cách <a href='{callbackUrl}'>Bấm vào đây</a>.");
 
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                    if (_userManager.Options.SignIn.RequireConfirmedEmail)
                     {
+                        // Nếu cấu hình phải xác thực email mới được đăng nhập thì chuyển hướng đến trang
+                        // RegisterConfirmation - chỉ để hiện thông báo cho biết người dùng cần mở email xác nhận
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
                     else
                     {
+                        // Không cần xác thực - đăng nhập luôn
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
                 }
+                // Có lỗi, đưa các lỗi thêm user vào ModelState để hiện thị ở html heleper: asp-validation-summary
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }
