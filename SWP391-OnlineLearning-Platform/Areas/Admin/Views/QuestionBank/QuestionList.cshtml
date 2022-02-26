@@ -10,6 +10,7 @@
     int count = 0;
 }
 
+
 <h2>Question List</h2>
 
 <p>
@@ -34,10 +35,10 @@
                 Course
             </th>
             <th>
-                <a asp-action="QuestionList" asp-route-sortOrder="@ViewData["content"]">Question Content<></a>
+                <a asp-action="QuestionList" asp-route-sortOrder="@ViewData["content"]">Question Content<span class="glyphicon glyphicon-sort"></span></a>
             </th>
             <th>
-                <a asp-action="QuestionList" asp-route-sortOrder="@ViewData["level"]">Level<></a>
+                <a asp-action="QuestionList" asp-route-sortOrder="@ViewData["level"]">Level<span class="glyphicon glyphicon-sort"></span></a>
             </th>
             <th>
                 Status
