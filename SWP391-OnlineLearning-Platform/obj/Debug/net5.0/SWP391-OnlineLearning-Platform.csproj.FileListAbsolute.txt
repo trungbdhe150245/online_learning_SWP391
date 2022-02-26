@@ -6898,3 +6898,4 @@ D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP39
 D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\ref\SWP391-OnlineLearning-Platform.dll
 D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.pdb
 D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.genruntimeconfig.cache
+D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.csproj.AssemblyReference.cache

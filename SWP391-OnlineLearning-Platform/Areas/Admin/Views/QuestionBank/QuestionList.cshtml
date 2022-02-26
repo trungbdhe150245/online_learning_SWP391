@@ -1,12 +1,11 @@
 ﻿
 @using PagedList.Core.Mvc
 @using SWP391_OnlineLearning_Platform.Models;
-@model PagedList.Core.IPagedList<SWP391_OnlineLearning_Platform.Models.Question_Bank>
+@model IEnumerable<SWP391_OnlineLearning_Platform.Models.Question_Bank>
 
 @{
     ViewData["Title"] = "QuestionList";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    int CurrentPage = ViewBag.CurrentPage;
 
     int count = 0;
 }
@@ -17,7 +16,7 @@
     <a asp-action="Create">Create Question</a>
     <a asp-action="Import">| Import File</a>
 </p>
-<form asp-controller="QuestionBank" asp-action="QuestionList"> 
+<form asp-controller="QuestionBank" asp-action="QuestionList">
 
     <div class="search-something">
         <input type="text" name="keyWord">
@@ -25,17 +24,6 @@
     </div>
 </form>
 
-//sort by level: easy-> hard, hard -> easy
-<div>
-    <p>
-        Sorted by:
-        <select id="level" name="level" style="padding:9px 15px; border-radius:10px;">
-            <option selected disabled>---Level---</option>
-            <option value="1">Easy to Hard</option>
-            <option value="2">Hard to Easy</option>
-        </select>
-    </p>
-</div>
 <table class="table">
     <thead>
         <tr>
@@ -46,10 +34,10 @@
                 Course
             </th>
             <th>
-                Question Content
+                <a asp-action="QuestionList" asp-route-sortOrder="@ViewData["content"]">Question Content<></a>
             </th>
             <th>
-                Level
+                <a asp-action="QuestionList" asp-route-sortOrder="@ViewData["level"]">Level<></a>
             </th>
             <th>
                 Status
@@ -63,36 +51,34 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>@(++count)</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Course.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
+            <tr>
+                <td>@(++count)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Quiz_Level.Name)
-            </td>
-            <td>
-                @if (item.Status_Id == 1)
-                {
-                    <i class="fa fa-circle text-success"> </i>
-                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quiz_Level.Name)
+                </td>
+                <td>
+                    @if (item.Status_Id == 1)
+                    {
+                        <i class="fa fa-circle text-success"> </i>
+                    }
 
-                @Html.DisplayFor(modelItem => item.Status.Value)
-            </td>
-            <td>
-                <a asp-action="QuestionDetail" asp-route-id="@item.Id">Update</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+                    @Html.DisplayFor(modelItem => item.Status.Value)
+                </td>
+                <td>
+                    <a asp-action="QuestionDetail" asp-route-id="@item.Id">Update</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
 
-<h3>Trang số: @CurrentPage</h3>
 
-<pager list="@Model" asp-controller="QuestionBank" asp-action="QuestionList" />
-//thiếu bootstrap
+

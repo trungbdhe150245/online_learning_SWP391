@@ -21,33 +21,51 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/QuestionBank
-        public IActionResult QuestionList(string keyWord, int page = 1)
+        public IActionResult Filter(int level = 0)
         {
-            //PHÂN TRANG
-            var pageNumber = page;
-            var pageSize = 30;
-            ViewBag.CurrentPage = pageNumber;
+            var url = $"/QuestionBank/QuestionList?level={level}";
+            if (level == 0)
+            {
+                url = $"/QuestionBank/QuestionList";
+            }
+            return Json(new { status = "success", redirectUrl = url });
+        }
 
+        // GET: Admin/QuestionBank
+        public async Task<IActionResult> QuestionList(string keyWord, string sortOrder)
+        {
+            
             List<Question_Bank> questions = new List<Question_Bank>();
             questions = _context.Question_Banks.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Status).ToList();
 
+            //SEARCHING
             if (!String.IsNullOrEmpty(keyWord))
             {
                 questions = questions.Where(s => s.Content!.ToLower().Contains(keyWord.ToLower())).ToList();
             }
 
-            foreach (var item in questions)
+
+            //SORTED
+            ViewData["content"] = String.IsNullOrEmpty(sortOrder) ? "yes" : "";
+            ViewData["level"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            switch (sortOrder)
             {
-                var s = item.Content.Split("\\");
-                item.Content = s[0];
-                item.Answer = item.Answer.ToUpper();
+                case "yes":
+                    questions = questions.OrderByDescending(s => s.Content).ToList();
+                    break;
+                //case "Date":
+                //    questions = questions.OrderBy(s => s.EnrollmentDate).ToList();
+                //    break;
+                //case "date_desc":
+                //    questions = questions.OrderByDescending(s => s.EnrollmentDate).ToList();
+                //    break;
+                default:
+                    questions = questions.OrderBy(s => s.Content).ToList();
+                    break;
             }
 
-            PagedList<Question_Bank> models = new PagedList<Question_Bank>(questions.AsQueryable(), pageNumber, pageSize);
-
-
-            return View(models);
+            return View(questions);
         }
 
 
