@@ -47,19 +47,19 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
 
             //SORTED
             ViewData["content"] = String.IsNullOrEmpty(sortOrder) ? "yes" : "";
-            ViewData["level"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["level"] = sortOrder == "high" ? "low" : "high";
 
             switch (sortOrder)
             {
                 case "yes":
                     questions = questions.OrderByDescending(s => s.Content).ToList();
                     break;
-                //case "Date":
-                //    questions = questions.OrderBy(s => s.EnrollmentDate).ToList();
-                //    break;
-                //case "date_desc":
-                //    questions = questions.OrderByDescending(s => s.EnrollmentDate).ToList();
-                //    break;
+                case "low":
+                    questions = questions.OrderBy(s => s.Quiz_Level.Id).ToList();
+                    break;
+                case "high":
+                    questions = questions.OrderByDescending(s => s.Quiz_Level.Id).ToList();
+                    break;
                 default:
                     questions = questions.OrderBy(s => s.Content).ToList();
                     break;
