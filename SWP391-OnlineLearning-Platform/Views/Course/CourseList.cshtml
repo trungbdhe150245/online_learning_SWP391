@@ -84,23 +84,27 @@
                 </div>
             </div>
             <div class="col-sm-9">
-                @foreach (var course in Model.courses)
+                @foreach (var search in Model.courses)
                 {
     <div class="row tutorial">
         <div class="col-sm-5 resp">
-            <img src="~/img/@course.Thumbnail_URL" class="resp-img" alt="Tutorial">
+            <img src="~/img/@search.Thumbnail_URL" class="resp-img" alt="Tutorial">
         </div>
         <div class="col-sm-7">
             <div class="tutorial-details">
                 <div class="pull-right fav favorite">
                     <i class="zmdi zmdi-star"></i><span>IN FAVORITES</span>
                 </div>
-                <h6>@course.Title</h6>
+                <h6>@search.Title</h6>
                 <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>12 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>3:15h</span></p>
                 <p class="abs">
-                    @course.Description
+                    @search.Description
                 </p>
-                <a asp-action="CourseDetail" asp-controller="Course" class="greybutton" asp-route-id="@course.Id">VIEW COURSE</a>
+                @*<a asp-action="CourseDetail" asp-controller="Course" class="greybutton" asp-route-id="@course.Id">VIEW COURSE</a>*@
+                <div id="PlaceHolderHere"></div>
+                <div class="popup">
+                    <button type="button" class="greybutton button-pop" data-toggle="ajax-modal" data-target="#myModal" data-url="@Url.Action($"CourseDetail/{search.Id}")">VIEW COURSE</button>
+                </div>
             </div>
         </div>
     </div>}

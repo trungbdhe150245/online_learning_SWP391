@@ -33,7 +33,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             dynamic dy = new ExpandoObject();
             dy.categories = GetCategories();
             dy.course = GetCourse(id);
-            return View(dy);
+            return PartialView("CourseDetail", dy);
         }
 
         public IActionResult CourseRegister(int courseId)
