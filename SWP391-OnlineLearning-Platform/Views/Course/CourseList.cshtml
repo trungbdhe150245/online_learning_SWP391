@@ -103,7 +103,7 @@
                 @*<a asp-action="CourseDetail" asp-controller="Course" class="greybutton" asp-route-id="@course.Id">VIEW COURSE</a>*@
                 <div id="PlaceHolderHere"></div>
                 <div class="popup">
-                    <button type="button" class="greybutton button-pop" data-toggle="ajax-modal" data-target="#myModal" data-url="@Url.Action($"CourseDetail/{search.Id}")">VIEW COURSE</button>
+                    <button type="button" class="greybutton button-pop" data-toggle="ajax-modal" data-target="#myModal" data-url="@Url.Action($"CourseDetail/{search.Id}","Course")">VIEW COURSE</button>
                 </div>
             </div>
         </div>

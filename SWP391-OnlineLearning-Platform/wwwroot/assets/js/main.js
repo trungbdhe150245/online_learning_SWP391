@@ -135,5 +135,56 @@ $(function() {
 			PlaceHolderElement.find('.modal').modal('hide');
 		})
 	})
+
+	$().fancybox({
+		selector: 'a.popup-fancy',
+		type: 'iframe',
+		baseClass: 'fancybox-md',
+		iframe: {
+			preload: false
+		}
+	});
+
+	$().fancybox({
+		selector: 'a.popup-fancy-lg',
+		type: 'iframe',
+		baseClass: 'fancybox-lg',
+		iframe: {
+			preload: false
+		}
+	});
+
+	$().fancybox({
+		selector: 'a.popup-fancy-xl',
+		type: 'iframe',
+		baseClass: 'fancybox-xl',
+		iframe: {
+			preload: false
+		}
+	});
+
+	$().fancybox({
+		selector: 'a.popup-fancy-xxl',
+		type: 'iframe',
+		baseClass: 'fancybox-xxl',
+		iframe: {
+			preload: false
+		}
+	});
+
+	$('a.complaint-detail').click(function () {
+		let detailId = $(this).data('complaint-detail-id'),
+			url = '@Url.Action("CourseDetail", "Course", new { area = "" })/' + detailId,
+			$modal = $('#complaint-detail-modal'),
+			$iframe = $modal.find('iframe');
+
+		// Change the source of the iframe to the url
+		$iframe.prop('src', url);    // Or you can use $iframe.attr('src', url);
+
+		// Manually trigger the modal
+		$modal.modal('show');
+
+		return false;
+	});
 	
 });

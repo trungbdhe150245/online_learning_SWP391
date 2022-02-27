@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SWP391_OnlineLearning_Platform.Data;
 using SWP391_OnlineLearning_Platform.Models;
 using System;
 using System.Collections.Generic;
@@ -11,16 +12,17 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> _logger;
+		private readonly OnlineLearningDbContext _db;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(OnlineLearningDbContext db)
 		{
-			_logger = logger;
+			_db = db;
 		}
-
+		
 		public IActionResult Index()
 		{
-			return View();
+			var courses = (IEnumerable<Course>)_db.Courses.OrderBy(s => s.Featured);
+			return View(courses);
 		}
 
 		public IActionResult Privacy()

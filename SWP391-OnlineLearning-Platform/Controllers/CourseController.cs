@@ -124,7 +124,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             var pager = new Paginated(resCount, page, pageSize);
             int recSkip = (page - 1) * pageSize;
 
-            var data = list.Skip(recSkip).Take(pager.PageSize);
+            var data = list.Skip(recSkip).Take(pager.PageSize).OrderBy(s => s.Featured);
             this.ViewBag.Paginated = pager;
             this.ViewBag.Category = cate;
             return data;
@@ -139,7 +139,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 
         public IEnumerable<Course> GetCourses()
         {
-            IEnumerable<Course> list = _db.Courses;
+            IEnumerable<Course> list = _db.Courses.OrderBy(s => s.Featured);
             return list;
         }
 
