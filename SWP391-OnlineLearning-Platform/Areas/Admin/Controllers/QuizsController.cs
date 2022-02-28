@@ -25,25 +25,19 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         public async Task<IActionResult> Index(string key, int page)
         {
             return View(Filter(key,page));
-
         }
         public IEnumerable<Quiz> Filter(string key, int page)
         {
-            
             IEnumerable<Quiz> quizs = _context.Quizzes.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Quiz_Type);
-
             if (!string.IsNullOrEmpty(key))
             {
                 quizs = quizs.Where(s => s.Name!.ToLower().Contains(key.ToLower()));
             }
-            
-
-            const int pageSize = 1;
+            const int pageSize = 2;
             if (page < 1)
             {
                 page = 1;
             }
-
             int resCount = quizs.Count();
             var pager = new Paginated(resCount, page, pageSize);
             int recSkip = (page - 1) * pageSize;
@@ -61,7 +55,6 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             var quiz = await _context.Quizzes
                 .Include(q => q.Course)
                 .Include(q => q.Quiz_Level)

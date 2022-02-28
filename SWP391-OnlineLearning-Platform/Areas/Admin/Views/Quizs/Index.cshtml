@@ -112,7 +112,6 @@
             <li class="page-item @(pager.CurrentPage == pager.EndPage ? "hidden" : "")">
                 <a class="page-link" asp-action="Index" asp-controller="Quizs" asp-route-page="@(pager.CurrentPage + 1)"> Next </a>
             </li>
-
         </ul>
     }
 </div>
