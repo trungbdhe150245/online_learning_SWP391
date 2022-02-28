@@ -81,30 +81,28 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="form-group">
+                    <div class="form-group  col-md-12">
                         <label asp-for="Number_question" class="control-label"></label>
                         <input asp-for="Number_question" value="@Model.Number_question" class="form-control" />
                         <span asp-validation-for="Number_question" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Lựa chọn số câu hỏi theo level</label>
-                        <textarea class="form-control" value="@Model.Number_question" id="message-text"></textarea>
-                    </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         <label for="message-text" class="col-form-label">Lựa chọn số câu hỏi theo level</label>
                         <label asp-for="Quiz_Level_Id" class="control-label"></label>
                         <select asp-for="Quiz_Level_Id" class="form-control" asp-items="ViewBag.Quiz_Level_Id"></select>
                         <span asp-validation-for="Quiz_Level_Id" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Lựa chọn số câu hỏi theo level</label>
-                        <textarea class="form-control" value="@Model.Number_question" id="message-text"></textarea>
+                    <div class="form-group col-md-6">
+                        </br>
+                        <label asp-for="Number_question" class="control-label"></label>
+                        <input asp-for="Number_question" value="@Model.Number_question" class="form-control" />
+                        <span asp-validation-for="Number_question" class="text-danger"></span>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
+                <button type="button" class="btn btn-primary">Create</button>
             </div>
         </div>
     </div>
