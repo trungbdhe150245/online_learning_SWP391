@@ -64,6 +64,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewData["Quiz_Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name", quiz.Quiz_Level_Id);
 
             return View(quiz);
         }
