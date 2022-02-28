@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -32,23 +33,49 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         }
 
         // GET: Admin/QuestionBank
-        public async Task<IActionResult> QuestionList(string keyWord, string sortOrder)
+        public async Task<IActionResult> QuestionList(string key, string sortOrder, int page)
         {
-            
-            List<Question_Bank> questions = new List<Question_Bank>();
-            questions = _context.Question_Banks.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Status).ToList();
 
-            //SEARCHING
-            if (!String.IsNullOrEmpty(keyWord))
-            {
-                questions = questions.Where(s => s.Content!.ToLower().Contains(keyWord.ToLower())).ToList();
-            }
+            //List<Question_Bank> questions = new List<Question_Bank>();
+            //questions = _context.Question_Banks.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Status).ToList();
+            ////SEARCHING
+            //if (!String.IsNullOrEmpty(keyWord))
+            //{
+            //    questions = questions.Where(s => s.Content!.ToLower().Contains(keyWord.ToLower())).ToList();
+            //}
+            ////SORTED
+            //ViewData["content"] = String.IsNullOrEmpty(sortOrder) ? "yes" : "";
+            //ViewData["level"] = sortOrder == "high" ? "low" : "high";
 
+            //switch (sortOrder)
+            //{
+            //    case "yes":
+            //        questions = questions.OrderByDescending(s => s.Content).ToList();
+            //        break;
+            //    case "low":
+            //        questions = questions.OrderBy(s => s.Quiz_Level.Id).ToList();
+            //        break;
+            //    case "high":
+            //        questions = questions.OrderByDescending(s => s.Quiz_Level.Id).ToList();
+            //        break;
+            //    default:
+            //        questions = questions.OrderBy(s => s.Content).ToList();
+            //        break;
+            //}
+            //return View(questions);
 
-            //SORTED
+            return View(Filter(key, sortOrder, page));
+        }
+        public IEnumerable<Question_Bank> Filter(string key, string sortOrder, int page)
+        {
             ViewData["content"] = String.IsNullOrEmpty(sortOrder) ? "yes" : "";
             ViewData["level"] = sortOrder == "high" ? "low" : "high";
+            IEnumerable<Question_Bank> questions = _context.Question_Banks.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Status);
 
+            if (!string.IsNullOrEmpty(key))
+            {
+                questions = questions.Where(s => s.Content!.ToLower().Contains(key.ToLower()));
+            }
             switch (sortOrder)
             {
                 case "yes":
@@ -65,7 +92,19 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
                     break;
             }
 
-            return View(questions);
+            const int pageSize = 2;
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            int resCount = questions.Count();
+            var pager = new Paginated(resCount, page, pageSize);
+            int recSkip = (page - 1) * pageSize;
+
+            var data = questions.Skip(recSkip).Take(pager.PageSize);
+            this.ViewBag.Paginated = pager;
+            return data;
         }
 
 

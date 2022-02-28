@@ -120,7 +120,6 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             }
 
             int resCount = list.Count();
-
             var pager = new Paginated(resCount, page, pageSize);
             int recSkip = (page - 1) * pageSize;
 
@@ -128,7 +127,6 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             this.ViewBag.Paginated = pager;
             this.ViewBag.Category = cate;
             return data;
-
         }
 
         public IEnumerable<Category> GetCategories()

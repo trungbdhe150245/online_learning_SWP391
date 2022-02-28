@@ -3,13 +3,18 @@
 @using SWP391_OnlineLearning_Platform.Models;
 @model IEnumerable<SWP391_OnlineLearning_Platform.Models.Question_Bank>
 
-@{
-    ViewData["Title"] = "QuestionList";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+@{ ViewData["Title"] = "QuestionList";
+    Paginated pager = new Paginated();
+
+    int pageNo = 0;
+    if (ViewBag.Paginated != null)
+    {
+        pager = ViewBag.Paginated;
+        pageNo = pager.CurrentPage;
+    }
 
     int count = 0;
 }
-
 
 <h2>Question List</h2>
 
@@ -29,7 +34,7 @@
     <thead>
         <tr>
             <th>
-                No.
+                Id
             </th>
             <th>
                 Course
@@ -53,7 +58,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@(++count)</td>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Course.Title)
                 </td>
@@ -83,3 +88,23 @@
 
 
 
+<div class="col-xs-12">
+    @if (pager.TotalPages > 0)
+    {
+        <ul class="pagination justify-content-end">
+            <li class="page-item @(pager.CurrentPage <= 1 ? "hidden" : "")">
+                <a class="page-link" asp-action="QuestionList" asp-controller="QuestionBank" asp-route-page="@(pager.CurrentPage - 1)"> Previous </a>
+            </li>
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-action="QuestionList" asp-controller="QuestionBank" asp-route-page="@pge"> @pge </a>
+                </li>
+            }
+            <li class="page-item @(pager.CurrentPage == pager.EndPage ? "hidden" : "")">
+                <a class="page-link" asp-action="QuestionList" asp-controller="QuestionBank" asp-route-page="@(pager.CurrentPage + 1)"> Next </a>
+            </li>
+
+        </ul>
+    }
+</div>
