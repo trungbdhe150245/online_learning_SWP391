@@ -79,12 +79,14 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         }
 
         // POST: Admin/Quizs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Description,Duration,Name,Number_question,Pass_rate,Course_Id,Quiz_Level_Id,Quiz_Type_Id")] Quiz quiz)
         {
+            //TẠO CÂU HỎI TỪ QUESTION BANK (THEO LEVEL, COURSE)
+
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(quiz);

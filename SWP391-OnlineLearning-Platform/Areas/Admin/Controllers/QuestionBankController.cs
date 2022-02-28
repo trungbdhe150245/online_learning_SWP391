@@ -103,7 +103,6 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             var question_Bank = await _context.Question_Banks
                 .Include(q => q.Course)
                 .Include(q => q.Quiz_Level)
@@ -127,8 +126,6 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         }
 
         // POST: Admin/QuestionBank/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Answer,Content,Explanation,Course_Id,Level_Id,Status_Id")] Question_Bank question_Bank)
@@ -152,7 +149,6 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             var question_Bank = await _context.Question_Banks.FindAsync(id);
             if (question_Bank == null)
             {
@@ -165,17 +161,20 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         }
 
         // POST: Admin/QuestionBank/QuestionDetail/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> QuestionDetail(int id, [Bind("Id,Answer,Content,Explanation,Course_Id,Level_Id,Status_Id")] Question_Bank question_Bank)
         {
+            //THAY ĐỔI CÂU HỎI THEO LEVEL
+
+
+
+
+
             if (id != question_Bank.Id)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
