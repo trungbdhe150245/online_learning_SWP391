@@ -35,7 +35,6 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         // GET: Admin/QuestionBank
         public async Task<IActionResult> QuestionList(string key, string sortOrder, int page)
         {
-
             //List<Question_Bank> questions = new List<Question_Bank>();
             //questions = _context.Question_Banks.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Status).ToList();
             ////SEARCHING
@@ -91,13 +90,11 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
                     questions = questions.OrderBy(s => s.Content).ToList();
                     break;
             }
-
             const int pageSize = 2;
             if (page < 1)
             {
                 page = 1;
             }
-
             int resCount = questions.Count();
             var pager = new Paginated(resCount, page, pageSize);
             int recSkip = (page - 1) * pageSize;
