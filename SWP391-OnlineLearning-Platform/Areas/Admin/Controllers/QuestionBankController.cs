@@ -22,15 +22,6 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             _context = context;
         }
 
-        public IActionResult Filter(int level = 0)
-        {
-            var url = $"/QuestionBank/QuestionList?level={level}";
-            if (level == 0)
-            {
-                url = $"/QuestionBank/QuestionList";
-            }
-            return Json(new { status = "success", redirectUrl = url });
-        }
 
         // GET: Admin/QuestionBank
         public async Task<IActionResult> QuestionList(string key, string sortOrder, int page)
