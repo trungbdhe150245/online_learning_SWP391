@@ -11,6 +11,15 @@
 <p>
     <a asp-action="Create"><button class="btn btn-success">Create New</button></a>
 </p>
+//Search
+<form asp-controller="Quizs" asp-action="Index">
+    <div class="search-something">
+        <input type="text" name="key">
+        <button class="btn-primary" type="submit">Search</button>
+    </div>
+</form>
+
+
 <table class="table table-striped text-center">
     <thead class="thead-dark">
         <tr style="font-weight:bold;">
