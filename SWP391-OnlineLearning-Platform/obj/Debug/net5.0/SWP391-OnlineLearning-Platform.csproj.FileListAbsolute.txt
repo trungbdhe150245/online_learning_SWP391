@@ -6853,7 +6853,6 @@ D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP39
 D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\QuestionList.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\Create.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\Delete.cshtml.g.cs
-D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\Details.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\Edit.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\Index.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\Error.cshtml.g.cs
