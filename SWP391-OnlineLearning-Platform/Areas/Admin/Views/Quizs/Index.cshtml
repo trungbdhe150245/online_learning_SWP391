@@ -1,10 +1,19 @@
-﻿@model IEnumerable<SWP391_OnlineLearning_Platform.Models.Quiz>
+﻿@using SWP391_OnlineLearning_Platform.Models;
+@model IEnumerable<SWP391_OnlineLearning_Platform.Models.Quiz>
 
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    int count=0;
+@{ ViewData["Title"] = "QuizzesList";
+    Paginated pager = new Paginated();
+
+    int pageNo = 0;
+    if (ViewBag.Paginated != null)
+    {
+        pager = ViewBag.Paginated;
+        pageNo = pager.CurrentPage;
+    }
+
+    int count = 0;
 }
+
 
 <h2>Quizzes List (for expert/admin)</h2>
 
@@ -35,7 +44,7 @@
                 Total Question
             </td>
             <td>
-                Duration<br/>
+                Duration<br />
                 (minutes)
             </td>
             <td>
@@ -50,38 +59,61 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>@(count++)</td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(count++)</td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quiz_Level.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number_question)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pass_rate) %
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quiz_Type.Name)
-            </td>
-            
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quiz_Level.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number_question)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pass_rate) %
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quiz_Type.Name)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
+<div class="col-xs-12">
+    @if (pager.TotalPages > 0)
+    {
+        <ul class="pagination justify-content-end">
+            <li class="page-item @(pager.CurrentPage <= 1 ? "hidden" : "")">
+                <a class="page-link" asp-action="Index" asp-controller="Quizs" asp-route-page="@(pager.CurrentPage - 1)"> Previous </a>
+            </li>
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-controller="Quizs" asp-route-page="@pge"> @pge </a>
+                </li>
+            }
+            <li class="page-item @(pager.CurrentPage == pager.EndPage ? "hidden" : "")">
+                <a class="page-link" asp-action="Index" asp-controller="Quizs" asp-route-page="@(pager.CurrentPage + 1)"> Next </a>
+            </li>
+
+        </ul>
+    }
+</div>
