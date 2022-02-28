@@ -1,31 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@model IEnumerable<SWP391_OnlineLearning_Platform.Models.Course>
+@{
+    ViewData["Title"] = "CourseList";
+}
 <!DOCTYPE html>
 <html>
 
 <body id="index1" class="homepage">
-    <header>
-        <div class="container">
 
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <p class="pretitle">ONLINE VIDEO TRAININGS</p>
-                    <h2>BOOST YOUR SKILLS</h2>
-                    <p>Learn something new every day and get inspired by the diversity of online learning</p>
-                    <a href="#" class="bluebutton">SIGN UP AND GET A 7-DAYS FREE TRIAL</a>
-                </div>
-            </div>
-        </div>
-        <ul class="rslides-header">
-            <li><img src="http://place-hold.it/1920x800" class="resp-img" alt="Slide"></li>
-            <li><img src="http://place-hold.it/1920x800" class="resp-img" alt="Slide"></li>
-            <li><img src="http://place-hold.it/1920x800" class="resp-img" alt="Slide"></li>
-        </ul>
-        <a href="#" class="scrolldown"><span></span></a>
-    </header>
-    <main>       
+    <main>
         <div class="features-carousel">
             <div class="slick-features">
                 <div class="feature">
@@ -232,43 +217,34 @@
                     </div>
                 </div>
             </div>
+
             <div class="row tutorials">
-                <div class="col-md-4">
-                    <div class="tutorial">
-                        <img src="http://place-hold.it/370x220" class="resp-img" alt="Tutorial">
-                        <div class="tutorial-details">
-                            <h6>How to become an UX Designer</h6>
-                            <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>12 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>3:15h</span></p>
-                            <p class="abs">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.</p>
-                            <a href="#" class="greybutton">VIEW COURSE</a>
+                @foreach (var popular in Model)
+                {
+                    @if (popular.Featured < 4)
+                    {
+                        <div class="col-md-4">
+                            <div class="tutorial">
+                                <img src="~/img/@popular.Thumbnail_URL" class="resp-img" alt="Tutorial">
+                                <div class="tutorial-details">
+                                    <h6>@popular.Title</h6>
+                                    <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>12 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>3:15h</span></p>
+                                    <p class="abs">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.</p>
+                                    <div id="PlaceHolderHere"></div>
+                                    <div class="popup">
+                                        <button type="button" class="greybutton button-pop" data-toggle="ajax-modal" data-target="#myModal" data-url="@Url.Action($"CourseDetail/{popular.Id}","Course")">VIEW COURSE</button>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="tutorial">
-                        <img src="http://place-hold.it/370x220" class="resp-img" alt="Tutorial">
-                        <div class="tutorial-details">
-                            <h6>8 steps to your own startup</h6>
-                            <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>8 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>4:32h</span></p>
-                            <p class="abs">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.</p>
-                            <a href="#" class="greybutton">VIEW COURSE</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="tutorial">
-                        <img src="http://place-hold.it/370x220" class="resp-img" alt="Tutorial">
-                        <div class="tutorial-details">
-                            <h6>Business communication for marketers</h6>
-                            <p><span class="lessons"><i class="zmdi zmdi-assignment"></i>15 LESSONS</span><span class="duration"><i class="zmdi zmdi-time"></i>6:04h</span></p>
-                            <p class="abs">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est.</p>
-                            <a href="#" class="greybutton">VIEW COURSE</a>
-                        </div>
-                    </div>
-                </div>
+                    }
+                }
             </div>
         </div>
-
+        <div class="view-course">
+            <a asp-action="CourseList" asp-controller="Course">View More Course</a>
+        </div>
         <div class="container testimonials">
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1 text-center">
