@@ -49,7 +49,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
 
 
         // GET: Admin/Quizs/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> QuizDetails(int? id)
         {
             if (id == null)
             {
