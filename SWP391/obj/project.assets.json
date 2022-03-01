@@ -8582,11 +8582,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\trung\\Desktop\\New folder (5)\\online_learning_SWP391\\SWP391\\SWP391.csproj",
+      "projectUniqueName": "C:\\Users\\trung\\Desktop\\newest\\online_learning_SWP391\\SWP391\\SWP391.csproj",
       "projectName": "SWP391",
-      "projectPath": "C:\\Users\\trung\\Desktop\\New folder (5)\\online_learning_SWP391\\SWP391\\SWP391.csproj",
+      "projectPath": "C:\\Users\\trung\\Desktop\\newest\\online_learning_SWP391\\SWP391\\SWP391.csproj",
       "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\trung\\Desktop\\New folder (5)\\online_learning_SWP391\\SWP391\\obj\\",
+      "outputPath": "C:\\Users\\trung\\Desktop\\newest\\online_learning_SWP391\\SWP391\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8710,7 +8710,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
