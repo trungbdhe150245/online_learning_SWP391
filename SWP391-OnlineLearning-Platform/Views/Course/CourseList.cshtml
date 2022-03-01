@@ -40,9 +40,6 @@
                         {
                             <option value="@category.Id">@category.Value</option>
                         }
-                        @*<option value="1">Category 1</option>
-                        <option value="2">Category 2</option>
-                        <option value="3">Category 3</option>*@
                     </select>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12 select-numofvids">
@@ -66,7 +63,6 @@
                     <input class="keywords" name="key" type="text" placeholder="keywords">
                 </div>
                 <div class="col-sm-6 col-xs-12 search-button">
-                    @*<button class="search-teachers">SEARCH</button>*@
                     <input type="submit" class="search-teachers" value="SEARCH" />
                 </div>
             </div>
@@ -105,7 +101,6 @@
                                 <p class="abs">
                                     @search.Description
                                 </p>
-                                @*<a asp-action="CourseDetail" asp-controller="Course" class="greybutton" asp-route-id="@course.Id">VIEW COURSE</a>*@
                                 <div id="PlaceHolderHere"></div>
                                 <div class="popup">
                                     <button type="button" class="greybutton button-pop" data-toggle="ajax-modal" data-target="#myModal" data-url="@Url.Action($"CourseDetail/{search.Id}","Course")">VIEW COURSE</button>

@@ -1,9 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model SWP391_OnlineLearning_Platform.Models.Course
+﻿
+@model SWP391_OnlineLearning_Platform.Models.ViewModels.NewCourseVM
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -11,28 +7,39 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <h4 class="modal-title">Add New Course</h4>
             </div>
             <div class="modal-body">
                 <form method="post" asp-action="CreateCourse">
-                    <div class="border p-3">
-                        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
-                        <div class="form-group">
-                            <label asp-for="Title" class="control-label"></label>
-                            <input asp-for="Title" class="form-control" />
-                            <span asp-validation-for="Title" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Description" class="control-label"></label>
-                            <input asp-for="Description" class="form-control" />
-                            <span asp-validation-for="Description" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="ImgFile" class="control-label"></label>
-                            <input asp-for="ImgFile" class="form-control" />
-                            <span asp-validation-for="ImgFile" class="text-danger"></span>
-                        </div>
-                        
+                    @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+                    <div class="form-group">
+                        <label asp-for="Course.Title" class="control-label"></label>
+                        <input asp-for="Course.Title" class="form-control" />
+                        <span asp-validation-for="Course.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Course.Description" class="control-label"></label>
+                        <input asp-for="Course.Description" class="form-control" />
+                        <span asp-validation-for="Course.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Course.ImgFile" class="control-label"></label>
+                        <input asp-for="Course.ImgFile" class="form-control" />
+                        <span asp-validation-for="Course.ImgFile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Course.Created_Date" class="control-label"></label>
+                        <input asp-for="Course.Created_Date" class="form-control" />
+                        <span asp-validation-for="Course.Created_Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <select asp-for="Course.Category_Id" asp-items="@Model.TypeDropDown" class="form-control">
+                            <option selected>--Select Categories--</option>
+                        </select>
+                        <span asp-validation-for="Course.Category_Id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
                     </div>
                 </form>
             </div>

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using SWP391_OnlineLearning_Platform.Data;
 using SWP391_OnlineLearning_Platform.Models;
+using SWP391_OnlineLearning_Platform.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -38,8 +40,22 @@ namespace SWP391_OnlineLearning_Platform.Controllers
 
         public IActionResult CreateCourse()
         {
+            NewCourseVM newCourseVM = new NewCourseVM()
+            {
+                Course = new Course(),
+                TypeDropDown = _db.Categories.Select(i => new SelectListItem
+                {
+                    Text = i.Value,
+                    Value = i.Id.ToString()
+                })
+            };
+            return PartialView(newCourseVM);
+        }
+        [HttpPost]
+        public IActionResult CreateCourse(NewCourseVM obj)
+        {
             
-            return PartialView();
+            return View();
         }
 
         public IActionResult CourseRegister(int courseId)
