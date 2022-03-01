@@ -39,7 +39,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
         public IActionResult CreateCourse()
         {
             
-            return View();
+            return PartialView();
         }
 
         public IActionResult CourseRegister(int courseId)

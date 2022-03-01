@@ -28,9 +28,8 @@
     </div>
     
     <div class="container courses-browse popular no-gutters">
-        <div id="PlaceHolderHere"></div>
         <div class="popup">
-            <button type="button" class="greybutton button-pop" data-toggle="ajax-modal" data-target="#myModal" data-url="@Url.Action($"CourseDetail/{search.Id}","Course")">VIEW COURSE</button>
+            <button type="button" class="greybutton button-pop" data-toggle="ajax-modal" data-target="#myModal" data-url="@Url.Action($"CreateCourse")">Create Course</button>
         </div>
         <form asp-action="CourseList" asp-controller="Course" method="post">
             <div class="row toolbar">

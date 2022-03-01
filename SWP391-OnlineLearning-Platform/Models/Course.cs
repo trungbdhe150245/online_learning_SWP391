@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -26,6 +27,9 @@ namespace SWP391_OnlineLearning_Platform.Models
         [Display(Name = "Thumbnail URL")]
         [MaxLength(256, ErrorMessage = "Not exceed 256")]
         public string Thumbnail_URL { get; set; }
+        [NotMapped]
+        [DisplayName("Upload Img")]
+        public IFormFile ImgFile { get; set; }
         [Required]
         [MaxLength(256, ErrorMessage = "Not exceed 256")]
         public string Title { get; set; }

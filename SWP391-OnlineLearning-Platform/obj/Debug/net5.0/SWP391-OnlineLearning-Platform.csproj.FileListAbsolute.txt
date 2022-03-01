@@ -7383,3 +7383,4 @@ D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.genruntimeconfig.cache
 D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\QuizDetails.cshtml.g.cs
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\QuizDetails.cshtml.g.cs
+D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Course\CreateCourse.cshtml.g.cs

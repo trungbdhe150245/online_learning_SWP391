@@ -136,42 +136,6 @@ $(function() {
 		})
 	})
 
-	$().fancybox({
-		selector: 'a.popup-fancy',
-		type: 'iframe',
-		baseClass: 'fancybox-md',
-		iframe: {
-			preload: false
-		}
-	});
-
-	$().fancybox({
-		selector: 'a.popup-fancy-lg',
-		type: 'iframe',
-		baseClass: 'fancybox-lg',
-		iframe: {
-			preload: false
-		}
-	});
-
-	$().fancybox({
-		selector: 'a.popup-fancy-xl',
-		type: 'iframe',
-		baseClass: 'fancybox-xl',
-		iframe: {
-			preload: false
-		}
-	});
-
-	$().fancybox({
-		selector: 'a.popup-fancy-xxl',
-		type: 'iframe',
-		baseClass: 'fancybox-xxl',
-		iframe: {
-			preload: false
-		}
-	});
-
 	$('a.complaint-detail').click(function () {
 		let detailId = $(this).data('complaint-detail-id'),
 			url = '@Url.Action("CourseDetail", "Course", new { area = "" })/' + detailId,
