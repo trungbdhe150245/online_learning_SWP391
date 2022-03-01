@@ -5,6 +5,27 @@
     ViewData["Title"] = "LESSON";
     Layout = "~/Views/Shared/_LayoutNoContainer.cshtml";
 }
-<div class="row">
-    <h1>Course Name</h1>
+<style>
+    .lesson-container {
+        margin: 0 5%;
+    }
+</style>
+@await Html.PartialAsync("~/Views/Shared/Modal/Lesson/_ModalCourseOvw.cshtml")
+<div class="lesson-container">
+    <main role="main" class="pb-3">
+        <div class="row">
+            <h1>Course Name</h1>
+        </div>
+        <div class="row">
+            @*            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                Course Objectives
+                </button>*@
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-primary">Course Objectives</button>
+                <button type="button" class="btn btn-outline-info">Lecture Profile</button>
+                <button type="button" class="btn btn-outline-danger">Report</button>
+            </div>
+        </div>
+    </main>
 </div>
+
