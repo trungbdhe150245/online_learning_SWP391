@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -8,6 +9,7 @@ using SWP391_OnlineLearning_Platform.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,11 +18,14 @@ namespace SWP391_OnlineLearning_Platform.Controllers
     public class CourseController : Controller
     {
         private readonly OnlineLearningDbContext _db;
-
-        public CourseController(OnlineLearningDbContext db)
+        private readonly IWebHostEnvironment WebHostEnvironment;
+        public CourseController(OnlineLearningDbContext db, IWebHostEnvironment webHostEnvironment)
         {
             _db = db;
+            WebHostEnvironment = webHostEnvironment;
         }
+
+
 
         public IActionResult CourseList(string key, string sortOrder, string cate, int page)
         {
@@ -52,10 +57,43 @@ namespace SWP391_OnlineLearning_Platform.Controllers
             return PartialView(newCourseVM);
         }
         [HttpPost]
-        public IActionResult CreateCourse(NewCourseVM obj)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateCourse(NewCourseVM obj)
         {
-            
-            return View();
+            if (ModelState.IsValid)
+            {
+                string wwwroot = WebHostEnvironment.WebRootPath;
+                string filename = Path.GetFileNameWithoutExtension(obj.Course.ImgFile.FileName);
+                string ex = Path.GetExtension(obj.Course.ImgFile.FileName);
+                obj.Course.Thumbnail_URL = filename = filename + DateTime.Now.ToString("yymmssfff") + ex;
+                string path = Path.Combine(wwwroot + "/img/", filename);
+                using (var filestream = new FileStream(path, FileMode.Create))
+                {
+                    await obj.Course.ImgFile.CopyToAsync(filestream);
+                }
+                obj.Course.Status_Id = 3;
+                obj.Course.Featured = 20;
+                _db.Courses.Add(obj.Course);
+                _db.SaveChanges();
+                return RedirectToAction("CourseList");
+            }
+            return View(obj);
+        }
+
+        private string UploadFile(NewCourseVM obj)
+        {
+            string fileName = null;
+            if (obj.Course.ImgFile != null)
+            {
+                string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "Images");
+                fileName = Guid.NewGuid().ToString() + "-" + obj.Course.ImgFile;
+                string filePath = Path.Combine(uploadDir, fileName);
+                using (var filestream = new FileStream(filePath, FileMode.Create))
+                {
+                    obj.Course.ImgFile.CopyTo(filestream);
+                }
+            }
+            return fileName;
         }
 
         public IActionResult CourseRegister(int courseId)

@@ -10,8 +10,7 @@
                 <h4 class="modal-title">Add New Course</h4>
             </div>
             <div class="modal-body">
-                <form method="post" asp-action="CreateCourse">
-                    @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+                <form method="post" asp-action="CreateCourse" enctype="multipart/form-data">
                     <div class="form-group">
                         <label asp-for="Course.Title" class="control-label"></label>
                         <input asp-for="Course.Title" class="form-control" />
@@ -24,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Course.ImgFile" class="control-label"></label>
-                        <input asp-for="Course.ImgFile" class="form-control" />
+                        <input asp-for="Course.ImgFile" class="form-control" accept="image/*"/>
                         <span asp-validation-for="Course.ImgFile" class="text-danger"></span>
                     </div>
                     <div class="form-group">

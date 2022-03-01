@@ -23,7 +23,6 @@ namespace SWP391_OnlineLearning_Platform.Models
         
         [Display(Name = "Short Description")]
         public string Short_Description { get; set; }
-        [Required]
         [Display(Name = "Thumbnail URL")]
         [MaxLength(256, ErrorMessage = "Not exceed 256")]
         public string Thumbnail_URL { get; set; }
