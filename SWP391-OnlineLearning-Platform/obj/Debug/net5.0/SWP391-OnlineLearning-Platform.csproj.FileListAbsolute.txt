@@ -7338,7 +7338,6 @@ D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\QuestionBank\QuestionList.cshtml.g.cs
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\Create.cshtml.g.cs
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\Delete.cshtml.g.cs
-D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\Details.cshtml.g.cs
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\Edit.cshtml.g.cs
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\Index.cshtml.g.cs
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\Error.cshtml.g.cs
@@ -7357,7 +7356,6 @@ D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Course\CourseRegister.cshtml.g.cs
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Course\SubjectList.cshtml.g.cs
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\Marketing\PostDetail.cshtml.g.cs
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\PublicFeature\BlogDetail.cshtml.g.cs
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Views\PublicFeature\BlogList.cshtml.g.cs
@@ -7384,3 +7382,4 @@ D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.pdb
 D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\SWP391-OnlineLearning-Platform.genruntimeconfig.cache
 D:\FPTLearning\Spring2022\SWP391\Week 6\Source Code\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\QuizDetails.cshtml.g.cs
+D:\FPTU-Learning\Spring2022\SWP391\New folder (2)\online_learning_SWP391\SWP391-OnlineLearning-Platform\obj\Debug\net5.0\Razor\Areas\Admin\Views\Quizs\QuizDetails.cshtml.g.cs
