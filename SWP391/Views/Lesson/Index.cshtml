@@ -39,59 +39,41 @@
                     </div>
                 </div>
                 <div class="accordion" id="accordionExample">
-                    <div class="card">
+                    @for (var i = 0; i < 4; i++)
+                   {
+                        @:<div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
                                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Collapsible Group Item #1
+                                    Topic #1
                                 </button>
                             </h2>
                         </div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item active">
-
+                        @:<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                           @:<div class="card-body">
+                                @:<ul class="list-group">
+                                    <li class="list-group-item">
                                         <p style="margin-bottom:0"><i class="far fa-play-circle"></i> Lmao</p>
-                                        <a href="https://drive.google.com/u/0/uc?id=1Fs7-iicL37cLXndyMEO7vi4wP66J0nai&export=download"></a>
+                                        <p class="title-vid" hidden>Title 1</p>
+                                        <a href="https://drive.google.com/u/0/uc?id=1Fs7-iicL37cLXndyMEO7vi4wP66J0nai&export=download" hidden></a>
                                     </li>
                                     <li class="list-group-item">Dapibus ac facilisis in</li>
                                     <li class="list-group-item">Morbi leo risus</li>
                                     <li class="list-group-item">Porta ac consectetur ac</li>
                                     <li class="list-group-item">Vestibulum at eros</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingTwo">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Collapsible Group Item #2
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div class="card-body">
-                                ...
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingThree">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Collapsible Group Item #3
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                            <div class="card-body">
-                                ...
-                            </div>
-                        </div>
-                    </div>
+                                    @:</br>
+                                @:</ul>
+                                <div class="list-group">
+                                    <a href="google.com" class="list-group-item list-group-item-warning">
+                                        Cras justo odio
+                                    </a>
+                                </div>
+                            @:</div>
+                        @:</div>
+                    @:</div>
+                   }
+
                 </div>
             </div>
         </div>
@@ -108,22 +90,27 @@
 </style>
 
 <script>
-    let ListVideo = document.querySelectorAll('.list-group .list-group-item');
-    let MainVideo = document.querySelector('.row .col-md-8 video');
-    let Title = document.querySelector('.row .col-md-8 .title');
+    let hreflist = document.querySelectorAll('.list-group .list-group-item');
+    let mainvideo = document.querySelector('.row .col-md-8 video');
+    let maintitle = document.querySelector('.row .col-md-8 .title');
 
-    ListVideo.forEach(video => {
-        video.onclick = () => {
-            ListVideo.forEach(vid => vid.classList.remove('active'));
-            video.classList.add('active');
-            if (video.classList.contains('active')) {
-                let src = video.children[1].getAttribute('href');
-                MainVideo.src = src;
-                //let title = video.children[1].innerHTML;
-                //Title.innerHTML = title;
+    hreflist.forEach(href => {
+        href.onclick = () => {
+            hreflist.forEach(vid => vid.classList.remove('active'));
+            href.classList.add('active');
+            if (href.classList.contains('active')) {
+                let src = href.children[2].getAttribute('href');
+                mainvideo.src = src;
+                let title = href.children[1].innerHTML;
+                maintitle.innerHTML = title;
             };
         };
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        hreflist[0].classList.add("active");
+}, false);
+   
 </script>
 
 
