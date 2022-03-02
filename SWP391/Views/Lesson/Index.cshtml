@@ -37,12 +37,16 @@
             </div>
                         <div class="collapse" id="collapseExample2">
               <div class="card card-body">
-                <h4 >Note here<br/><small style="font-size:15px">You can download your note</small></h4>
-                
-                <textarea class="text_mop"></textarea>
-                <div class="row">
-                <input type="button" class="btn_mop btn-primary btn" value="Download" aria-hidden="true" />
-                </div>
+                <h4 >Note here<br/><small class="">You can download your note</small></h4>
+
+
+                    
+
+
+                    <textarea class="text_mop" style="margin-bottom:10px" rows=5></textarea>
+                    
+                    <input type="button" class="btn_mop btn-primary btn" style="margin-left:78%;text-align:center;" value="Download" aria-hidden="true"/>
+
               </div>
             </div>
             </div>
@@ -112,6 +116,28 @@
         margin: 0 0 10px 0;
     }
 </style>
+
+<script>
+    function download(file, text) {
+  //creating an invisible element
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/html;charset=utf-8, ' + encodeURIComponent(text));
+  console.log(element.href);
+  element.setAttribute('download', file);
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
+
+var btn_mop = document.getElementsByClassName("btn_mop");
+for (var btn of btn_mop) {
+  btn.addEventListener("click", function() {
+    var text = this.parentNode.getElementsByClassName("text_mop")[0];
+    var filename = "MOP.txt";
+    download(filename, text.value)
+  });
+}
+    </script>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" @*integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"*@ crossorigin="anonymous"></script>
