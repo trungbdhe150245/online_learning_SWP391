@@ -26,31 +26,49 @@
                     <video src="https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4" width="100%" muted autoplay controls></video>
                     <h3 class="title">Title</h3>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="row lesson-main">
-                    @*            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                        Course Objectives
-                        </button>*@
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-primary">Objectives</button>
-                        <button type="button" class="btn btn-outline-info">Note</button>
+                    <div class="row lesson-main">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button onclick="scriptToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Script
+                            </button>
+                            <button onclick="noteToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                                Note
+                            </button>
                         <button type="button" class="btn btn-outline-danger">Report</button>
                     </div>
                 </div>
+                        
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+              </div>
+            </div>
+                        <div class="collapse" id="collapseExample2">
+              <div class="card card-body">
+                <h4 >Note here<br/><small style="font-size:15px">You can download your note</small></h4>
+                
+<textarea class="text_mop">Welcome to 1st sentence</textarea>
+    <input type="button" class="btn_mop" value="Download" class="fa fa-home" aria-hidden="true" />
+              </div>
+            </div>
+            </div>
+           
+
+            <div class="col-md-4">
+
                 <div class="accordion" id="accordionExample">
                     @for (var i = 0; i < 4; i++)
                    {
                         @:<div class="card">
-                        <div class="card-header" id="headingOne">
+                        <div class="card-header" id="@("headingOne" + i)">
                             <h2 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Topic #1
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="@("#collapseOne" + i)" aria-expanded="true" aria-controls="collapseOne">
+                                    @("Topic #" + i)
                                 </button>
                             </h2>
                         </div>
 
-                        @:<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        @:<div id="@("collapseOne" + i)" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                            @:<div class="card-body">
                                 @:<ul class="list-group">
                                     <li class="list-group-item">
@@ -62,7 +80,7 @@
                                     <li class="list-group-item">Morbi leo risus</li>
                                     <li class="list-group-item">Porta ac consectetur ac</li>
                                     <li class="list-group-item">Vestibulum at eros</li>
-                                    @:</br>
+                                    @*@:</br>*@
                                 @:</ul>
                                 <div class="list-group">
                                     <a href="google.com" class="list-group-item list-group-item-warning">
@@ -80,6 +98,27 @@
     </main>
 </div>
 
+
+<script>
+function download(file, text) {
+  //creating an invisible element
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/html;charset=utf-8, ' + encodeURIComponent(text));
+  element.setAttribute('download', file);
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
+
+var btn_mop = document.getElementsByClassName("btn_mop");
+for (var btn of btn_mop) {
+  btn.addEventListener("click", function() {
+    var text = this.previousSibling.previousSibling
+    var filename = "MOP.txt";
+    download(filename, text.value)
+  });
+}
+</script>
 
 
 <style>
@@ -107,11 +146,21 @@
         };
     });
 
+function scriptToggle() {
+  document.getElementById("collapseExample2").classList.remove("show");
+}
+function noteToggle() {
+  document.getElementById("collapseExample").classList.remove("show");
+}
+
     document.addEventListener('DOMContentLoaded', function() {
         hreflist[0].classList.add("active");
+        document.getElementById("collapseOne0").classList.add("show");
+
 }, false);
    
 </script>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
