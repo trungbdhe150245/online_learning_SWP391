@@ -72,7 +72,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         // GET: Admin/Quizs/Create
         public IActionResult Create()
         {
-            ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description");
+            ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Title");
             ViewData["Quiz_Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name");
             ViewData["Quiz_Type_Id"] = new SelectList(_context.Quiz_Types, "Id", "Name");
             return View();

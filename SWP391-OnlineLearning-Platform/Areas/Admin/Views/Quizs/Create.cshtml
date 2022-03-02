@@ -19,17 +19,17 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group col-md-6">
-                <label asp-for="Number_question" class="control-label"></label>
+                <label asp-for="Number_question" class="control-label">Number Of Question</label>
                 <input asp-for="Number_question" class="form-control" />
                 <span asp-validation-for="Number_question" class="text-danger"></span>
             </div>
             <div class="form-group col-md-6">
-                <label asp-for="Pass_rate" class="control-label"></label>
+                <label asp-for="Pass_rate" class="control-label">Pass Rate%</label>
                 <input asp-for="Pass_rate" class="form-control" />
                 <span asp-validation-for="Pass_rate" class="text-danger"></span>
             </div>
             <div class="form-group col-md-6">
-                <label asp-for="Duration" class="control-label"></label>
+                <label asp-for="Duration" class="control-label">Duration(minute)</label>
                 <input asp-for="Duration" class="form-control" />
                 <span asp-validation-for="Duration" class="text-danger"></span>
             </div>
@@ -38,7 +38,7 @@
                 <select asp-for="Course_Id" class="form-control" asp-items="ViewBag.Course_Id"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Quiz_Level_Id" class="control-label"></label>
+                <label asp-for="Quiz_Level_Id" class="control-label">Quiz Level</label>
                 <select asp-for="Quiz_Level_Id" class="form-control" asp-items="ViewBag.Quiz_Level_Id"></select>
             </div>
             <div class="form-group">
