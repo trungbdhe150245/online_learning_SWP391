@@ -144,7 +144,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             //var questionMedium = (from s in _context.Question_Banks where s.Level_Id == 2 select s);
             //var questionHard = (from s in _context.Question_Banks where s.Level_Id == 3 select s);
 
-            IList<Question_Bank> temp = (from s in _context.Question_Banks select s).Take(numberOfQuestion).ToList();
+            IList<Question_Bank> temp = _context.Question_Banks.Include(q => q.Status).Take(numberOfQuestion).ToList();
             foreach (var item in temp)
             {
                 _context.Add(new Quiz_Question
