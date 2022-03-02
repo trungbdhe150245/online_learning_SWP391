@@ -21,8 +21,11 @@
             <h1>Course Name</h1>
         </div>
         <div class="row">
-            <div class="col-md-8 video">
-                <video src="https://www.youtube.com/watch?v=Px8nwoO7FO8" width="100%" muted autoplay controls></video>
+            <div class="col-md-8">
+                <div class="video">
+                    <video src="https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4" width="100%" muted autoplay controls></video>
+                    <h3 class="title">Title</h3>
+                </div>
             </div>
             <div class="col-md-4">
                 <div class="row lesson-main">
@@ -48,9 +51,10 @@
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
                                 <ul class="list-group">
-                                    <li class="list-group-item">
-                                        
-                                        <p style="margin-bottom:0"><i class="far fa-play-circle"></i> Lmao</p>    
+                                    <li class="list-group-item active">
+
+                                        <p style="margin-bottom:0"><i class="far fa-play-circle"></i> Lmao</p>
+                                        <a href="https://drive.google.com/u/0/uc?id=1Fs7-iicL37cLXndyMEO7vi4wP66J0nai&export=download"></a>
                                     </li>
                                     <li class="list-group-item">Dapibus ac facilisis in</li>
                                     <li class="list-group-item">Morbi leo risus</li>
@@ -104,22 +108,23 @@
 </style>
 
 <script>
-    let ListVideo = document.querySelectorAll('.card-body .vid');
-    let MainVideo = document.querySelector('.col-md-8 video');
-    let Title = document.querySelector('.main-video .title');
+    let ListVideo = document.querySelectorAll('.list-group .list-group-item');
+    let MainVideo = document.querySelector('.row .col-md-8 video');
+    let Title = document.querySelector('.row .col-md-8 .title');
 
     ListVideo.forEach(video => {
         video.onclick = () => {
             ListVideo.forEach(vid => vid.classList.remove('active'));
             video.classList.add('active');
             if (video.classList.contains('active')) {
-                let src = video.children[0].getAttribute('src');
+                let src = video.children[1].getAttribute('href');
                 MainVideo.src = src;
-                let title = video.children[1].innerHTML;
-                Title.innerHTML = title;
+                //let title = video.children[1].innerHTML;
+                //Title.innerHTML = title;
             };
         };
     });
 </script>
+
 
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
