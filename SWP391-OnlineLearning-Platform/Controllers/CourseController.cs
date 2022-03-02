@@ -72,7 +72,7 @@ namespace SWP391_OnlineLearning_Platform.Controllers
                     await obj.Course.ImgFile.CopyToAsync(filestream);
                 }
                 obj.Course.Status_Id = 3;
-                obj.Course.Featured = 20;
+                //obj.Course.Featured = 20;
                 _db.Courses.Add(obj.Course);
                 _db.SaveChanges();
                 return RedirectToAction("CourseList");
