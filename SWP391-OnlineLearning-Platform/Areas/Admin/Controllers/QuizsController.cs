@@ -35,7 +35,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             {
                 quizs = quizs.Where(s => s.Name!.ToLower().Contains(key.ToLower()));
             }
-            const int pageSize = 2;
+            const int pageSize = 10;
             if (page < 1)
             {
                 page = 1;
@@ -69,14 +69,11 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             ViewData["Quiz_Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name", quiz.Quiz_Level_Id);
 
             //KIỂM TRA TRONG DATABASE XEM QUIZ ĐÃ TẠO DANH SÁCH QUESTION CHƯA 
-            //if(_context.Quiz_Questions.Find(id).ToString() != null)
-            //{
             var questions = (from s in _context.Quiz_Questions
                             join k in _context.Question_Banks on s.Question_Id equals k.Id
                             where s.Quiz_Id == id
                             select k).ToList();
 
-            //var questions = _context.Question_Banks.Where(s => s.Id == 18).ToList();
             Quiz_QuestionVM quiz_QuestionVM = new Quiz_QuestionVM();
             quiz_QuestionVM.quiz = quiz;
             quiz_QuestionVM.list_question = questions;

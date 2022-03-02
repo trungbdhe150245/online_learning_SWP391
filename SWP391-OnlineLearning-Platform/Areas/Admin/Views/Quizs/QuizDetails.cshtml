@@ -68,9 +68,9 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Setting</button>
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Setting</button>
 
-@*<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -141,8 +141,8 @@
     </script>
 }
 
-<br />
-//Xem danh sách question
+<h1>Danh Sách Quesiton</h1>
+
 <table class="table">
     <thead>
         <tr>
@@ -153,10 +153,10 @@
                 Course
             </th>
             <th>
-                <a asp-action="QuestionList" asp-route-sortOrder="@ViewData["content"]">Question Content<span class="glyphicon glyphicon-sort"></span></a>
+                Question Content
             </th>
             <th>
-                <a asp-action="QuestionList" asp-route-sortOrder="@ViewData["level"]">Level<span class="glyphicon glyphicon-sort"></span></a>
+                Level
             </th>
             <th>
                 Status
@@ -187,12 +187,11 @@
                     {
                         <i class="fa fa-circle text-success"> </i>
                     }
-
                     @Html.DisplayFor(modelItem => item.Status.Value)
                 </td>
                 <td>
-                    <a asp-action="QuestionDetail" asp-route-id="@item.Id">Update</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="QuestionBank" asp-action="QuestionDetail" asp-route-id="@item.Id">Update</a> |
+                    <a asp-controller="QuestionBank" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
