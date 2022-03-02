@@ -35,6 +35,11 @@ namespace SWP391_OnlineLearning_Platform.Models
         [ForeignKey("Status_Id")]
         public virtual Status Status { get; set; }
 
+        public string OptionA { get; set; }
+        public string OptionB { get; set; }
+        public string OptionC { get; set; }
+        public string OptionD { get; set; }
+
         public List<Quiz_Question> Quiz_Questions { get; set; }
 
         public List<Question_Dimension> Question_Dimensions { get; set; }

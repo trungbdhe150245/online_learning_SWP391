@@ -39,6 +39,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Quiz_Level_Id" class="control-label">Quiz Level</label>
+                <p>
+                    Tỉ lệ tạo câu hỏi: <br />
+                    + Easy (70%easy,20%medium,10%hard)<br />
+                    + Medium (50%easy,30%medium,20%hard)<br />
+                    + Hard (30%,40%,30%)<br />
+                </p>
                 <select asp-for="Quiz_Level_Id" class="form-control" asp-items="ViewBag.Quiz_Level_Id"></select>
             </div>
             <div class="form-group">

@@ -24,7 +24,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         // GET: Admin/Quizs
         public async Task<IActionResult> Index(string key, int page)
         {
-            return View(Filter(key,page));
+            return View(Filter(key, page));
         }
         public IEnumerable<Quiz> Filter(string key, int page)
         {
@@ -91,12 +91,26 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             {
                 _context.Add(quiz);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description", quiz.Course_Id);
             ViewData["Quiz_Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name", quiz.Quiz_Level_Id);
             ViewData["Quiz_Type_Id"] = new SelectList(_context.Quiz_Types, "Id", "Name", quiz.Quiz_Type_Id);
             return View(quiz);
+        }
+
+        public void GenerateQuestion(int quiz_level)
+        {
+            switch (quiz_level)
+            {
+                case 1://dễ (70%easy,20%medium,10%hard)
+                    //lấy câu hỏi từ quesiton bank
+                    _context.Question_Banks.Where(s => s.Level_Id == quiz_level);
+                    break;
+                default:
+                    break;
+            }
         }
 
         // GET: Admin/Quizs/Edit/5
