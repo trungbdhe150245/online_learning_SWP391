@@ -32,10 +32,11 @@
     <thead class="thead-dark">
         <tr style="font-weight:bold;">
             <td>No.</td>
-            <td>Subject</td>
             <td>
                 Quiz Name
             </td>
+            <td>Subject</td>
+
             <td>
                 Level
             </td>
@@ -62,13 +63,13 @@
         {
             <tr>
                 <td>@(count++)</td>
-
+                <td style="font-weight:bold">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Course.Title)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.Quiz_Level.Name)
                 </td>
