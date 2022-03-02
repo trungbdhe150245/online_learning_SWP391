@@ -40,15 +40,17 @@
                         
             <div class="collapse" id="collapseExample">
               <div class="card card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                Transcript
               </div>
             </div>
                         <div class="collapse" id="collapseExample2">
               <div class="card card-body">
                 <h4 >Note here<br/><small style="font-size:15px">You can download your note</small></h4>
                 
-<textarea class="text_mop">Welcome to 1st sentence</textarea>
-    <input type="button" class="btn_mop" value="Download" class="fa fa-home" aria-hidden="true" />
+                <textarea class="text_mop"></textarea>
+                <div class="row">
+                <input type="button" class="btn_mop btn-primary btn" value="Download" aria-hidden="true" />
+                </div>
               </div>
             </div>
             </div>
@@ -72,19 +74,20 @@
                            @:<div class="card-body">
                                 @:<ul class="list-group">
                                     <li class="list-group-item">
-                                        <p style="margin-bottom:0"><i class="far fa-play-circle"></i> Lmao</p>
+                                        <p style="margin-bottom:0"><i class="far fa-play-circle"></i> vid1</p>
                                         <p class="title-vid" hidden>Title 1</p>
-                                        <a href="https://drive.google.com/u/0/uc?id=1Fs7-iicL37cLXndyMEO7vi4wP66J0nai&export=download" hidden></a>
+                                        <a href="src" hidden></a>
                                     </li>
-                                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                                    <li class="list-group-item">Morbi leo risus</li>
-                                    <li class="list-group-item">Porta ac consectetur ac</li>
-                                    <li class="list-group-item">Vestibulum at eros</li>
+                                    <li class="list-group-item">
+                                        <p style="margin-bottom:0"><i class="far fa-play-circle"></i> vid2</p>
+                                        <p class="title-vid" hidden>Title 2</p>
+                                        <a href="src" hidden></a>
+                                    </li>
                                     @*@:</br>*@
                                 @:</ul>
                                 <div class="list-group">
-                                    <a href="google.com" class="list-group-item list-group-item-warning">
-                                        Cras justo odio
+                                    <a href="src" class="list-group-item list-group-item-warning">
+                                        Quiz
                                     </a>
                                 </div>
                             @:</div>
@@ -103,7 +106,7 @@
 function download(file, text) {
   //creating an invisible element
   var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/html;charset=utf-8, ' + encodeURIComponent(text));
+  element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(text));
   element.setAttribute('download', file);
   document.body.appendChild(element);
   element.click();
@@ -114,7 +117,7 @@ var btn_mop = document.getElementsByClassName("btn_mop");
 for (var btn of btn_mop) {
   btn.addEventListener("click", function() {
     var text = this.previousSibling.previousSibling
-    var filename = "MOP.txt";
+    var filename = "Note.txt";
     download(filename, text.value)
   });
 }
