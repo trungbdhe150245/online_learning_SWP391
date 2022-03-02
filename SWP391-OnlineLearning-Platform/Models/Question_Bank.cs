@@ -34,10 +34,13 @@ namespace SWP391_OnlineLearning_Platform.Models
         public virtual Quiz_Level Quiz_Level { get; set; }
         [ForeignKey("Status_Id")]
         public virtual Status Status { get; set; }
-
+        [Required]
         public string OptionA { get; set; }
+        [Required]
         public string OptionB { get; set; }
+        [Required]
         public string OptionC { get; set; }
+        [Required]
         public string OptionD { get; set; }
 
         public List<Quiz_Question> Quiz_Questions { get; set; }
