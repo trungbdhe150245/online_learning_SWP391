@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SWP391_OnlineLearning_Platform.Data;
 using SWP391_OnlineLearning_Platform.Models;
+using SWP391_OnlineLearning_Platform.Models.ViewModels;
 
 namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
 {
@@ -66,7 +68,19 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             }
             ViewData["Quiz_Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name", quiz.Quiz_Level_Id);
 
-            return View(quiz);
+            //KIỂM TRA TRONG DATABASE XEM QUIZ ĐÃ TẠO DANH SÁCH QUESTION CHƯA 
+            //if(_context.Quiz_Questions.Find(id).ToString() != null)
+            //{
+            var questions = (from s in _context.Quiz_Questions
+                            join k in _context.Question_Banks on s.Question_Id equals k.Id
+                            where s.Quiz_Id == id
+                            select k).ToList();
+
+            //var questions = _context.Question_Banks.Where(s => s.Id == 18).ToList();
+            Quiz_QuestionVM quiz_QuestionVM = new Quiz_QuestionVM();
+            quiz_QuestionVM.quiz = quiz;
+            quiz_QuestionVM.list_question = questions;
+            return View(quiz_QuestionVM);
         }
 
         // GET: Admin/Quizs/Create
@@ -83,17 +97,13 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Description,Duration,Name,Number_question,Pass_rate,Course_Id,Quiz_Level_Id,Quiz_Type_Id")] Quiz quiz)
         {
-            //TẠO CÂU HỎI TỪ QUESTION BANK (THEO LEVEL, COURSE)
-
-            //lấy id cũ +1:
-
 
 
             if (ModelState.IsValid)
             {
                 _context.Add(quiz);
                 await _context.SaveChangesAsync();
-
+                //TẠO CÂU HỎI TỪ QUESTION BANK (THEO LEVEL, COURSE)
                 int quiz_id = ((from s in _context.Quizzes select s.Id).Max()) + 1;
                 GenerateQuestion(quiz.Quiz_Level_Id, quiz.Number_question, quiz.Id);
 
@@ -102,8 +112,6 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description", quiz.Course_Id);
             ViewData["Quiz_Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name", quiz.Quiz_Level_Id);
             ViewData["Quiz_Type_Id"] = new SelectList(_context.Quiz_Types, "Id", "Name", quiz.Quiz_Type_Id);
-
-
 
 
             return View(quiz);
@@ -142,7 +150,8 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             IList<Question_Bank> temp = (from s in _context.Question_Banks select s).Take(numberOfQuestion).ToList();
             foreach (var item in temp)
             {
-                _context.Add(new Quiz_Question { 
+                _context.Add(new Quiz_Question
+                {
                     Question_Id = item.Id,
                     Quiz_Id = quiz_id
                 });
