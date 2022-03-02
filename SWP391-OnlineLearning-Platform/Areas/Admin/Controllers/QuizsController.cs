@@ -72,7 +72,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             var questions = (from s in _context.Quiz_Questions
                             join k in _context.Question_Banks on s.Question_Id equals k.Id
                             where s.Quiz_Id == id
-                            select k).ToList();
+                            select k).Include(q => q.Status).ToList();
 
             Quiz_QuestionVM quiz_QuestionVM = new Quiz_QuestionVM();
             quiz_QuestionVM.quiz = quiz;
@@ -144,7 +144,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
             //var questionMedium = (from s in _context.Question_Banks where s.Level_Id == 2 select s);
             //var questionHard = (from s in _context.Question_Banks where s.Level_Id == 3 select s);
 
-            IList<Question_Bank> temp = _context.Question_Banks.Include(q => q.Status).Take(numberOfQuestion).ToList();
+            IList<Question_Bank> temp = _context.Question_Banks.Take(numberOfQuestion).ToList();
             foreach (var item in temp)
             {
                 _context.Add(new Quiz_Question
