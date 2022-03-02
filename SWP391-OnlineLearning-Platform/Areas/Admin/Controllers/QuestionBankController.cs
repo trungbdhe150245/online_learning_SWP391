@@ -228,6 +228,11 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var question_Bank = await _context.Question_Banks.FindAsync(id);
+            var quesiton_find_in_qq = _context.Quiz_Questions.Where(x => x.Question_Id == id).ToList();
+            foreach (var item in quesiton_find_in_qq)
+            {
+                _context.Quiz_Questions.Remove(item);
+            }
             _context.Question_Banks.Remove(question_Bank);
             await _context.SaveChangesAsync();
             return RedirectToAction("QuestionList");
