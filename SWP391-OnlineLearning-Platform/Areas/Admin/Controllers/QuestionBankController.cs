@@ -163,7 +163,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         // POST: Admin/QuestionBank/QuestionDetail/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> QuestionDetail(int id, [Bind("Id,Answer,Content,Explanation,Course_Id,Level_Id,Status_Id")] Question_Bank question_Bank)
+        public async Task<IActionResult> QuestionDetail(int id, [Bind("Id,Answer,Content,Explanation,Course_Id,Level_Id,Status_Id,OptionA,OptionB,OptionC,OptionD")] Question_Bank question_Bank)
         {
             //THAY ĐỔI CÂU HỎI THEO LEVEL
 
