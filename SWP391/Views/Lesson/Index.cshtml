@@ -5,15 +5,7 @@
     ViewData["Title"] = "LESSON";
     Layout = "~/Views/Shared/_LayoutNoContainer.cshtml";
 }
-<style>
-    .lesson-container {
-        margin: 0 5%;
-    }
 
-    .lesson-main {
-        margin: 0 0 10px 0;
-    }
-</style>
 @await Html.PartialAsync("~/Views/Shared/Modal/Lesson/_ModalCourseOvw.cshtml")
 <div class="lesson-container">
     <main role="main" class="pb-3">
@@ -73,22 +65,24 @@
                         @:<div id="@("collapseOne" + i)" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                            @:<div class="card-body">
                                 @:<ul class="list-group">
+                                    @for (var x = 0; x < 4; x++)
+                                   {
                                     <li class="list-group-item">
-                                        <p style="margin-bottom:0"><i class="far fa-play-circle"></i> vid1</p>
-                                        <p class="title-vid" hidden>Title 1</p>
+                                        <p style="margin-bottom:0"><i class="far fa-play-circle"></i> @("Vid" + x)</p>
+                                        <p class="title-vid" hidden>@("Title" + x)</p>
                                         <a href="src" hidden></a>
                                     </li>
-                                    <li class="list-group-item">
-                                        <p style="margin-bottom:0"><i class="far fa-play-circle"></i> vid2</p>
-                                        <p class="title-vid" hidden>Title 2</p>
-                                        <a href="src" hidden></a>
-                                    </li>
-                                    @*@:</br>*@
+                                   }
                                 @:</ul>
+                                <br/>
                                 <div class="list-group">
-                                    <a href="src" class="list-group-item list-group-item-warning">
+                                    @for (var j = 0; j < 2; j++)
+                                    {
+                                      <a href="src" class="list-group-item list-group-item-warning">
                                         Quiz
                                     </a>
+                                    }
+
                                 </div>
                             @:</div>
                         @:</div>
@@ -102,28 +96,6 @@
 </div>
 
 
-<script>
-function download(file, text) {
-  //creating an invisible element
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', file);
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
-}
-
-var btn_mop = document.getElementsByClassName("btn_mop");
-for (var btn of btn_mop) {
-  btn.addEventListener("click", function() {
-    var text = this.previousSibling.previousSibling
-    var filename = "Note.txt";
-    download(filename, text.value)
-  });
-}
-</script>
-
-
 <style>
     .accordion .collapse .card-body .vid video {
         width: 100px;
@@ -131,39 +103,17 @@ for (var btn of btn_mop) {
     }
 </style>
 
-<script>
-    let hreflist = document.querySelectorAll('.list-group .list-group-item');
-    let mainvideo = document.querySelector('.row .col-md-8 video');
-    let maintitle = document.querySelector('.row .col-md-8 .title');
+<style>
+    .lesson-container {
+        margin: 0 5%;
+    }
 
-    hreflist.forEach(href => {
-        href.onclick = () => {
-            hreflist.forEach(vid => vid.classList.remove('active'));
-            href.classList.add('active');
-            if (href.classList.contains('active')) {
-                let src = href.children[2].getAttribute('href');
-                mainvideo.src = src;
-                let title = href.children[1].innerHTML;
-                maintitle.innerHTML = title;
-            };
-        };
-    });
+    .lesson-main {
+        margin: 0 0 10px 0;
+    }
+</style>
 
-function scriptToggle() {
-  document.getElementById("collapseExample2").classList.remove("show");
-}
-function noteToggle() {
-  document.getElementById("collapseExample").classList.remove("show");
-}
 
-    document.addEventListener('DOMContentLoaded', function() {
-        hreflist[0].classList.add("active");
-        document.getElementById("collapseOne0").classList.add("show");
-
-}, false);
-   
-</script>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" @*integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"*@ crossorigin="anonymous"></script>
+<script src="~/js/lesson.js" asp-append-version="true"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

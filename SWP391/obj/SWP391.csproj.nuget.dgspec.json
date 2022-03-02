@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\FPTLearning\\Spring2022\\SWP391\\Week6\\New folder\\online_learning_SWP391\\SWP391\\SWP391.csproj": {}
+    "E:\\FPTLearning\\Spring2022\\SWP391\\Week6\\online_learning_SWP391\\SWP391\\SWP391.csproj": {}
   },
   "projects": {
-    "E:\\FPTLearning\\Spring2022\\SWP391\\Week6\\New folder\\online_learning_SWP391\\SWP391\\SWP391.csproj": {
+    "E:\\FPTLearning\\Spring2022\\SWP391\\Week6\\online_learning_SWP391\\SWP391\\SWP391.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\FPTLearning\\Spring2022\\SWP391\\Week6\\New folder\\online_learning_SWP391\\SWP391\\SWP391.csproj",
+        "projectUniqueName": "E:\\FPTLearning\\Spring2022\\SWP391\\Week6\\online_learning_SWP391\\SWP391\\SWP391.csproj",
         "projectName": "SWP391",
-        "projectPath": "E:\\FPTLearning\\Spring2022\\SWP391\\Week6\\New folder\\online_learning_SWP391\\SWP391\\SWP391.csproj",
+        "projectPath": "E:\\FPTLearning\\Spring2022\\SWP391\\Week6\\online_learning_SWP391\\SWP391\\SWP391.csproj",
         "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-        "outputPath": "E:\\FPTLearning\\Spring2022\\SWP391\\Week6\\New folder\\online_learning_SWP391\\SWP391\\obj\\",
+        "outputPath": "E:\\FPTLearning\\Spring2022\\SWP391\\Week6\\online_learning_SWP391\\SWP391\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
