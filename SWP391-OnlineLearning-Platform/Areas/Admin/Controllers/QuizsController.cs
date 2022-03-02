@@ -85,6 +85,8 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
         {
             //TẠO CÂU HỎI TỪ QUESTION BANK (THEO LEVEL, COURSE)
 
+            //lấy id cũ +1:
+
 
 
             if (ModelState.IsValid)
@@ -92,26 +94,74 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
                 _context.Add(quiz);
                 await _context.SaveChangesAsync();
 
+                int quiz_id = ((from s in _context.Quizzes select s.Id).Max()) + 1;
+                GenerateQuestion(quiz.Quiz_Level_Id, quiz.Number_question, quiz.Id);
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description", quiz.Course_Id);
             ViewData["Quiz_Level_Id"] = new SelectList(_context.Quiz_Levels, "Id", "Name", quiz.Quiz_Level_Id);
             ViewData["Quiz_Type_Id"] = new SelectList(_context.Quiz_Types, "Id", "Name", quiz.Quiz_Type_Id);
+
+
+
+
             return View(quiz);
         }
 
-        public void GenerateQuestion(int quiz_level)
+        public async void GenerateQuestion(int quiz_level, int numberOfQuestion, int quiz_id)
         {
-            switch (quiz_level)
+            //int easy = 0, medium = 0, hard = 0;
+            //switch (quiz_level)
+            //{
+            //    case 1://dễ (70%easy,20%medium,10%hard)
+            //        //lấy câu hỏi từ quesiton bank
+            //        easy = (int)Math.Round(numberOfQuestion * 0.7, 0);
+            //        medium = (int)Math.Round(numberOfQuestion * 0.2, 0);
+            //        hard = (int)Math.Round(numberOfQuestion * 0.1, 0);
+            //        break;
+            //    case 2://trung bình (50%easy,30%medium,20%hard)
+            //        //lấy câu hỏi từ quesiton bank
+            //        easy = (int)Math.Round(numberOfQuestion * 0.5, 0);
+            //        medium = (int)Math.Round(numberOfQuestion * 0.3, 0);
+            //        hard = (int)Math.Round(numberOfQuestion * 0.2, 0);
+            //        break;
+            //    case 3://khó (30%,40%,30%)
+            //        //lấy câu hỏi từ quesiton bank
+            //        easy = (int)Math.Round(numberOfQuestion * 0.3, 0);
+            //        medium = (int)Math.Round(numberOfQuestion * 0.4, 0);
+            //        hard = (int)Math.Round(numberOfQuestion * 0.3, 0);
+            //        break;
+            //    default:
+            //        break;
+            //}
+            //var questionEasy = (from s in _context.Question_Banks where s.Level_Id == 1 select s);
+            //var questionMedium = (from s in _context.Question_Banks where s.Level_Id == 2 select s);
+            //var questionHard = (from s in _context.Question_Banks where s.Level_Id == 3 select s);
+
+            IList<Question_Bank> temp = (from s in _context.Question_Banks select s).Take(numberOfQuestion).ToList();
+            foreach (var item in temp)
             {
-                case 1://dễ (70%easy,20%medium,10%hard)
-                    //lấy câu hỏi từ quesiton bank
-                    _context.Question_Banks.Where(s => s.Level_Id == quiz_level);
-                    break;
-                default:
-                    break;
+                _context.Add(new Quiz_Question { 
+                    Question_Id = item.Id,
+                    Quiz_Id = quiz_id
+                });
+                _context.SaveChanges();
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async void CreateQuiz_Question([Bind("Quiz_Id,Question_Id")] Quiz_Question quiz_Question)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(quiz_Question);
+            }
+            ViewData["Question_Id"] = new SelectList(_context.Question_Banks, "Id", "Answer", quiz_Question.Question_Id);
+            ViewData["Quiz_Id"] = new SelectList(_context.Quizzes, "Id", "Description", quiz_Question.Quiz_Id);
+        }
+
 
         // GET: Admin/Quizs/Edit/5
         public async Task<IActionResult> Edit(int? id)

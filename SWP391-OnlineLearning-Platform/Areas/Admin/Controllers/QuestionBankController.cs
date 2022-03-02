@@ -80,7 +80,7 @@ namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
                     questions = questions.OrderBy(s => s.Content).ToList();
                     break;
             }
-            const int pageSize = 2;
+            const int pageSize = 4;
             if (page < 1)
             {
                 page = 1;
