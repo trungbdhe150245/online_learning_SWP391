@@ -64,8 +64,8 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.quiz.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.quiz.Id"><button type="button" class="btn btn-primary">Edit</button></a> |
+    <a asp-action="Index"><button type="button" class="btn btn-success">Back To List</button></a>
 </div>
 
 @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Setting</button>
@@ -190,7 +190,7 @@
                     @Html.DisplayFor(modelItem => item.Status.Value)
                 </td>
                 <td>
-                    <a asp-controller="QuestionBank" asp-action="QuestionDetail" asp-route-id="@item.Id">Update</a> |
+                    <a asp-controller="QuestionBank" asp-action="QuestionDetail" asp-route-id="@item.Id">Detail</a> |
                     <a asp-controller="QuestionBank" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
