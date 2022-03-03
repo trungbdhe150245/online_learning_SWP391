@@ -1,15 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SWP391.DAO;
 using SWP391.Data;
+using SWP391.Models;
 using System.Collections.Generic;
 using System.Linq;
 namespace SWP391.Controllers
 {
     public class CourseController : Controller
     {
-        private readonly LearningDbContext _db;
-        public CourseController(LearningDbContext db)
+        private LessonDAO lessonDAO = new LessonDAO();
+        public CourseController()
         {
-            _db = db; 
+            
         }
 
         public IActionResult Index()
@@ -17,14 +19,17 @@ namespace SWP391.Controllers
             return View();
         }
 
-        public IActionResult Lesson(int? id)
-        {
-            return Ok(id);
-        }
+       
+
+
+        //public IActionResult Lesson(int? id)
+        //{
+        //    return Ok(id);
+        //}
         public IActionResult Content() 
         {
-
-            return Ok();
+            List<Lesson> lessons = lessonDAO.GetLessons();
+            return View(lessons);
         }
 
 
