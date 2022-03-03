@@ -14,8 +14,8 @@ namespace SWP391.Models
 		public int Duration { get; set; }
 		public string Name { get; set; }
 		public int QuestionNum { get; set; }
-		public virtual Course Course { get; set; }
-		public string CourseId { get; set; }
+		public virtual Topic Topic { get; set; }
+		public string TopicId { get; set; }
 		public ICollection<Attempt> Attempts { get; set; }
 		public ICollection<QuizQuestion> QuizQuestions { get; set; }
 		public virtual QuizType QuizType { get; set; }

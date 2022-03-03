@@ -14,6 +14,7 @@ namespace SWP391.Models
 		public string TopicName { get; set; }
 		public virtual Course Course { get; set; }
 		public string CourseId { get; set; }
-		public ICollection<Lesson> Lessons { get; set; }
+        public ICollection<Quiz> Quizzes { get; set; }
+        public ICollection<Lesson> Lessons { get; set; }
  	}
 }

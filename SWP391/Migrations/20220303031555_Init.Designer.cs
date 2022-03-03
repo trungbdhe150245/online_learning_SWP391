@@ -10,7 +10,7 @@ using SWP391.Data;
 namespace SWP391.Migrations
 {
     [DbContext(typeof(LearningDbContext))]
-    [Migration("20220224192327_Init")]
+    [Migration("20220303031555_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -300,7 +300,7 @@ namespace SWP391.Migrations
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("StatusId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("ThumbnailURL")
                         .HasColumnType("varchar(max)");
@@ -382,7 +382,7 @@ namespace SWP391.Migrations
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("StatusId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("ThumbnailURL")
                         .HasColumnType("text");
@@ -499,9 +499,6 @@ namespace SWP391.Migrations
                     b.Property<string>("PricePackageId")
                         .HasColumnType("varchar(10)");
 
-                    b.Property<string>("StatusId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("TopicId")
                         .HasColumnType("nvarchar(max)");
 
@@ -511,8 +508,6 @@ namespace SWP391.Migrations
                     b.HasKey("LessonId");
 
                     b.HasIndex("PricePackageId");
-
-                    b.HasIndex("StatusId");
 
                     b.ToTable("Lessons");
                 });
@@ -553,7 +548,7 @@ namespace SWP391.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("StatusId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.HasKey("PricePackageId");
 
@@ -595,7 +590,7 @@ namespace SWP391.Migrations
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("StatusId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<double>("Weight")
                         .HasColumnType("float");
@@ -652,6 +647,9 @@ namespace SWP391.Migrations
                     b.Property<string>("QuizTypeId")
                         .HasColumnType("varchar(10)");
 
+                    b.Property<string>("TopicId")
+                        .HasColumnType("varchar(10)");
+
                     b.HasKey("QuizId");
 
                     b.HasIndex("CourseId");
@@ -659,6 +657,8 @@ namespace SWP391.Migrations
                     b.HasIndex("QuizLevelId");
 
                     b.HasIndex("QuizTypeId");
+
+                    b.HasIndex("TopicId");
 
                     b.ToTable("Quizzes");
                 });
@@ -716,7 +716,7 @@ namespace SWP391.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("StatusId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("ThumbnailURL")
                         .HasColumnType("text");
@@ -734,10 +734,10 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Status", b =>
                 {
                     b.Property<string>("StatusId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("StatusId");
 
@@ -1002,13 +1002,6 @@ namespace SWP391.Migrations
                         .HasForeignKey("PricePackageId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("SWP391.Models.Status", "Status")
-                        .WithMany("Lessons")
-                        .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("Status");
-
                     b.Navigation("Topic");
                 });
 
@@ -1086,10 +1079,9 @@ namespace SWP391.Migrations
 
             modelBuilder.Entity("SWP391.Models.Quiz", b =>
                 {
-                    b.HasOne("SWP391.Models.Course", "Course")
+                    b.HasOne("SWP391.Models.Course", null)
                         .WithMany("Quizzes")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .HasForeignKey("CourseId");
 
                     b.HasOne("SWP391.Models.QuizLevel", "QuizLevel")
                         .WithMany("Quizzes")
@@ -1101,11 +1093,16 @@ namespace SWP391.Migrations
                         .HasForeignKey("QuizTypeId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("Course");
+                    b.HasOne("SWP391.Models.Topic", "Topic")
+                        .WithMany("Quizzes")
+                        .HasForeignKey("TopicId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("QuizLevel");
 
                     b.Navigation("QuizType");
+
+                    b.Navigation("Topic");
                 });
 
             modelBuilder.Entity("SWP391.Models.QuizQuestion", b =>
@@ -1278,8 +1275,6 @@ namespace SWP391.Migrations
 
                     b.Navigation("Courses");
 
-                    b.Navigation("Lessons");
-
                     b.Navigation("PricePackages");
 
                     b.Navigation("QuestionBanks");
@@ -1290,6 +1285,8 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Topic", b =>
                 {
                     b.Navigation("Lessons");
+
+                    b.Navigation("Quizzes");
                 });
 #pragma warning restore 612, 618
         }

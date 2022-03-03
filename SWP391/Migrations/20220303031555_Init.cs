@@ -85,8 +85,8 @@ namespace SWP391.Migrations
                 name: "Status",
                 columns: table => new
                 {
-                    StatusId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    StatusId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Value = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -175,7 +175,7 @@ namespace SWP391.Migrations
                     Title = table.Column<string>(type: "varchar(255)", nullable: true),
                     FeaturedId = table.Column<string>(type: "varchar(10)", nullable: false),
                     CategoryId = table.Column<string>(type: "varchar(10)", nullable: true),
-                    StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    StatusId = table.Column<string>(type: "varchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -207,7 +207,7 @@ namespace SWP391.Migrations
                     Price = table.Column<double>(type: "float", nullable: false),
                     Duration = table.Column<int>(type: "int", nullable: false),
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    StatusId = table.Column<string>(type: "varchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -228,7 +228,7 @@ namespace SWP391.Migrations
                     CourseURL = table.Column<string>(type: "text", nullable: true),
                     ThumbnailURL = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    StatusId = table.Column<string>(type: "varchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -251,7 +251,7 @@ namespace SWP391.Migrations
                     Featured = table.Column<int>(type: "int", nullable: false),
                     ThumbnailURL = table.Column<string>(type: "varchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    StatusId = table.Column<string>(type: "varchar(10)", nullable: true),
                     CategoryId = table.Column<string>(type: "varchar(10)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     FeaturedId = table.Column<string>(type: "varchar(10)", nullable: true)
@@ -427,7 +427,7 @@ namespace SWP391.Migrations
                     OptionB = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OptionC = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OptionD = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    StatusId = table.Column<string>(type: "varchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -447,39 +447,6 @@ namespace SWP391.Migrations
                         column: x => x.StatusId,
                         principalTable: "Status",
                         principalColumn: "StatusId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Quizzes",
-                columns: table => new
-                {
-                    QuizId = table.Column<string>(type: "varchar(10)", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    Duration = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "varchar(255)", nullable: true),
-                    QuestionNum = table.Column<int>(type: "int", nullable: false),
-                    CourseId = table.Column<string>(type: "varchar(10)", nullable: true),
-                    QuizTypeId = table.Column<string>(type: "varchar(10)", nullable: true),
-                    QuizLevelId = table.Column<string>(type: "varchar(10)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Quizzes", x => x.QuizId);
-                    table.ForeignKey(
-                        name: "FK_Quizzes_Courses_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Courses",
-                        principalColumn: "CourseId");
-                    table.ForeignKey(
-                        name: "FK_Quizzes_QuizLevels_QuizLevelId",
-                        column: x => x.QuizLevelId,
-                        principalTable: "QuizLevels",
-                        principalColumn: "QuizLevelId");
-                    table.ForeignKey(
-                        name: "FK_Quizzes_QuizTypes_QuizTypeId",
-                        column: x => x.QuizTypeId,
-                        principalTable: "QuizTypes",
-                        principalColumn: "QuizTypeId");
                 });
 
             migrationBuilder.CreateTable(
@@ -599,6 +566,68 @@ namespace SWP391.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Lessons",
+                columns: table => new
+                {
+                    LessonId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    LessonName = table.Column<string>(type: "varchar(255)", nullable: true),
+                    LessonOrder = table.Column<int>(type: "int", nullable: false),
+                    HtmlContent = table.Column<string>(type: "text", nullable: true),
+                    VideoURL = table.Column<string>(type: "text", nullable: true),
+                    PricePackageId = table.Column<string>(type: "varchar(10)", nullable: true),
+                    TopicId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lessons", x => x.LessonId);
+                    table.ForeignKey(
+                        name: "FK_Lessons_Topics_PricePackageId",
+                        column: x => x.PricePackageId,
+                        principalTable: "Topics",
+                        principalColumn: "TopicId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Quizzes",
+                columns: table => new
+                {
+                    QuizId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "varchar(255)", nullable: true),
+                    QuestionNum = table.Column<int>(type: "int", nullable: false),
+                    TopicId = table.Column<string>(type: "varchar(10)", nullable: true),
+                    QuizTypeId = table.Column<string>(type: "varchar(10)", nullable: true),
+                    QuizLevelId = table.Column<string>(type: "varchar(10)", nullable: true),
+                    CourseId = table.Column<string>(type: "varchar(10)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Quizzes", x => x.QuizId);
+                    table.ForeignKey(
+                        name: "FK_Quizzes_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "CourseId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Quizzes_QuizLevels_QuizLevelId",
+                        column: x => x.QuizLevelId,
+                        principalTable: "QuizLevels",
+                        principalColumn: "QuizLevelId");
+                    table.ForeignKey(
+                        name: "FK_Quizzes_QuizTypes_QuizTypeId",
+                        column: x => x.QuizTypeId,
+                        principalTable: "QuizTypes",
+                        principalColumn: "QuizTypeId");
+                    table.ForeignKey(
+                        name: "FK_Quizzes_Topics_TopicId",
+                        column: x => x.TopicId,
+                        principalTable: "Topics",
+                        principalColumn: "TopicId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Attempts",
                 columns: table => new
                 {
@@ -643,34 +672,6 @@ namespace SWP391.Migrations
                         column: x => x.QuizId,
                         principalTable: "Quizzes",
                         principalColumn: "QuizId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Lessons",
-                columns: table => new
-                {
-                    LessonId = table.Column<string>(type: "varchar(10)", nullable: false),
-                    LessonName = table.Column<string>(type: "varchar(255)", nullable: true),
-                    LessonOrder = table.Column<int>(type: "int", nullable: false),
-                    HtmlContent = table.Column<string>(type: "text", nullable: true),
-                    VideoURL = table.Column<string>(type: "text", nullable: true),
-                    StatusId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    PricePackageId = table.Column<string>(type: "varchar(10)", nullable: true),
-                    TopicId = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Lessons", x => x.LessonId);
-                    table.ForeignKey(
-                        name: "FK_Lessons_Status_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Status",
-                        principalColumn: "StatusId");
-                    table.ForeignKey(
-                        name: "FK_Lessons_Topics_PricePackageId",
-                        column: x => x.PricePackageId,
-                        principalTable: "Topics",
-                        principalColumn: "TopicId");
                 });
 
             migrationBuilder.CreateTable(
@@ -777,11 +778,6 @@ namespace SWP391.Migrations
                 column: "PricePackageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Lessons_StatusId",
-                table: "Lessons",
-                column: "StatusId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Owners_CourseId",
                 table: "Owners",
                 column: "CourseId");
@@ -830,6 +826,11 @@ namespace SWP391.Migrations
                 name: "IX_Quizzes_QuizTypeId",
                 table: "Quizzes",
                 column: "QuizTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Quizzes_TopicId",
+                table: "Quizzes",
+                column: "TopicId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
@@ -950,9 +951,6 @@ namespace SWP391.Migrations
                 name: "Blogs");
 
             migrationBuilder.DropTable(
-                name: "Topics");
-
-            migrationBuilder.DropTable(
                 name: "Dimensions");
 
             migrationBuilder.DropTable(
@@ -974,13 +972,16 @@ namespace SWP391.Migrations
                 name: "DimensionTypes");
 
             migrationBuilder.DropTable(
-                name: "Courses");
-
-            migrationBuilder.DropTable(
                 name: "QuizLevels");
 
             migrationBuilder.DropTable(
                 name: "QuizTypes");
+
+            migrationBuilder.DropTable(
+                name: "Topics");
+
+            migrationBuilder.DropTable(
+                name: "Courses");
 
             migrationBuilder.DropTable(
                 name: "Categories");

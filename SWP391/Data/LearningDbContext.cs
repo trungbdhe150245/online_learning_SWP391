@@ -126,10 +126,10 @@ namespace SWP391.Data
                 entity.Property(l => l.HtmlContent).HasColumnType("text");
                 entity.Property(l => l.VideoURL).HasColumnType("text");
                 entity.HasKey(l => l.LessonId);
-                entity.HasOne(l => l.Status)
-                        .WithMany(s => s.Lessons)
-                        .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                //entity.HasOne(l => l.Status)
+                //        .WithMany(s => s.Lessons)
+                //        .HasForeignKey("StatusId")
+                //        .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(l => l.Topic)
                         .WithMany(t => t.Lessons)
                         .HasForeignKey("PricePackageId")
@@ -145,6 +145,11 @@ namespace SWP391.Data
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasKey(o => new { o.UserId, o.CourseId });
+            });
+            modelBuilder.Entity<Status>(entity => {
+                entity.Property(s => s.StatusId).HasColumnType("varchar(10)");
+                entity.Property(s => s.Value).HasColumnType("varchar(255)");
+                entity.HasKey(s => s.StatusId);
             });
             modelBuilder.Entity<PricePackage>(entity => {
                 entity.Property(pp => pp.PricePackageId).HasColumnType("varchar(10)");
@@ -194,10 +199,16 @@ namespace SWP391.Data
                         .WithMany(ql => ql.Quizzes)
                         .HasForeignKey("QuizLevelId")
                         .OnDelete(DeleteBehavior.NoAction);
-                entity.HasOne(q => q.Course)
-                        .WithMany(c => c.Quizzes)
-                        .HasForeignKey("CourseId")
+                //*******
+                entity.HasOne(q => q.Topic)
+                        .WithMany(t => t.Quizzes)
+                        .HasForeignKey("TopicId")
                         .OnDelete(DeleteBehavior.NoAction);
+                //*******
+                //entity.HasOne(q => q.Course)
+                //        .WithMany(c => c.Quizzes)
+                //        .HasForeignKey("CourseId")
+                //        .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<QuizLevel>(entity => {
                 entity.Property(ql => ql.QuizLevelId).HasColumnType("varchar(10)");

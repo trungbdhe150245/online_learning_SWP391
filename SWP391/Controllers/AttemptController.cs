@@ -2,16 +2,11 @@
 
 namespace SWP391.Controllers
 {
-    public class LessonController : Controller
+    public class AttemptController : Controller
     {
         public IActionResult Index()
         {
             return View();
-        }
-
-        public IActionResult Attempt()
-        {
-            return Ok("Lmao");
         }
     }
 }
