@@ -117,29 +117,6 @@
     }
 </style>
 
-<script>
-    function download(file, text) {
-  //creating an invisible element
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/html;charset=utf-8, ' + encodeURIComponent(text));
-  console.log(element.href);
-  element.setAttribute('download', file);
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
-}
-
-var btn_mop = document.getElementsByClassName("btn_mop");
-for (var btn of btn_mop) {
-  btn.addEventListener("click", function() {
-    var text = this.parentNode.getElementsByClassName("text_mop")[0];
-    var filename = "MOP.txt";
-    download(filename, text.value)
-  });
-}
-    </script>
-
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" @*integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"*@ crossorigin="anonymous"></script>
 <script src="~/js/lesson.js" asp-append-version="true"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
