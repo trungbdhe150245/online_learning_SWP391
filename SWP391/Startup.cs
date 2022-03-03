@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using SWP391.Data;
 using SWP391.Models;
 using SWP391.Utility;
+using SWP391.Utility.BraintreeService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,8 +57,8 @@ namespace SWP391
 
 			services.AddOptions();                                        
 			var mailsettings = Configuration.GetSection("MailSettings"); 
-			services.Configure<MailSettings>(mailsettings);               
-
+			services.Configure<MailSettings>(mailsettings);
+			services.AddTransient<IBraintreeService, BraintreeService>();
 			services.AddTransient<IEmailSender, SendMailService>();        
 
 			services.AddRazorPages();
