@@ -1998,10 +1998,15 @@ button.back-to-top {
 	font-size: 14px;
 	color:#242424;
 }
+
+.visible-paging {
+	display: none!important;
+}
 /* Popular Courses */
 .cours-bx .info-bx{
 	padding:15px;
 	font-size: 13px;
+	height: 170px;
 }
 .cours-bx .action-box .btn{
 	border-radius: 0;

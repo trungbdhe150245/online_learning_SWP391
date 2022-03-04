@@ -8799,11 +8799,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week7\\online_learning_SWP391\\SWP391\\SWP391.csproj",
+      "projectUniqueName": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week8\\online_learning_SWP391\\SWP391\\SWP391.csproj",
       "projectName": "SWP391",
-      "projectPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week7\\online_learning_SWP391\\SWP391\\SWP391.csproj",
+      "projectPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week8\\online_learning_SWP391\\SWP391\\SWP391.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week7\\online_learning_SWP391\\SWP391\\obj\\",
+      "outputPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week8\\online_learning_SWP391\\SWP391\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

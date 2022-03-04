@@ -180,7 +180,7 @@ namespace SWP391.Controllers
                     break;
             }
 
-            const int pageSize = 5;
+            const int pageSize = 6;
             if (page < 1)
             {
                 page = 1;

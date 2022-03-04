@@ -9090,11 +9090,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week7\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+      "projectUniqueName": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week8\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
       "projectName": "SWP391-OnlineLearning-Platform",
-      "projectPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week7\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+      "projectPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week8\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week7\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
+      "outputPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week8\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
