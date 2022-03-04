@@ -4,50 +4,162 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SWP391</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-</head>
-<body>
-    @*<header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SWP391</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                        </ul>
-                    </div>
-                    @await Html.PartialAsync("_LoginPartial")
-                </div>
-            </nav>
-        </header>*@
-    @await Html.PartialAsync("_HeaderPartial")
+    <link rel="stylesheet" href="~/css/main.css" />*@
+    <link rel="stylesheet" type="text/css" href="~/assets/css/assets.css">
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <!-- TYPOGRAPHY ============================================= -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/typography.css">
+
+    <!-- SHORTCODES ============================================= -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/shortcodes/shortcodes.css">
+
+    <!-- STYLESHEETS ============================================= -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="~/assets/css/color/color-1.css">
+
+    <!-- REVOLUTION SLIDER CSS ============================================= -->
+    <link rel="stylesheet" type="text/css" href="~/assets/vendors/revolution/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/vendors/revolution/css/settings.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/vendors/revolution/css/navigation.css">
+</head>
+<body id="bg">
+    <div class="page-wraper">
+        <div id="loading-icon-bx"></div>
+        <header class="header rs-nav header-transparent">
+            @await Html.PartialAsync("_HeaderPartial")
+        </header>
+        @RenderBody()
+        <footer>
+            @await Html.PartialAsync("_FooterPartial")
+        </footer>
+        <button class="back-to-top fa fa-chevron-up"></button>
     </div>
 
-    @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2022 - SWP391 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
-    @await Html.PartialAsync("_FooterPartial")
+    @*<div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>*@
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @*@await Html.PartialAsync("_FooterPartial")*@
+
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/vendors/bootstrap/js/popper.min.js"></script>
+    <script src="~/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="~/assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+    <script src="~/assets/vendors/magnific-popup/magnific-popup.js"></script>
+    <script src="~/assets/vendors/counter/waypoints-min.js"></script>
+    <script src="~/assets/vendors/counter/counterup.min.js"></script>
+    <script src="~/assets/vendors/imagesloaded/imagesloaded.js"></script>
+    <script src="~/assets/vendors/masonry/masonry.js"></script>
+    <script src="~/assets/vendors/masonry/filter.js"></script>
+    <script src="~/assets/vendors/owl-carousel/owl.carousel.js"></script>
+    <script src="~/assets/js/functions.js?v=2"></script>
+    <script src="~/assets/js/contact.js"></script>
+    <script src='~/assets/vendors/switcher/switcher.js'></script>
+    <!-- Revolution JavaScripts Files -->
+    <script src="~/assets/vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/assets/vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <!-- Slider revolution 5.0 Extensions  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+    <script src="~/assets/vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script src="~/assets/vendors/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script src="~/assets/vendors/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script src="~/assets/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="~/assets/vendors/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script src="~/assets/vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="~/assets/vendors/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script src="~/assets/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="~/assets/vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            var ttrevapi;
+            var tpj = jQuery;
+            if (tpj("#rev_slider_486_1").revolution == undefined) {
+                revslider_showDoubleJqueryError("#rev_slider_486_1");
+            } else {
+                ttrevapi = tpj("#rev_slider_486_1").show().revolution({
+                    sliderType: "standard",
+                    jsFileLocation: "~/assets/vendors/revolution/js/",
+                    sliderLayout: "fullwidth",
+                    dottedOverlay: "none",
+                    delay: 9000,
+                    navigation: {
+                        keyboardNavigation: "on",
+                        keyboard_direction: "horizontal",
+                        mouseScrollNavigation: "off",
+                        mouseScrollReverse: "default",
+                        onHoverStop: "on",
+                        touch: {
+                            touchenabled: "on",
+                            swipe_threshold: 75,
+                            swipe_min_touches: 1,
+                            swipe_direction: "horizontal",
+                            drag_block_vertical: false
+                        }
+                        ,
+                        arrows: {
+                            style: "uranus",
+                            enable: true,
+                            hide_onmobile: false,
+                            hide_onleave: false,
+                            tmp: '',
+                            left: {
+                                h_align: "left",
+                                v_align: "center",
+                                h_offset: 10,
+                                v_offset: 0
+                            },
+                            right: {
+                                h_align: "right",
+                                v_align: "center",
+                                h_offset: 10,
+                                v_offset: 0
+                            }
+                        },
+
+                    },
+                    viewPort: {
+                        enable: true,
+                        outof: "pause",
+                        visible_area: "80%",
+                        presize: false
+                    },
+                    responsiveLevels: [1240, 1024, 778, 480],
+                    visibilityLevels: [1240, 1024, 778, 480],
+                    gridwidth: [1240, 1024, 778, 480],
+                    gridheight: [768, 600, 600, 600],
+                    lazyType: "none",
+                    parallax: {
+                        type: "scroll",
+                        origo: "enterpoint",
+                        speed: 400,
+                        levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 46, 47, 48, 49, 50, 55],
+                        type: "scroll",
+                    },
+                    shadow: 0,
+                    spinner: "off",
+                    stopLoop: "off",
+                    stopAfterLoops: -1,
+                    stopAtSlide: -1,
+                    shuffle: "off",
+                    autoHeight: "off",
+                    hideThumbsOnMobile: "off",
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    debugMode: false,
+                    fallbacks: {
+                        simplifyAll: "off",
+                        nextSlideOnWindowFocus: "off",
+                        disableFocusListener: false,
+                    }
+                });
+            }
+        });
+    </script>
+    @*@await RenderSectionAsync("Scripts", required: false)*@
 </body>
 </html>
