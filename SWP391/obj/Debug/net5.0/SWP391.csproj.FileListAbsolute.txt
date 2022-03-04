@@ -935,3 +935,6 @@ D:\FPTU-Learning\Spring2022\SWP391\Week7\online_learning_SWP391\SWP391\obj\Debug
 D:\FPTU-Learning\Spring2022\SWP391\Week7\online_learning_SWP391\SWP391\obj\Debug\net5.0\ref\SWP391.dll
 D:\FPTU-Learning\Spring2022\SWP391\Week7\online_learning_SWP391\SWP391\obj\Debug\net5.0\SWP391.pdb
 D:\FPTU-Learning\Spring2022\SWP391\Week7\online_learning_SWP391\SWP391\obj\Debug\net5.0\SWP391.genruntimeconfig.cache
+D:\FPTU-Learning\Spring2022\SWP391\Week7\online_learning_SWP391\SWP391\bin\Debug\net5.0\PagedList.Core.dll
+D:\FPTU-Learning\Spring2022\SWP391\Week7\online_learning_SWP391\SWP391\bin\Debug\net5.0\PagedList.Core.Mvc.dll
+D:\FPTU-Learning\Spring2022\SWP391\Week7\online_learning_SWP391\SWP391\obj\Debug\net5.0\Razor\Views\Course\CourseList.cshtml.g.cs

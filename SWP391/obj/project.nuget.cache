@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RcY1W5fzmw/CcE926fQ8lu5gZHEmSiVwWstf2sZDH1W9iTNl/DIEWcNQi6iyRFAUrpsAnf/QfMuVCYMVbjUWzA==",
+  "dgSpecHash": "cXJfJFkqZd0yWKo4+qqgezB7Mv2NkQAVjHSxk/D8lJkCliW2i78FLjcqDF8cHDLK3/z2dSwIuCCSZ5WMXmxKBw==",
   "success": true,
   "projectFilePath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week7\\online_learning_SWP391\\SWP391\\SWP391.csproj",
   "expectedPackageFiles": [
@@ -86,6 +86,8 @@
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\mimekit\\3.1.1\\mimekit.3.1.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\pagedlist.core\\1.17.4\\pagedlist.core.1.17.4.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\pagedlist.core.mvc\\3.0.0\\pagedlist.core.mvc.3.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",

@@ -1,11 +1,17 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SWP391.Data;
 using SWP391.Models;
+using SWP391.Views.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+
 namespace SWP391.Controllers
 {
     public class CourseController : Controller
@@ -18,18 +24,10 @@ namespace SWP391.Controllers
             WebHostEnvironment = webHostEnvironment;
         }
         //private LessonDAO lessonDAO = new LessonDAO();
-        public CourseController()
-        {
+        //public CourseController()
+        //{
             
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-
-
+        //}
 
         //public IActionResult Lesson(int? id)
         //{
@@ -65,7 +63,7 @@ namespace SWP391.Controllers
                 TypeDropDown = _db.Categories.Select(i => new SelectListItem
                 {
                     Text = i.Value,
-                    Value = i.Id.ToString()
+                    Value = i.CategoryId.ToString()
                 })
             };
             return PartialView(newCourseVM);
@@ -79,13 +77,13 @@ namespace SWP391.Controllers
                 string wwwroot = WebHostEnvironment.WebRootPath;
                 string filename = Path.GetFileNameWithoutExtension(obj.Course.ImgFile.FileName);
                 string ex = Path.GetExtension(obj.Course.ImgFile.FileName);
-                obj.Course.Thumbnail_URL = filename = filename + DateTime.Now.ToString("yymmssfff") + ex;
+                obj.Course.ThumbnailURL = filename = filename + DateTime.Now.ToString("yymmssfff") + ex;
                 string path = Path.Combine(wwwroot + "/img/", filename);
                 using (var filestream = new FileStream(path, FileMode.Create))
                 {
                     await obj.Course.ImgFile.CopyToAsync(filestream);
                 }
-                obj.Course.Status_Id = 3;
+                obj.Course.StatusId = "3";
                 //obj.Course.Featured = 20;
                 _db.Courses.Add(obj.Course);
                 _db.SaveChanges();
@@ -113,7 +111,7 @@ namespace SWP391.Controllers
         public IActionResult CourseRegister(int courseId)
         {
 
-            IEnumerable<Price_Package> list = _db.Price_Packages;
+            IEnumerable<PricePackage> list = _db.PricePackages;
             //var userInfor = HttpContext.Session.GetString("SessionUser");
             //if (userInfor == null && price_Id != null)
             //{
@@ -134,7 +132,7 @@ namespace SWP391.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CourseRegister(int priceId, int courseId, string userId)
         {
-            IEnumerable<Price_Package> list = _db.Price_Packages;
+            IEnumerable<PricePackage> list = _db.PricePackages;
             //var userInfor = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionUser"));
             var check = HttpContext.Session.GetString("SessionUser");
             if (check == null)
@@ -143,14 +141,13 @@ namespace SWP391.Controllers
             }
             else
             {
-                User_Course uc = new User_Course();
-                uc.Price_Package = _db.Price_Packages.Find(priceId);
+                UserCourse uc = new UserCourse();
+                uc.PricePackage = _db.PricePackages.Find(priceId);
                 uc.User = _db.Users.Find(Int32.Parse(userId));
                 uc.Course = _db.Courses.Find(courseId);
-                uc.Registration_Status = 1;
-                uc.Start_Date = DateTime.Now;
-                uc.End_Date = DateTime.Now.AddMonths(1);
-                _db.User_Courses.Add(uc);
+                //uc.StartDate = DateTime.Now;
+                //uc.EndDate = DateTime.Now.AddMonths(1);
+                _db.UserCourses.Add(uc);
                 _db.SaveChanges();
                 return Redirect($"~/Home/Index");
             }
@@ -190,7 +187,7 @@ namespace SWP391.Controllers
             }
             if (!string.IsNullOrEmpty(cate))
             {
-                list = list.Where(l => l.Category_Id.Equals(Int32.Parse(cate)));
+                list = list.Where(l => l.CategoryId.Equals(Int32.Parse(cate)));
             }
 
             int resCount = list.Count();
@@ -218,10 +215,9 @@ namespace SWP391.Controllers
         public Course GetCourse(int id)
         {
             Course c = _db.Courses.Find(id);
-            c.Category = _db.Categories.Find(c.Category_Id);
+            c.Category = _db.Categories.Find(c.CategoryId);
             this.ViewBag.Category = c.Category;
             return c;
         }
     }
-}
 }

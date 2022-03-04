@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,6 +23,9 @@ namespace SWP391.Models
 		public string CategoryId { get; set; }
 		public virtual Status Status { get; set; }
 		public string StatusId { get; set; }
+		[NotMapped]
+		[DisplayName("Upload Img")]
+		public IFormFile ImgFile { get; set; }
 		public ICollection<Owner> Owners { get; set; }
 		public ICollection<Topic> Topics { get; set; }
 		public ICollection<QuestionBank> QuestionBanks { get; set; }
