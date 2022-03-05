@@ -47,12 +47,12 @@ namespace SWP391.Controllers
             return View(dy);
         }
 
-        public IActionResult CourseDetail(int id)
+        public IActionResult CourseDetail(string id)
         {
             dynamic dy = new ExpandoObject();
             dy.categories = GetCategories();
             dy.course = GetCourse(id);
-            return PartialView("CourseDetail", dy);
+            return View(dy);
         }
 
         public IActionResult CreateCourse()
@@ -212,7 +212,7 @@ namespace SWP391.Controllers
             return list;
         }
 
-        public Course GetCourse(int id)
+        public Course GetCourse(string id)
         {
             Course c = _db.Courses.Find(id);
             c.Category = _db.Categories.Find(c.CategoryId);
