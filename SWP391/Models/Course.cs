@@ -17,7 +17,8 @@ namespace SWP391.Models
 		public string ShortDescription { get; set; }
 		public string ThumbnailURL { get; set; }
 		public string Title { get; set; }
-		public virtual Featured Featured { get; set; }
+        public double Price { get; set; }
+        public virtual Featured Featured { get; set; }
 		public int FeaturedId { get; set; }
 		public virtual Category Category { get; set; }
 		public string CategoryId { get; set; }
