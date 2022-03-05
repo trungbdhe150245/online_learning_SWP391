@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SWP391.Data;
 using SWP391.Models;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,18 @@ namespace SWP391.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
-
-		public HomeController(ILogger<HomeController> logger)
+		private readonly LearningDbContext _db;
+		public HomeController(ILogger<HomeController> logger, LearningDbContext db)
 		{
 			_logger = logger;
+			_db = db;
 		}
 
 		public IActionResult Index()
 		{
-			return View();
+			IEnumerable<Course> courses = _db.Courses.OrderBy(s => s.FeaturedId);
+			this.ViewBag.Course = courses;
+			return View(courses);
 		}
 
 		public IActionResult Privacy()

@@ -1995,10 +1995,14 @@ aside.categories {
     cursor: pointer;
 }
 
-    .start-today:hover {
-        transform: scale(1.1);
-        transition: transform 0.3s ease;
-    }
+.btn-in {
+    margin-top: 12px;
+}
+
+.start-today:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
 
     .start-today .price {
         width: 66px;

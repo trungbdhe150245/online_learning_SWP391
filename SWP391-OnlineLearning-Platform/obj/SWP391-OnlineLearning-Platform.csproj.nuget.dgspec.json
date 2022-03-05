@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week8\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {}
+    "C:\\Users\\Admin\\Documents\\GitHub\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {}
   },
   "projects": {
-    "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week8\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {
+    "C:\\Users\\Admin\\Documents\\GitHub\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week8\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
         "projectName": "SWP391-OnlineLearning-Platform",
-        "projectPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week8\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
+        "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\SWP391-OnlineLearning-Platform.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\FPTU-Learning\\Spring2022\\SWP391\\Week8\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\online_learning_SWP391\\SWP391-OnlineLearning-Platform\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
