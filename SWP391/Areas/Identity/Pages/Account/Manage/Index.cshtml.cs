@@ -36,6 +36,13 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [MaxLength(255)]
+            [Display(Name = "Full Name")]
+            public string FullName { set; get; }
+            [DataType(DataType.Text)]
+            [Display(Name = "Profile PictureURL")]
+            public string ProfilePictureURL { set; get; }
+
         }
 
         private async Task LoadAsync(AppUser user)
@@ -47,7 +54,10 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                FullName = user.FullName,
+                ProfilePictureURL = user.ProfilePictureURL
+                
             };
         }
 
@@ -87,7 +97,10 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
-
+            user.FullName = Input.FullName;
+            user.ProfilePictureURL = Input.ProfilePictureURL;
+            user.FullName = Input.FullName;
+            await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
