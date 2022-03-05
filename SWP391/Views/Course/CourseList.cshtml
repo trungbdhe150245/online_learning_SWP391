@@ -37,12 +37,15 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
                         <div class="widget courses-search-bx placeani">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <label>Search Courses</label>
-                                    <input name="dzName" type="text" required class="form-control">
+                            <form method="post" asp-action="CourseList">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Search Courses</label>
+                                        <input name="key" type="text" required class="form-control">
+                                        <input class="btn btn-success btn-in" type="submit" value="Search" />
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <div class="widget widget_archive">
                             <h5 class="widget-title style-1">All Courses</h5>
@@ -53,9 +56,9 @@
                                     <li><a asp-action="CourseList" asp-controller="Course" asp-route-cate="@category.CategoryId">@category.Value</a></li>
                                 }
                                 @*<li><a href="#">IT & Software</a></li>
-                                <li><a href="#">Photography</a></li>
-                                <li><a href="#">Programming Language</a></li>
-                                <li><a href="#">Technology</a></li>*@
+                                    <li><a href="#">Photography</a></li>
+                                    <li><a href="#">Programming Language</a></li>
+                                    <li><a href="#">Technology</a></li>*@
                             </ul>
                         </div>
                         <div class="widget">
