@@ -26,10 +26,10 @@ public class IdentityUser
     public class AppUser: IdentityUser
     {
         public string FullName { set; get; }
-        public string Address { set; get; }
-        [DataType(DataType.Date)]
-        public DateTime? Birthday { set; get; }
-		public string Sex { get; set; }
+  //      public string Address { set; get; }
+  //      [DataType(DataType.Date)]
+  //      public DateTime? Birthday { set; get; }
+		//public string Sex { get; set; }
         public string ProfilePictureURL { get; set; }
 		public ICollection<Owner> Owners { get; set; }
 		public ICollection<Attempt> Attempts { get; set; }

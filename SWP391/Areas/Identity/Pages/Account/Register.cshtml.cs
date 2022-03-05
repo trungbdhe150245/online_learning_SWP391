@@ -78,21 +78,21 @@ namespace SWP391.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Sex")]
-            public string Sex { get; set; }
+            //[Required]
+            //[DataType(DataType.Text)]
+            //[Display(Name = "Sex")]
+            //public string Sex { get; set; }
 
-            [Required]
-            [DataType(DataType.Date)]
-            [Display(Name = "Dob")]
-            public DateTime? Birthday { get; set; }
+            //[Required]
+            //[DataType(DataType.Date)]
+            //[Display(Name = "Dob")]
+            //public DateTime? Birthday { get; set; }
 
-            [Required]
-            [StringLength(500, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
-            [DataType(DataType.Text)]
-            [Display(Name = "Address")]
-            public string Adress { get; set; }
+            //[Required]
+            //[StringLength(500, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
+            //[DataType(DataType.Text)]
+            //[Display(Name = "Address")]
+            //public string Adress { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -109,8 +109,7 @@ namespace SWP391.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 // Tạo AppUser sau đó tạo User mới (cập nhật vào db)
-                var user = new AppUser { UserName = Input.UserName, Email = Input.Email, 
-                    FullName = Input.FullName, Sex = Input.Sex, Birthday = Input.Birthday, Address = Input.Adress };
+                var user = new AppUser { UserName = Input.UserName, Email = Input.Email, FullName = Input.FullName };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

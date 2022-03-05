@@ -2,9 +2,10 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "REGISTER";
+    Layout = "~/Views/Shared/CustomLayout/_LayoutRegister.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
+@*<h1>@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-4">
@@ -77,31 +78,104 @@
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
-                    <div>
-                        <p>
-                            Not yet config services.
-                            See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                        </p>
-                    </div>
+                            <div>
+                                <p>
+                                    Not yet config services.
+                                    See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                </p>
+                            </div>
                 }
                 else
                 {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
+                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                <div>
+                                    <p>
                                 @foreach (var provider in Model.ExternalLogins)
                                 {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
                                 }
-                            </p>
-                        </div>
-                    </form>
+                                    </p>
+                                </div>
+                            </form>
                 }
             }
         </section>
     </div>
 </div>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+*@
+<div class="page-wraper">
+    <div id="loading-icon-bx"></div>
+    <div class="account-form">
+        <div class="account-head" style="background-image:url(assets/images/background/bg2.jpg);">
+            <a href="index.html"><img src="assets/images/logo-white-2.png" alt=""></a>
+        </div>
+        <div class="account-form-inner">
+            <div class="account-container">
+                <div class="heading-bx left">
+                    <h2 class="title-head">Sign Up <span>Now</span></h2>
+                    <p>Already have an account? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Login here</a></p>
+                </div>	
+                <form class="contact-bx" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div class="row placeani">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label asp-for="Input.UserName"></label>
+                                    <input asp-for="Input.UserName" class="form-control" />
+                                    @*<span asp-validation-for="Input.UserName" class="text-danger"></span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label asp-for="Input.Email"></label>
+                                    <input asp-for="Input.Email" class="form-control" />
+                                    @*<span asp-validation-for="Input.Email" class="text-danger"></span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group"> 
+                                    <label asp-for="Input.FullName"></label>
+                                    <input asp-for="Input.FullName" class="form-control" />
+                                    @*<span asp-validation-for="Input.FullName" class="text-danger"></span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group"> 
+                                   <label asp-for="Input.Password"></label>
+                                    <input asp-for="Input.Password" class="form-control" />
+                                    @*<span asp-validation-for="Input.Password" class="text-danger"></span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="input-group"> 
+                                    <label asp-for="Input.ConfirmPassword"></label>
+                                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                                    @*<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>*@
+                                </div>
+                            </div>
+                        </div>              
+                        <div class="col-lg-12 m-b30">
+                            <button name="submit" type="submit" value="Submit" class="btn button-md">Sign Up</button>
+                        </div>
+                        <div class="col-lg-12">
+                            <h6>Sign Up with Social media</h6>
+                            <div class="d-flex">
+                                <a class="btn flex-fill m-r5 facebook" href="#"><i class="fa fa-facebook"></i>Facebook</a>
+                                <a class="btn flex-fill m-l5 google-plus" href="#"><i class="fa fa-google-plus"></i>Google Plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
