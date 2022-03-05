@@ -1,4 +1,4 @@
-﻿<div class="top-bar">
+﻿@*<div class="top-bar">
     <div class="container">
         <div class="row d-flex justify-content-between">
             <div class="topbar-left">
@@ -15,7 +15,8 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
+@await Html.PartialAsync("_LoginPartial")
 <div class="sticky-header navbar-expand-lg">
     <div class="menu-bar clearfix">
         <div class="container clearfix">

@@ -4,7 +4,7 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
-<ul class="navbar-nav">
+@*<ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
@@ -25,4 +25,46 @@ else
         <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 }
-</ul>
+</ul>*@
+
+
+
+<div class="top-bar">
+    <div class="container">
+        <div class="row d-flex justify-content-between">
+            <div class="topbar-left">
+                <ul>
+                    <li><a href="faq-1.html"><i class="fa fa-question-circle"></i>Ask a Question</a></li>
+                    <li><a href="javascript:;"><i class="fa fa-envelope-o"></i>Support@website.com</a></li>
+                </ul>
+            </div>
+            <div class="topbar-right">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                <ul>
+                    <li>
+                        <a id="manage"  asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                    </li>
+                    <li>
+                        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                             <a href="javascript:;" onclick="document.getElementById('logoutForm').submit();" id="logout">Logout</a>
+                            @*<button id="logout" type="submit">Logout</button>*@
+                        </form>
+                    </li>
+                </ul>
+                } 
+                else
+                {
+                <ul>
+                    <li>
+                        <a id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </li>
+                    <li>
+                        <a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    </li>
+                </ul>
+                }   
+            </div>
+        </div>
+    </div>
+</div>
