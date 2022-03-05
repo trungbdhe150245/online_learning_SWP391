@@ -21,7 +21,7 @@
         <div class="container">
             <ul class="list-inline">
                 <li><a asp-action="Index" asp-controller="Home">Home</a></li>
-                <li>Courses Details</li>
+                <li><a asp-action="CourseList" asp-controller="Course" asp-route-cate="@cate.CategoryId">@cate.Value</a></li>
             </ul>
         </div>
     </div>
@@ -82,14 +82,14 @@
                     <div class="col-lg-9 col-md-8 col-sm-12">
                         <div class="courses-post">
                             <div class="ttr-post-media media-effect">
-                                <a href="#"><img src="assets/images/blog/default/thum1.jpg" alt=""></a>
+                                <a href="#"><img src="~/img/@course.ThumbnailURL" alt=""></a>
                             </div>
                             <div class="ttr-post-info">
                                 <div class="ttr-post-title ">
-                                    <h2 class="post-title">Nvidia and UE4 Technologies Practice</h2>
+                                    <h2 class="post-title">@course.Title</h2>
                                 </div>
                                 <div class="ttr-post-text">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p>@course.Description</p>
                                 </div>
                             </div>
                         </div>

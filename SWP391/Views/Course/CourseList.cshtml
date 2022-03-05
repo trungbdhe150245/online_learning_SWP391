@@ -104,11 +104,11 @@
                                     <div class="cours-bx">
                                         <div class="action-box">
                                             <img src="~/img/@course.ThumbnailURL" alt="">
-                                            <a href="#" class="btn">Read More</a>
+                                            <a asp-action="CourseDetail" asp-controller="Course" asp-route-id="@course.CourseId" class="btn">Read More</a>
                                         </div>
                                         <div class="info-bx text-center flex-column">
                                             <h5>
-                                            <a href="#">@course.Title</a>
+                                            <a asp-action="CourseDetail" asp-controller="Course" asp-route-id="@course.CourseId">@course.Title</a>
                                             </h5>
                                             <span>Programming</span>
                                         </div>
