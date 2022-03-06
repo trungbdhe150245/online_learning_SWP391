@@ -12,5 +12,10 @@ namespace SWP391.Controllers.Admin
         {
             return View();
         }
+
+        public IActionResult RegistrationList()
+        {
+            return View();
+        }
     }
 }
