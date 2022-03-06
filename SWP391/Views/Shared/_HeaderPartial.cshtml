@@ -19,7 +19,7 @@
 @{
     string CurrentURL = @Context.Request.Path;
 }
-@if (!CurrentURL.Contains("Manage"))
+@if (!CurrentURL.Contains("Manage") && !CurrentURL.Contains("Membership"))
 {
 <header class="header rs-nav header-transparent">
 		@await Html.PartialAsync("_LoginPartial")

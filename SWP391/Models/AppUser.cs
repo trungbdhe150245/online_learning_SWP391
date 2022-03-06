@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,10 +29,14 @@ public class IdentityUser
     public class AppUser: IdentityUser
     {
         public string FullName { set; get; }
-  //      public string Address { set; get; }
-  //      [DataType(DataType.Date)]
-  //      public DateTime? Birthday { set; get; }
-		//public string Sex { get; set; }
+        //      public string Address { set; get; }
+        //      [DataType(DataType.Date)]
+        //      public DateTime? Birthday { set; get; }
+        //public string Sex { get; set; }
+        //public bool Subcription { get; set; }
+        [NotMapped]
+        [DisplayName("Upload Image")]
+        public IFormFile ImgFile { get; set; }
         public string ProfilePictureURL { get; set; }
 		public ICollection<Owner> Owners { get; set; }
 		public ICollection<Attempt> Attempts { get; set; }

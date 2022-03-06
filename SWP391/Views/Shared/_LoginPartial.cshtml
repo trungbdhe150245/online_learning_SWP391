@@ -39,9 +39,13 @@ else
                 </ul>
             </div>
             <div class="topbar-right">
+                <ul>
+                    <li>
+                        <a id="membership" asp-area="Identity" asp-page="/Account/Membership" title="Membership">Subcription <i class="fa-solid fa-crown"></i></a>
+                    </li>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                <ul>
+                
                     <li>
                         <a id="manage"  asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
                     </li>
@@ -50,20 +54,22 @@ else
                              <a href="javascript:;" onclick="document.getElementById('logoutForm').submit();" id="logout">Logout</a>
                         </form>
                     </li>
-                </ul>
+                
                 } 
                 else
                 {
-                <ul>
+                
                     <li>
                         <a id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
                     </li>
                     <li>
                         <a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
                     </li>
-                </ul>
+                
                 }   
+                </ul>
             </div>
         </div>
     </div>
 </div>
+<script src="https://kit.fontawesome.com/3d4ae2f409.js" crossorigin="anonymous"></script>

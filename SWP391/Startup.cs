@@ -68,6 +68,17 @@ namespace SWP391
 				options.Lockout.MaxFailedAccessAttempts = 3;                        // lock after 3times failed
 																					
 			});
+			services.ConfigureApplicationCookie(options =>
+			{
+				options.Cookie.Name = ".AspNetCore.Identity.Application";
+				options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+				options.SlidingExpiration = true;
+			});
+			services.AddDistributedMemoryCache();           
+			services.AddSession(cfg => {                   
+				cfg.Cookie.Name = "user";             
+				cfg.IdleTimeout = new TimeSpan(0, 60, 0);    
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,7 +96,7 @@ namespace SWP391
 			}
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
-
+			app.UseSession();
 			app.UseRouting();
 			app.UseAuthentication(); 
 			app.UseAuthorization();  

@@ -25,7 +25,7 @@ namespace SWP391.Models
 		public virtual Status Status { get; set; }
 		public string StatusId { get; set; }
 		[NotMapped]
-		[DisplayName("Upload Img")]
+		[DisplayName("Upload Image")]
 		public IFormFile ImgFile { get; set; }
 		public ICollection<Owner> Owners { get; set; }
 		public ICollection<Topic> Topics { get; set; }
