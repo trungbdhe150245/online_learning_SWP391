@@ -1,16 +1,12 @@
 ﻿@model XTLASPNET.MessagePage.Message
 @{
-    Layout = "_Layout";
+    Layout = "~/Views/Shared/CustomLayout/_LayoutRedirect.cshtml";
     ViewData["Title"] = @Model.Title;
 }
-<div class="card m-4">
-    <div class="card-header bg-danger text-light">
-        <h4>@Model.Title</h4>
-    </div>
-    <div class="card-body">
-        @Html.Raw(Model.HtmlContent)
-    </div>
-    <div class="card-footer">
-        Chuyển đến - <a href="@Model.UrlRedirect">@Model.UrlRedirect</a>
-    </div>
-</div>
+<h2>@Model.Title</h2>
+@*<h2 class="error-title">@Html.Raw(Model.HtmlContent)</h2>*@
+@*<h4>@Model.Title</h4>*@
+<p>@Html.Raw(Model.HtmlContent)<p>
+<p>Go to <a href="@Model.UrlRedirect">@Model.UrlRedirect</a></p>
+
+

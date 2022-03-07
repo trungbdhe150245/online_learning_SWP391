@@ -33,7 +33,7 @@ public class IdentityUser
         //      [DataType(DataType.Date)]
         //      public DateTime? Birthday { set; get; }
         //public string Sex { get; set; }
-        //public bool Subcription { get; set; }
+        public bool Subcription { get; set; }
         [NotMapped]
         [DisplayName("Upload Image")]
         public IFormFile ImgFile { get; set; }
