@@ -3,3 +3,129 @@
 *@
 @{
 }
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model List<SWP391.Models.Lesson>
+@{
+    ViewData["Title"] = "LESSON";
+    Layout = "_Layout";
+}
+
+<div class="lesson-container">
+    <main role="main" class="pb-3">
+        <div class="row lesson-main">
+            <h1>Course Name</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="video">
+                    <video src="https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4" width="100%" muted autoplay controls></video>
+                    <h3 class="title">Title</h3>
+                </div>
+                    <div class="row lesson-main">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button onclick="scriptToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Script
+                            </button>
+                            <button onclick="noteToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                                Note
+                            </button>
+                        <button type="button" class="btn btn-outline-danger">Report</button>
+                    </div>
+                </div>
+                        
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                Transcript
+              </div>
+            </div>
+                        <div class="collapse" id="collapseExample2">
+              <div class="card card-body">
+                <h4 >Note here<br/><small class="">You can download your note</small></h4>
+
+
+                    
+
+
+                    <textarea class="text_mop" style="margin-bottom:10px" rows=5></textarea>
+                    
+                    <input type="button" class="btn_mop btn-primary btn" style="margin-left:78%;text-align:center;" value="Download" aria-hidden="true"/>
+
+              </div>
+            </div>
+            </div>
+           
+
+            <div class="col-md-4">
+@*                @if(Model.Count > 0)
+                {*@
+                   <div class="accordion" id="accordionExample">
+                    @for (var i = 0; i < 4; i++)
+                   {
+                        @:<div class="card">
+                        <div class="card-header" id="@("headingOne" + i)">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="@("#collapseOne" + i)" aria-expanded="true" aria-controls="collapseOne">
+                                    @("Topic #" + i)
+                                </button>
+                            </h2>
+                        </div>
+
+                        @:<div id="@("collapseOne" + i)" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                           @:<div class="card-body">
+                                @:<ul class="list-group">
+                                    @for (var x = 0; x < 4; x++)
+                                   {
+                                    <li class="list-group-item">
+                                        <p style="margin-bottom:0"><i class="far fa-play-circle"></i> @("Vid" + x)</p>
+                                        <p class="title-vid" hidden>@("Title" + x)</p>
+                                        <a href="" hidden></a>
+                                    </li>
+                                   }
+                                @:</ul>
+                                <br/>
+                                <div class="list-group">
+                                    @for (var j = 0; j < 2; j++)
+                                    {
+                                      <a href="/Lesson/Attempt" class="list-group-item list-group-item-warning">
+                                        Quiz
+                                    </a>
+                                    }
+
+                                </div>
+                            @:</div>
+                        @:</div>
+                    @:</div>
+                   }
+
+                </div>
+                @*}*@
+
+            </div>
+        </div>
+    </main>
+</div>
+
+
+<style>
+    .accordion .collapse .card-body .vid video {
+        width: 100px;
+        border-radius: 5px;
+    }
+</style>
+
+<style>
+    .lesson-container {
+        margin: 0 5%;
+    }
+
+    .lesson-main {
+        margin: 0 0 10px 0;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" @*integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"*@ crossorigin="anonymous"></script>
+<script src="~/js/lesson.js" asp-append-version="true"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

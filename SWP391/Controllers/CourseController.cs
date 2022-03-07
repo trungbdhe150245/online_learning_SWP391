@@ -23,21 +23,6 @@ namespace SWP391.Controllers
             _db = db;
             WebHostEnvironment = webHostEnvironment;
         }
-        //private LessonDAO lessonDAO = new LessonDAO();
-        //public CourseController()
-        //{
-            
-        //}
-
-        //public IActionResult Lesson(int? id)
-        //{
-        //    return Ok(id);
-        //}
-        //public IActionResult Content() 
-        //{
-        //    List<Lesson> lessons = lessonDAO.GetLessons();
-        //    return View(lessons);
-        //}
 
         public IActionResult CourseList(string key, string sortOrder, string cate, int page)
         {
@@ -220,6 +205,11 @@ namespace SWP391.Controllers
             return c;
         }
 
+
+        public IActionResult Lesson(string id)
+		{
+            return View();
+		}
         /*
 
         /// add course to cart
