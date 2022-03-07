@@ -37,5 +37,11 @@ namespace SWP391.Controllers
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
+		[Route("/About")]
+		[Route("/Home/About")]
+		public IActionResult About() 
+		{
+			return View();
+		}
 	}
 }
