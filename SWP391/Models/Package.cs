@@ -1,8 +1,13 @@
-﻿namespace SWP391.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SWP391.Models
 {
+	[Table("Packages")]
 	public class Package
 	{
-		public double Name { get; set; }
-		public double Price { get; set; }
+        public string PackageId { get; set; }
+        public string PackageName { get; set; }
+		public string PackageDescription { get; set; }
+		public int PackagePrice { get; set; }
 	}
 }

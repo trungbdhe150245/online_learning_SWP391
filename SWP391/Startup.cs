@@ -76,7 +76,7 @@ namespace SWP391
 			services.ConfigureApplicationCookie(options =>
 			{
 				options.Cookie.Name = ".AspNetCore.Identity.Application";
-				options.ExpireTimeSpan = TimeSpan.FromMinutes(1);   //session
+				options.ExpireTimeSpan = TimeSpan.FromMinutes(20);   //session
 				options.SlidingExpiration = true;
 			});
 

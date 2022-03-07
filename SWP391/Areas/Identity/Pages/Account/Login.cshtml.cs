@@ -106,13 +106,14 @@ namespace SWP391.Areas.Identity.Pages.Account
                 {
                     var userId = user.Id;
                     _logger.LogInformation("User was logged in");
-                    return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
-                    {
-                        
-                        Title = "Logged in",
-                        HtmlContent = "Logged in successfully",
-                        UrlRedirect = returnUrl
-                    });
+                    //return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
+                    //{
+
+                    //    Title = "Logged in",
+                    //    HtmlContent = "Logged in successfully",
+                    //    UrlRedirect = returnUrl
+                    //});
+                    return RedirectToPage(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {

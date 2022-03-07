@@ -312,7 +312,17 @@ namespace SWP391.Data
                 entity.Property(f => f.Value).HasColumnType("varchar(255)");
                 entity.HasKey(f => f.FeaturedId);
             });
+            modelBuilder.Entity<Package>(entity =>
+            {
+                entity.Property(pk => pk.PackageId).HasColumnType("varchar(10)");
+                entity.Property(pk => pk.PackageName).HasColumnType("varchar(255)");
+                entity.Property(pk => pk.PackageDescription).HasColumnType("varchar(max)");
+                entity.Property(pk => pk.PackagePrice).HasColumnType("int");
+                entity.HasKey(pk => pk.PackageId);
+
+            });
         }
+        public DbSet<Package> Packages { get; set; }
         public DbSet<Attempt> Attempts { get; set; }
         public DbSet<AttemptDetailed> AttemptDetaileds { get; set; }
         public DbSet<Blog> Blogs { get; set; }

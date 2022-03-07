@@ -1,6 +1,10 @@
-﻿namespace SWP391.Utility.BraintreeService
+﻿using Braintree;
+
+namespace SWP391.Utility.BraintreeService
 {
-    public class IBraintreeService
+    public interface IBraintreeService
     {
+        IBraintreeGateway CreateGateway();
+        IBraintreeGateway GetGateway();
     }
 }
