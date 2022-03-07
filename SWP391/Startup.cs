@@ -54,6 +54,12 @@ namespace SWP391
 				options.SignIn.RequireConfirmedPhoneNumber = false;    
 
 			});
+			//services.AddControllers(config =>
+			//{
+			//	config.Filters.Add(new Filter());
+			//});
+			services.AddScoped<Filter>();
+
 
 			services.AddOptions();                                        
 			var mailsettings = Configuration.GetSection("MailSettings"); 
@@ -71,12 +77,13 @@ namespace SWP391
 			services.ConfigureApplicationCookie(options =>
 			{
 				options.Cookie.Name = ".AspNetCore.Identity.Application";
-				options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+				options.ExpireTimeSpan = TimeSpan.FromMinutes(1);   //session
 				options.SlidingExpiration = true;
 			});
+
 			services.AddDistributedMemoryCache();           
 			services.AddSession(cfg => {                   
-				cfg.Cookie.Name = "user";             
+				cfg.Cookie.Name = "user";            //cart
 				cfg.IdleTimeout = new TimeSpan(0, 60, 0);    
 			});
 		}
