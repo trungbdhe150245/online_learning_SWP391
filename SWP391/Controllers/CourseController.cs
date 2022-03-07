@@ -219,5 +219,60 @@ namespace SWP391.Controllers
             this.ViewBag.Category = c.Category;
             return c;
         }
+
+        /*
+
+        /// add course to cart
+        [Route("addcart/{courseId}")]
+        public IActionResult AddToCart([FromRoute] string courseId)
+        {
+
+            var product = _db.Courses
+                            .Where(c => c.CourseId == courseId)
+                            .FirstOrDefault();
+            if (product == null)
+                return NotFound("Cart empty!");
+
+            //Putin cart
+
+
+            return RedirectToAction(nameof(Cart));
+        }
+
+
+        // Remove item in cart
+        [Route("/removecart/{productid:int}", Name = "removecart")]
+        public IActionResult RemoveCart([FromRoute] int productid)
+        {
+
+            // Remove 1 entry of Cart ...
+            return RedirectToAction(nameof(Cart));
+        }
+
+        /// Update
+        [Route("/updatecart", Name = "updatecart")]
+        [HttpPost]
+        public IActionResult UpdateCart([FromForm] int productid, [FromForm] int quantity)
+        {
+            // Update quantity ...
+
+            return RedirectToAction(nameof(Cart));
+        }
+
+
+        // Display cart
+        [Route("/cart", Name = "cart")]
+        public IActionResult Cart()
+        {
+            return View();
+        }
+
+        [Route("/checkout")]
+        public IActionResult CheckOut()
+        {
+            // Order handler
+            return View();
+        }
+        */
     }
 }
