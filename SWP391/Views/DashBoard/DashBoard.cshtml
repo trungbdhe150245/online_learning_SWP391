@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Admin Index";
     Layout = "~/Views/Shared/CustomLayout/_AdminLayout.cshtml";
+    var user = ViewBag.User;
 }
 
 <div class="container-fluid">
@@ -216,7 +217,7 @@
                         <ul>
                             <li>
                                 <span class="new-users-pic">
-                                    <img src="assets/images/testimonials/pic1.jpg" alt="" />
+                                    <img src="~/admin/assets/images/about/pic1.jpg" alt="" />
                                 </span>
                                 <span class="new-users-text">
                                     <a href="#" class="new-users-name">Anna Strong </a>

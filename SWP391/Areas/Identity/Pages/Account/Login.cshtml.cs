@@ -84,7 +84,7 @@ namespace SWP391.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
 
-                IdentityUser user = await _userManager.FindByEmailAsync(Input.UserNameOrEmail);
+                AppUser user = await _userManager.FindByEmailAsync(Input.UserNameOrEmail);
                 if (user == null)
                     user = await _userManager.FindByNameAsync(Input.UserNameOrEmail);
 
@@ -104,9 +104,11 @@ namespace SWP391.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    var userId = user.Id;
                     _logger.LogInformation("User was logged in");
                     return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
                     {
+                        
                         Title = "Logged in",
                         HtmlContent = "Logged in successfully",
                         UrlRedirect = returnUrl
