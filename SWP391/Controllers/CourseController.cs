@@ -208,7 +208,7 @@ namespace SWP391.Controllers
 
         public IEnumerable<Course> GetCourses()
         {
-            IEnumerable<Course> list = _db.Courses.OrderBy(s => s.Featured);
+            IEnumerable<Course> list = _db.Courses.OrderBy(s => s.Featured).Where(s => s.StatusId == "1");
             return list;
         }
 

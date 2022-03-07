@@ -38,13 +38,35 @@ namespace SWP391.Controllers.Admin
             return View(obj);
         }
 
-        
+
         public IActionResult RegistrationList()
         {
             var obj = GetCurrentUser();
             IEnumerable<Course> list = _db.Courses.Where(c => c.StatusId == "3");
             ViewBag.CourseRegis = list;
             return View(list);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangeStatus(string id, string approve, string cancel)
+        {
+            var course = _db.Courses.Find(id);
+            if (ModelState.IsValid)
+            {
+                if (approve != null)
+                {
+                    course.StatusId = "1";
+                }
+                if (cancel != null)
+                {
+                    course.StatusId = "2";
+                }
+                //course.StatusId = "1";
+                _db.Courses.Update(course);
+                _db.SaveChanges();
+                return RedirectToAction("RegistrationList");
+            }
+            return View(course);
         }
 
         public Task<AppUser> GetCurrentUser()
