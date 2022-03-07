@@ -24,7 +24,7 @@ namespace SWP391.Controllers
 			return View();
 		}
 
-        public IActionResult Payment(string id)
+        public IActionResult Purchase(string id)
         {
             var gateway = _braintreeService.GetGateway();
             var clientToken = gateway.ClientToken.Generate();  //Genarate a token
@@ -39,7 +39,7 @@ namespace SWP391.Controllers
             var gateway = _braintreeService.GetGateway();
             var request = new TransactionRequest
             {
-                Amount = Convert.ToDecimal("250"),
+                Amount = Convert.ToDecimal("1000"),
                 PaymentMethodNonce = "",
                 Options = new TransactionOptionsRequest
                 {
