@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using SWP391.Models
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <!-- Mirrored from educhamp.themetrades.com/demo/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:08:15 GMT -->
 <head>
@@ -50,7 +54,7 @@
 
 </head>
 <body class="ttr-opened-sidebar ttr-pinned-sidebar">
-    @{ 
+    @{
         var user = ViewBag.User;
     }
     <!-- header start -->

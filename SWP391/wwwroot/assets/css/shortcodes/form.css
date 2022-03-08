@@ -156,7 +156,7 @@ textarea.form-control {
     background-color: #fff !important;
     height: 40px;
     font-size: 13px;
-    color: #999;
+    /*color: #999;*/
 }
 .bootstrap-select .dropdown-toggle:after {
     display: none;

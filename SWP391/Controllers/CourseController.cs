@@ -57,6 +57,11 @@ namespace SWP391.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateCourse(NewCourseVM obj)
         {
+            int id = 30;
+            obj.Course.CourseId = id.ToString();
+            id++;
+            //IEnumerable<Course> list = _db.Courses;
+            //string id = (list.Count() + 1).ToString();
             if (ModelState.IsValid)
             {
                 string wwwroot = WebHostEnvironment.WebRootPath;
@@ -68,29 +73,16 @@ namespace SWP391.Controllers
                 {
                     await obj.Course.ImgFile.CopyToAsync(filestream);
                 }
+                
                 obj.Course.StatusId = "3";
-                //obj.Course.Featured = 20;
+                obj.Course.CourseId = id.ToString();
+                id++;
+                obj.Course.FeaturedId = 30;
                 _db.Courses.Add(obj.Course);
                 _db.SaveChanges();
                 return RedirectToAction("CourseList");
             }
             return View(obj);
-        }
-
-        private string UploadFile(NewCourseVM obj)
-        {
-            string fileName = null;
-            if (obj.Course.ImgFile != null)
-            {
-                string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "Images");
-                fileName = Guid.NewGuid().ToString() + "-" + obj.Course.ImgFile;
-                string filePath = Path.Combine(uploadDir, fileName);
-                using (var filestream = new FileStream(filePath, FileMode.Create))
-                {
-                    obj.Course.ImgFile.CopyTo(filestream);
-                }
-            }
-            return fileName;
         }
 
         public IActionResult CourseRegister(int courseId)
@@ -204,6 +196,7 @@ namespace SWP391.Controllers
             this.ViewBag.Category = c.Category;
             return c;
         }
+
 
 
         public IActionResult Lesson(string id)

@@ -2,11 +2,14 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SWP391.Data;
 using SWP391.Models;
 using SWP391.Utility;
+using SWP391.Views.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -18,10 +21,14 @@ namespace SWP391.Controllers.Admin
     {
         private readonly LearningDbContext _db;
         private readonly UserManager<AppUser> _userManager;
-        public DashBoardController(LearningDbContext db, UserManager<AppUser> userManager)
+        private readonly IWebHostEnvironment _WebHostEnvironment;
+        public object WebHostEnvironment { get; private set; }
+
+        public DashBoardController(LearningDbContext db, UserManager<AppUser> userManager, IWebHostEnvironment WebHostEnvironment)
         {
             _db = db;
             _userManager = userManager;
+            _WebHostEnvironment = WebHostEnvironment;
         }
 
 
@@ -67,6 +74,48 @@ namespace SWP391.Controllers.Admin
                 return RedirectToAction("RegistrationList");
             }
             return View(course);
+        }
+
+        public IActionResult CreateCourse()
+        {
+            IEnumerable<Course> list = _db.Courses;
+            this.ViewBag.Courses = list;
+            NewCourseVM newCourseVM = new NewCourseVM()
+            {
+                Course = new Course(),
+                TypeDropDown = _db.Categories.Select(i => new SelectListItem
+                {
+                    Text = i.Value,
+                    Value = i.CategoryId.ToString()
+                })
+            };
+            return View(newCourseVM);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateCourse(NewCourseVM obj)
+        {
+            int id = 30;
+            if (ModelState.IsValid)
+            {
+                string wwwroot = _WebHostEnvironment.WebRootPath;
+                string filename = Path.GetFileNameWithoutExtension(obj.Course.ImgFile.FileName);
+                string ex = Path.GetExtension(obj.Course.ImgFile.FileName);
+                obj.Course.ThumbnailURL = filename = filename + DateTime.Now.ToString("yymmssfff") + ex;
+                string path = Path.Combine(wwwroot + "/img/", filename);
+                using (var filestream = new FileStream(path, FileMode.Create))
+                {
+                    await obj.Course.ImgFile.CopyToAsync(filestream);
+                }
+                obj.Course.CourseId = id.ToString();
+                id++;
+                obj.Course.StatusId = "3";
+                obj.Course.FeaturedId = 20;
+                _db.Courses.Add(obj.Course);
+                _db.SaveChanges();
+                return RedirectToAction("~/Index");
+            }
+            return View(obj);
         }
 
         public Task<AppUser> GetCurrentUser()
