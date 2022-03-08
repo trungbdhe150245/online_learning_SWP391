@@ -20,7 +20,7 @@
 	string CurrentURL = @Context.Request.Path;
 	var sub_class = "";
 }
-@if (!CurrentURL.Contains("Manage") && !CurrentURL.Contains("Membership") && !CurrentURL.Contains("About"))
+@if (!CurrentURL.Contains("Manage") && !CurrentURL.Contains("Membership") && !CurrentURL.Contains("About") && !CurrentURL.Contains("Lesson"))
 {
 	sub_class = "header-transparent";
 } else {
