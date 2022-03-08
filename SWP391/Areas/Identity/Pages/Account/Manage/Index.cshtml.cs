@@ -74,8 +74,8 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                //Address = user.Address,
-                //Birthday = user.Birthday,
+                Address = user.Address,
+                Birthday = user.Birthday,
                 FullName = user.FullName,
                 ProfilePictureURL = user.ProfilePictureURL,
                 ImgFile = user.ImgFile
@@ -109,15 +109,15 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            string wwwroot = _WebHostEnvironment.WebRootPath;
-            string filename = Path.GetFileNameWithoutExtension(Input.ImgFile.FileName);
-            string ex = Path.GetExtension(Input.ImgFile.FileName);
-            Input.ProfilePictureURL = filename = filename + DateTime.Now.ToString("yymmssfff") + ex;
-            string path = Path.Combine(wwwroot + "/img/", filename);
-            using (var filestream = new FileStream(path, FileMode.Create))
-            {
-                await Input.ImgFile.CopyToAsync(filestream);
-            }
+            //string wwwroot = _WebHostEnvironment.WebRootPath;
+            //string filename = Path.GetFileNameWithoutExtension(Input.ImgFile.FileName);
+            //string ex = Path.GetExtension(Input.ImgFile.FileName);
+            //Input.ProfilePictureURL = filename = filename + DateTime.Now.ToString("yymmssfff") + ex;
+            //string path = Path.Combine(wwwroot + "/img/", filename);
+            //using (var filestream = new FileStream(path, FileMode.Create))
+            //{
+            //    await Input.ImgFile.CopyToAsync(filestream);
+            //}
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
@@ -130,13 +130,13 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            //user.Address = Input.Address;
-            //user.Birthday = Input.BirthDay;
+            user.Address = Input.Address;
+            user.Birthday = Input.Birthday;
 
             user.FullName = Input.FullName;
             user.ProfilePictureURL = Input.ProfilePictureURL;
-            user.FullName = Input.FullName;
             user.ImgFile = Input.ImgFile;
+
             await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
