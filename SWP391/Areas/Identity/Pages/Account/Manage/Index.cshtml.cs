@@ -63,6 +63,7 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
         }
 
         //LẤY THÔNG TIN CỦA USER
+        // Nạp thông tin từ User vào Model
         private async Task LoadAsync(AppUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
@@ -117,16 +118,16 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                 await Input.ImgFile.CopyToAsync(filestream);
             }
 
-            //var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            //if (Input.PhoneNumber != phoneNumber)
-            //{
-            //    var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-            //    if (!setPhoneResult.Succeeded)
-            //    {
-            //        StatusMessage = "Unexpected error when trying to set phone number.";
-            //        return RedirectToPage();
-            //    }
-            //}
+            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            if (Input.PhoneNumber != phoneNumber)
+            {
+                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+                if (!setPhoneResult.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set phone number.";
+                    return RedirectToPage();
+                }
+            }
 
             user.Address = Input.Address;
             user.Birthday = Input.BirthDay;
