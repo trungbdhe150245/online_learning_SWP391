@@ -16,7 +16,7 @@ using SWP391.Models;
 
 namespace SWP391.Areas.Identity.Pages.Account.Manage
 {
-    [Authorize]
+
     public partial class IndexModel : PageModel
     {
         private readonly UserManager<AppUser> _userManager;
@@ -49,6 +49,7 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             [DataType(DataType.Text)]
             [Display(Name = "Address")]
             public string Address { get; set; }
+            [DataType(DataType.Date)]
             [Display(Name = "BirthDay")]
             public DateTime? Birthday { get; set; }
             [MaxLength(255)]
@@ -73,8 +74,8 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                Address = user.Address,
-                Birthday = user.Birthday,
+                //Address = user.Address,
+                //Birthday = user.Birthday,
                 FullName = user.FullName,
                 ProfilePictureURL = user.ProfilePictureURL,
                 ImgFile = user.ImgFile
@@ -118,16 +119,16 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                 await Input.ImgFile.CopyToAsync(filestream);
             }
 
-            //var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            //if (Input.PhoneNumber != phoneNumber)
-            //{
-            //    var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-            //    if (!setPhoneResult.Succeeded)
-            //    {
-            //        StatusMessage = "Unexpected error when trying to set phone number.";
-            //        return RedirectToPage();
-            //    }
-            //}
+            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            if (Input.PhoneNumber != phoneNumber)
+            {
+                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+                if (!setPhoneResult.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set phone number.";
+                    return RedirectToPage();
+                }
+            }
 
             //user.Address = Input.Address;
             //user.Birthday = Input.BirthDay;
