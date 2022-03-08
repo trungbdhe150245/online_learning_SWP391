@@ -393,7 +393,10 @@
                 </div>
                 <div class="row">
                     <div class="courses-carousel owl-carousel owl-btn-1 col-12 p-lr0">
-                        @foreach (var course in courses)
+                        
+                        @*SqlException: Invalid column name 'Price'.*@
+                        @*BUG: KO MỞ ĐƯỢC TRANG HOME*@
+                        @*@foreach (var course in courses)
                         {
                             <div class="item">
                                 <div class="cours-bx">
@@ -423,7 +426,7 @@
                                     </div>
                                 </div>
                             </div>
-                        }
+                        }*@
                         
                     </div>
                 </div>

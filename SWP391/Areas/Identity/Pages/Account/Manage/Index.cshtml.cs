@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -15,11 +16,13 @@ using SWP391.Models;
 
 namespace SWP391.Areas.Identity.Pages.Account.Manage
 {
+    [Authorize]
     public partial class IndexModel : PageModel
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IWebHostEnvironment _WebHostEnvironment;
+      
         public IndexModel(
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
@@ -40,9 +43,13 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Phone]
+            [Phone(ErrorMessage = "{0} wrong format")]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [Display(Name = "Address")]
+            public string Address { get; set; }
+            [Display(Name = "BirthDay")]
+            public DateTime? BirthDay { get; set; }
             [MaxLength(255)]
             [Display(Name = "Full Name")]
             public string FullName { set; get; }
@@ -55,6 +62,7 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             public IFormFile ImgFile { get; set; }
         }
 
+        //LẤY THÔNG TIN CỦA USER
         private async Task LoadAsync(AppUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
@@ -64,12 +72,15 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
+                Address = user.Address,
+                BirthDay = user.Birthday,
                 FullName = user.FullName,
                 ProfilePictureURL = user.ProfilePictureURL,
                 ImgFile = user.ImgFile
             };
         }
 
+        //KIỂM TRA USER ĐÃ LOGIN HAY CHƯA?
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -106,16 +117,20 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                 await Input.ImgFile.CopyToAsync(filestream);
             }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
-                }
-            }
+            //var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            //if (Input.PhoneNumber != phoneNumber)
+            //{
+            //    var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+            //    if (!setPhoneResult.Succeeded)
+            //    {
+            //        StatusMessage = "Unexpected error when trying to set phone number.";
+            //        return RedirectToPage();
+            //    }
+            //}
+
+            user.Address = Input.Address;
+            user.Birthday = Input.BirthDay;
+
             user.FullName = Input.FullName;
             user.ProfilePictureURL = Input.ProfilePictureURL;
             user.FullName = Input.FullName;
