@@ -20,7 +20,7 @@
 	string CurrentURL = @Context.Request.Path;
 	var sub_class = "";
 }
-@if (!CurrentURL.Contains("Manage") && !CurrentURL.Contains("Membership") && !CurrentURL.Contains("About"))
+@if (!CurrentURL.Contains("Manage") && !CurrentURL.Contains("Membership") && !CurrentURL.Contains("About") && !CurrentURL.Contains("CreateCourse"))
 {
 	sub_class = "header-transparent";
 } else {
@@ -97,7 +97,7 @@
 							<li class="nav-dashboard"><a href="javascript:;">Dashboard <i class="fa fa-chevron-down"></i></a>
 								<ul class="sub-menu">
 									<li><a asp-action="DashBoard" asp-controller="DashBoard">Dashboard</a></li>
-									<li><a href="admin/add-listing.html">Add Listing</a></li>
+									<li><a asp-action="CreateCourse" asp-controller="DashBoard">Add Listing</a></li>
 									<li><a href="admin/bookmark.html">Bookmark</a></li>
 									<li><a asp-action="RegistrationList" asp-controller="DashBoard">Courses</a></li>
 									<li><a href="admin/review.html">Review</a></li>

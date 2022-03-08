@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - SWP391</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     @*<link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/main.css" />*@
+        <link rel="stylesheet" href="~/css/main.css" />*@
     <link rel="stylesheet" type="text/css" href="~/assets/css/assets.css">
 
     <!-- TYPOGRAPHY ============================================= -->
@@ -27,11 +27,10 @@
 <body id="bg">
     <div class="page-wraper">
         <div id="loading-icon-bx"></div>
-            @await Html.PartialAsync("_HeaderPartial")
+        @await Html.PartialAsync("_HeaderPartial")
         @RenderBody()
-            @await Html.PartialAsync("_FooterPartial")
+        @await Html.PartialAsync("_FooterPartial")
         <button class="back-to-top fa fa-chevron-up"></button>
-    </div>
     </div>
     @*<div class="container">
             <main role="main" class="pb-3">

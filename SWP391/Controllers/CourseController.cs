@@ -77,22 +77,6 @@ namespace SWP391.Controllers
             return View(obj);
         }
 
-        private string UploadFile(NewCourseVM obj)
-        {
-            string fileName = null;
-            if (obj.Course.ImgFile != null)
-            {
-                string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "Images");
-                fileName = Guid.NewGuid().ToString() + "-" + obj.Course.ImgFile;
-                string filePath = Path.Combine(uploadDir, fileName);
-                using (var filestream = new FileStream(filePath, FileMode.Create))
-                {
-                    obj.Course.ImgFile.CopyTo(filestream);
-                }
-            }
-            return fileName;
-        }
-
         public IActionResult CourseRegister(int courseId)
         {
 
@@ -204,6 +188,7 @@ namespace SWP391.Controllers
             this.ViewBag.Category = c.Category;
             return c;
         }
+
 
 
         public IActionResult Lesson(string id)
