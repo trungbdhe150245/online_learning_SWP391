@@ -31,6 +31,10 @@
     position: relative;
     z-index: 99999;
 }
+table-center th, .table-center td {
+	vertical-align: middle;
+}
+
 .header ul,
 .header ol {
     margin-bottom: 0;
