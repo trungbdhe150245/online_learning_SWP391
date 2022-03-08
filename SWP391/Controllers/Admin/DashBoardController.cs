@@ -78,6 +78,8 @@ namespace SWP391.Controllers.Admin
 
         public IActionResult CreateCourse()
         {
+            IEnumerable<Course> list = _db.Courses;
+            this.ViewBag.Courses = list;
             NewCourseVM newCourseVM = new NewCourseVM()
             {
                 Course = new Course(),
@@ -87,7 +89,7 @@ namespace SWP391.Controllers.Admin
                     Value = i.CategoryId.ToString()
                 })
             };
-            return PartialView(newCourseVM);
+            return View(newCourseVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
