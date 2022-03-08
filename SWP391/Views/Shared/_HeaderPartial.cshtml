@@ -20,7 +20,8 @@
 	string CurrentURL = @Context.Request.Path;
 	var sub_class = "";
 }
-@if (!CurrentURL.Contains("Manage") && !CurrentURL.Contains("Membership") && !CurrentURL.Contains("About") && !CurrentURL.Contains("CreateCourse"))
+
+@if (!CurrentURL.Contains("Manage") && !CurrentURL.Contains("Membership") && !CurrentURL.Contains("About") && !CurrentURL.Contains("CreateCourse") && !CurrentURL.Contains("Lesson"))
 {
 	sub_class = "header-transparent";
 } else {
@@ -46,7 +47,7 @@
                     <div class="secondary-menu">
                         <div class="secondary-inner">
                             <ul>
-								<li><a href="javascript:;" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://www.facebook.com/orderacozysoul" class="btn-link"><i class="fa fa-facebook"></i></a></li>
 								<li><a href="javascript:;" class="btn-link"><i class="fa fa-google-plus"></i></a></li>
 								<li><a href="javascript:;" class="btn-link"><i class="fa fa-linkedin"></i></a></li>
 								<!-- Search Button ==== -->

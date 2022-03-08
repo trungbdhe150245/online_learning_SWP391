@@ -29,11 +29,12 @@ public class IdentityUser
     public class AppUser: IdentityUser
     {
         public string FullName { set; get; }
-        //      public string Address { set; get; }
-        //      [DataType(DataType.Date)]
-        //      public DateTime? Birthday { set; get; }
-        //public string Sex { get; set; }
+        public string Address { set; get; }
+        [DataType(DataType.Date)]
+        public DateTime? Birthday { set; get; }
+        public string Sex { get; set; }
         public bool Subcription { get; set; }
+
         [NotMapped]
         [DisplayName("Upload Image")]
         public IFormFile ImgFile { get; set; }
