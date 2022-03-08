@@ -22,7 +22,7 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IWebHostEnvironment _WebHostEnvironment;
-      
+
         public IndexModel(
             UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
@@ -46,10 +46,11 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             [Phone(ErrorMessage = "{0} wrong format")]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [DataType(DataType.Text)]
             [Display(Name = "Address")]
             public string Address { get; set; }
             [Display(Name = "BirthDay")]
-            public DateTime? BirthDay { get; set; }
+            public DateTime? Birthday { get; set; }
             [MaxLength(255)]
             [Display(Name = "Full Name")]
             public string FullName { set; get; }
@@ -63,7 +64,6 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
         }
 
         //LẤY THÔNG TIN CỦA USER
-        // Nạp thông tin từ User vào Model
         private async Task LoadAsync(AppUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
@@ -74,7 +74,7 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             {
                 PhoneNumber = phoneNumber,
                 Address = user.Address,
-                BirthDay = user.Birthday,
+                Birthday = user.Birthday,
                 FullName = user.FullName,
                 ProfilePictureURL = user.ProfilePictureURL,
                 ImgFile = user.ImgFile
@@ -118,19 +118,19 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                 await Input.ImgFile.CopyToAsync(filestream);
             }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
-                }
-            }
+            //var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            //if (Input.PhoneNumber != phoneNumber)
+            //{
+            //    var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+            //    if (!setPhoneResult.Succeeded)
+            //    {
+            //        StatusMessage = "Unexpected error when trying to set phone number.";
+            //        return RedirectToPage();
+            //    }
+            //}
 
-            user.Address = Input.Address;
-            user.Birthday = Input.BirthDay;
+            //user.Address = Input.Address;
+            //user.Birthday = Input.BirthDay;
 
             user.FullName = Input.FullName;
             user.ProfilePictureURL = Input.ProfilePictureURL;
@@ -157,6 +157,6 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             return fileName;
         }
     }
-    
+
 
 }
