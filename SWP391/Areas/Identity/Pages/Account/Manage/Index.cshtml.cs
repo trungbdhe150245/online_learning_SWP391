@@ -34,6 +34,8 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
         }
 
         public string Username { get; set; }
+        public string FullName { get; set; }
+        public string ProfilePictureURL { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -70,6 +72,8 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             Username = userName;
+            FullName = user.FullName;
+            ProfilePictureURL = user.ProfilePictureURL;
 
             Input = new InputModel
             {
@@ -142,21 +146,21 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
-        private string UploadFile(AppUser obj)
-        {
-            string fileName = null;
-            if (obj.ImgFile != null)
-            {
-                string uploadDir = Path.Combine(_WebHostEnvironment.WebRootPath, "Images");
-                fileName = Guid.NewGuid().ToString() + "-" + obj.ImgFile;
-                string filePath = Path.Combine(uploadDir, fileName);
-                using (var filestream = new FileStream(filePath, FileMode.Create))
-                {
-                    obj.ImgFile.CopyTo(filestream);
-                }
-            }
-            return fileName;
-        }
+        //private string UploadFile(AppUser obj)
+        //{
+        //    string fileName = null;
+        //    if (obj.ImgFile != null)
+        //    {
+        //        string uploadDir = Path.Combine(_WebHostEnvironment.WebRootPath, "Images");
+        //        fileName = Guid.NewGuid().ToString() + "-" + obj.ImgFile;
+        //        string filePath = Path.Combine(uploadDir, fileName);
+        //        using (var filestream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            obj.ImgFile.CopyTo(filestream);
+        //        }
+        //    }
+        //    return fileName;
+        //}
     }
 
 
