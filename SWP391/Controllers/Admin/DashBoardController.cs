@@ -41,8 +41,8 @@ namespace SWP391.Controllers.Admin
             //}
             //var obj = _userManager.GetUserAsync(user);
             //this.ViewBag.User = obj.Result;
-            var obj = GetCurrentUser();
-            return View(obj);
+            //var obj = GetCurrentUser();
+            return View();
         }
 
 
@@ -116,6 +116,12 @@ namespace SWP391.Controllers.Admin
                 return RedirectToAction("~/Index");
             }
             return View(obj);
+        }
+
+        public IActionResult UserList(string id)
+        {
+            IEnumerable<AppUser> list = _db.Users;
+            return View(list);
         }
 
         public Task<AppUser> GetCurrentUser()
