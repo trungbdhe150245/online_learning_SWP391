@@ -95,6 +95,7 @@ namespace SWP391.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateCourse(NewCourseVM obj)
         {
+            int id = 30;
             if (ModelState.IsValid)
             {
                 string wwwroot = _WebHostEnvironment.WebRootPath;
@@ -106,11 +107,13 @@ namespace SWP391.Controllers.Admin
                 {
                     await obj.Course.ImgFile.CopyToAsync(filestream);
                 }
+                obj.Course.CourseId = id.ToString();
+                id++;
                 obj.Course.StatusId = "3";
-                //obj.Course.Featured = 20;
+                obj.Course.FeaturedId = 20;
                 _db.Courses.Add(obj.Course);
                 _db.SaveChanges();
-                return RedirectToAction("CourseList");
+                return RedirectToAction("~/Index");
             }
             return View(obj);
         }
