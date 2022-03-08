@@ -118,10 +118,16 @@ namespace SWP391.Controllers.Admin
             return View(obj);
         }
 
-        public IActionResult UserList(string id)
+        public IActionResult UserList()
         {
             IEnumerable<AppUser> list = _db.Users;
             return View(list);
+        }
+
+        public IActionResult UserDetail(string id)
+        {
+
+            return PartialView();
         }
 
         public Task<AppUser> GetCurrentUser()

@@ -116,15 +116,15 @@ $(function() {
 		});
 	}
 
-	var PlaceHolderElement = $('#PlaceHolderHere');
-	$('button[data-toggle="ajax-modal"]').click(function (event) {
-		var url = $(this).data('url');
-		var decodeUrl = decodeURIComponent(url);
-		$.get(decodeUrl).done(function (data) {
-			PlaceHolderElement.html(data);
-			PlaceHolderElement.find('.modal').modal('show');
-		})
-	})
+	//var PlaceHolderElement = $('#PlaceHolderHere');
+	//$('button[data-toggle="ajax-modal"]').click(function (event) {
+	//	var url = $(this).data('url');
+	//	var decodeUrl = decodeURIComponent(url);
+	//	$.get(decodeUrl).done(function (data) {
+	//		PlaceHolderElement.html(data);
+	//		PlaceHolderElement.find('.modal').modal('show');
+	//	})
+	//})
 
 	PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
 		event.preventDefault();
@@ -136,19 +136,5 @@ $(function() {
 		})
 	})
 
-	$('a.complaint-detail').click(function () {
-		let detailId = $(this).data('complaint-detail-id'),
-			url = '@Url.Action("CourseDetail", "Course", new { area = "" })/' + detailId,
-			$modal = $('#complaint-detail-modal'),
-			$iframe = $modal.find('iframe');
-
-		// Change the source of the iframe to the url
-		$iframe.prop('src', url);    // Or you can use $iframe.attr('src', url);
-
-		// Manually trigger the modal
-		$modal.modal('show');
-
-		return false;
-	});
 	
 });

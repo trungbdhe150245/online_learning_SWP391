@@ -1,0 +1,81 @@
+﻿<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add New Course</h4>
+            </div>
+            <div class="modal-body">
+                <div class="tab-pane active" id="edit-profile">
+                    <div class="profile-head">
+                        <h3>Edit Profile</h3>
+                    </div>
+                    @*<partial name="_StatusMessage" model="Model.StatusMessage" />*@
+                    <form class="edit-profile" id="profile-form" method="post" enctype="multipart/form-data">
+                        <div class="">
+                            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label"></label>
+                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
+                                    <input class="form-control" type="text" disabled />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label"></label>
+                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
+                                    <input class="form-control" />
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label"></label>
+                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
+                                    <input class="form-control" />
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label"></label>
+                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
+                                    <input class="form-control" />
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label"></label>
+                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
+                                    <input class="form-control" />
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            @*<div class="form-group row">
+                                    <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label"></label>
+                                    <div class="col-12 col-sm-9 col-md-9 col-lg-7">
+                                        <input accept="image/*" class="form-control" />
+                                        <span class="text-danger"></span>
+                                    </div>
+                                </div>*@
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-12 col-sm-3 col-md-3 col-lg-2">
+                                    </div>
+                                    <div class="col-12 col-sm-9 col-md-9 col-lg-7">
+                                        <button type="submit" class="btn">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
