@@ -7,8 +7,8 @@ using System;
 
 namespace SWP391.Controllers
 {
-	public class PaymentController : Controller
-	{
+    public class PaymentController : Controller
+    {
         private readonly IBraintreeService _braintreeService;
         private readonly ILogger<PaymentController> _logger;
 
@@ -20,9 +20,9 @@ namespace SWP391.Controllers
             _braintreeService = braintreeService;
         }
         public IActionResult Index()
-		{
-			return View();
-		}
+        {
+            return View();
+        }
 
         public IActionResult Purchase(string id)
         {

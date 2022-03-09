@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace XTLASPNET
 {
@@ -12,10 +9,10 @@ namespace XTLASPNET
         // Dữ liệu nội dung trang thông báo
         public class Message
         {
-            public string Title { set; get; } = "Notification";   
-            public string HtmlContent { set; get; } = "";        
-            public string UrlRedirect { set; get; } = "/";        
-            public int SecondWait { set; get; } = 3;              
+            public string Title { set; get; } = "Notification";
+            public string HtmlContent { set; get; } = "";
+            public string UrlRedirect { set; get; } = "/";
+            public int SecondWait { set; get; } = 3;
         }
         public MessagePage() { }
         public IViewComponentResult Invoke(Message message)

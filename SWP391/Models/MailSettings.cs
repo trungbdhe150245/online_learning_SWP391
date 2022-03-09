@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SWP391.Models
+﻿namespace SWP391.Models
 {
     public class MailSettings
     {

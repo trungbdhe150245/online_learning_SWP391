@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
 using SWP391.Models;
+using System.Threading.Tasks;
 using XTLASPNET;
 
 namespace SWP391.Areas.Identity.Pages.Account

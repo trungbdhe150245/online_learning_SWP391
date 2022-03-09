@@ -73,7 +73,7 @@ namespace SWP391.Controllers
                 {
                     await obj.Course.ImgFile.CopyToAsync(filestream);
                 }
-                
+
                 obj.Course.StatusId = "3";
                 obj.Course.CourseId = id.ToString();
                 id++;
@@ -200,9 +200,9 @@ namespace SWP391.Controllers
 
 
         public IActionResult Lesson(string id)
-		{
+        {
             return View();
-		}
+        }
         /*
 
         /// add course to cart

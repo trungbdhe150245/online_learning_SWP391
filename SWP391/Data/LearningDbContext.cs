@@ -5,9 +5,9 @@ using SWP391.Models;
 namespace SWP391.Data
 {
     //Using fluentApi
-	public class LearningDbContext: IdentityDbContext<AppUser>
-	{
-		public LearningDbContext(DbContextOptions<LearningDbContext> options): base (options) { }
+    public class LearningDbContext : IdentityDbContext<AppUser>
+    {
+        public LearningDbContext(DbContextOptions<LearningDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -20,7 +20,8 @@ namespace SWP391.Data
                     entityType.SetTableName(tableName.Substring(6));
                 }
             }
-            modelBuilder.Entity<Attempt>(entity => {
+            modelBuilder.Entity<Attempt>(entity =>
+            {
                 entity.Property(a => a.AttemptId).HasColumnType("varchar(10)");
                 entity.Property(a => a.TotalMark).HasColumnType("float");
                 entity.Property(a => a.StartTime).HasColumnType("datetime2");
@@ -35,7 +36,8 @@ namespace SWP391.Data
                         .HasForeignKey("QuizId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<AttemptDetailed>(entity => {
+            modelBuilder.Entity<AttemptDetailed>(entity =>
+            {
                 entity.Property(ad => ad.UserAnswer).HasColumnType("text");
                 entity.HasOne(ad => ad.Attempt)
                         .WithMany(a => a.AttemptDetaileds)
@@ -47,7 +49,8 @@ namespace SWP391.Data
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasKey(ad => new { ad.AttemptId, ad.QuestionBankId });
             });
-            modelBuilder.Entity<Blog>(entity => {
+            modelBuilder.Entity<Blog>(entity =>
+            {
                 entity.Property(b => b.BlogId).HasColumnType("varchar(10)");
                 entity.HasKey(b => b.BlogId);
                 entity.HasOne(b => b.Status)
@@ -68,12 +71,14 @@ namespace SWP391.Data
                 entity.Property(b => b.ThumbnailURL).HasColumnType("varchar(max)");
                 entity.Property(b => b.CreatedDate).HasColumnType("datetime2");
             });
-            modelBuilder.Entity<Category>(entity => {
+            modelBuilder.Entity<Category>(entity =>
+            {
                 entity.Property(ct => ct.CategoryId).HasColumnType("varchar(10)");
                 entity.Property(ct => ct.Value).HasColumnType("varchar(100)");
                 entity.HasKey(ct => ct.CategoryId);
             });
-            modelBuilder.Entity<Comment>(entity => {
+            modelBuilder.Entity<Comment>(entity =>
+            {
                 entity.Property(cm => cm.CommentId).HasColumnType("varchar(10)");
                 entity.Property(cm => cm.CommentBody).HasColumnType("text");
                 entity.HasKey(cm => cm.CommentId);
@@ -86,14 +91,15 @@ namespace SWP391.Data
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<Course>(entity => {
+            modelBuilder.Entity<Course>(entity =>
+            {
                 entity.Property(c => c.CourseId).HasColumnType("varchar(10)");
                 entity.Property(c => c.CreatedDate).HasColumnType("datetime2");
-				entity.Property(c => c.Description).HasColumnType("text");
+                entity.Property(c => c.Description).HasColumnType("text");
                 entity.Property(c => c.ShortDescription).HasColumnType("varchar(500)");
                 entity.Property(c => c.Title).HasColumnType("varchar(255)");
                 entity.Property(c => c.ThumbnailURL).HasColumnType("text");
-				entity.HasKey(c => c.CourseId);
+                entity.HasKey(c => c.CourseId);
                 entity.HasOne(c => c.Status)
                         .WithMany(s => s.Courses)
                         .HasForeignKey("StatusId")
@@ -107,7 +113,8 @@ namespace SWP391.Data
                         .HasForeignKey("FeaturedId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<CoursePackage>(entity => {
+            modelBuilder.Entity<CoursePackage>(entity =>
+            {
                 entity.HasOne(cp => cp.Course)
                         .WithMany(c => c.CoursePackages)
                         .HasForeignKey("CourseId")
@@ -116,10 +123,11 @@ namespace SWP391.Data
                         .WithMany(pp => pp.CoursePackages)
                         .HasForeignKey("PricePackageId")
                         .OnDelete(DeleteBehavior.NoAction);
-                entity.HasKey(cp => new { cp.CourseId, cp.PricePackageId});
+                entity.HasKey(cp => new { cp.CourseId, cp.PricePackageId });
 
             });
-            modelBuilder.Entity<Lesson>(entity => {
+            modelBuilder.Entity<Lesson>(entity =>
+            {
                 entity.Property(l => l.LessonId).HasColumnType("varchar(10)");
                 entity.Property(l => l.LessonName).HasColumnType("varchar(255)");
                 entity.Property(l => l.LessonOrder).HasColumnType("int");
@@ -135,7 +143,8 @@ namespace SWP391.Data
                         .HasForeignKey("PricePackageId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<CourseOwner>(entity => {
+            modelBuilder.Entity<CourseOwner>(entity =>
+            {
                 entity.Property(co => co.PurchaseTime).HasColumnType("datetime2");
                 entity.HasOne(co => co.User)
                         .WithMany(u => u.CourseOwners)
@@ -147,12 +156,14 @@ namespace SWP391.Data
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasKey(o => new { o.UserId, o.CourseId });
             });
-            modelBuilder.Entity<Status>(entity => {
+            modelBuilder.Entity<Status>(entity =>
+            {
                 entity.Property(s => s.StatusId).HasColumnType("varchar(10)");
                 entity.Property(s => s.Value).HasColumnType("varchar(255)");
                 entity.HasKey(s => s.StatusId);
             });
-            modelBuilder.Entity<PricePackage>(entity => {
+            modelBuilder.Entity<PricePackage>(entity =>
+            {
                 entity.Property(pp => pp.PricePackageId).HasColumnType("varchar(10)");
                 entity.Property(pp => pp.Name).HasColumnType("varchar(255)");
                 entity.Property(pp => pp.Description).HasColumnType("text");
@@ -165,7 +176,8 @@ namespace SWP391.Data
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<QuestionBank>(entity => {
+            modelBuilder.Entity<QuestionBank>(entity =>
+            {
                 entity.Property(qb => qb.QuestionId).HasColumnType("varchar(10)");
                 entity.Property(qb => qb.Answer).HasColumnType("text");
                 entity.Property(qb => qb.Content).HasColumnType("text");
@@ -185,7 +197,8 @@ namespace SWP391.Data
                         .HasForeignKey("QuizLevelId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<Quiz>(entity => {
+            modelBuilder.Entity<Quiz>(entity =>
+            {
                 entity.Property(q => q.QuizId).HasColumnType("varchar(10)");
                 entity.Property(q => q.Description).HasColumnType("text");
                 entity.Property(q => q.Duration).HasColumnType("int");
@@ -211,18 +224,21 @@ namespace SWP391.Data
                 //        .HasForeignKey("CourseId")
                 //        .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<QuizLevel>(entity => {
+            modelBuilder.Entity<QuizLevel>(entity =>
+            {
                 entity.Property(ql => ql.QuizLevelId).HasColumnType("varchar(10)");
                 entity.Property(ql => ql.Name).HasColumnType("varchar(255)");
                 entity.HasKey(ql => ql.QuizLevelId);
             });
-            modelBuilder.Entity<QuizType>(entity => {
+            modelBuilder.Entity<QuizType>(entity =>
+            {
                 entity.Property(qt => qt.QuizTypeId).HasColumnType("varchar(10)");
                 entity.Property(qt => qt.Name).HasColumnType("varchar(255)");
                 entity.HasKey(qt => qt.QuizTypeId);
             });
-            modelBuilder.Entity<Slide>(entity => {
-                entity.Property(sl => sl.SlideId).HasColumnType("varchar(10)") ;
+            modelBuilder.Entity<Slide>(entity =>
+            {
+                entity.Property(sl => sl.SlideId).HasColumnType("varchar(10)");
                 entity.Property(sl => sl.Title).HasColumnType("varchar(255)");
                 entity.Property(sl => sl.CourseURL).HasColumnType("text");
                 entity.Property(sl => sl.ThumbnailURL).HasColumnType("text");
@@ -233,7 +249,8 @@ namespace SWP391.Data
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<Topic>(entity => {
+            modelBuilder.Entity<Topic>(entity =>
+            {
                 entity.Property(t => t.TopicId).HasColumnType("varchar(10)");
                 entity.Property(t => t.TopicName).HasColumnType("varchar(255)");
                 entity.Property(t => t.TopicOrder).HasColumnType("int");
@@ -243,7 +260,8 @@ namespace SWP391.Data
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<UserCourse>(entity => {
+            modelBuilder.Entity<UserCourse>(entity =>
+            {
                 entity.Property(uc => uc.UserCourseId).HasColumnType("varchar(10)");
                 entity.HasKey(uc => uc.UserCourseId);
                 entity.HasOne(uc => uc.Course)
@@ -259,7 +277,8 @@ namespace SWP391.Data
                         .HasForeignKey("PricePackageId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<QuizQuestion>(entity => {
+            modelBuilder.Entity<QuizQuestion>(entity =>
+            {
                 entity.HasOne(qq => qq.Quiz)
                         .WithMany(q => q.QuizQuestions)
                         .HasForeignKey("QuizId")
@@ -270,7 +289,8 @@ namespace SWP391.Data
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasKey(qq => new { qq.QuizId, qq.QuestionId });
             });
-            modelBuilder.Entity<Featured>(entity => {
+            modelBuilder.Entity<Featured>(entity =>
+            {
                 entity.Property(f => f.FeaturedId).HasColumnType("varchar(10)");
                 entity.Property(f => f.Value).HasColumnType("varchar(255)");
                 entity.HasKey(f => f.FeaturedId);
@@ -304,6 +324,6 @@ namespace SWP391.Data
         public DbSet<Status> Status { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<UserCourse> UserCourses { get; set; }
-		public DbSet<QuizQuestion> QuizQuestions { get; set; }
-	}
+        public DbSet<QuizQuestion> QuizQuestions { get; set; }
+    }
 }

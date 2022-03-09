@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SWP391.Models
 {
@@ -26,7 +24,7 @@ public class IdentityUser
     public virtual int AccessFailedCount { get; set; }
 }
 	 */
-    public class AppUser: IdentityUser
+    public class AppUser : IdentityUser
     {
         public string FullName { set; get; }
         public string Address { set; get; }
@@ -39,10 +37,10 @@ public class IdentityUser
         [DisplayName("Upload Image")]
         public IFormFile ImgFile { get; set; }
         public string ProfilePictureURL { get; set; }
-		public ICollection<CourseOwner> CourseOwners { get; set; }
-		public ICollection<Attempt> Attempts { get; set; }
-		public ICollection<UserCourse> UserCourses { get; set; }
-		public ICollection<Blog> Blogs { get; set; }
-		public ICollection<Comment> Comments { get; set; }
-	}
+        public ICollection<CourseOwner> CourseOwners { get; set; }
+        public ICollection<Attempt> Attempts { get; set; }
+        public ICollection<UserCourse> UserCourses { get; set; }
+        public ICollection<Blog> Blogs { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+    }
 }

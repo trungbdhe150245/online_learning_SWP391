@@ -1,13 +1,8 @@
-﻿using Braintree;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SWP391.Data;
-using SWP391.Models;
 using SWP391.Utility;
 using SWP391.Utility.BraintreeService;
-using System;
-using System.Linq;
 
 namespace SWP391.Controllers
 {
