@@ -77,6 +77,10 @@
 	-webkit-transition:all 0.5s ease 0.5s;
 	opacity:1;
 }
+
+table-center th, .table-center td {
+	vertical-align: middle;
+}
 .nav-search-bar form {
     width: 100%;
 	max-width: 700px;

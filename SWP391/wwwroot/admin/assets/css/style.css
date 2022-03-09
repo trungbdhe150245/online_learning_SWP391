@@ -31,6 +31,10 @@
     position: relative;
     z-index: 99999;
 }
+table-center th, .table-center td {
+	vertical-align: middle;
+}
+
 .header ul,
 .header ol {
     margin-bottom: 0;
@@ -2816,6 +2820,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 	position:sticky;
 	top:100px;
 }
+
+.user-profile {
+	width: 150px;
+	height: 140px;
+	overflow: hidden;
+	border-radius: 80px;
+	border: 5px solid #fff;
+	box-shadow: 0 0 15px 0 rgb(0 0 0 / 20%);
+	margin: 25px auto 15px;
+}
+
 .user-profile-thumb{
 	width:100px;
 	height:100px;
