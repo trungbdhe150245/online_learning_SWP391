@@ -135,13 +135,14 @@ namespace SWP391.Data
                         .HasForeignKey("PricePackageId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<Owner>(entity => {
-                entity.HasOne(o => o.User)
-                        .WithMany(u => u.Owners)
+            modelBuilder.Entity<CourseOwner>(entity => {
+                entity.Property(co => co.PurchaseTime).HasColumnType("datetime2");
+                entity.HasOne(co => co.User)
+                        .WithMany(u => u.CourseOwners)
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction);
-                entity.HasOne(o => o.Course)
-                        .WithMany(c => c.Owners)
+                entity.HasOne(co => co.Course)
+                        .WithMany(c => c.CourseOwners)
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasKey(o => new { o.UserId, o.CourseId });
@@ -258,44 +259,6 @@ namespace SWP391.Data
                         .HasForeignKey("PricePackageId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<DimensionType>(entity => {
-                entity.Property(dt => dt.DimensionTypeId).HasColumnType("varchar(10)");
-                entity.Property(dt => dt.Name).HasColumnType("varchar(255)");
-                entity.HasKey(dt => dt.DimensionTypeId);
-            });
-            modelBuilder.Entity<Dimension>(entity =>
-			{
-				entity.Property(d => d.DimensionId).HasColumnType("varchar(10)");
-                entity.Property(d => d.Description).HasColumnType("text");
-                entity.Property(d => d.Name).HasColumnType("varchar(255)");
-				entity.HasKey(d => d.DimensionId);
-                entity.HasOne(d => d.DimensionType)
-                        .WithMany(dt => dt.Dimensions)
-                        .HasForeignKey("DimensionId")
-                        .OnDelete(DeleteBehavior.NoAction);
-            });
-            modelBuilder.Entity<CourseDimension>(entity => {
-                entity.HasOne(cd => cd.Course)
-                        .WithMany(c => c.CourseDimensions)
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.NoAction);
-                entity.HasOne(cd => cd.Dimension)
-                        .WithMany(d => d.CourseDimensions)
-                        .HasForeignKey("DimensionId")
-                        .OnDelete(DeleteBehavior.NoAction);
-                entity.HasKey(cd => new { cd.CouresId, cd.DimensionId});
-            });
-            modelBuilder.Entity<QuestionDimension>(entity => {
-                entity.HasOne(qd => qd.QuestionBank)
-                        .WithMany(qb => qb.QuestionDimensions)
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.NoAction);
-                entity.HasOne(qd => qd.Dimension)
-                        .WithMany(d => d.QuestionDimensions)
-                        .HasForeignKey("DimensionId")
-                        .OnDelete(DeleteBehavior.NoAction);
-                entity.HasKey(cd => new { cd.QuestionId, cd.DimensionId });
-            });
             modelBuilder.Entity<QuizQuestion>(entity => {
                 entity.HasOne(qq => qq.Quiz)
                         .WithMany(q => q.QuizQuestions)
@@ -331,7 +294,7 @@ namespace SWP391.Data
         public DbSet<Course> Courses { get; set; }
         public DbSet<CoursePackage> CoursePackages { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
-        public DbSet<Owner> Owners { get; set; }
+        public DbSet<CourseOwner> CourseOwners { get; set; }
         public DbSet<PricePackage> PricePackages { get; set; }
         public DbSet<QuestionBank> QuestionBanks { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }
@@ -341,10 +304,6 @@ namespace SWP391.Data
         public DbSet<Status> Status { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<UserCourse> UserCourses { get; set; }
-		public DbSet<Dimension> Dimensions { get; set; }
-		public DbSet<DimensionType> DimensionTypes { get; set; }
-		public DbSet<CourseDimension> CourseDimensions { get; set; }
-		public DbSet<QuestionDimension> QuestionDimensions { get; set; }
 		public DbSet<QuizQuestion> QuizQuestions { get; set; }
 	}
 }

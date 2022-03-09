@@ -38,7 +38,7 @@ public class IdentityUser
         [DisplayName("Upload Image")]
         public IFormFile ImgFile { get; set; }
         public string ProfilePictureURL { get; set; }
-		public ICollection<Owner> Owners { get; set; }
+		public ICollection<CourseOwner> CourseOwners { get; set; }
 		public ICollection<Attempt> Attempts { get; set; }
 		public ICollection<UserCourse> UserCourses { get; set; }
 		public ICollection<Blog> Blogs { get; set; }

@@ -27,12 +27,11 @@ namespace SWP391.Models
 		[NotMapped]
 		[DisplayName("Upload Image")]
 		public IFormFile ImgFile { get; set; }
-		public ICollection<Owner> Owners { get; set; }
+		public ICollection<CourseOwner> CourseOwners { get; set; }
 		public ICollection<Topic> Topics { get; set; }
 		public ICollection<QuestionBank> QuestionBanks { get; set; }
 		public ICollection<Quiz> Quizzes { get; set; }
 		public ICollection<CoursePackage> CoursePackages { get; set; }
 		public ICollection<UserCourse> UserCourses { get; set; }
-		public ICollection<CourseDimension> CourseDimensions { get; set; }	
 	}
 }
