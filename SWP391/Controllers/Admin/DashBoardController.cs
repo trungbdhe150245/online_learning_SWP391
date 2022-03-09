@@ -126,8 +126,8 @@ namespace SWP391.Controllers.Admin
 
         public IActionResult UserDetail(string id)
         {
-
-            return PartialView();
+            AppUser user = _db.Users.Find(id);
+            return PartialView(user);
         }
 
         public Task<AppUser> GetCurrentUser()

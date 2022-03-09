@@ -26,8 +26,8 @@
                                         <th>Username</th>
                                         <th>Full Name</th>
                                         <th>Address</th>
-                                        <th>Birthday</th>
-                                        <th>Sex</th>
+                                        @*<th>Birthday</th>
+                                            <th>Sex</th>*@
                                         @*<th>Subcription</th>*@
                                         <th>Email</th>
                                         @*<th>Ph.Number</th>*@
@@ -45,16 +45,22 @@
                                                 <a href="profile.html">@item.FullName</a>
                                             </td>
                                             <td>@item.Address</td>
-                                            <td>@item.Birthday</td>
-                                            <td>@item.Sex</td>
+                                            @*<td>@item.Birthday</td>
+                                                <td>@item.Sex</td>*@
                                             <td>@item.Email</td>
-                                            <td>
-                                                <div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Active</a> </div>
-                                            </td>
+                                            @if (item.EmailConfirmed)
+                                            {
+                                                <td>Verified</td>
+                                            }
+                                            else
+                                            {
+                                                <td>Unconfirm</td>
+                                            }
+                                            @*<div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Active</a> </div>*@
                                             <td>
                                                 <div id="PlaceHolderHere"></div>
                                                 <div class="popup">
-                                                    <button type="button" class="btn btn-success" data-toggle="ajax-modal" data-target="#myModal" data-url="@Url.Action($"UserDetail","DashBoard", new { item.UserName })">VIEW DETAIL</button>
+                                                    <button type="button" class="btn btn-success" data-toggle="ajax-modal" data-target="#myModal" data-url="@Url.Action($"UserDetail","DashBoard", new { item.Id })">VIEW DETAIL</button>
                                                 </div>
                                                 <!--<div class="dropdown dropdown-action">
                                                 <a class="btn btn-info">View</a>-->
