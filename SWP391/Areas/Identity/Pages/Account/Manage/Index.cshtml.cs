@@ -75,7 +75,6 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             {
                 PhoneNumber = phoneNumber,
                 Address = user.Address,
-                Birthday = user.Birthday,
                 FullName = user.FullName,
                 ProfilePictureURL = user.ProfilePictureURL,
                 ImgFile = user.ImgFile
@@ -131,7 +130,6 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             }
 
             user.Address = Input.Address;
-            user.Birthday = Input.Birthday;
 
             user.FullName = Input.FullName;
             user.ProfilePictureURL = Input.ProfilePictureURL;

@@ -28,9 +28,6 @@ public class IdentityUser
     {
         public string FullName { set; get; }
         public string Address { set; get; }
-        [DataType(DataType.Date)]
-        public DateTime? Birthday { set; get; }
-        public string Sex { get; set; }
         public bool Subcription { get; set; }
 
         [NotMapped]
@@ -39,8 +36,8 @@ public class IdentityUser
         public string ProfilePictureURL { get; set; }
         public ICollection<CourseOwner> CourseOwners { get; set; }
         public ICollection<Attempt> Attempts { get; set; }
-        public ICollection<UserCourse> UserCourses { get; set; }
         public ICollection<Blog> Blogs { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<Course> Courses { get; set; }
     }
 }

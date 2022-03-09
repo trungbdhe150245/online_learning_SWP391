@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SWP391.Data;
 
 namespace SWP391.Migrations
 {
     [DbContext(typeof(LearningDbContext))]
-    partial class LearningDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220309050902_RemoveUserCourse")]
+    partial class RemoveUserCourse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,7 +161,10 @@ namespace SWP391.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Birthday")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -173,7 +178,7 @@ namespace SWP391.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -202,6 +207,9 @@ namespace SWP391.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sex")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Subcription")
@@ -291,7 +299,7 @@ namespace SWP391.Migrations
                     b.Property<int>("Featured")
                         .HasColumnType("int");
 
-                    b.Property<string>("SlideId")
+                    b.Property<string>("FeaturedId")
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("StatusId")
@@ -310,7 +318,7 @@ namespace SWP391.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("SlideId");
+                    b.HasIndex("FeaturedId");
 
                     b.HasIndex("StatusId");
 
@@ -388,9 +396,6 @@ namespace SWP391.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("CourseId");
 
                     b.HasIndex("CategoryId");
@@ -398,8 +403,6 @@ namespace SWP391.Migrations
                     b.HasIndex("FeaturedId");
 
                     b.HasIndex("StatusId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Courses");
                 });
@@ -420,6 +423,20 @@ namespace SWP391.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("CourseOwners");
+                });
+
+            modelBuilder.Entity("SWP391.Models.Featured", b =>
+                {
+                    b.Property<string>("FeaturedId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("FeaturedId");
+
+                    b.ToTable("Featured");
                 });
 
             modelBuilder.Entity("SWP391.Models.Lesson", b =>
@@ -636,13 +653,26 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Slide", b =>
                 {
                     b.Property<string>("SlideId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("varchar(10)");
 
-                    b.Property<string>("SlideValue")
+                    b.Property<string>("CourseURL")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("StatusId")
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("ThumbnailURL")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("SlideId");
+
+                    b.HasIndex("StatusId");
 
                     b.ToTable("Slides");
                 });
@@ -775,9 +805,9 @@ namespace SWP391.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("SWP391.Models.Slide", null)
+                    b.HasOne("SWP391.Models.Featured", null)
                         .WithMany("Blogs")
-                        .HasForeignKey("SlideId");
+                        .HasForeignKey("FeaturedId");
 
                     b.HasOne("SWP391.Models.Status", "Status")
                         .WithMany("Blogs")
@@ -820,7 +850,7 @@ namespace SWP391.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("SWP391.Models.Slide", "Featured")
+                    b.HasOne("SWP391.Models.Featured", "Featured")
                         .WithMany("Courses")
                         .HasForeignKey("FeaturedId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -831,18 +861,11 @@ namespace SWP391.Migrations
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("SWP391.Models.AppUser", "User")
-                        .WithMany("Courses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.Navigation("Category");
 
                     b.Navigation("Featured");
 
                     b.Navigation("Status");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SWP391.Models.CourseOwner", b =>
@@ -955,6 +978,16 @@ namespace SWP391.Migrations
                     b.Navigation("Quiz");
                 });
 
+            modelBuilder.Entity("SWP391.Models.Slide", b =>
+                {
+                    b.HasOne("SWP391.Models.Status", "Status")
+                        .WithMany("Slides")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("Status");
+                });
+
             modelBuilder.Entity("SWP391.Models.Topic", b =>
                 {
                     b.HasOne("SWP391.Models.Course", "Course")
@@ -974,8 +1007,6 @@ namespace SWP391.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("CourseOwners");
-
-                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("SWP391.Models.Attempt", b =>
@@ -1006,6 +1037,13 @@ namespace SWP391.Migrations
                     b.Navigation("Topics");
                 });
 
+            modelBuilder.Entity("SWP391.Models.Featured", b =>
+                {
+                    b.Navigation("Blogs");
+
+                    b.Navigation("Courses");
+                });
+
             modelBuilder.Entity("SWP391.Models.QuestionBank", b =>
                 {
                     b.Navigation("AttemptDetaileds");
@@ -1032,13 +1070,6 @@ namespace SWP391.Migrations
                     b.Navigation("Quizzes");
                 });
 
-            modelBuilder.Entity("SWP391.Models.Slide", b =>
-                {
-                    b.Navigation("Blogs");
-
-                    b.Navigation("Courses");
-                });
-
             modelBuilder.Entity("SWP391.Models.Status", b =>
                 {
                     b.Navigation("Blogs");
@@ -1048,6 +1079,8 @@ namespace SWP391.Migrations
                     b.Navigation("PricePackages");
 
                     b.Navigation("QuestionBanks");
+
+                    b.Navigation("Slides");
                 });
 
             modelBuilder.Entity("SWP391.Models.Topic", b =>

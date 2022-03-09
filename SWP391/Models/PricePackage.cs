@@ -17,7 +17,5 @@ namespace SWP391.Models
 
         public virtual Status Status { get; set; }
         public string StatusId { get; set; }
-        public ICollection<CoursePackage> CoursePackages { get; set; }
-        public ICollection<UserCourse> UserCourses { get; set; }
     }
 }

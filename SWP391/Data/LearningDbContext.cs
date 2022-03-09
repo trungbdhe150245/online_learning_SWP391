@@ -91,6 +91,11 @@ namespace SWP391.Data
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
+            modelBuilder.Entity<AppUser>(entity =>
+            {
+                entity.Property(u => u.FullName).HasColumnType("nvarchar(255)");
+                entity.Property(u => u.Address).HasColumnType("text");
+            });
             modelBuilder.Entity<Course>(entity =>
             {
                 entity.Property(c => c.CourseId).HasColumnType("varchar(10)");
@@ -112,19 +117,10 @@ namespace SWP391.Data
                         .WithMany(b => b.Courses)
                         .HasForeignKey("FeaturedId")
                         .OnDelete(DeleteBehavior.NoAction);
-            });
-            modelBuilder.Entity<CoursePackage>(entity =>
-            {
-                entity.HasOne(cp => cp.Course)
-                        .WithMany(c => c.CoursePackages)
-                        .HasForeignKey("CourseId")
+                entity.HasOne(c => c.User)
+                        .WithMany(u => u.Courses)
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction);
-                entity.HasOne(cp => cp.PricePackage)
-                        .WithMany(pp => pp.CoursePackages)
-                        .HasForeignKey("PricePackageId")
-                        .OnDelete(DeleteBehavior.NoAction);
-                entity.HasKey(cp => new { cp.CourseId, cp.PricePackageId });
-
             });
             modelBuilder.Entity<Lesson>(entity =>
             {
@@ -134,10 +130,6 @@ namespace SWP391.Data
                 entity.Property(l => l.HtmlContent).HasColumnType("text");
                 entity.Property(l => l.VideoURL).HasColumnType("text");
                 entity.HasKey(l => l.LessonId);
-                //entity.HasOne(l => l.Status)
-                //        .WithMany(s => s.Lessons)
-                //        .HasForeignKey("StatusId")
-                //        .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(l => l.Topic)
                         .WithMany(t => t.Lessons)
                         .HasForeignKey("PricePackageId")
@@ -236,19 +228,6 @@ namespace SWP391.Data
                 entity.Property(qt => qt.Name).HasColumnType("varchar(255)");
                 entity.HasKey(qt => qt.QuizTypeId);
             });
-            modelBuilder.Entity<Slide>(entity =>
-            {
-                entity.Property(sl => sl.SlideId).HasColumnType("varchar(10)");
-                entity.Property(sl => sl.Title).HasColumnType("varchar(255)");
-                entity.Property(sl => sl.CourseURL).HasColumnType("text");
-                entity.Property(sl => sl.ThumbnailURL).HasColumnType("text");
-                entity.Property(sl => sl.Description).HasColumnType("text");
-                entity.HasKey(sl => sl.SlideId);
-                entity.HasOne(sl => sl.Status)
-                        .WithMany(s => s.Slides)
-                        .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.NoAction);
-            });
             modelBuilder.Entity<Topic>(entity =>
             {
                 entity.Property(t => t.TopicId).HasColumnType("varchar(10)");
@@ -258,23 +237,6 @@ namespace SWP391.Data
                 entity.HasOne(t => t.Course)
                         .WithMany(c => c.Topics)
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.NoAction);
-            });
-            modelBuilder.Entity<UserCourse>(entity =>
-            {
-                entity.Property(uc => uc.UserCourseId).HasColumnType("varchar(10)");
-                entity.HasKey(uc => uc.UserCourseId);
-                entity.HasOne(uc => uc.Course)
-                        .WithMany(c => c.UserCourses)
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.NoAction);
-                entity.HasOne(uc => uc.User)
-                        .WithMany(u => u.UserCourses)
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction);
-                entity.HasOne(uc => uc.PricePackage)
-                        .WithMany(pp => pp.UserCourses)
-                        .HasForeignKey("PricePackageId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<QuizQuestion>(entity =>
@@ -289,11 +251,11 @@ namespace SWP391.Data
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasKey(qq => new { qq.QuizId, qq.QuestionId });
             });
-            modelBuilder.Entity<Featured>(entity =>
+            modelBuilder.Entity<Slide>(entity =>
             {
-                entity.Property(f => f.FeaturedId).HasColumnType("varchar(10)");
-                entity.Property(f => f.Value).HasColumnType("varchar(255)");
-                entity.HasKey(f => f.FeaturedId);
+                entity.Property(f => f.SlideId).HasColumnType("varchar(10)");
+                entity.Property(f => f.SlideValue).HasColumnType("varchar(255)");
+                entity.HasKey(f => f.SlideId);
             });
             modelBuilder.Entity<Package>(entity =>
             {
@@ -312,7 +274,6 @@ namespace SWP391.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<CoursePackage> CoursePackages { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<CourseOwner> CourseOwners { get; set; }
         public DbSet<PricePackage> PricePackages { get; set; }
@@ -320,10 +281,8 @@ namespace SWP391.Data
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<QuizLevel> QuizLevels { get; set; }
         public DbSet<QuizType> QuizTypes { get; set; }
-        public DbSet<Slide> Slides { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<Topic> Topics { get; set; }
-        public DbSet<UserCourse> UserCourses { get; set; }
         public DbSet<QuizQuestion> QuizQuestions { get; set; }
     }
 }

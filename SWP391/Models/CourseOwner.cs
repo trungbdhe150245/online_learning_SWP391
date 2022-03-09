@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SWP391.Models
 {
-    [Table("Owners")]
+    [Table("CourseOwners")]
     public class CourseOwner
     {
         public virtual AppUser User { get; set; }

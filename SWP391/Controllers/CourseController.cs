@@ -105,31 +105,6 @@ namespace SWP391.Controllers
             this.ViewBag.CourseId = courseId;
             return View(list);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult CourseRegister(int priceId, int courseId, string userId)
-        {
-            IEnumerable<PricePackage> list = _db.PricePackages;
-            //var userInfor = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("SessionUser"));
-            var check = HttpContext.Session.GetString("SessionUser");
-            if (check == null)
-            {
-                return Redirect($"~/AccountManagement/Login");
-            }
-            else
-            {
-                UserCourse uc = new UserCourse();
-                uc.PricePackage = _db.PricePackages.Find(priceId);
-                uc.User = _db.Users.Find(Int32.Parse(userId));
-                uc.Course = _db.Courses.Find(courseId);
-                //uc.StartDate = DateTime.Now;
-                //uc.EndDate = DateTime.Now.AddMonths(1);
-                _db.UserCourses.Add(uc);
-                _db.SaveChanges();
-                return Redirect($"~/Home/Index");
-            }
-            //return View(list);
-        }
 
         public IEnumerable<Course> Search(string key, string sortOrder, string cate, int page)
         {
