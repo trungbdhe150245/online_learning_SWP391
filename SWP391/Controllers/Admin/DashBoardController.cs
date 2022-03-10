@@ -8,6 +8,7 @@ using SWP391.Utility;
 using SWP391.Views.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,15 +33,10 @@ namespace SWP391.Controllers.Admin
 
         public IActionResult DashBoard()
         {
-            //var user = HttpContext.User;
-            //if(!user.Identity.IsAuthenticated)
-            //{
-            //    return Redirect($"~/login");
-            //}
-            //var obj = _userManager.GetUserAsync(user);
-            //this.ViewBag.User = obj.Result;
-            //var obj = GetCurrentUser();
-            return View();
+            dynamic dy = new ExpandoObject();
+            dy.courses = _db.Courses.Count();
+            dy.users = _db.Users.Count();
+            return View(dy);
         }
 
 

@@ -40,7 +40,7 @@
     <!-- All PLUGINS CSS ============================================= -->
     <link rel="stylesheet" type="text/css" href="~/admin/assets/css/assets.css">
     <link rel="stylesheet" type="text/css" href="~/admin/assets/vendors/calendar/fullcalendar.css">
-
+    <link rel="stylesheet" type="text/css" href="~/admin/assets/css/main.css">
     <!-- TYPOGRAPHY ============================================= -->
     <link rel="stylesheet" type="text/css" href="~/admin/assets/css/typography.css">
 
@@ -60,7 +60,7 @@
 <body class="ttr-opened-sidebar ttr-pinned-sidebar">
     @{
         var user = ViewBag.User;
-        
+
     }
     <!-- header start -->
     <header class="ttr-header">
@@ -259,7 +259,7 @@
                     <li>
                         <a asp-action="DashBoard" asp-controller="DashBoard" class="ttr-material-button">
                             <span class="ttr-icon"><i class="ti-home"></i></span>
-                            <span class="ttr-label">Dashborad</span>
+                            <span class="ttr-label">Dashboard</span>
                         </a>
                     </li>
                     <li>
@@ -268,57 +268,57 @@
                             <span class="ttr-label">Courses</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="ti-email"></i></span>
-                            <span class="ttr-label">Mailbox</span>
-                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="mailbox.html" class="ttr-material-button"><span class="ttr-label">Mail Box</span></a>
-                            </li>
-                            <li>
-                                <a href="mailbox-compose.html" class="ttr-material-button"><span class="ttr-label">Compose</span></a>
-                            </li>
-                            <li>
-                                <a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Mail Read</span></a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="ti-calendar"></i></span>
-                            <span class="ttr-label">Calendar</span>
-                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="basic-calendar.html" class="ttr-material-button"><span class="ttr-label">Basic Calendar</span></a>
-                            </li>
-                            <li>
-                                <a href="list-view-calendar.html" class="ttr-material-button"><span class="ttr-label">List View</span></a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="bookmark.html" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
-                            <span class="ttr-label">Bookmarks</span>
-                        </a>
-                    </li>
+                    @*<li>
+                            <a href="#" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="ti-email"></i></span>
+                                <span class="ttr-label">Mailbox</span>
+                                <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="mailbox.html" class="ttr-material-button"><span class="ttr-label">Mail Box</span></a>
+                                </li>
+                                <li>
+                                    <a href="mailbox-compose.html" class="ttr-material-button"><span class="ttr-label">Compose</span></a>
+                                </li>
+                                <li>
+                                    <a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Mail Read</span></a>
+                                </li>
+                            </ul>
+                        </li>*@
+                    @*<li>
+                            <a href="#" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="ti-calendar"></i></span>
+                                <span class="ttr-label">Calendar</span>
+                                <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="basic-calendar.html" class="ttr-material-button"><span class="ttr-label">Basic Calendar</span></a>
+                                </li>
+                                <li>
+                                    <a href="list-view-calendar.html" class="ttr-material-button"><span class="ttr-label">List View</span></a>
+                                </li>
+                            </ul>
+                        </li>*@
+                    @*<li>
+                            <a href="bookmark.html" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
+                                <span class="ttr-label">Bookmarks</span>
+                            </a>
+                        </li>*@
                     <li>
                         <a href="review.html" class="ttr-material-button">
                             <span class="ttr-icon"><i class="ti-comments"></i></span>
                             <span class="ttr-label">Review</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="add-listing.html" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
-                            <span class="ttr-label">Add listing</span>
-                        </a>
-                    </li>
+                    @*<li>
+                            <a href="add-listing.html" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
+                                <span class="ttr-label">Add listing</span>
+                            </a>
+                        </li>*@
                     <li>
                         <a href="#" class="ttr-material-button">
                             <span class="ttr-icon"><i class="ti-user"></i></span>
@@ -368,6 +368,8 @@
     <script src='~/admin/assets/vendors/calendar/moment.min.js'></script>
     <script src='~/admin/assets/vendors/calendar/fullcalendar.js'></script>
     <script src='~/admin/assets/vendors/switcher/switcher.js'></script>
+    <script src='~/admin/assets/js/jquerymain.js'></script>
+    <script src='~/admin/assets/js/main.js'></script>
     <script>
         $(document).ready(function () {
 
