@@ -17,7 +17,6 @@ namespace SWP391_OnlineLearning_Platform.Controllers
     public class PublicFeatureController : Controller
     {
         private readonly OnlineLearningDbContext _db;
-
         public PublicFeatureController(OnlineLearningDbContext db)
         {
             _db = db;

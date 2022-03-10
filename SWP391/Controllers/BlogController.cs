@@ -30,45 +30,46 @@ namespace SWP391.Controllers
 
         public IActionResult BlogList(string keyWord, string CatID = "0", int page = 1)
         {
-            //PHÂN TRANG
-            var pageNumber = page;
-            var pageSize = 2;
-            ViewBag.CurrentPage = pageNumber;
+            ////PHÂN TRANG
+            //var pageNumber = page;
+            //var pageSize = 2;
+            //ViewBag.CurrentPage = pageNumber;
 
-            //LỌC BLOG THEO CATEGORY
-            List<Blog> blogs = new List<Blog>();
-            if (CatID != "0")
-            {
-                blogs = _db.Blogs.Where(a => a.CategoryId == CatID)
-                .Include(a => a.Category)
-                .Include(a => a.User)
-                .Include(a => a.Status)
-                .OrderByDescending(a => a.CreatedDate)
-                .ToList();
-            }
-            else
-            {
-                blogs = _db.Blogs.Include(a => a.Category)
-                .Include(a => a.User)
-                .Include(a => a.Status)
-                .OrderByDescending(a => a.CreatedDate)
-                .ToList();
-            }
+            ////LỌC BLOG THEO CATEGORY
+            //List<Blog> blogs = new List<Blog>();
+            //if (CatID != "0")
+            //{
+            //    blogs = _db.Blogs.Where(a => a.CategoryId == CatID)
+            //    .Include(a => a.Category)
+            //    .Include(a => a.User)
+            //    .Include(a => a.Status)
+            //    .OrderByDescending(a => a.CreatedDate)
+            //    .ToList();
+            //}
+            //else
+            //{
+            //    blogs = _db.Blogs.Include(a => a.Category)
+            //    .Include(a => a.User)
+            //    .Include(a => a.Status)
+            //    .OrderByDescending(a => a.CreatedDate)
+            //    .ToList();
+            //}
 
-            //TÌM KIẾM KEYWORD
-            if (!String.IsNullOrEmpty(keyWord))
-            {
-                blogs = blogs.Where(s => s.Title!.ToLower().Contains(keyWord.ToLower())).ToList();
-            }
+            ////TÌM KIẾM KEYWORD
+            //if (!String.IsNullOrEmpty(keyWord))
+            //{
+            //    blogs = blogs.Where(s => s.Title!.ToLower().Contains(keyWord.ToLower())).ToList();
+            //}
 
-            PagedList<Blog> models = new PagedList<Blog>(blogs.AsQueryable(), pageNumber, pageSize);
+            //PagedList<Blog> models = new PagedList<Blog>(blogs.AsQueryable(), pageNumber, pageSize);
 
-            ViewBag.CurrentCateID = CatID;
-            ViewData["selectedCategory"] = new SelectList(_db.Categories, "Id", "Value");
-            ViewData["category"] = _db.Categories.ToList();
-            ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.CreatedDate).ToList();
-            if (keyWord != null) { ViewBag.KeyWord = keyWord; }
-            return View(models);
+            //ViewBag.CurrentCateID = CatID;
+            //ViewData["selectedCategory"] = new SelectList(_db.Categories, "Id", "Value");
+            //ViewData["category"] = _db.Categories.ToList();
+            //ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.CreatedDate).ToList();
+            //if (keyWord != null) { ViewBag.KeyWord = keyWord; }
+            //return View(models);
+            return View();
         }
 
         public IActionResult BlogDetail(string? id)
