@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PagedList.Core;
 using SWP391.Data;
+using SWP391.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SWP391.Controllers
@@ -33,7 +37,7 @@ namespace SWP391.Controllers
 
             //LỌC BLOG THEO CATEGORY
             List<Blog> blogs = new List<Blog>();
-            if (CatID != "0")
+            if (CatID != 0)
             {
                 blogs = _db.Blogs.Where(a => a.CategoryId == CatID)
                 .Include(a => a.Category)

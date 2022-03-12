@@ -136,7 +136,7 @@ namespace SWP391.Data
                 entity.HasKey(l => l.LessonId);
                 entity.HasOne(l => l.Topic)
                         .WithMany(t => t.Lessons)
-                        .HasForeignKey("PricePackageId")
+                        .HasForeignKey("TopicId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<CourseOwner>(entity =>
