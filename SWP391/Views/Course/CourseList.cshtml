@@ -53,7 +53,7 @@
                                 <li class="active"><a asp-action="CourseList" asp-controller="Course">General</a></li>
                                 @foreach (var category in Model.categories)
                                 {
-                                    <li><a asp-action="CourseList" asp-controller="Course" asp-route-cate="@category.CategoryId">@category.Value</a></li>
+                                    <li><a asp-action="CourseList" asp-controller="Course" asp-route-cate="@category.CategoryId">@category.CategoryValue</a></li>
                                 }
                                 @*<li><a href="#">IT & Software</a></li>
                                     <li><a href="#">Photography</a></li>

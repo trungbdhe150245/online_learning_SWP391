@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SWP391.Migrations
 {
-    public partial class ChangekeysType : Migration
+    public partial class UpdatePricePackage : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -93,7 +93,6 @@ namespace SWP391.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(255)", nullable: true),
                     Address = table.Column<string>(type: "text", nullable: true),
-                    Subcription = table.Column<bool>(type: "bit", nullable: false),
                     ProfilePictureURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -140,12 +139,11 @@ namespace SWP391.Migrations
                 name: "PricePackages",
                 columns: table => new
                 {
-                    PricePackageId = table.Column<string>(type: "varchar(10)", nullable: false),
-                    Name = table.Column<string>(type: "varchar(255)", nullable: true),
+                    PricePackageId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PricePackageName = table.Column<string>(type: "varchar(255)", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    Duration = table.Column<int>(type: "int", nullable: false),
-                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     StatusId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -163,11 +161,12 @@ namespace SWP391.Migrations
                 columns: table => new
                 {
                     BlogId = table.Column<string>(type: "varchar(10)", nullable: false),
-                    Title = table.Column<string>(type: "varchar(255)", nullable: true),
-                    Brief = table.Column<string>(type: "varchar(500)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(255)", nullable: true),
+                    Brief = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     Content = table.Column<string>(type: "text", nullable: true),
+                    VideoURL = table.Column<string>(type: "text", nullable: true),
                     SlideId = table.Column<int>(type: "int", nullable: false),
-                    ThumbnailURL = table.Column<string>(type: "varchar(max)", nullable: true),
+                    ThumbnailURL = table.Column<string>(type: "text", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     StatusId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
@@ -325,6 +324,32 @@ namespace SWP391.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserPricePackages",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PricePackageId = table.Column<int>(type: "int", nullable: false),
+                    RemainingDay = table.Column<int>(type: "int", nullable: false),
+                    SubcribeDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserPricePackages", x => new { x.UserId, x.PricePackageId });
+                    table.ForeignKey(
+                        name: "FK_UserPricePackages_PricePackages_PricePackageId",
+                        column: x => x.PricePackageId,
+                        principalTable: "PricePackages",
+                        principalColumn: "PricePackageId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserPricePackages_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Comments",
                 columns: table => new
                 {
@@ -437,15 +462,14 @@ namespace SWP391.Migrations
                     LessonOrder = table.Column<int>(type: "int", nullable: false),
                     Script = table.Column<string>(type: "text", nullable: true),
                     VideoURL = table.Column<string>(type: "text", nullable: true),
-                    PricePackageId = table.Column<int>(type: "int", nullable: false),
                     TopicId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Lessons", x => x.LessonId);
                     table.ForeignKey(
-                        name: "FK_Lessons_Topics_PricePackageId",
-                        column: x => x.PricePackageId,
+                        name: "FK_Lessons_Topics_TopicId",
+                        column: x => x.TopicId,
                         principalTable: "Topics",
                         principalColumn: "TopicId");
                 });
@@ -631,9 +655,9 @@ namespace SWP391.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Lessons_PricePackageId",
+                name: "IX_Lessons_TopicId",
                 table: "Lessons",
-                column: "PricePackageId");
+                column: "TopicId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PricePackages_StatusId",
@@ -708,6 +732,11 @@ namespace SWP391.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserPricePackages_PricePackageId",
+                table: "UserPricePackages",
+                column: "PricePackageId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
                 table: "UserRoles",
                 column: "RoleId");
@@ -740,9 +769,6 @@ namespace SWP391.Migrations
                 name: "Lessons");
 
             migrationBuilder.DropTable(
-                name: "PricePackages");
-
-            migrationBuilder.DropTable(
                 name: "QuizQuestions");
 
             migrationBuilder.DropTable(
@@ -753,6 +779,9 @@ namespace SWP391.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserLogins");
+
+            migrationBuilder.DropTable(
+                name: "UserPricePackages");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");
@@ -768,6 +797,9 @@ namespace SWP391.Migrations
 
             migrationBuilder.DropTable(
                 name: "QuestionBanks");
+
+            migrationBuilder.DropTable(
+                name: "PricePackages");
 
             migrationBuilder.DropTable(
                 name: "Roles");

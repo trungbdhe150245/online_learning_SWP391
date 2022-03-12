@@ -26,8 +26,6 @@ public class IdentityUser
     {
         public string FullName { set; get; }
         public string Address { set; get; }
-        public bool Subcription { get; set; }
-
         [NotMapped]
         [DisplayName("Upload Image")]
         public IFormFile ImgFile { get; set; }
@@ -37,5 +35,6 @@ public class IdentityUser
         public ICollection<Blog> Blogs { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Course> Courses { get; set; }
+        public ICollection<UserPricePackage> UserPricePackages { get; set; }
     }
 }

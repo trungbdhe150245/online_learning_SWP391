@@ -10,8 +10,8 @@ using SWP391.Data;
 namespace SWP391.Migrations
 {
     [DbContext(typeof(LearningDbContext))]
-    [Migration("20220312023059_ChangekeysType1")]
-    partial class ChangekeysType1
+    [Migration("20220312181206_UpdatePricePackage")]
+    partial class UpdatePricePackage
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -206,9 +206,6 @@ namespace SWP391.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Subcription")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -279,7 +276,7 @@ namespace SWP391.Migrations
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("Brief")
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -297,13 +294,16 @@ namespace SWP391.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ThumbnailURL")
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("VideoURL")
+                        .HasColumnType("text");
 
                     b.HasKey("BlogId");
 
@@ -451,23 +451,19 @@ namespace SWP391.Migrations
 
             modelBuilder.Entity("SWP391.Models.PricePackage", b =>
                 {
-                    b.Property<string>("PricePackageId")
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("PricePackageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(255)");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<DateTime?>("StartTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("PricePackageName")
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
@@ -666,6 +662,27 @@ namespace SWP391.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Topics");
+                });
+
+            modelBuilder.Entity("SWP391.Models.UserPricePackage", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("PricePackageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RemainingDay")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SubcribeDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("UserId", "PricePackageId");
+
+                    b.HasIndex("PricePackageId");
+
+                    b.ToTable("UserPricePackages");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -967,6 +984,25 @@ namespace SWP391.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("SWP391.Models.UserPricePackage", b =>
+                {
+                    b.HasOne("SWP391.Models.PricePackage", "PricePackage")
+                        .WithMany("UserPricePackages")
+                        .HasForeignKey("PricePackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SWP391.Models.AppUser", "User")
+                        .WithMany("UserPricePackages")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PricePackage");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SWP391.Models.AppUser", b =>
                 {
                     b.Navigation("Attempts");
@@ -978,6 +1014,8 @@ namespace SWP391.Migrations
                     b.Navigation("CourseOwners");
 
                     b.Navigation("Courses");
+
+                    b.Navigation("UserPricePackages");
                 });
 
             modelBuilder.Entity("SWP391.Models.Attempt", b =>
@@ -1006,6 +1044,11 @@ namespace SWP391.Migrations
                     b.Navigation("Quizzes");
 
                     b.Navigation("Topics");
+                });
+
+            modelBuilder.Entity("SWP391.Models.PricePackage", b =>
+                {
+                    b.Navigation("UserPricePackages");
                 });
 
             modelBuilder.Entity("SWP391.Models.QuestionBank", b =>

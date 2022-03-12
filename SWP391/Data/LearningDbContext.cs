@@ -151,7 +151,7 @@ namespace SWP391.Data
                         .WithMany(c => c.CourseOwners)
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.NoAction);
-                entity.HasKey(o => new { o.UserId, o.CourseId });
+                entity.HasKey(co => new { co.UserId, co.CourseId });
             });
             modelBuilder.Entity<Status>(entity =>
             {
@@ -161,18 +161,29 @@ namespace SWP391.Data
             });
             modelBuilder.Entity<PricePackage>(entity =>
             {
-                entity.Property(pp => pp.PricePackageId).HasColumnType("varchar(10)");
-                entity.Property(pp => pp.Name).HasColumnType("varchar(255)");
+                entity.Property(pp => pp.PricePackageId).HasColumnType("int");
+                entity.Property(pp => pp.PricePackageName).HasColumnType("varchar(255)");
                 entity.Property(pp => pp.Description).HasColumnType("text");
                 entity.Property(pp => pp.Price).HasColumnType("float");
-                entity.Property(pp => pp.Duration).HasColumnType("int");
-                entity.Property(pp => pp.StartTime).HasColumnType("datetime2");
                 entity.HasKey(pp => pp.PricePackageId);
                 entity.HasOne(pp => pp.Status)
                         .WithMany(s => s.PricePackages)
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.NoAction);
             });
+            modelBuilder.Entity<UserPricePackage>(entity =>
+            {
+                entity.Property(upp => upp.RemainingDay).HasColumnType("int");
+                entity.Property(upp => upp.SubcribeDate).HasColumnType("datetime2");
+                entity.HasOne(upp => upp.User)
+                        .WithMany(u => u.UserPricePackages)
+                        .HasForeignKey("UserId");
+                entity.HasOne(upp => upp.PricePackage)
+                        .WithMany(u => u.UserPricePackages)
+                        .HasForeignKey("PricePackageId");
+                entity.HasKey(upp => new { upp.UserId, upp.PricePackageId });
+            }); 
+
             modelBuilder.Entity<QuestionBank>(entity =>
             {
                 entity.Property(qb => qb.QuestionId).HasColumnType("varchar(10)");
