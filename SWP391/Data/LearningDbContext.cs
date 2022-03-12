@@ -69,11 +69,12 @@ namespace SWP391.Data
                     .WithMany(s => s.Blogs)
                     .HasForeignKey("SlideId")
                     .OnDelete(DeleteBehavior.NoAction);
-                entity.Property(b => b.Title).HasColumnType("varchar(255)");
-                entity.Property(b => b.Brief).HasColumnType("varchar(500)");
+                entity.Property(b => b.Title).HasColumnType("nvarchar(255)");
+                entity.Property(b => b.Brief).HasColumnType("nvarchar(500)");
                 entity.Property(b => b.Content).HasColumnType("text");
-                entity.Property(b => b.ThumbnailURL).HasColumnType("varchar(max)");
+                entity.Property(b => b.ThumbnailURL).HasColumnType("text");
                 entity.Property(b => b.CreatedDate).HasColumnType("datetime2");
+                entity.Property(b => b.VideoURL).HasColumnType("text");
             });
             modelBuilder.Entity<Category>(entity =>
             {

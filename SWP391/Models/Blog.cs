@@ -11,6 +11,7 @@ namespace SWP391.Models
         public string Title { get; set; }
         public string Brief { get; set; }
         public string Content { get; set; }
+        public string VideoURL { get; set; }
         public int SlideId { get; set; }
         public virtual Slide Slide { get; set; }
         public string ThumbnailURL { get; set; }
