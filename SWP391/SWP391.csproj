@@ -11,6 +11,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Views\Membership\Index0" />
+    <None Remove="Views\Payment\Purchase0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Membership\Index0" />
+    <Content Include="Views\Payment\Purchase0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Braintree" Version="5.11.0" />
     <PackageReference Include="MailKit" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
@@ -52,6 +62,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 

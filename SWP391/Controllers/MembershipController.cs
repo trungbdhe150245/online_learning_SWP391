@@ -21,7 +21,7 @@ namespace SWP391.Controllers
         }
         public IActionResult Index()
         {
-            var packages = _learningDbContext.Packages;
+            var packages = _learningDbContext.PricePackages;
             return View(packages);
         }
     }

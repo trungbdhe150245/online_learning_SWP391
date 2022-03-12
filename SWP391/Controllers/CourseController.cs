@@ -47,7 +47,7 @@ namespace SWP391.Controllers
                 Course = new Course(),
                 TypeDropDown = _db.Categories.Select(i => new SelectListItem
                 {
-                    Text = i.Value,
+                    Text = i.CategoryValue,
                     Value = i.CategoryId.ToString()
                 })
             };
@@ -74,10 +74,10 @@ namespace SWP391.Controllers
                     await obj.Course.ImgFile.CopyToAsync(filestream);
                 }
 
-                obj.Course.StatusId = "3";
+                obj.Course.StatusId = 3;
                 obj.Course.CourseId = id.ToString();
                 id++;
-                obj.Course.FeaturedId = 30;
+                obj.Course.SlideId = 30;
                 _db.Courses.Add(obj.Course);
                 _db.SaveChanges();
                 return RedirectToAction("CourseList");
@@ -146,7 +146,7 @@ namespace SWP391.Controllers
             var pager = new Paginated(resCount, page, pageSize);
             int recSkip = (page - 1) * pageSize;
 
-            var data = list.Skip(recSkip).Take(pager.PageSize).OrderBy(s => s.Featured);
+            var data = list.Skip(recSkip).Take(pager.PageSize).OrderBy(s => s.SlideId);
             this.ViewBag.Paginated = pager;
             this.ViewBag.Category = cate;
             return data;
@@ -160,7 +160,7 @@ namespace SWP391.Controllers
 
         public IEnumerable<Course> GetCourses()
         {
-            IEnumerable<Course> list = _db.Courses.OrderBy(s => s.Featured).Where(s => s.StatusId == "1");
+            IEnumerable<Course> list = _db.Courses.OrderBy(s => s.SlideId).Where(s => s.StatusId == 1);
             return list;
         }
 

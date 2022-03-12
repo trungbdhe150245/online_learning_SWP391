@@ -15,6 +15,6 @@ namespace SWP391.Models
         public DateTime? StartTime { get; set; }
 
         public virtual Status Status { get; set; }
-        public string StatusId { get; set; }
+        public int StatusId { get; set; }
     }
 }

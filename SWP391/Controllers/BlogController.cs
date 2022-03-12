@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PagedList.Core;
 using SWP391.Data;
-using SWP391.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace SWP391.Controllers
@@ -28,7 +24,7 @@ namespace SWP391.Controllers
             return Json(new { status = "success", redirectUrl = url });
         }
 
-        public IActionResult BlogList(string keyWord, string CatID = "0", int page = 1)
+        public IActionResult BlogList(string keyWord, int CatID = 0, int page = 1)
         {
             ////PHÂN TRANG
             //var pageNumber = page;

@@ -43,7 +43,7 @@ namespace SWP391.Controllers.Admin
         public IActionResult RegistrationList()
         {
             var obj = GetCurrentUser();
-            IEnumerable<Course> list = _db.Courses.Where(c => c.StatusId == "3");
+            IEnumerable<Course> list = _db.Courses.Where(c => c.StatusId == 3);
             ViewBag.CourseRegis = list;
             return View(list);
         }
@@ -56,11 +56,11 @@ namespace SWP391.Controllers.Admin
             {
                 if (approve != null)
                 {
-                    course.StatusId = "1";
+                    course.StatusId = 1;
                 }
                 if (cancel != null)
                 {
-                    course.StatusId = "2";
+                    course.StatusId = 2;
                 }
                 //course.StatusId = "1";
                 _db.Courses.Update(course);
@@ -79,7 +79,7 @@ namespace SWP391.Controllers.Admin
                 Course = new Course(),
                 TypeDropDown = _db.Categories.Select(i => new SelectListItem
                 {
-                    Text = i.Value,
+                    Text = i.CategoryValue,
                     Value = i.CategoryId.ToString()
                 })
             };
@@ -103,8 +103,8 @@ namespace SWP391.Controllers.Admin
                 }
                 obj.Course.CourseId = id.ToString();
                 id++;
-                obj.Course.StatusId = "3";
-                obj.Course.FeaturedId = 20;
+                obj.Course.StatusId = 3;
+                obj.Course.SlideId = 20;
                 _db.Courses.Add(obj.Course);
                 _db.SaveChanges();
                 return RedirectToAction("~/Index");

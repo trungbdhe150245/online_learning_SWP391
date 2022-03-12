@@ -6,8 +6,8 @@ namespace SWP391.Models
     [Table("Status")]
     public class Status
     {
-        public string StatusId { get; set; }
-        public string Value { get; set; }
+        public int StatusId { get; set; }
+        public string StatusValue { get; set; }
         public ICollection<Blog> Blogs { get; set; }
         public ICollection<Course> Courses { get; set; }
         public ICollection<PricePackage> PricePackages { get; set; }

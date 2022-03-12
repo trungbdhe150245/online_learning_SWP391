@@ -24,12 +24,12 @@ namespace SWP391.Controllers
             return View();
         }
 
-        public IActionResult Purchase(string id)
+        public IActionResult Purchase(int id)
         {
             var gateway = _braintreeService.GetGateway();
             var clientToken = gateway.ClientToken.Generate();  //Genarate a token
             ViewBag.ClientToken = clientToken;
-            var package = _learningDbContext.Packages.Find(id);
+            var package = _learningDbContext.PricePackages.Find(id);
             return View(package);
         }
         //public IActionResult  { get; set; }

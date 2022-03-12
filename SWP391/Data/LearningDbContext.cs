@@ -65,6 +65,10 @@ namespace SWP391.Data
                         .WithMany(u => u.Blogs)
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction);
+                entity.HasOne(b => b.Slide)
+                    .WithMany(s => s.Blogs)
+                    .HasForeignKey("SlideId")
+                    .OnDelete(DeleteBehavior.NoAction);
                 entity.Property(b => b.Title).HasColumnType("varchar(255)");
                 entity.Property(b => b.Brief).HasColumnType("varchar(500)");
                 entity.Property(b => b.Content).HasColumnType("text");
@@ -73,8 +77,8 @@ namespace SWP391.Data
             });
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.Property(ct => ct.CategoryId).HasColumnType("varchar(10)");
-                entity.Property(ct => ct.Value).HasColumnType("varchar(100)");
+                entity.Property(ct => ct.CategoryId).HasColumnType("int");
+                entity.Property(ct => ct.CategoryValue).HasColumnType("varchar(100)");
                 entity.HasKey(ct => ct.CategoryId);
             });
             modelBuilder.Entity<Comment>(entity =>
@@ -113,9 +117,9 @@ namespace SWP391.Data
                         .WithMany(b => b.Courses)
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.NoAction);
-                entity.HasOne(c => c.Featured)
-                        .WithMany(b => b.Courses)
-                        .HasForeignKey("FeaturedId")
+                entity.HasOne(c => c.Slide)
+                        .WithMany(s => s.Courses)
+                        .HasForeignKey("SlideId")
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(c => c.User)
                         .WithMany(u => u.Courses)
@@ -127,7 +131,7 @@ namespace SWP391.Data
                 entity.Property(l => l.LessonId).HasColumnType("varchar(10)");
                 entity.Property(l => l.LessonName).HasColumnType("varchar(255)");
                 entity.Property(l => l.LessonOrder).HasColumnType("int");
-                entity.Property(l => l.HtmlContent).HasColumnType("text");
+                entity.Property(l => l.Script).HasColumnType("text");
                 entity.Property(l => l.VideoURL).HasColumnType("text");
                 entity.HasKey(l => l.LessonId);
                 entity.HasOne(l => l.Topic)
@@ -150,8 +154,8 @@ namespace SWP391.Data
             });
             modelBuilder.Entity<Status>(entity =>
             {
-                entity.Property(s => s.StatusId).HasColumnType("varchar(10)");
-                entity.Property(s => s.Value).HasColumnType("varchar(255)");
+                entity.Property(s => s.StatusId).HasColumnType("int");
+                entity.Property(s => s.StatusValue).HasColumnType("varchar(255)");
                 entity.HasKey(s => s.StatusId);
             });
             modelBuilder.Entity<PricePackage>(entity =>
@@ -218,19 +222,19 @@ namespace SWP391.Data
             });
             modelBuilder.Entity<QuizLevel>(entity =>
             {
-                entity.Property(ql => ql.QuizLevelId).HasColumnType("varchar(10)");
-                entity.Property(ql => ql.Name).HasColumnType("varchar(255)");
+                entity.Property(ql => ql.QuizLevelId).HasColumnType("int");
+                entity.Property(ql => ql.QuizLevelName).HasColumnType("varchar(255)");
                 entity.HasKey(ql => ql.QuizLevelId);
             });
             modelBuilder.Entity<QuizType>(entity =>
             {
-                entity.Property(qt => qt.QuizTypeId).HasColumnType("varchar(10)");
-                entity.Property(qt => qt.Name).HasColumnType("varchar(255)");
+                entity.Property(qt => qt.QuizTypeId).HasColumnType("int");
+                entity.Property(qt => qt.QuizTypeName).HasColumnType("varchar(255)");
                 entity.HasKey(qt => qt.QuizTypeId);
             });
             modelBuilder.Entity<Topic>(entity =>
             {
-                entity.Property(t => t.TopicId).HasColumnType("varchar(10)");
+                entity.Property(t => t.TopicId).HasColumnType("int");
                 entity.Property(t => t.TopicName).HasColumnType("varchar(255)");
                 entity.Property(t => t.TopicOrder).HasColumnType("int");
                 entity.HasKey(t => t.TopicId);
@@ -253,21 +257,11 @@ namespace SWP391.Data
             });
             modelBuilder.Entity<Slide>(entity =>
             {
-                entity.Property(f => f.SlideId).HasColumnType("varchar(10)");
-                entity.Property(f => f.SlideValue).HasColumnType("varchar(255)");
-                entity.HasKey(f => f.SlideId);
-            });
-            modelBuilder.Entity<Package>(entity =>
-            {
-                entity.Property(pk => pk.PackageId).HasColumnType("varchar(10)");
-                entity.Property(pk => pk.PackageName).HasColumnType("varchar(255)");
-                entity.Property(pk => pk.PackageDescription).HasColumnType("varchar(max)");
-                entity.Property(pk => pk.PackagePrice).HasColumnType("int");
-                entity.HasKey(pk => pk.PackageId);
-
+                entity.Property(s => s.SlideId).HasColumnType("int");
+                entity.Property(s => s.SlideValue).HasColumnType("varchar(255)");
+                entity.HasKey(s => s.SlideId);
             });
         }
-        public DbSet<Package> Packages { get; set; }
         public DbSet<Attempt> Attempts { get; set; }
         public DbSet<AttemptDetailed> AttemptDetaileds { get; set; }
         public DbSet<Blog> Blogs { get; set; }
