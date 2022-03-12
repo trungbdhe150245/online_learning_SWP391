@@ -145,13 +145,13 @@ namespace SWP391.Data
                 entity.Property(co => co.PurchaseTime).HasColumnType("datetime2");
                 entity.HasOne(co => co.User)
                         .WithMany(u => u.CourseOwners)
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("CourseOwnerId")
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(co => co.Course)
                         .WithMany(c => c.CourseOwners)
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.NoAction);
-                entity.HasKey(co => new { co.UserId, co.CourseId });
+                entity.HasKey(co => new { co.CourseOwnerId, co.CourseId });
             });
             modelBuilder.Entity<Status>(entity =>
             {

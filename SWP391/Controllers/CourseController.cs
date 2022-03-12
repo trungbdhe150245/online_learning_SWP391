@@ -173,7 +173,7 @@ namespace SWP391.Controllers
         }
 
 
-
+        [HttpGet]
         public IActionResult Lesson(string id)
         {
             return View();
