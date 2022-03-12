@@ -1,0 +1,9 @@
+D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\SWP391.csproj.AssemblyReference.cache
+D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\SWP391.GeneratedMSBuildEditorConfig.editorconfig
+D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\SWP391.AssemblyInfoInputs.cache
+D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\SWP391.AssemblyInfo.cs
+D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\SWP391.csproj.CoreCompileInputs.cache
+D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\SWP391.MvcApplicationPartsAssemblyInfo.cs
+D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\SWP391.MvcApplicationPartsAssemblyInfo.cache
+D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\SWP391.RazorAssemblyInfo.cache
+D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\SWP391.RazorAssemblyInfo.cs
