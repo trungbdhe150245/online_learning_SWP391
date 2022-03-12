@@ -128,9 +128,9 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
-            "PagedList": {
+            "PagedList.Core.Mvc": {
               "target": "Package",
-              "version": "[1.17.0, )"
+              "version": "[3.0.0, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
