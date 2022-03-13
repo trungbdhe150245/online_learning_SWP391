@@ -280,24 +280,11 @@
                             <div class="widget widget_tag_cloud">
                                 <h6 class="widget-title">Tags</h6>
                                 <div class="tagcloud">
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
+                                    @foreach (var item in ViewData["category"] as List<Category>)
+                                    {
+                                        <a asp-controller="Blog" asp-action="BlogList" asp-route-CatID="@item.CategoryId">@item.CategoryValue</a>
+
+                                    }
                                 </div>
                             </div>
                         </aside>
