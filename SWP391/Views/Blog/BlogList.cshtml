@@ -6,13 +6,13 @@
     int numberResult = Model.Count(); }
 @model PagedList.Core.IPagedList<SWP391.Models.Blog>
 
-    <style>
-        .action-box img,
-        .ttr-post-media img {
-            width: 100%;
-            height: auto;
-        }
-    </style>
+<style>
+    .action-box img,
+    .ttr-post-media img {
+        width: 100%;
+        height: auto;
+    }
+</style>
 <!-- Content -->
 <div class="page-content bg-white">
     <!-- inner page banner -->
@@ -60,7 +60,7 @@
                                                 <li><a href="#"><i class="fa fa-calendar"></i>@Html.DisplayFor(modelItem => item.CreatedDate)</a></li>
                                                 <li><a href="#"><i class="fa fa-user"></i>By @Html.DisplayFor(modelItem => item.User.FullName)</a></li>
                                             </ul>
-                                            <h5 class="post-title"><a href="blog-details.html">@Html.DisplayFor(modelItem => item.Title)</a></h5>
+                                            <h5 class="post-title"><a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@item.BlogId">@Html.DisplayFor(modelItem => item.Title)</a></h5>
                                             <p>@Html.DisplayFor(modelItem => item.Brief)</p>
                                             <div class="post-extra">
                                                 <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@item.BlogId" class="btn-link">READ MORE</a>
@@ -116,10 +116,10 @@
                                         if (count <= 5)
                                         {
                                             <div class="widget-post clearfix">
-                                                <div class="ttr-post-media"> <img src="~/img/@Html.DisplayFor(modelItem => item.ThumbnailURL)" width="200" height="143" object-fit: cover; object-position: 50% 50%;"> </div>
+                                                <div class="ttr-post-media"> <img src="~/img/@Html.DisplayFor(modelItem => item.ThumbnailURL)" width="200" height="143"> </div>
                                                 <div class="ttr-post-info">
                                                     <div class="ttr-post-header">
-                                                        <h6 class="post-title"><a href="blog-details.html">@Html.DisplayFor(modelItem => item.Title)</a></h6>
+                                                        <h6 class="post-title"><a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@item.BlogId">@Html.DisplayFor(modelItem => item.Title)</a></h6>
                                                     </div>
                                                     <ul class="media-post">
                                                         <li><a href="#"><i class="fa fa-calendar"></i>@Html.DisplayFor(modelItem => item.CreatedDate)</a></li>
@@ -148,24 +148,27 @@
                             <div class="widget widget_tag_cloud">
                                 <h6 class="widget-title">Categories</h6>
                                 <div class="tagcloud">
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
+                                    @foreach (var item in ViewData["recentBlogs"] as List<Blog>)
+                                    {
+                                        <a href="#">Design</a>
+                                        <a href="#">User interface</a>
+                                        <a href="#">SEO</a>
+                                        <a href="#">WordPress</a>
+                                        <a href="#">Development</a>
+                                        <a href="#">Joomla</a>
+                                        <a href="#">Design</a>
+                                        <a href="#">User interface</a>
+                                        <a href="#">SEO</a>
+                                        <a href="#">WordPress</a>
+                                        <a href="#">Development</a>
+                                        <a href="#">Joomla</a>
+                                        <a href="#">Design</a>
+                                        <a href="#">User interface</a>
+                                        <a href="#">SEO</a>
+                                        <a href="#">WordPress</a>
+                                        <a href="#">Development</a>
+                                        <a href="#">Joomla</a>
+                                    }
                                 </div>
                             </div>
                         </aside>
