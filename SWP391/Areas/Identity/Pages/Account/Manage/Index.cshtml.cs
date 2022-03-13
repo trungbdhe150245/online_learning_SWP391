@@ -47,9 +47,9 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             [DataType(DataType.Text)]
             [Display(Name = "Address")]
             public string Address { get; set; }
-            [DataType(DataType.Date)]
-            [Display(Name = "BirthDay")]
-            public DateTime? Birthday { get; set; }
+            //[DataType(DataType.Date)]
+            //[Display(Name = "BirthDay")]
+            //public DateTime? Birthday { get; set; }
             [MaxLength(255)]
             [Display(Name = "Full Name")]
             public string FullName { set; get; }
@@ -70,6 +70,7 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             Username = userName;
             FullName = user.FullName;
             ProfilePictureURL = user.ProfilePictureURL;
+           
 
             Input = new InputModel
             {
@@ -77,7 +78,6 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                 Address = user.Address,
                 FullName = user.FullName,
                 ProfilePictureURL = user.ProfilePictureURL,
-                ImgFile = user.ImgFile
             };
         }
 
@@ -108,16 +108,6 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            //string wwwroot = _WebHostEnvironment.WebRootPath;
-            //string filename = Path.GetFileNameWithoutExtension(Input.ImgFile.FileName);
-            //string ex = Path.GetExtension(Input.ImgFile.FileName);
-            //Input.ProfilePictureURL = filename = filename + DateTime.Now.ToString("yymmssfff") + ex;
-            //string path = Path.Combine(wwwroot + "/img/", filename);
-            //using (var filestream = new FileStream(path, FileMode.Create))
-            //{
-            //    await Input.ImgFile.CopyToAsync(filestream);
-            //}
-
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
@@ -130,31 +120,14 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             }
 
             user.Address = Input.Address;
-
             user.FullName = Input.FullName;
             user.ProfilePictureURL = Input.ProfilePictureURL;
-            user.ImgFile = Input.ImgFile;
 
             await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
-        //private string UploadFile(AppUser obj)
-        //{
-        //    string fileName = null;
-        //    if (obj.ImgFile != null)
-        //    {
-        //        string uploadDir = Path.Combine(_WebHostEnvironment.WebRootPath, "Images");
-        //        fileName = Guid.NewGuid().ToString() + "-" + obj.ImgFile;
-        //        string filePath = Path.Combine(uploadDir, fileName);
-        //        using (var filestream = new FileStream(filePath, FileMode.Create))
-        //        {
-        //            obj.ImgFile.CopyTo(filestream);
-        //        }
-        //    }
-        //    return fileName;
-        //}
     }
 
 
