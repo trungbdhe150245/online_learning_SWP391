@@ -20,10 +20,10 @@ namespace SWP391.Controllers
 
         public IActionResult Filter(int CatID = 0)
         {
-            var url = $"/publicfeature/blogList?catID={CatID}";
+            var url = $"/blog/blogList?catID={CatID}";
             if (CatID == 0)
             {
-                url = $"/publicfeature/blogList";
+                url = $"/blog/blogList";
             }
             return Json(new { status = "success", redirectUrl = url });
         }
@@ -64,7 +64,7 @@ namespace SWP391.Controllers
             PagedList<Blog> models = new PagedList<Blog>(blogs.AsQueryable(), pageNumber, pageSize);
 
             ViewBag.CurrentCateID = CatID;
-            ViewData["selectedCategory"] = new SelectList(_db.Categories, "Id", "Value");
+            ViewData["selectedCategory"] = new SelectList(_db.Categories, "CategoryId", "CategoryValue");
             ViewData["category"] = _db.Categories.ToList();
             ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.CreatedDate).ToList();
             if (keyWord != null) { ViewBag.KeyWord = keyWord; }

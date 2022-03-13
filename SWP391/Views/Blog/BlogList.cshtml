@@ -1,4 +1,4 @@
-﻿recent @using PagedList.Core.Mvc
+﻿@using PagedList.Core.Mvc
 @using SWP391.Models;
 @{ int CurrentPage = ViewBag.CurrentPage;
     ViewData["Title"] = "BlogList";
@@ -41,9 +41,24 @@
 
                     <div class="col-lg-8 col-xl-8 col-md-7">
                         <!-- blog grid -->
+                        @*CATEGORY*@
+                        <div>
+                            <p>
+                                <h3>Sorted by:</h3>
+                                <select id="categoryList" name="categoryList" asp-items="ViewBag.selectedCategory">
+                                    <option selected disabled>---Category---</option>
+                                    <option value="0">All</option>
+                                </select>
+                            </p>
+                        </div>
+                        <br />
                         @if (ViewBag.KeyWord != null)
                         {
                             <h3>@numberResult results for <span style="color: gray;">"@ViewBag.KeyWord"</span></h3><br />
+                        }
+                        @if (Model.Count == 0)
+                        {
+                            <h3>No information</h3><br />
                         }
                         <div id="masonry" class="ttr-blog-grid-3 row">
                             @*NỘI DUNG CONTENT*@
@@ -148,26 +163,10 @@
                             <div class="widget widget_tag_cloud">
                                 <h6 class="widget-title">Categories</h6>
                                 <div class="tagcloud">
-                                    @foreach (var item in ViewData["recentBlogs"] as List<Blog>)
+                                    @foreach (var item in ViewData["category"] as List<Category>)
                                     {
-                                        <a href="#">Design</a>
-                                        <a href="#">User interface</a>
-                                        <a href="#">SEO</a>
-                                        <a href="#">WordPress</a>
-                                        <a href="#">Development</a>
-                                        <a href="#">Joomla</a>
-                                        <a href="#">Design</a>
-                                        <a href="#">User interface</a>
-                                        <a href="#">SEO</a>
-                                        <a href="#">WordPress</a>
-                                        <a href="#">Development</a>
-                                        <a href="#">Joomla</a>
-                                        <a href="#">Design</a>
-                                        <a href="#">User interface</a>
-                                        <a href="#">SEO</a>
-                                        <a href="#">WordPress</a>
-                                        <a href="#">Development</a>
-                                        <a href="#">Joomla</a>
+                                        <a asp-controller="Blog" asp-action="BlogList" asp-route-CatID="@item.CategoryId">@item.CategoryValue</a>
+
                                     }
                                 </div>
                             </div>
@@ -181,3 +180,32 @@
 </div>
 <!-- Left & right section END -->
 <!-- Content END-->
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            jQuery("#categoryList").change(function () {
+                var catID = jQuery(this).children(":selected").attr("value");
+                $("#categoryList option").removeAttr("selected");
+                $("#categoryList option > [value=" + catID + "]").attr("selected", "true");
+                $.ajax({
+                    url: '/blog/filter',
+                    dataType: 'json',
+                    type: 'GET',
+                    data: {
+                        CatID: catID
+                    },
+                    async: true,
+                    success: function (results) {
+                        if (results.status == "success") {
+                            window.location.href = results.redirectUrl;
+                        }
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
+}
