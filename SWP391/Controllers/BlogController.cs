@@ -82,9 +82,11 @@ namespace SWP391.Controllers
             {
                 return NotFound();
             }
+            ViewData["comments"] = _db.Comments.Where(u=>u.BlogId==id).Include(u=>u.User).ToList();
             ViewData["selectedCategory"] = new SelectList(_db.Categories, "Id", "Value");
             ViewData["category"] = _db.Categories.ToList();
             ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.CreatedDate).ToList();
+            ViewBag.RecentComment = CountComment(id);
             return View(blog);
         }
 
@@ -103,6 +105,12 @@ namespace SWP391.Controllers
                 _db.SaveChanges();
             }
             return Redirect($"/Blog/BlogDetail?id={BlogID}");
+        }
+        private int CountComment(string blogid)
+        {
+            int result = 0;
+            result = _db.Comments.Where(b => b.BlogId == blogid).Count();
+            return result;
         }
 
         private static Random random = new Random();
