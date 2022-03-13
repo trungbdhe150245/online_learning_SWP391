@@ -117,7 +117,7 @@
                                             <h5>
                                                 <a asp-action="CourseDetail" asp-controller="Course" asp-route-id="@course.CourseId">@course.Title</a>
                                             </h5>
-                                            <span>Programming</span>
+                                            <span>@course.Category.CategoryValue</span>
                                         </div>
                                         <div class="cours-more-info">
                                             <div class="review">
@@ -131,8 +131,8 @@
                                                 </ul>
                                             </div>
                                             <div class="price">
-                                                <del>$190</del>
-                                                <h5>$120</h5>
+                                                @*<del>$190</del>*@
+                                                <h5>$@course.Price</h5>
                                             </div>
                                         </div>
                                     </div>

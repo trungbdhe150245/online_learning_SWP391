@@ -139,7 +139,7 @@ namespace SWP391.Controllers
             }
             if (!string.IsNullOrEmpty(cate))
             {
-                list = list.Where(l => l.CategoryId.Equals(cate));
+                list = list.Where(l => l.CategoryId == Int32.Parse(cate));
             }
 
             int resCount = list.Count();

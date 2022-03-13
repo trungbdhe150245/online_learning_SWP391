@@ -2013,18 +2013,23 @@ button.back-to-top {
 .cours-bx .info-bx{
 	padding:15px;
 	font-size: 13px;
-	height: 170px;
+	height: 150px;
 }
-.cours-bx .action-box .btn{
+
+.categories {
+	text-align:center;
+	padding:8px 20px;
+}
+.cours-bx .action-box .btn {
 	border-radius: 0;
 	position: absolute;
 	bottom: 0;
 	left: -50%;
-	transition:all 0.5s;
-	-moz-transition:all 0.5s;
-	-ms-transition:all 0.5s;
-	-o-transition:all 0.5s;
-	-webkit-transition:all 0.5s;
+	transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
 }
 .cours-bx:hover .action-box .btn{
 	left: 0;
@@ -2054,7 +2059,7 @@ button.back-to-top {
 }
 .cours-more-info .price,
 .cours-more-info .review{
-	width:50%;
+	width:80%;
 	padding:5px 15px;
 }
 .cours-more-info .review span{
@@ -2070,7 +2075,10 @@ button.back-to-top {
 	border-right: 1px solid #e6e6e6;
 }
 .cours-more-info .price {
-	text-align:right;
+	text-align: center;
+	position: relative;
+	top: 50%;
+	transform: translateY(25%);
 }
 .cours-more-info .price h5{
 	margin-bottom:0;
