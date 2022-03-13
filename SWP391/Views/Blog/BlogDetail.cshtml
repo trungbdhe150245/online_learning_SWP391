@@ -51,28 +51,19 @@
                                 </ul>
                                 <h5 class="post-title"><a href="#">@Html.DisplayFor(model => model.Title)</a></h5>
                                 <p>@Html.DisplayFor(model => model.Content)</p>
+                                <p class="abs">
+                                    <iframe height="360" width="640" frameborder="0" src="//www.youtube.com/embed/@Html.DisplayFor(model => model.VideoURL)" allowfullscreen></iframe>
+                                </p>
+
                                 <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
                                 <div class="widget_tag_cloud">
-                                    <h6>TAGS</h6>
+                                    <h6>CATEGORIES</h6>
                                     <div class="tagcloud">
-                                        <a href="#">Design</a>
-                                        <a href="#">User interface</a>
-                                        <a href="#">SEO</a>
-                                        <a href="#">WordPress</a>
-                                        <a href="#">Development</a>
-                                        <a href="#">Joomla</a>
-                                        <a href="#">Design</a>
-                                        <a href="#">User interface</a>
-                                        <a href="#">SEO</a>
-                                        <a href="#">WordPress</a>
-                                        <a href="#">Development</a>
-                                        <a href="#">Joomla</a>
-                                        <a href="#">Design</a>
-                                        <a href="#">User interface</a>
-                                        <a href="#">SEO</a>
-                                        <a href="#">WordPress</a>
-                                        <a href="#">Development</a>
-                                        <a href="#">Joomla</a>
+                                        @foreach (var item in ViewData["category"] as List<Category>)
+                                        {
+                                            <a asp-controller="Blog" asp-action="BlogList" asp-route-CatID="@item.CategoryId">@item.CategoryValue</a>
+
+                                        }
                                     </div>
                                 </div>
                                 <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
