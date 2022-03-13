@@ -3,8 +3,16 @@
 @{
     ViewData["Title"] = "Blog Detail";
     var count = 0;
+    var recentComment = ViewBag.RecentComment;
 }
 
+<style>
+    .action-box img,
+    .ttr-post-media img {
+        width: 100%;
+        height: auto;
+    }
+</style>
 
 
 <div class="page-content bg-white">
@@ -35,37 +43,27 @@
                         <!-- blog start -->
                         <div class="recent-news blog-lg">
                             <div class="action-box blog-lg">
-                                <img src="~/img/@Html.DisplayFor(model => model.ThumbnailURL)" alt="" >
+                                <img src="~/img/@Html.DisplayFor(model => model.ThumbnailURL)" alt="">
                             </div>
                             <div class="info-bx">
                                 <ul class="media-post">
                                     <li><a href="#"><i class="fa fa-calendar"></i>@Html.DisplayFor(model => model.CreatedDate)</a></li>
-                                    <li><a href="#"><i class="fa fa-comments-o"></i>10 Comment</a></li>
                                 </ul>
                                 <h5 class="post-title"><a href="#">@Html.DisplayFor(model => model.Title)</a></h5>
                                 <p>@Html.DisplayFor(model => model.Content)</p>
+                                <p class="abs">
+                                    <iframe style="margin-left:30px" height="360" width="640" frameborder="0" src="//www.youtube.com/embed/@Html.DisplayFor(model => model.VideoURL)" allowfullscreen></iframe>
+                                </p>
+
                                 <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
                                 <div class="widget_tag_cloud">
-                                    <h6>TAGS</h6>   
+                                    <h6>CATEGORIES</h6>
                                     <div class="tagcloud">
-                                        <a href="#">Design</a>
-                                        <a href="#">User interface</a>
-                                        <a href="#">SEO</a>
-                                        <a href="#">WordPress</a>
-                                        <a href="#">Development</a>
-                                        <a href="#">Joomla</a>
-                                        <a href="#">Design</a>
-                                        <a href="#">User interface</a>
-                                        <a href="#">SEO</a>
-                                        <a href="#">WordPress</a>
-                                        <a href="#">Development</a>
-                                        <a href="#">Joomla</a>
-                                        <a href="#">Design</a>
-                                        <a href="#">User interface</a>
-                                        <a href="#">SEO</a>
-                                        <a href="#">WordPress</a>
-                                        <a href="#">Development</a>
-                                        <a href="#">Joomla</a>
+                                        @foreach (var item in ViewData["category"] as List<Category>)
+                                        {
+                                            <a asp-controller="Blog" asp-action="BlogList" asp-route-CatID="@item.CategoryId">@item.CategoryValue</a>
+
+                                        }
                                     </div>
                                 </div>
                                 <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
@@ -81,105 +79,36 @@
                         </div>
                         <div class="clear" id="comment-list">
                             <div class="comments-area" id="comments">
-                                <h2 class="comments-title">8 Comments</h2>
+                                <h2 class="comments-title">@recentComment Comments</h2>
                                 <div class="clearfix m-b20">
                                     <!-- comment list END -->
                                     <ol class="comment-list">
-                                        <li class="comment">
-                                            <div class="comment-body">
-                                                <div class="comment-author vcard"> <img class="avatar photo" src="~/assets/images/testimonials/pic1.jpg" alt=""> <cite class="fn">John Doe</cite> <span class="says">says:</span> </div>
-                                                <div class="comment-meta"> <a href="#">December 02, 2019 at 10:45 am</a> </div>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae neqnsectetur adipiscing elit. Nam viae neqnsectetur adipiscing elit.
-                                                    Nam vitae neque vitae sapien malesuada aliquet.
-                                                </p>
-                                                <div class="reply"> <a href="#" class="comment-reply-link">Reply</a> </div>
-                                            </div>
-                                            <ol class="children">
-                                                <li class="comment odd parent">
-                                                    <div class="comment-body">
-                                                        <div class="comment-author vcard"> <img class="avatar photo" src="~/assets/images/testimonials/pic2.jpg" alt=""> <cite class="fn">John Doe</cite> <span class="says">says:</span> </div>
-                                                        <div class="comment-meta"> <a href="#">December 02, 2019 at 10:45 am</a> </div>
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae neque vitae sapien malesuada aliquet.
-                                                            In viverra dictum justo in vehicula. Fusce et massa eu ante ornare molestie. Sed vestibulum sem felis,
-                                                            ac elementum ligula blandit ac.
-                                                        </p>
-                                                        <div class="reply"> <a href="#" class="comment-reply-link">Reply</a> </div>
-                                                    </div>
-                                                    <ol class="children">
-                                                        <li class="comment odd parent">
-                                                            <div class="comment-body">
-                                                                <div class="comment-author vcard"> <img class="avatar photo" src="~/assets/images/testimonials/pic3.jpg" alt=""> <cite class="fn">John Doe</cite> <span class="says">says:</span> </div>
-                                                                <div class="comment-meta"> <a href="#">December 02, 2019 at 10:45 am</a> </div>
-                                                                <p>
-                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae neque vitae sapien malesuada aliquet.
-                                                                    In viverra dictum justo in vehicula. Fusce et massa eu ante ornare molestie. Sed vestibulum sem felis,
-                                                                    ac elementum ligula blandit ac.
-                                                                </p>
-                                                                <div class="reply"> <a href="#" class="comment-reply-link">Reply</a> </div>
-                                                            </div>
-                                                        </li>
-                                                    </ol>
-                                                    <!-- list END -->
-                                                </li>
-                                            </ol>
-                                            <!-- list END -->
-                                        </li>
-                                        <li class="comment">
-                                            <div class="comment-body">
-                                                <div class="comment-author vcard"> <img class="avatar photo" src="~/assets/images/testimonials/pic1.jpg" alt=""> <cite class="fn">John Doe</cite> <span class="says">says:</span> </div>
-                                                <div class="comment-meta"> <a href="#">December 02, 2019 at 10:45 am</a> </div>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae neque vitae sapien malesuada aliquet.
-                                                    In viverra dictum justo in vehicula. Fusce et massa eu ante ornare molestie. Sed vestibulum sem felis,
-                                                    ac elementum ligula blandit ac.
-                                                </p>
-                                                <div class="reply"> <a href="#" class="comment-reply-link">Reply</a> </div>
-                                            </div>
-                                        </li>
-                                        <li class="comment">
-                                            <div class="comment-body">
-                                                <div class="comment-author vcard"> <img class="avatar photo" src="~/assets/images/testimonials/pic2.jpg" alt=""> <cite class="fn">John Doe</cite> <span class="says">says:</span> </div>
-                                                <div class="comment-meta"> <a href="#">December 02, 2019 at 10:45 am</a> </div>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae neque vitae sapien malesuada aliquet.
-                                                    In viverra dictum justo in vehicula. Fusce et massa eu ante ornare molestie. Sed vestibulum sem felis,
-                                                    ac elementum ligula blandit ac.
-                                                </p>
-                                                <div class="reply"> <a href="#" class="comment-reply-link">Reply</a> </div>
-                                            </div>
-                                        </li>
-                                        <li class="comment">
-                                            <div class="comment-body">
-                                                <div class="comment-author vcard"> <img class="avatar photo" src="~/assets/images/testimonials/pic3.jpg" alt=""> <cite class="fn">John Doe</cite> <span class="says">says:</span> </div>
-                                                <div class="comment-meta"> <a href="#">December 02, 2019 at 10:45 am</a> </div>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae neque vitae sapien malesuada aliquet.
-                                                    In viverra dictum justo in vehicula. Fusce et massa eu ante ornare molestie. Sed vestibulum sem felis,
-                                                    ac elementum ligula blandit ac.
-                                                </p>
-                                                <div class="reply"> <a href="#" class="comment-reply-link">Reply</a> </div>
-                                            </div>
-                                        </li>
+                                        @foreach (var item in ViewData["comments"] as List<Comment>)
+                                        {
+                                            <li class="comment">
+                                                <div class="comment-body">
+                                                    <div class="comment-author vcard"> <img class="avatar photo" src="~/img/@Html.DisplayFor(modelItem => item.User.ProfilePictureURL)" alt=""> <cite class="fn">@Model.User.FullName</cite> <span class="says">says:</span> </div>
+                                                    <div class="comment-meta"> <a href="#">@DateTime.Now.ToShortDateString()</a> </div>
+                                                    <p>
+                                                        @Html.DisplayFor(modelItem => item.CommentBody)
+                                                    </p>
+                                                    <div class="reply"> <a href="#" class="comment-reply-link">Reply</a> </div>
+                                                </div>
+                                            </li>
+                                        }
+
                                     </ol>
                                     <!-- comment list END -->
                                     <!-- Form -->
                                     <div class="comment-respond" id="respond">
                                         <h4 class="comment-reply-title" id="reply-title">Leave a Reply <small> <a style="display:none;" href="#" id="cancel-comment-reply-link" rel="nofollow">Cancel reply</a> </small> </h4>
-                                        <form class="comment-form" id="commentform" method="post">
+                                        <form class="comment-form" id="commentform" asp-action="AddComment" method="post">
                                             <p class="comment-form-author">
                                                 <label for="author">Name <span class="required">*</span></label>
-                                                <input type="text" value="" name="Author" placeholder="Author" id="author">
+                                                <input type="text" value="" name="Name" placeholder="Author" id="author">
                                             </p>
-                                            <p class="comment-form-email">
-                                                <label for="email">Email <span class="required">*</span></label>
-                                                <input type="text" value="" placeholder="Email" name="email" id="email">
-                                            </p>
-                                            <p class="comment-form-url">
-                                                <label for="url">Website</label>
-                                                <input type="text" value="" placeholder="Website" name="url" id="url">
-                                            </p>
+                                            <input name="BlogId" value="@Model.BlogId" hidden>
+                                            <input name="UserId" value="@Model.User.Id" hidden>
                                             <p class="comment-form-comment">
                                                 <label for="comment">Comment</label>
                                                 <textarea rows="8" name="comment" placeholder="Comment" id="comment"></textarea>
@@ -190,6 +119,7 @@
                                         </form>
                                     </div>
                                     <!-- Form -->
+
                                 </div>
                             </div>
                         </div>
@@ -202,9 +132,9 @@
                             <div class="widget">
                                 <h6 class="widget-title">Search</h6>
                                 <div class="search-bx style-1">
-                                    <form role="search" method="post">
+                                    <form role="search" method="post" asp-controller="Blog" asp-action="bloglist">
                                         <div class="input-group">
-                                            <input name="text" class="form-control" placeholder="Enter your keywords..." type="text">
+                                            <input name="keyWord" class="form-control" placeholder="Enter your keywords..." type="text">
                                             <span class="input-group-btn">
                                                 <button type="submit" class="fa fa-search text-primary"></button>
                                             </span>
@@ -215,42 +145,27 @@
                             <div class="widget recent-posts-entry">
                                 <h6 class="widget-title">Recent Posts</h6>
                                 <div class="widget-post-bx">
-                                    <div class="widget-post clearfix">
-                                        <div class="ttr-post-media"> <img src="~/assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
-                                        <div class="ttr-post-info">
-                                            <div class="ttr-post-header">
-                                                <h6 class="post-title"><a href="blog-details.html">This Story Behind Education Will Haunt You Forever.</a></h6>
+                                    @*NỘI DUNG RECENT POST*@
+                                    @*HIỆN THỊ TỐI ĐA 3 CÁI THEO THỜI GIAN GẦN NHẤT*@
+                                    @foreach (var item in ViewData["recentBlogs"] as List<Blog>)
+                                    {
+                                        ++count;
+                                        if (count <= 5)
+                                        {
+                                            <div class="widget-post clearfix">
+                                                <div class="ttr-post-media"> <img src="~/img/@Html.DisplayFor(modelItem => item.ThumbnailURL)" width="200" height="143"> </div>
+                                                <div class="ttr-post-info">
+                                                    <div class="ttr-post-header">
+                                                        <h6 class="post-title"><a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@item.BlogId">@Html.DisplayFor(modelItem => item.Title)</a></h6>
+                                                    </div>
+                                                    <ul class="media-post">
+                                                        <li><a href="#"><i class="fa fa-calendar"></i>@Html.DisplayFor(modelItem => item.CreatedDate)</a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                            <ul class="media-post">
-                                                <li><a href="#"><i class="fa fa-calendar"></i>Oct 23 2019</a></li>
-                                                <li><a href="#"><i class="fa fa-comments-o"></i>15 Comment</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="widget-post clearfix">
-                                        <div class="ttr-post-media"> <img src="~/assets/images/blog/recent-blog/pic2.jpg" width="200" height="160" alt=""> </div>
-                                        <div class="ttr-post-info">
-                                            <div class="ttr-post-header">
-                                                <h6 class="post-title"><a href="blog-details.html">What Will Education Be Like In The Next 50 Years?</a></h6>
-                                            </div>
-                                            <ul class="media-post">
-                                                <li><a href="#"><i class="fa fa-calendar"></i>May 14 2019</a></li>
-                                                <li><a href="#"><i class="fa fa-comments-o"></i>23 Comment</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="widget-post clearfix">
-                                        <div class="ttr-post-media"> <img src="~/assets/images/blog/recent-blog/pic3.jpg" width="200" height="160" alt=""> </div>
-                                        <div class="ttr-post-info">
-                                            <div class="ttr-post-header">
-                                                <h6 class="post-title"><a href="blog-details.html">Eliminate Your Fears And Doubts About Education.</a></h6>
-                                            </div>
-                                            <ul class="media-post">
-                                                <li><a href="#"><i class="fa fa-calendar"></i>June 12 2019</a></li>
-                                                <li><a href="#"><i class="fa fa-comments-o"></i>27 Comment</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                        }
+                                    }
+
                                 </div>
                             </div>
                             <div class="widget widget-newslatter">
@@ -271,37 +186,24 @@
                             <div class="widget widget_gallery gallery-grid-4">
                                 <h6 class="widget-title">Our Gallery</h6>
                                 <ul>
-                                    <li><div><a href="#"><img src="~/assets/images/gallery/pic2.jpg" alt=""></a></div></li>
-                                    <li><div><a href="#"><img src="~/assets/images/gallery/pic1.jpg" alt=""></a></div></li>
-                                    <li><div><a href="#"><img src="~/assets/images/gallery/pic5.jpg" alt=""></a></div></li>
-                                    <li><div><a href="#"><img src="~/assets/images/gallery/pic7.jpg" alt=""></a></div></li>
-                                    <li><div><a href="#"><img src="~/assets/images/gallery/pic8.jpg" alt=""></a></div></li>
-                                    <li><div><a href="#"><img src="~/assets/images/gallery/pic9.jpg" alt=""></a></div></li>
-                                    <li><div><a href="#"><img src="~/assets/images/gallery/pic3.jpg" alt=""></a></div></li>
-                                    <li><div><a href="#"><img src="~/assets/images/gallery/pic4.jpg" alt=""></a></div></li>
+                                    <li><div><a href="#"><img src="~/img/thumbnail1.jpg" alt=""></a></div></li>
+                                    <li><div><a href="#"><img src="~/img/thumbnail2.jpg" alt=""></a></div></li>
+                                    <li><div><a href="#"><img src="~/img/thumbnail3.jpg" alt=""></a></div></li>
+                                    <li><div><a href="#"><img src="~/img/thumbnail4.jpg" alt=""></a></div></li>
+                                    <li><div><a href="#"><img src="~/img/thumbnail5.jpg" alt=""></a></div></li>
+                                    <li><div><a href="#"><img src="~/img/thumbnail6.jpg" alt=""></a></div></li>
+                                    <li><div><a href="#"><img src="~/img/thumbnail7.jpg" alt=""></a></div></li>
+                                    <li><div><a href="#"><img src="~/img/thumbnail8.jpg" alt=""></a></div></li>
                                 </ul>
                             </div>
                             <div class="widget widget_tag_cloud">
                                 <h6 class="widget-title">Tags</h6>
                                 <div class="tagcloud">
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
+                                    @foreach (var item in ViewData["category"] as List<Category>)
+                                    {
+                                        <a asp-controller="Blog" asp-action="BlogList" asp-route-CatID="@item.CategoryId">@item.CategoryValue</a>
+
+                                    }
                                 </div>
                             </div>
                         </aside>

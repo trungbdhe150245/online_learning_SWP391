@@ -1,10 +1,18 @@
-﻿recent @using PagedList.Core.Mvc
+﻿@using PagedList.Core.Mvc
 @using SWP391.Models;
 @{ int CurrentPage = ViewBag.CurrentPage;
     ViewData["Title"] = "BlogList";
     var count = 0;
     int numberResult = Model.Count(); }
 @model PagedList.Core.IPagedList<SWP391.Models.Blog>
+
+<style>
+    .action-box img,
+    .ttr-post-media img {
+        width: 100%;
+        height: auto;
+    }
+</style>
 <!-- Content -->
 <div class="page-content bg-white">
     <!-- inner page banner -->
@@ -20,7 +28,7 @@
         <div class="container">
             <ul class="list-inline">
                 <li><a href="#">Home</a></li>
-                <li>Blog Classic Sidebar</li>
+                <li>Blog List</li>
             </ul>
         </div>
     </div>
@@ -33,9 +41,24 @@
 
                     <div class="col-lg-8 col-xl-8 col-md-7">
                         <!-- blog grid -->
+                        @*CATEGORY*@
+                        <div>
+                            <p>
+                                <h3>Sorted by:</h3>
+                                <select id="categoryList" name="categoryList" asp-items="ViewBag.selectedCategory">
+                                    <option selected disabled>---Category---</option>
+                                    <option value="0">All</option>
+                                </select>
+                            </p>
+                        </div>
+                        <br />
                         @if (ViewBag.KeyWord != null)
                         {
                             <h3>@numberResult results for <span style="color: gray;">"@ViewBag.KeyWord"</span></h3><br />
+                        }
+                        @if (Model.Count == 0)
+                        {
+                            <h3>No information</h3><br />
                         }
                         <div id="masonry" class="ttr-blog-grid-3 row">
                             @*NỘI DUNG CONTENT*@
@@ -52,11 +75,10 @@
                                                 <li><a href="#"><i class="fa fa-calendar"></i>@Html.DisplayFor(modelItem => item.CreatedDate)</a></li>
                                                 <li><a href="#"><i class="fa fa-user"></i>By @Html.DisplayFor(modelItem => item.User.FullName)</a></li>
                                             </ul>
-                                            <h5 class="post-title"><a href="blog-details.html">@Html.DisplayFor(modelItem => item.Title)</a></h5>
+                                            <h5 class="post-title"><a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@item.BlogId">@Html.DisplayFor(modelItem => item.Title)</a></h5>
                                             <p>@Html.DisplayFor(modelItem => item.Brief)</p>
                                             <div class="post-extra">
                                                 <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@item.BlogId" class="btn-link">READ MORE</a>
-                                                <a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>20 Comment</a>
                                             </div>
                                         </div>
                                     </div>
@@ -108,14 +130,13 @@
                                         if (count <= 5)
                                         {
                                             <div class="widget-post clearfix">
-                                                <div class="ttr-post-media"> <img src="~/img/@Html.DisplayFor(modelItem => item.ThumbnailURL)" width="200" height="143" object-fit: cover; object-position: 50% 50%;"> </div>
+                                                <div class="ttr-post-media"> <img src="~/img/@Html.DisplayFor(modelItem => item.ThumbnailURL)" width="200" height="143"> </div>
                                                 <div class="ttr-post-info">
                                                     <div class="ttr-post-header">
-                                                        <h6 class="post-title"><a href="blog-details.html">@Html.DisplayFor(modelItem => item.Title)</a></h6>
+                                                        <h6 class="post-title"><a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@item.BlogId">@Html.DisplayFor(modelItem => item.Title)</a></h6>
                                                     </div>
                                                     <ul class="media-post">
                                                         <li><a href="#"><i class="fa fa-calendar"></i>@Html.DisplayFor(modelItem => item.CreatedDate)</a></li>
-                                                        <li><a href="#"><i class="fa fa-comments-o"></i>15 Comment</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -140,24 +161,11 @@
                             <div class="widget widget_tag_cloud">
                                 <h6 class="widget-title">Categories</h6>
                                 <div class="tagcloud">
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
-                                    <a href="#">Design</a>
-                                    <a href="#">User interface</a>
-                                    <a href="#">SEO</a>
-                                    <a href="#">WordPress</a>
-                                    <a href="#">Development</a>
-                                    <a href="#">Joomla</a>
+                                    @foreach (var item in ViewData["category"] as List<Category>)
+                                    {
+                                        <a asp-controller="Blog" asp-action="BlogList" asp-route-CatID="@item.CategoryId">@item.CategoryValue</a>
+
+                                    }
                                 </div>
                             </div>
                         </aside>
@@ -170,3 +178,32 @@
 </div>
 <!-- Left & right section END -->
 <!-- Content END-->
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            jQuery("#categoryList").change(function () {
+                var catID = jQuery(this).children(":selected").attr("value");
+                $("#categoryList option").removeAttr("selected");
+                $("#categoryList option > [value=" + catID + "]").attr("selected", "true");
+                $.ajax({
+                    url: '/blog/filter',
+                    dataType: 'json',
+                    type: 'GET',
+                    data: {
+                        CatID: catID
+                    },
+                    async: true,
+                    success: function (results) {
+                        if (results.status == "success") {
+                            window.location.href = results.redirectUrl;
+                        }
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
+}

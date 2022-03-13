@@ -20,10 +20,10 @@ namespace SWP391.Controllers
 
         public IActionResult Filter(int CatID = 0)
         {
-            var url = $"/publicfeature/blogList?catID={CatID}";
+            var url = $"/blog/blogList?catID={CatID}";
             if (CatID == 0)
             {
-                url = $"/publicfeature/blogList";
+                url = $"/blog/blogList";
             }
             return Json(new { status = "success", redirectUrl = url });
         }
@@ -64,7 +64,7 @@ namespace SWP391.Controllers
             PagedList<Blog> models = new PagedList<Blog>(blogs.AsQueryable(), pageNumber, pageSize);
 
             ViewBag.CurrentCateID = CatID;
-            ViewData["selectedCategory"] = new SelectList(_db.Categories, "Id", "Value");
+            ViewData["selectedCategory"] = new SelectList(_db.Categories, "CategoryId", "CategoryValue");
             ViewData["category"] = _db.Categories.ToList();
             ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.CreatedDate).ToList();
             if (keyWord != null) { ViewBag.KeyWord = keyWord; }
@@ -82,10 +82,42 @@ namespace SWP391.Controllers
             {
                 return NotFound();
             }
+            ViewBag.RecentComment = CountComment(id);
+            ViewData["comments"] = _db.Comments.Where(u=>u.BlogId==id).Include(u=>u.User).ToList(); 
             ViewData["selectedCategory"] = new SelectList(_db.Categories, "Id", "Value");
             ViewData["category"] = _db.Categories.ToList();
             ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.CreatedDate).ToList();
             return View(blog);
+        }
+
+        [HttpPost]
+        public IActionResult AddComment(string Name, string comment, string BlogID, string UserID)
+        {
+            if (Name != "" && comment != "")
+            {
+                var c = new Comment();
+                c.CommentId = RandomString(9);
+                c.CommentBody = comment.Trim();
+                c.BlogId = BlogID;
+                c.UserId = UserID;
+                _db.Comments.Add(c);
+                _db.SaveChanges();
+            }
+            return Redirect($"/Blog/BlogDetail?id={BlogID}");
+        }
+        private int CountComment(string blogid)
+        {
+            int result = 0;
+            result = _db.Comments.Where(b => b.BlogId == blogid).Count();
+            return result;
+        }
+
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }
