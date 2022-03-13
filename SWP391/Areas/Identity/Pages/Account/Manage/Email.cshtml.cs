@@ -86,6 +86,7 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             {
                 await LoadAsync(user);
                 return Page();
+
             }
 
             var email = await _userManager.GetEmailAsync(user);

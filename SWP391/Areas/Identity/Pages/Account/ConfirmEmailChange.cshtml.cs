@@ -23,7 +23,6 @@ namespace SWP391.Areas.Identity.Pages.Account
 
         [TempData]
         public string StatusMessage { get; set; }
-
         public async Task<IActionResult> OnGetAsync(string userId, string email, string code)
         {
             if (userId == null || email == null || code == null)
