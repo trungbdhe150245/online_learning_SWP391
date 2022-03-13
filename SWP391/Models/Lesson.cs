@@ -12,6 +12,6 @@ namespace SWP391.Models
         public string Script { get; set; }
         public string VideoURL { get; set; }
         public virtual Topic Topic { get; set; }
-        public int TopicId { get; set; }
+        public string TopicId { get; set; }
     }
 }

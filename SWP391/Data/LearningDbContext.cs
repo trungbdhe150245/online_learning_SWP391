@@ -30,10 +30,12 @@ namespace SWP391.Data
                 entity.HasOne(a => a.User)
                         .WithMany(u => u.Attempts)
                         .HasForeignKey("UserId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(a => a.Quiz)
                         .WithMany(q => q.Attempts)
                         .HasForeignKey("QuizId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<AttemptDetailed>(entity =>
@@ -56,18 +58,22 @@ namespace SWP391.Data
                 entity.HasOne(b => b.Status)
                         .WithMany(s => s.Blogs)
                         .HasForeignKey("StatusId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(b => b.Category)
                         .WithMany(ct => ct.Blogs)
                         .HasForeignKey("CategoryId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(b => b.User)
                         .WithMany(u => u.Blogs)
                         .HasForeignKey("UserId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(b => b.Slide)
                     .WithMany(s => s.Blogs)
                     .HasForeignKey("SlideId")
+                    .IsRequired(false)
                     .OnDelete(DeleteBehavior.NoAction);
                 entity.Property(b => b.Title).HasColumnType("nvarchar(255)");
                 entity.Property(b => b.Brief).HasColumnType("nvarchar(500)");
@@ -90,10 +96,12 @@ namespace SWP391.Data
                 entity.HasOne(cm => cm.User)
                         .WithMany(u => u.Comments)
                         .HasForeignKey("UserId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(cm => cm.Blog)
                         .WithMany(b => b.Comments)
                         .HasForeignKey("BlogId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<AppUser>(entity =>
@@ -113,18 +121,22 @@ namespace SWP391.Data
                 entity.HasOne(c => c.Status)
                         .WithMany(s => s.Courses)
                         .HasForeignKey("StatusId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(c => c.Category)
                         .WithMany(b => b.Courses)
                         .HasForeignKey("CategoryId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(c => c.Slide)
                         .WithMany(s => s.Courses)
                         .HasForeignKey("SlideId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(c => c.User)
                         .WithMany(u => u.Courses)
                         .HasForeignKey("UserId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<Lesson>(entity =>
@@ -138,6 +150,7 @@ namespace SWP391.Data
                 entity.HasOne(l => l.Topic)
                         .WithMany(t => t.Lessons)
                         .HasForeignKey("TopicId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<CourseOwner>(entity =>
@@ -169,6 +182,7 @@ namespace SWP391.Data
                 entity.HasOne(pp => pp.Status)
                         .WithMany(s => s.PricePackages)
                         .HasForeignKey("StatusId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<UserPricePackage>(entity =>
@@ -195,14 +209,17 @@ namespace SWP391.Data
                 entity.HasOne(qb => qb.Status)
                         .WithMany(s => s.QuestionBanks)
                         .HasForeignKey("StatusId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(qb => qb.Course)
                         .WithMany(c => c.QuestionBanks)
                         .HasForeignKey("CourseId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(qb => qb.QuizLevel)
                         .WithMany(ql => ql.QuestionBanks)
                         .HasForeignKey("QuizLevelId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<Quiz>(entity =>
@@ -216,15 +233,18 @@ namespace SWP391.Data
                 entity.HasOne(q => q.QuizType)
                         .WithMany(qt => qt.Quizzes)
                         .HasForeignKey("QuizTypeId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(q => q.QuizLevel)
                         .WithMany(ql => ql.Quizzes)
                         .HasForeignKey("QuizLevelId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 //*******
                 entity.HasOne(q => q.Topic)
                         .WithMany(t => t.Quizzes)
                         .HasForeignKey("TopicId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
                 //*******
                 //entity.HasOne(q => q.Course)
@@ -246,13 +266,14 @@ namespace SWP391.Data
             });
             modelBuilder.Entity<Topic>(entity =>
             {
-                entity.Property(t => t.TopicId).HasColumnType("int");
+                entity.Property(t => t.TopicId).HasColumnType("varchar(10)");
                 entity.Property(t => t.TopicName).HasColumnType("varchar(255)");
                 entity.Property(t => t.TopicOrder).HasColumnType("int");
                 entity.HasKey(t => t.TopicId);
                 entity.HasOne(t => t.Course)
                         .WithMany(c => c.Topics)
                         .HasForeignKey("CourseId")
+                        .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<QuizQuestion>(entity =>

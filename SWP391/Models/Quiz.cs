@@ -12,7 +12,7 @@ namespace SWP391.Models
         public string Name { get; set; }
         public int QuestionNum { get; set; }
         public virtual Topic Topic { get; set; }
-        public int TopicId { get; set; }
+        public string TopicId { get; set; }
         public ICollection<Attempt> Attempts { get; set; }
         public ICollection<QuizQuestion> QuizQuestions { get; set; }
         public virtual QuizType QuizType { get; set; }

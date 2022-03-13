@@ -6,7 +6,7 @@ namespace SWP391.Models
     [Table("Topics")]
     public class Topic
     {
-        public int TopicId { get; set; }
+        public string TopicId { get; set; }
         public int TopicOrder { get; set; }
         public string TopicName { get; set; }
         public virtual Course Course { get; set; }
