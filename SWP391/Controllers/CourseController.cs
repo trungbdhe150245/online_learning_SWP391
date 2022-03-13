@@ -174,9 +174,43 @@ namespace SWP391.Controllers
 
 
         [HttpGet]
-        public IActionResult Lesson(string id)
+        [Route("/Course/{id}/Lesson")]
+        public IActionResult Lesson(string id) 
         {
-            return View();
+            //var course_detail = from course in _db.Courses where course.CourseId.Equals(id) join topic in _db.Topics
+            //                    on course equals topic.Course join lesson in _db.Lessons
+            //                    on topic equals lesson.Topic
+            //                    select new Lesson {
+            //                        LessonId = lesson.LessonId,
+            //                        LessonName = lesson.LessonName,
+            //                        LessonOrder = lesson.LessonOrder,
+            //                        Script = lesson.Script,
+            //                        Topic = lesson.Topic,
+            //                        VideoURL = lesson.VideoURL
+            //                    };
+            var course_details = from course in _db.Courses where course.CourseId.Equals(id) join topic in _db.Topics
+                                on course equals topic.Course 
+                                // join lesson in _db.Lessons
+                                //on topic equals lesson.Topic
+                                 select new Topic {
+                                     TopicId = topic.TopicId,
+                                     Lessons = (from lesson in _db.Lessons where lesson.TopicId.Equals(topic.TopicId)
+                                               select new Lesson
+                                               {
+                                                   LessonId = lesson.LessonId,
+                                                   LessonName = lesson.LessonName,
+                                                   LessonOrder = lesson.LessonOrder,
+                                                   Script = lesson.Script,
+                                                   VideoURL = lesson.VideoURL,
+                                                   Topic = topic
+                                               }).ToList(),
+                                     Course = topic.Course,
+                                     TopicName = topic.TopicName,
+                                     TopicOrder = topic.TopicOrder,
+                                     Quizzes = topic.Quizzes
+
+                                };
+            return View(course_details.ToList());
         }
         /*
 

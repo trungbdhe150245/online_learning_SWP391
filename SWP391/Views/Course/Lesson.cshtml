@@ -2,127 +2,135 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-@model List<SWP391.Models.Lesson>
+@model List<SWP391.Models.Topic>
 @{
     ViewData["Title"] = "LESSON";
     Layout = "_Layout";
 }
+
+<style>
+    #border_wrap {
+        width: 100%; /* Same width than the video tag */
+        /* Same height than the video tag */
+        padding: 2px; /* If you want a 1px border add a padding of 2px, 2px border / 4px padding, etc */
+        background-color: black; /* Change the color you want for the border here */
+    }
+</style>
+
 <div class="page-content bg-white">
-        <!-- inner page banner -->
-@*        <div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner/banner1.jpg);">
-            <div class="container">
-                <div class="page-banner-entry">
-                    <h1 class="text-white">Courses Details</h1>
-				 </div>
-            </div>
-        </div>*@
-		<!-- Breadcrumb row -->
-		<div class="breadcrumb-row">
-			<div class="container">
-				<ul class="list-inline">
-					<li><a href="#">Home</a></li>
-					<li>Courses Details</li>
-				</ul>
-			</div>
-		</div>
-		<!-- Breadcrumb row END -->
-        <!-- inner page banner END -->
-		<div class="content-block">
-            <!-- About Us -->
-			<div class="section-area section-sp1">
-                <div class="container">
-					 <div class="row">
-						<div class="col-lg-8 col-md-7 col-sm-12">
-							<div class="courses-post">
-								<div class="video">
-                    <video src="https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4" width="100%" muted autoplay controls></video>
-                    <h3 class="title">Title</h3>
-                </div>
-                    <div class="row lesson-main">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button onclick="scriptToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Script
-                            </button>
-                            <button onclick="noteToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
-                                Note
-                            </button>
-                        <button type="button" class="btn btn-outline-danger">Report</button>
-                    </div>
-                </div>
-                        
-            <div class="collapse" id="collapseExample">
-              <div class="card card-body">
-                Transcript
-              </div>
-            </div>
-                        <div class="collapse" id="collapseExample2">
-              <div class="card card-body">
-                <h4 >Note here<br/><small class="">You can download your note</small></h4>
-
-
-                    
-
-
-                    <textarea class="text_mop" style="margin-bottom:10px" rows=5></textarea>
-                    
-                    <input type="button" class="btn_mop btn-primary btn" style="margin-left:78%;text-align:center;" value="Download" aria-hidden="true"/>
-
-              </div>
-            </div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-5 col-sm-12 m-b30">
-							
-                                <div class="accordion" id="accordionExample">
-                    @for (var i = 0; i < 4; i++)
-                   {
-                        @:<div class="card">
-                        <div class="card-header" id="@("headingOne" + i)">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="@("#collapseOne" + i)" aria-expanded="true" aria-controls="collapseOne">
-                                    @("Topic #" + i)
-                                </button>
-                                <a class="btn btn-link" data-toggle="collapse" data-target="@("#collapseOne" + i)" aria-expanded="true" aria-controls="collapseOne"></a>
-                            </h2>
-                        </div>
-
-                        @:<div id="@("collapseOne" + i)" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                           @:<div class="card-body">
-                                @:<ul class="list-group">
-                                    @for (var x = 0; x < 4; x++)
-                                   {
-                                    <li class="list-group-item">
-                                        <p style="margin-bottom:0"><i class="far fa-play-circle"></i> @("Vid" + x)</p>
-                                        <p class="title-vid" hidden>@("Title" + x)</p>
-                                        <a href="" hidden></a>
-                                    </li>
-                                   }
-                                @:</ul>
-                                <br/>
-                                <div class="list-group">
-                                    @for (var j = 0; j < 2; j++)
-                                    {
-                                      <a href="/Lesson/Attempt" class="list-group-item list-group-item-warning">
-                                        Quiz
-                                    </a>
-                                    }
-
-                                </div>
-                            @:</div>
-                        @:</div>
-                    @:</div>
-                   }
-
-                </div>
-							</div>
-						
-					</div>
-				</div>
+    <!-- inner page banner -->
+    <div class="page-banner ovbl-dark" style="background-image:@($"url(~/img/{Model.ElementAt(0).Course.ThumbnailURL});")">@*assets/images/banner/banner1.jpg*@
+        <div class="container">
+            
+            <div class="page-banner-entry">
+                <h1 class="text-white">@(Model.ElementAt(0).Course.Title)</h1>
             </div>
         </div>
-		<!-- contact area END -->
-		
     </div>
+    <!-- Breadcrumb row -->
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li>Courses Details</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb row END -->
+    <!-- inner page banner END -->
+    <div class="content-block">
+        <!-- About Us -->
+        <div class="section-area section-sp1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-7 col-sm-12">
+                        <div class="courses-post">
+                            <div class="video">
+                                <div id="border_wrap">
+                                    <video src=@(Model.ElementAt(0).Lessons.ElementAt(0).VideoURL) width="100%" controls></video>
+                                </div>
+                                <br />
+                                <h3 class="title">@(Model.ElementAt(0).Lessons.ElementAt(0).LessonName)</h3>
+                            </div>
+                            <div class="row lesson-main">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button onclick="scriptToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        Script
+                                    </button>
+                                    <button onclick="noteToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                                        Note
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger">Report</button>
+                                </div>
+                            </div>
+
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    @(Model.ElementAt(0).Lessons.ElementAt(0).Script)
+                                </div>
+                            </div>
+                            <div class="collapse" id="collapseExample2">
+                                <div class="card card-body">
+                                    <h4>Note here<br /><small class="">You can download your note</small></h4>
+                                    <textarea class="text_mop" style="margin-bottom:10px" rows=5></textarea>
+                                    <input type="button" class="btn_mop btn-primary btn" style="margin-left:78%;text-align:center;" value="Download" aria-hidden="true" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-5 col-sm-12 m-b30">
+
+                        <div class="accordion" id="accordionExample">
+                            @foreach (var topic in Model)
+                            {
+                                @:<div class="card">
+                                    <div class="card-header" id="@("headingOne" + Model.IndexOf(topic))">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="@("#collapseOne" + Model.IndexOf(topic))" aria-expanded="true" aria-controls="collapseOne">
+                                                @(topic.TopicName)
+                                            </button>
+                                        </h2>
+                                    </div>
+
+                                    @:<div id="@("collapseOne" + Model.IndexOf(topic))" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        @:<div class="card-body">
+                                            @:<ul class="list-group">
+                                                @foreach (var lesson in topic.Lessons)
+                                                {
+                                                    <li class="list-group-item">
+                                                        <p style="margin-bottom:0"><i class="far fa-play-circle"></i> @(lesson.LessonName)</p>
+                                                        <p class="title-vid" hidden>@(lesson.LessonName)</p>
+                                                        <a href="@(lesson.VideoURL)" hidden></a>
+                                                        <p hidden>@(lesson.Script)</p>
+                                                    </li>
+                                                }
+                                            @:</ul>
+                                            <br />
+                                            <div class="list-group">
+                                                @for (var j = 0; j < 2; j++)
+                                                {
+                                                    <a href="/Lesson/Attempt" class="list-group-item list-group-item-warning">
+                                                        Quiz
+                                                    </a>
+                                                }
+
+                                            </div>
+                                        @:</div>
+                                    @:</div>
+                                @:</div>
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact area END -->
+
+</div>
 
 
 

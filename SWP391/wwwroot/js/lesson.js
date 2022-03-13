@@ -1,7 +1,7 @@
 ﻿let hreflist = document.querySelectorAll('.list-group .list-group-item');
-let mainvideo = document.querySelector('.row .col-md-8 video');
-let maintitle = document.querySelector('.row .col-md-8 .title');
-
+let mainvideo = document.querySelector('.row .col-lg-8 .courses-post video');
+let maintitle = document.querySelector('.row .col-lg-8 .courses-post .title');
+let mainscript = document.querySelector('.row .col-lg-8 .courses-post .collapse .card');
 hreflist.forEach(href => {
     href.onclick = () => {
         hreflist.forEach(vid => vid.classList.remove('active'));
@@ -11,6 +11,8 @@ hreflist.forEach(href => {
             mainvideo.src = src;
             let title = href.children[1].innerHTML;
             maintitle.innerHTML = title;
+            let script = href.children[3].innerHTML;
+            mainscript.innerHTML = script;
         };
     };
 });
