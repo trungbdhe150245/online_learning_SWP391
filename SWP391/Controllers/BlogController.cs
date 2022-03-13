@@ -82,16 +82,15 @@ namespace SWP391.Controllers
             {
                 return NotFound();
             }
+            ViewBag.RecentComment = CountComment(id);
             ViewData["comments"] = _db.Comments.Where(u=>u.BlogId==id).Include(u=>u.User).ToList();
             ViewData["selectedCategory"] = new SelectList(_db.Categories, "Id", "Value");
             ViewData["category"] = _db.Categories.ToList();
             ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.CreatedDate).ToList();
-            ViewBag.RecentComment = CountComment(id);
             return View(blog);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult AddComment(string Name, string comment, string BlogID, string UserID)
         {
             if (Name != "" && comment != "")
