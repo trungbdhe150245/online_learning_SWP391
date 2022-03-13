@@ -52,7 +52,7 @@
                                 <h5 class="post-title"><a href="#">@Html.DisplayFor(model => model.Title)</a></h5>
                                 <p>@Html.DisplayFor(model => model.Content)</p>
                                 <p class="abs">
-                                    <iframe height="360" width="640" frameborder="0" src="//www.youtube.com/embed/@Html.DisplayFor(model => model.VideoURL)" allowfullscreen></iframe>
+                                    <iframe style="margin-left:30px" height="360" width="640" frameborder="0" src="//www.youtube.com/embed/@Html.DisplayFor(model => model.VideoURL)" allowfullscreen></iframe>
                                 </p>
 
                                 <div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
@@ -164,19 +164,14 @@
                                     <!-- comment list END -->
                                     <!-- Form -->
                                     <div class="comment-respond" id="respond">
-                                        <h4 class="comment-reply-title" id="reply-title">Leave a Reply <small> <a style="display:none;" href="#" id="cancel-comment-reply-link" rel="nofollow">Cancel reply</a> </small> </h4>
-                                        <form class="comment-form" id="commentform" method="post">
+                                        <h4 class="comment-reply-title" id="reply-title">LEAVE A REPLY<small> <a style="display:none;" href="#" id="cancel-comment-reply-link" rel="nofollow">Cancel reply</a> </small> </h4>
+                                        <form asp-controller="Blog" asp-action="AddComment" method="post">
+                                            <input name="BlogId" value="@Html.DisplayFor(model => model.BlogId)" hidden>
+                                            <input name="UserId" value="@Html.DisplayFor(model => model.UserId)" hidden>
+
                                             <p class="comment-form-author">
                                                 <label for="author">Name <span class="required">*</span></label>
-                                                <input type="text" value="" name="Author" placeholder="Author" id="author">
-                                            </p>
-                                            <p class="comment-form-email">
-                                                <label for="email">Email <span class="required">*</span></label>
-                                                <input type="text" value="" placeholder="Email" name="email" id="email">
-                                            </p>
-                                            <p class="comment-form-url">
-                                                <label for="url">Website</label>
-                                                <input type="text" value="" placeholder="Website" name="url" id="url">
+                                                <input type="text" value="" name="Name" placeholder="Name" id="author">
                                             </p>
                                             <p class="comment-form-comment">
                                                 <label for="comment">Comment</label>
@@ -188,6 +183,7 @@
                                         </form>
                                     </div>
                                     <!-- Form -->
+                                   
                                 </div>
                             </div>
                         </div>

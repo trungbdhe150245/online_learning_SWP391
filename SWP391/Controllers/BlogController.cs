@@ -87,5 +87,30 @@ namespace SWP391.Controllers
             ViewData["recentBlogs"] = _db.Blogs.Include(a => a.Category).Include(a => a.User).Include(a => a.Status).OrderByDescending(a => a.CreatedDate).ToList();
             return View(blog);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddComment(string Name, string comment, string BlogID, string UserID)
+        {
+            if (Name != "" && comment != "")
+            {
+                var c = new Comment();
+                c.CommentId = RandomString(9);
+                c.CommentBody = comment.Trim();
+                c.BlogId = BlogID;
+                c.UserId = UserID;
+                _db.Comments.Add(c);
+                _db.SaveChanges();
+            }
+            return Redirect($"/Blog/BlogDetail?id={BlogID}");
+        }
+
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
     }
 }
