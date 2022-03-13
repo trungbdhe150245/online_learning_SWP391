@@ -37,8 +37,13 @@ namespace SWP391.Areas.Identity.Pages.Account
                 return NotFound($"Unable to load user with ID '{userId}'.");
             }
 
-            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await _userManager.ChangeEmailAsync(user, email, code);
+            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code)); //Base64UrlDecode - mã token dành riêng cho từng user
+            var result = await _userManager.ChangeEmailAsync(user, email, code); //nếu mã user và code phù hợp sẽ tiến hành đổi email
+
+            //khai báo biên old Email
+            var oldEmail = user.Email;
+
+            //Báo lỗi nếu không chính xác
             if (!result.Succeeded)
             {
                 StatusMessage = "Error changing email.";
@@ -47,12 +52,18 @@ namespace SWP391.Areas.Identity.Pages.Account
 
             // In our UI email and user name are one and the same, so when we update the email
             // we need to update the user name.
-            var setUserNameResult = await _userManager.SetUserNameAsync(user, email);
-            if (!setUserNameResult.Succeeded)
+
+            //Trường hợp để đăng nhập bằng username và email giống nhau sẽ đổi luôn cả username và email
+            if (user.UserName == oldEmail)
             {
-                StatusMessage = "Error changing user name.";
-                return Page();
+                var setUserNameResult = await _userManager.SetUserNameAsync(user, email);//khi đổi địa chỉ email sẽ đổi luôn username
+                if (!setUserNameResult.Succeeded)
+                {
+                    StatusMessage = "Error changing user name.";
+                    return Page();
+                }
             }
+
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Thank you for confirming your email change.";
