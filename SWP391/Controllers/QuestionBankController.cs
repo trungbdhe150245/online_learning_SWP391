@@ -118,9 +118,9 @@ namespace SWP391.Controllers
         // GET: Admin/QuestionBank/Create
         public IActionResult Create()
         {
-            ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description");
-            ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "Id", "Name");
-            ViewData["Status_Id"] = new SelectList(_context.Status, "Id", "Value");
+            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Description");
+            ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelName");
+            ViewData["Status_Id"] = new SelectList(_context.Status, "StatusId", "StatusValue");
             return View();
         }
 
@@ -135,14 +135,14 @@ namespace SWP391.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("QuestionList");
             }
-            ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description", QuestionBank.CourseId);
-            ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "Id", "Name", QuestionBank.QuizLevelId);
-            ViewData["Status_Id"] = new SelectList(_context.Status, "Id", "Value", QuestionBank.StatusId);
+            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Description", QuestionBank.CourseId);
+            ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelName", QuestionBank.QuizLevelId);
+            ViewData["Status_Id"] = new SelectList(_context.Status, "StatusId", "StatusValue", QuestionBank.StatusId);
             return View(QuestionBank);
         }
 
         // GET: Admin/QuestionBank/QuestionDetail/5
-        public async Task<IActionResult> QuestionDetail(int? id)
+        public async Task<IActionResult> QuestionDetail(string? id)
         {
             if (id == null)
             {
@@ -153,9 +153,9 @@ namespace SWP391.Controllers
             {
                 return NotFound();
             }
-            ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description", QuestionBank.CourseId);
-            ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "Id", "Name", QuestionBank.QuizLevelId);
-            ViewData["Status_Id"] = new SelectList(_context.Status, "Id", "Value", QuestionBank.StatusId);
+            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Description", QuestionBank.CourseId);
+            ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelName", QuestionBank.QuizLevelId);
+            ViewData["Status_Id"] = new SelectList(_context.Status, "StatusId", "StatusValue", QuestionBank.StatusId);
             return View(QuestionBank);
         }
 
@@ -165,8 +165,6 @@ namespace SWP391.Controllers
         public async Task<IActionResult> QuestionDetail(string id, [Bind("Id,Answer,Content,Explanation,Course_Id,Level_Id,Status_Id,OptionA,OptionB,OptionC,OptionD")] QuestionBank QuestionBank)
         {
             //THAY ĐỔI CÂU HỎI THEO LEVEL
-
-
 
 
 
@@ -194,9 +192,9 @@ namespace SWP391.Controllers
                 }
                 return RedirectToAction("QuestionList");
             }
-            ViewData["Course_Id"] = new SelectList(_context.Courses, "Id", "Description", QuestionBank.CourseId);
-            ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "Id", "Name", QuestionBank.QuizLevelId);
-            ViewData["Status_Id"] = new SelectList(_context.Status, "Id", "Value", QuestionBank.StatusId);
+            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Description", QuestionBank.CourseId);
+            ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelName", QuestionBank.QuizLevelId);
+            ViewData["Status_Id"] = new SelectList(_context.Status, "StatusId", "StatusValue", QuestionBank.StatusId);
             return View(QuestionBank);
         }
 
