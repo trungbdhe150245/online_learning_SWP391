@@ -118,7 +118,7 @@ namespace SWP391.Controllers
         // GET: Admin/QuestionBank/Create
         public IActionResult Create()
         {
-            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Description");
+            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Title");
             ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelName");
             ViewData["Status_Id"] = new SelectList(_context.Status, "StatusId", "StatusValue");
             return View();
@@ -135,7 +135,7 @@ namespace SWP391.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("QuestionList");
             }
-            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Description", QuestionBank.CourseId);
+            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Title", QuestionBank.CourseId);
             ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelName", QuestionBank.QuizLevelId);
             ViewData["Status_Id"] = new SelectList(_context.Status, "StatusId", "StatusValue", QuestionBank.StatusId);
             return View(QuestionBank);
@@ -153,7 +153,7 @@ namespace SWP391.Controllers
             {
                 return NotFound();
             }
-            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Description", QuestionBank.CourseId);
+            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Title", QuestionBank.CourseId);
             ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelName", QuestionBank.QuizLevelId);
             ViewData["Status_Id"] = new SelectList(_context.Status, "StatusId", "StatusValue", QuestionBank.StatusId);
             return View(QuestionBank);
@@ -162,11 +162,9 @@ namespace SWP391.Controllers
         // POST: Admin/QuestionBank/QuestionDetail/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> QuestionDetail(string id, [Bind("Id,Answer,Content,Explanation,Course_Id,Level_Id,Status_Id,OptionA,OptionB,OptionC,OptionD")] QuestionBank QuestionBank)
+        public async Task<IActionResult> QuestionDetail(string? id, [Bind("QuestionId,Answer,Content,Explanation,Weight,CourseId,QuizLevelId,StatusId,OptionA,OptionB,OptionC,OptionD")] QuestionBank QuestionBank)
         {
             //THAY ĐỔI CÂU HỎI THEO LEVEL
-
-
 
             if (id != QuestionBank.QuestionId)
             {
@@ -192,7 +190,7 @@ namespace SWP391.Controllers
                 }
                 return RedirectToAction("QuestionList");
             }
-            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Description", QuestionBank.CourseId);
+            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Title", QuestionBank.CourseId);
             ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelName", QuestionBank.QuizLevelId);
             ViewData["Status_Id"] = new SelectList(_context.Status, "StatusId", "StatusValue", QuestionBank.StatusId);
             return View(QuestionBank);
