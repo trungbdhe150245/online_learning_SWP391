@@ -1,0 +1,107 @@
+﻿
+@using SWP391.Models;
+@model IEnumerable<SWP391.Models.QuestionBank>
+
+@{ ViewData["Title"] = "QuestionList";
+    Paginated pager = new Paginated();
+
+    int pageNo = 0;
+    if (ViewBag.Paginated != null)
+    {
+        pager = ViewBag.Paginated;
+        pageNo = pager.CurrentPage;
+    }
+
+    int count = 0;
+}
+
+<h2>Question List</h2>
+
+<p>
+    <a asp-action="Create"><button type="button" class="btn btn-success">Create Question</button></a>
+    <a asp-action="Import">|<button type="button" class="btn btn-warning">Import File</button></a>
+</p>
+<form asp-controller="QuestionBank" asp-action="QuestionList">
+    <div class="search-something">
+        <input type="text" name="key">
+        <button class="btn-primary" type="submit">Search</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Course
+            </th>
+            <th>
+                <a asp-action="QuestionList" asp-route-sortOrder="@ViewData["content"]">Question Content<span class="glyphicon glyphicon-sort"></span></a>
+            </th>
+            <th>
+                <a asp-action="QuestionList" asp-route-sortOrder="@ViewData["level"]">Level<span class="glyphicon glyphicon-sort"></span></a>
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Action
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.QuestionId)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuizLevel.QuizLevelName)
+                </td>
+                <td>
+                    @if (item.StatusId == 1)
+                    {
+                        <i class="fa fa-circle text-success"> </i>
+                    }
+
+                    @Html.DisplayFor(modelItem => item.Status.StatusValue)
+                </td>
+                <td>
+                    <a asp-action="QuestionDetail" asp-route-id="@item.QuestionId">Update</a> |
+                    <a asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<div class="col-xs-12">
+    @if (pager.TotalPages > 0)
+    {
+        <ul class="pagination justify-content-end">
+            <li class="page-item @(pager.CurrentPage <= 1 ? "hidden" : "")">
+                <a class="page-link" asp-action="QuestionList" asp-controller="QuestionBank" asp-route-page="@(pager.CurrentPage - 1)"> Previous </a>
+            </li>
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-action="QuestionList" asp-controller="QuestionBank" asp-route-page="@pge"> @pge </a>
+                </li>
+            }
+            <li class="page-item @(pager.CurrentPage == pager.EndPage ? "hidden" : "")">
+                <a class="page-link" asp-action="QuestionList" asp-controller="QuestionBank" asp-route-page="@(pager.CurrentPage + 1)"> Next </a>
+            </li>
+        </ul>
+    }
+</div>

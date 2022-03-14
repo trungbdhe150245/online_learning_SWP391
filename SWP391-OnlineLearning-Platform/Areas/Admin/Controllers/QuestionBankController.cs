@@ -10,7 +10,7 @@ using PagedList.Core;
 using SWP391_OnlineLearning_Platform.Data;
 using SWP391_OnlineLearning_Platform.Models;
 
-namespace SWP391_OnlineLearning_Platform.Areas.Admin.Controllers
+namespace SWP391.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class QuestionBankController : Controller

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\trung\\Documents\\GitHub\\online_learning_SWP391\\SWP391\\SWP391.csproj": {}
+    "D:\\FPTLearning\\Spring2022\\SWP391\\Week 8\\Source Code\\online_learning_SWP391\\SWP391\\SWP391.csproj": {}
   },
   "projects": {
-    "C:\\Users\\trung\\Documents\\GitHub\\online_learning_SWP391\\SWP391\\SWP391.csproj": {
+    "D:\\FPTLearning\\Spring2022\\SWP391\\Week 8\\Source Code\\online_learning_SWP391\\SWP391\\SWP391.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\trung\\Documents\\GitHub\\online_learning_SWP391\\SWP391\\SWP391.csproj",
+        "projectUniqueName": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 8\\Source Code\\online_learning_SWP391\\SWP391\\SWP391.csproj",
         "projectName": "SWP391",
-        "projectPath": "C:\\Users\\trung\\Documents\\GitHub\\online_learning_SWP391\\SWP391\\SWP391.csproj",
-        "packagesPath": "C:\\Users\\trung\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\trung\\Documents\\GitHub\\online_learning_SWP391\\SWP391\\obj\\",
+        "projectPath": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 8\\Source Code\\online_learning_SWP391\\SWP391\\SWP391.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "D:\\FPTLearning\\Spring2022\\SWP391\\Week 8\\Source Code\\online_learning_SWP391\\SWP391\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\trung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -47,6 +47,14 @@
             "MailKit": {
               "target": "Package",
               "version": "[3.1.1, )"
+            },
+            "Microsoft.AspNet.WebApi.Client": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
+            "Microsoft.AspNet.WebApi.Core": {
+              "target": "Package",
+              "version": "[5.2.7, )"
             },
             "Microsoft.AspNetCore.Authentication": {
               "target": "Package",
@@ -124,6 +132,10 @@
               "target": "Package",
               "version": "[3.1.1, )"
             },
+            "Nancy": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
@@ -135,6 +147,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.3, )"
+            },
+            "bootstrap.chosen": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             }
           },
           "imports": [
@@ -155,7 +171,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }
