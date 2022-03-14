@@ -24,34 +24,6 @@ namespace SWP391.Controllers
         // GET: Admin/QuestionBank
         public async Task<IActionResult> QuestionList(string key, string sortOrder, int page)
         {
-            //List<QuestionBank> questions = new List<QuestionBank>();
-            //questions = _context.Question_Banks.Include(q => q.Course).Include(q => q.Quiz_Level).Include(q => q.Status).ToList();
-            ////SEARCHING
-            //if (!String.IsNullOrEmpty(keyWord))
-            //{
-            //    questions = questions.Where(s => s.Content!.ToLower().Contains(keyWord.ToLower())).ToList();
-            //}
-            ////SORTED
-            //ViewData["content"] = String.IsNullOrEmpty(sortOrder) ? "yes" : "";
-            //ViewData["level"] = sortOrder == "high" ? "low" : "high";
-
-            //switch (sortOrder)
-            //{
-            //    case "yes":
-            //        questions = questions.OrderByDescending(s => s.Content).ToList();
-            //        break;
-            //    case "low":
-            //        questions = questions.OrderBy(s => s.Quiz_Level.Id).ToList();
-            //        break;
-            //    case "high":
-            //        questions = questions.OrderByDescending(s => s.Quiz_Level.Id).ToList();
-            //        break;
-            //    default:
-            //        questions = questions.OrderBy(s => s.Content).ToList();
-            //        break;
-            //}
-            //return View(questions);
-
             return View(Filter(key, sortOrder, page));
         }
         public IEnumerable<QuestionBank> Filter(string key, string sortOrder, int page)
@@ -127,18 +99,27 @@ namespace SWP391.Controllers
         // POST: Admin/QuestionBank/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Answer,Content,Explanation,Course_Id,Level_Id,Status_Id")] QuestionBank QuestionBank)
+        public async Task<IActionResult> Create([Bind("QuestionId,Answer,Content,Explanation,Weight,QuizLevelId,CourseId,OptionA,OptionB,OptionC,OptionD,StatusId")] QuestionBank questionBank)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(QuestionBank);
+                //Them ID ngau nhien
+                questionBank.QuestionId = RandomID().ToString();
+
+                _context.Add(questionBank);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("QuestionList");
+                return RedirectToAction(nameof(Index));
             }
-            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Title", QuestionBank.CourseId);
-            ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelName", QuestionBank.QuizLevelId);
-            ViewData["Status_Id"] = new SelectList(_context.Status, "StatusId", "StatusValue", QuestionBank.StatusId);
-            return View(QuestionBank);
+            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId", questionBank.CourseId);
+            ViewData["QuizLevelId"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelId", questionBank.QuizLevelId);
+            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusId", questionBank.StatusId);
+            return View(questionBank);
+        }
+
+        private readonly Random _random = new Random();
+        public int RandomID()
+        {
+            return _random.Next(10000, 99999);
         }
 
         // GET: Admin/QuestionBank/QuestionDetail/5
@@ -161,12 +142,11 @@ namespace SWP391.Controllers
 
         // POST: Admin/QuestionBank/QuestionDetail/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> QuestionDetail(string id, [Bind("Id,Answer,Content,Explanation,Course_Id,Level_Id,Status_Id")] QuestionBank QuestionBank)
+        public async Task<IActionResult> QuestionDetail(string id, [Bind("QuestionId,Answer,Content,Explanation,Weight,QuizLevelId,CourseId,OptionA,OptionB,OptionC,OptionD,StatusId")] QuestionBank questionBank)
         {
             //THAY ĐỔI CÂU HỎI THEO LEVEL
 
-            if (id != QuestionBank.QuestionId)
+            if (id != questionBank.QuestionId)
             {
                 return NotFound();
             }
@@ -174,12 +154,12 @@ namespace SWP391.Controllers
             {
                 try
                 {
-                    _context.Update(QuestionBank);
+                    _context.Update(questionBank);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!Question_BankExists(QuestionBank.QuestionId))
+                    if (!Question_BankExists(questionBank.QuestionId))
                     {
                         return NotFound();
                     }
@@ -190,10 +170,10 @@ namespace SWP391.Controllers
                 }
                 return RedirectToAction("QuestionList");
             }
-            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Title", QuestionBank.CourseId);
-            ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelName", QuestionBank.QuizLevelId);
-            ViewData["Status_Id"] = new SelectList(_context.Status, "StatusId", "StatusValue", QuestionBank.StatusId);
-            return View(QuestionBank);
+            ViewData["Course_Id"] = new SelectList(_context.Courses, "CourseId", "Title", questionBank.CourseId);
+            ViewData["Level_Id"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelName", questionBank.QuizLevelId);
+            ViewData["Status_Id"] = new SelectList(_context.Status, "StatusId", "StatusValue", questionBank.StatusId);
+            return View(questionBank);
         }
 
         // GET: Admin/QuestionBank/Delete/5
