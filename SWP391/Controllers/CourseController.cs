@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Nancy.Json;
 using SWP391.Data;
 using SWP391.Models;
 using SWP391.Views.ViewModel;
@@ -10,6 +12,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace SWP391.Controllers
@@ -106,6 +109,23 @@ namespace SWP391.Controllers
             return View(list);
         }
 
+        public IActionResult SearchInput()
+        {
+            IEnumerable<Course> list = null;
+            HttpClient hc = new HttpClient();
+            hc.BaseAddress = new Uri("https://localhost:44351/");
+            var search = hc.GetAsync("Index");
+            search.Wait();
+            var readdata = search.Result;
+            if(readdata.IsSuccessStatusCode)
+            {
+                var display = readdata.Content.ReadAsAsync<IList<Course>>();
+                display.Wait();
+                list = display.Result;
+            }
+            return View(list);
+        }
+
         public IEnumerable<Course> Search(string key, string sortOrder, string cate, int page)
         {
             ViewData["TitleSort"] = String.IsNullOrEmpty(sortOrder) ? "titleDesc" : "";
@@ -161,6 +181,7 @@ namespace SWP391.Controllers
         public IEnumerable<Course> GetCourses()
         {
             IEnumerable<Course> list = _db.Courses.OrderBy(s => s.SlideId).Where(s => s.StatusId == 1);
+            //JavaScriptSerializer js = new JavaScriptSerializer();
             return list;
         }
 
@@ -171,6 +192,8 @@ namespace SWP391.Controllers
             this.ViewBag.Category = c.Category;
             return c;
         }
+
+        
 
 
         [HttpGet]

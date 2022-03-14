@@ -402,7 +402,6 @@ Theme Version:	1.0.0
 					});
 					wow.init();	
 				}
-				
 				/* Left Side Menu */
 				var manageLeftSideMenu = function(){
 					jQuery('.menuicon').unbind().on('click',function(){
@@ -448,6 +447,7 @@ Theme Version:	1.0.0
 						jQuery('#loading-icon-bx').remove();
 					}, 0);
 				}
+
 				
 				//var codeSecurity = function() {
 				//	document.onkeydown = function(e) {

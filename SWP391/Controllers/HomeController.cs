@@ -20,7 +20,7 @@ namespace SWP391.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Course> courses = _db.Courses.OrderBy(s => s.SlideId);
+            IEnumerable<Course> courses = _db.Courses.Where(c => c.SlideId == 1);
             this.ViewBag.Course = courses;
             return View(courses);
         }
