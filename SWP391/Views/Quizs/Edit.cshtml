@@ -9,7 +9,59 @@
 
 <h4>Quiz</h4>
 <hr />
+<input type="hidden" asp-for="QuizId" />
 <div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="QuizId" />
+            <div class="form-group col-md-6">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="QuestionNum" class="control-label">Number Of Question</label>
+                <input asp-for="QuestionNum" class="form-control" />
+                <span asp-validation-for="QuestionNum" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="Duration" class="control-label">Duration(minute)</label>
+                <input asp-for="Duration" class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TopicId" class="control-label"></label>
+                <select asp-for="TopicId" class="form-control" asp-items="ViewBag.Course_Id"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuizLevelId" class="control-label">Quiz Level</label>
+                <p>
+                    Tỉ lệ tạo câu hỏi: <br />
+                    + Easy (70%easy,20%medium,10%hard)<br />
+                    + Medium (50%easy,30%medium,20%hard)<br />
+                    + Hard (30%,40%,30%)<br />
+                </p>
+                <select asp-for="QuizLevelId" class="form-control" asp-items="ViewBag.Quiz_Level_Id"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="QuizTypeId" class="control-label"></label>
+                <select asp-for="QuizTypeId" class="form-control" asp-items="ViewBag.Quiz_Type_Id"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@*<div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -55,7 +107,7 @@
             </div>
         </form>
     </div>
-</div>
+</div>*@
 
 <div>
     <a asp-action="Index">Back to List</a>
