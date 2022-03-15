@@ -14,47 +14,78 @@
     <input type="submit" value="Delete" class="btn btn-default" /> |
     <a asp-action="QuestionList">Back to List</a>
 </form>
-<div>
-    <h4>Question_Bank</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Answer)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Answer)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Explanation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Explanation)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Course)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Course.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.QuizLevel)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.QuizLevel.QuizLevelName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Status.StatusValue)
-        </dd>
-    </dl>
-    
-    
-</div>
+</br>
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.QuestionId)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.QuestionId)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Answer)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Answer)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Content)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Content)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Explanation)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Explanation)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Weight)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Weight)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.QuizLevel)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.QuizLevel.QuizLevelId)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Course)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Course.CourseId)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.OptionA)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.OptionA)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.OptionB)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.OptionB)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.OptionC)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.OptionC)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.OptionD)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.OptionD)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Status)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Status.StatusId)
+    </dd>
+</dl>
