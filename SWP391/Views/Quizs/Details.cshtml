@@ -1,61 +1,116 @@
-﻿@model SWP391.Models.Quiz
+﻿@model SWP391.Models.ViewModels.Quiz_QuestionVM
 
-@{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/UserLayout/_AdminLayout2.cshtml";
-}
+@{ ViewData["Title"] = "Details";
+                Layout = "~/Views/Shared/UserLayout/_AdminLayout2.cshtml"; }
 
-<h1>Details</h1>
+<h1>Quiz Details</h1>
 
 <div>
-    <h4>Quiz</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.quiz.Description)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.quiz.Description)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Duration)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.quiz.Duration)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Duration)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.quiz.Duration) minutes
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.quiz.Name)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.quiz.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuestionNum)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.quiz.QuestionNum)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuestionNum)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.quiz.QuestionNum)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Topic)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.quiz.Topic)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Topic.TopicId)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.quiz.Topic.TopicName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuizType)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.quiz.QuizType)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuizType.QuizTypeId)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.quiz.QuizType.QuizTypeName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuizLevel)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.quiz.QuizLevel)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuizLevel.QuizLevelId)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.quiz.QuizLevel.QuizLevelName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.QuizId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.quiz.QuizId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+<h1>Danh Sách Quesiton</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Course
+            </th>
+            <th>
+                Question Content
+            </th>
+            <th>
+                Level
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Action
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.list_question)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.QuestionId)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuizLevel.QuizLevelName)
+                </td>
+                <td>
+                    @if (item.StatusId == 1)
+                    {
+                        <i class="fa fa-circle text-success"> </i>
+                    }
+
+                    @Html.DisplayFor(modelItem => item.Status.StatusValue)
+                </td>
+                <td>
+                    <a asp-controller="QuestionBank" asp-action="QuestionDetail" asp-route-id="@item.QuestionId">Detail</a> |
+                    <a  asp-controller="QuestionBank" asp-action="Delete" asp-route-id="@item.QuestionId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

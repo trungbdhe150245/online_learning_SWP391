@@ -36,7 +36,7 @@ namespace SWP391.Controllers
             {
                 quizs = quizs.Where(s => s.Name!.ToLower().Contains(key.ToLower()));
             }
-            const int pageSize = 1;
+            const int pageSize = 10;
             if (page < 1)
             {
                 page = 1;
@@ -115,6 +115,17 @@ namespace SWP391.Controllers
             //var questionMedium = (from s in _context.Question_Banks where s.Level_Id == 2 select s);
             //var questionHard = (from s in _context.Question_Banks where s.Level_Id == 3 select s);
 
+            //Tìm đến quiz_id có sẵn và xóa data
+            var s = _context.QuizQuestions.Where(s => s.QuizId == quiz_id).ToList();
+            if (s.Count != 0)
+            {
+                foreach (var item in s)
+                {
+                    _context.QuizQuestions.Remove(item);
+                    _context.SaveChanges();
+                }
+            }
+
             IList<QuestionBank> temp = _context.QuestionBanks.Take(numberOfQuestion).ToList();
             foreach (var item in temp)
             {
@@ -149,7 +160,7 @@ namespace SWP391.Controllers
             var questions = (from s in _context.QuizQuestions
                              join k in _context.QuestionBanks on s.QuestionId equals k.QuestionId
                              where s.QuizId == id
-                             select k).Include(q => q.Status).ToList();
+                             select k).Include(q => q.Status).Include(l => l.Course).Include(l => l.QuizLevel).ToList();
 
             Quiz_QuestionVM quiz_QuestionVM = new Quiz_QuestionVM();
             quiz_QuestionVM.quiz = quiz;
@@ -174,16 +185,7 @@ namespace SWP391.Controllers
             ViewData["QuizTypeId"] = new SelectList(_context.QuizTypes, "QuizTypeId", "QuizTypeName", quiz.QuizTypeId);
             ViewData["TopicId"] = new SelectList(_context.Topics, "TopicId", "TopicName", quiz.TopicId);
 
-            //KIỂM TRA TRONG DATABASE XEM QUIZ ĐÃ TẠO DANH SÁCH QUESTION CHƯA 
-            var questions = (from s in _context.QuizQuestions
-                             join k in _context.QuestionBanks on s.QuestionId equals k.QuestionId
-                             where s.QuizId == id
-                             select k).Include(q => q.Status).ToList();
-
-            Quiz_QuestionVM quiz_QuestionVM = new Quiz_QuestionVM();
-            quiz_QuestionVM.quiz = quiz;
-            quiz_QuestionVM.list_question = questions;
-            return View(quiz_QuestionVM);
+            return View(quiz);
         }
 
         // POST: Quizs/Edit/5
@@ -203,6 +205,9 @@ namespace SWP391.Controllers
                 try
                 {
                     _context.Update(quiz);
+                    //Thay đổi number câu hỏi -> generate lại
+                    GenerateQuestion(quiz.QuizLevelId, quiz.QuestionNum, quiz.QuizId);
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
