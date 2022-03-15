@@ -13,7 +13,11 @@ namespace SWP391.Controllers
     public class UserBlogController : Controller
     {
         private readonly LearningDbContext _context;
-
+        private readonly Random _random = new Random();
+        public int RandomID()
+        {
+            return _random.Next(10000, 99999);
+        }
         public UserBlogController(LearningDbContext context)
         {
             _context = context;
@@ -51,9 +55,9 @@ namespace SWP391.Controllers
         // GET: UserBlog/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
-            ViewData["SlideId"] = new SelectList(_context.Set<Slide>(), "SlideId", "SlideId");
-            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusId");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryValue");
+            ViewData["SlideId"] = new SelectList(_context.Set<Slide>(), "SlideId", "SlideValue");
+            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusValue");
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
@@ -65,15 +69,16 @@ namespace SWP391.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BlogId,Title,Brief,Content,VideoURL,SlideId,ThumbnailURL,CreatedDate,StatusId,CategoryId,UserId")] Blog blog)
         {
+            blog.BlogId = RandomID().ToString();
             if (ModelState.IsValid)
             {
                 _context.Add(blog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", blog.CategoryId);
-            ViewData["SlideId"] = new SelectList(_context.Set<Slide>(), "SlideId", "SlideId", blog.SlideId);
-            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusId", blog.StatusId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryValue", blog.CategoryId);
+            ViewData["SlideId"] = new SelectList(_context.Set<Slide>(), "SlideId", "SlideValue", blog.SlideId);
+            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusValue", blog.StatusId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", blog.UserId);
             return View(blog);
         }
@@ -91,10 +96,10 @@ namespace SWP391.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", blog.CategoryId);
-            ViewData["SlideId"] = new SelectList(_context.Set<Slide>(), "SlideId", "SlideId", blog.SlideId);
-            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusId", blog.StatusId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", blog.UserId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryValue", blog.CategoryId);
+            ViewData["SlideId"] = new SelectList(_context.Set<Slide>(), "SlideId", "SlideValue", blog.SlideId);
+            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusValue", blog.StatusId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "FullName", blog.UserId);
             return View(blog);
         }
 

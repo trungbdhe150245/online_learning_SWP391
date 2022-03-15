@@ -32,7 +32,7 @@ namespace SWP391.Controllers
         {
             //PHÂN TRANG
             var pageNumber = page;
-            var pageSize = 2;
+            var pageSize = 5;
             ViewBag.CurrentPage = pageNumber;
 
             //LỌC BLOG THEO CATEGORY

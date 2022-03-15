@@ -8,28 +8,16 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create"><button class="btn btn-success">Create New</button></a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.BlogId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Brief)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VideoURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Slide)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ThumbnailURL)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedDate)
@@ -50,34 +38,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.BlogId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brief)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VideoURL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Slide.SlideId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThumbnailURL)
-            </td>
+            </td> 
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status.StatusId)
+                @Html.DisplayFor(modelItem => item.Status.StatusValue)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryId)
+                @Html.DisplayFor(modelItem => item.Category.CategoryValue)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
+                @Html.DisplayFor(modelItem => item.User.FullName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.BlogId">Edit</a> |
