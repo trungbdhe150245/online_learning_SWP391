@@ -65,28 +65,6 @@ namespace SWP391.Controllers
             return data;
         }
 
-
-
-        // GET: Admin/QuestionBank/Details/5
-        public async Task<IActionResult> Details(string? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var QuestionBank = await _context.QuestionBanks
-                .Include(q => q.Course)
-                .Include(q => q.QuizLevel)
-                .Include(q => q.Status)
-                .FirstOrDefaultAsync(m => m.QuestionId == id);
-            if (QuestionBank == null)
-            {
-                return NotFound();
-            }
-
-            return View(QuestionBank);
-        }
-
         // GET: Admin/QuestionBank/Create
         public IActionResult Create()
         {

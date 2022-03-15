@@ -72,7 +72,6 @@
   <ItemGroup>
     <None Include="Views\QuestionBank\Create.cshtml" />
     <None Include="Views\QuestionBank\Delete.cshtml" />
-    <None Include="Views\QuestionBank\Details.cshtml" />
     <None Include="Views\QuestionBank\QuestionDetail.cshtml" />
     <None Include="Views\QuestionBank\QuestionList.cshtml" />
     <None Include="Views\Quizs\Create.cshtml" />
