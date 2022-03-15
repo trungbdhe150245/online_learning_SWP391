@@ -1,4 +1,6 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@inject IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "CourseDetail";
 }
@@ -7,6 +9,36 @@
     var course = Model.course;
     var cate = ViewBag.Category;
 }
+
+@{
+    string cart;
+    List<Course> your_cart;
+    var session = HttpContextAccessor.HttpContext.Session;
+    string jsoncart = session.GetString(SWP391.Controllers.CourseController.CARTKEY);
+    if (jsoncart != null)
+    {
+        your_cart = JsonConvert.DeserializeObject<List<Course>>(jsoncart).ToList();
+        cart = JsonConvert.DeserializeObject<List<Course>>(jsoncart).Count.ToString();
+    }
+    else
+    {
+        your_cart = new List<Course>();
+        cart = "0";
+    }
+
+    bool FindByID()
+    {
+        foreach (var c in your_cart)
+        {
+            if (c.CourseId.Equals(course.CourseId))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 <div class="page-content bg-white">
     <!-- inner page banner -->
     <div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner/banner2.jpg);">
@@ -39,7 +71,18 @@
                                 <h4 class="price">$@course.Price</h4>
                             </div>
                             <div class="course-buy-now text-center">
-                                <a href="#" class="btn radius-xl text-uppercase">Buy Now This Courses</a>
+                                @{
+                                    if (FindByID() && your_cart.Count != 0)
+                                    {
+                                        <h5 class="text-danger">Added to cart!</h5>
+                                    }
+                                    else
+                                    {
+                                        <a asp-route="addcart"
+                                           asp-route-courseId="@(course.CourseId)"
+                                           class="btn radius-xl text-uppercase">Add to cart</a>
+                                    }
+                                }
                             </div>
                             <div class="teacher-bx">
                                 <div class="teacher-info">
@@ -111,7 +154,7 @@
                                     <h5 class="m-b5">Course Description</h5>
                                     <p>@course.ShortDescription</p>
                                     @*<h5 class="m-b5">Certification</h5>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>*@
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>*@
                                     <h5 class="m-b5">Learning Outcomes</h5>
                                     <ul class="list-checked primary">
                                         <li>Over 37 lectures and 55.5 hours of content!</li>

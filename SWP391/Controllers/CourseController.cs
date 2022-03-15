@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Nancy.Json;
+using Newtonsoft.Json;
 using SWP391.Data;
 using SWP391.Models;
 using SWP391.Views.ViewModel;
@@ -235,29 +236,51 @@ namespace SWP391.Controllers
                                 };
             return View(course_details.ToList());
         }
-        /*
-
         /// add course to cart
-        [Route("addcart/{courseId}")]
+        [Route("addcart/{courseId}", Name = "addcart")]
         public IActionResult AddToCart([FromRoute] string courseId)
         {
 
-            var product = _db.Courses
-                            .Where(c => c.CourseId == courseId)
+            var course = _db.Courses
+                           .Where(c => c.CourseId.Equals(courseId))
                             .FirstOrDefault();
-            if (product == null)
-                return NotFound("Cart empty!");
+            //if (course == null)
+            //    return NotFound("Course not found!");
 
             //Putin cart
+            var cart = GetCartItems();
+            bool add = false;
+            foreach (var product in cart)
+            {
+                if (course.CourseId.Equals(product.CourseId))
+                {
+                    add = true;
+                    break;
+                }
+            }
 
+            if (add)
+            {
+                //return this.PartialView("~/Views/Shared/CustomLayout/_ModalCart.cshtml");
+                return RedirectToRoute(nameof(cart));
 
+                //RedirectToAction(nameof(Cart));
+            }
+            else
+            {
+                //  Thêm mới
+                cart.Add(course);
+            }
+
+            // Lưu cart vào Session
+            SaveCartSession(cart);
             return RedirectToAction(nameof(Cart));
         }
 
 
         // Remove item in cart
-        [Route("/removecart/{productid:int}", Name = "removecart")]
-        public IActionResult RemoveCart([FromRoute] int productid)
+        [Route("/removecart/{courseId}", Name = "removecart")]
+        public IActionResult RemoveCart([FromRoute] string courseId)
         {
 
             // Remove 1 entry of Cart ...
@@ -267,10 +290,17 @@ namespace SWP391.Controllers
         /// Update
         [Route("/updatecart", Name = "updatecart")]
         [HttpPost]
-        public IActionResult UpdateCart([FromForm] int productid, [FromForm] int quantity)
+        public IActionResult UpdateCart([FromForm] string courseId)
         {
             // Update quantity ...
-
+            var cart = GetCartItems();
+            var cartitem = cart.Find(p => p.CourseId.Equals(courseId));
+            if (cartitem != null)
+            {
+                // Đã tồn tại, tăng thêm 1
+                return null;
+            }
+            SaveCartSession(cart);
             return RedirectToAction(nameof(Cart));
         }
 
@@ -279,7 +309,7 @@ namespace SWP391.Controllers
         [Route("/cart", Name = "cart")]
         public IActionResult Cart()
         {
-            return View();
+            return View(GetCartItems());
         }
 
         [Route("/checkout")]
@@ -288,6 +318,39 @@ namespace SWP391.Controllers
             // Order handler
             return View();
         }
-        */
+
+
+
+        // Key lưu chuỗi json của Cart
+        public const string CARTKEY = "cart";
+
+        // Lấy cart từ Session (danh sách CartItem)
+        List<Course> GetCartItems()
+        {
+
+            var session = HttpContext.Session;
+            string jsoncart = session.GetString(CARTKEY);
+            if (jsoncart != null)
+            {
+                return JsonConvert.DeserializeObject<List<Course>>(jsoncart);
+            }
+            return new List<Course>();
+        }
+
+        // Xóa cart khỏi session
+        void ClearCart()
+        {
+            var session = HttpContext.Session;
+            session.Remove(CARTKEY);
+        }
+
+        // Lưu Cart (Danh sách CartItem) vào session
+        void SaveCartSession(List<Course> ls)
+        {
+            var session = HttpContext.Session;
+            string jsoncart = JsonConvert.SerializeObject(ls);
+            session.SetString(CARTKEY, jsoncart);
+        }
+
     }
 }
