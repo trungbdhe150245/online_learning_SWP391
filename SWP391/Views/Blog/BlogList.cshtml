@@ -3,7 +3,9 @@
 @{ int CurrentPage = ViewBag.CurrentPage;
     ViewData["Title"] = "BlogList";
     var count = 0;
-    int numberResult = Model.Count(); }
+    int numberResult = Model.Count();
+    int CurrentCatID = ViewBag.CurrentCateID;
+}
 @model PagedList.Core.IPagedList<SWP391.Models.Blog>
 
 <style>
@@ -44,9 +46,26 @@
                         @*CATEGORY*@
                         <div>
                             <p>
-                                <h3>Sorted by:</h3>
+                                <h3>
+                                    Sorted by:
+                                    @foreach (var item in ViewData["category"] as List<Category>)
+                                    {
+                                        if (@CurrentCatID == item.CategoryId)
+                                        {
+                                            <span style="color: gray;">
+                                                @Html.DisplayFor(modelItem => item.CategoryValue)
+                                            </span>
+                                        }
+                                    }
+                                    @if (@CurrentCatID == 0)
+                                    {
+                                    <span style="color: gray;">
+                                        All
+                                    </span>
+                                    }
+                                </h3>
                                 <select id="categoryList" name="categoryList" asp-items="ViewBag.selectedCategory">
-                                    <option selected disabled>---Category---</option>
+                                    <option selected disabled>Category</option>
                                     <option value="0">All</option>
                                 </select>
                             </p>
