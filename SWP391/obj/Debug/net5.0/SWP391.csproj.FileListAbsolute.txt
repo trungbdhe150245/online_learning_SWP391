@@ -533,6 +533,5 @@ D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP39
 D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\Razor\Views\UserBlog\Index.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\Razor\Views\Quizs\Create.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\Razor\Views\Quizs\Delete.cshtml.g.cs
-D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\Razor\Views\Quizs\Details.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\Razor\Views\Quizs\Edit.cshtml.g.cs
 D:\FPTLearning\Spring2022\SWP391\Week 8\Source Code\online_learning_SWP391\SWP391\obj\Debug\net5.0\Razor\Views\Quizs\Index.cshtml.g.cs

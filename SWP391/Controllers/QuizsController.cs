@@ -14,6 +14,11 @@ namespace SWP391.Controllers
     {
         private readonly LearningDbContext _context;
 
+        private readonly Random _random = new Random();
+        public int RandomID()
+        {
+            return _random.Next(10000, 99999);
+        }
         public QuizsController(LearningDbContext context)
         {
             _context = context;
@@ -24,27 +29,6 @@ namespace SWP391.Controllers
         {
             var learningDbContext = _context.Quizzes.Include(q => q.QuizLevel).Include(q => q.QuizType).Include(q => q.Topic);
             return View(await learningDbContext.ToListAsync());
-        }
-
-        // GET: Quizs/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var quiz = await _context.Quizzes
-                .Include(q => q.QuizLevel)
-                .Include(q => q.QuizType)
-                .Include(q => q.Topic)
-                .FirstOrDefaultAsync(m => m.QuizId == id);
-            if (quiz == null)
-            {
-                return NotFound();
-            }
-
-            return View(quiz);
         }
 
         // GET: Quizs/Create
@@ -63,6 +47,7 @@ namespace SWP391.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("QuizId,Description,Duration,Name,QuestionNum,TopicId,QuizTypeId,QuizLevelId")] Quiz quiz)
         {
+            quiz.QuizId = RandomID().ToString();
             if (ModelState.IsValid)
             {
                 _context.Add(quiz);
