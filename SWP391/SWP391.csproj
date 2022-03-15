@@ -74,11 +74,6 @@
     <None Include="Views\QuestionBank\Delete.cshtml" />
     <None Include="Views\QuestionBank\QuestionDetail.cshtml" />
     <None Include="Views\QuestionBank\QuestionList.cshtml" />
-    <None Include="Views\Quizs\Create.cshtml" />
-    <None Include="Views\Quizs\Delete.cshtml" />
-    <None Include="Views\Quizs\Edit.cshtml" />
-    <None Include="Views\Quizs\Index.cshtml" />
-    <None Include="Views\Quizs\QuizDetails.cshtml" />
     <None Include="Views\Shared\CustomLayout\_LayoutRedirect.cshtml" />
     <None Include="wwwroot\AdminAssets\ajax\dashboard-boxrefresh-demo.php" />
     <None Include="wwwroot\AdminAssets\fonts\fontawesome-webfont.svg" />

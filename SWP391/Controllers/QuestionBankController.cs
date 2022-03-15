@@ -21,6 +21,8 @@ namespace SWP391.Controllers
             _context = context;
         }
 
+
+
         // GET: Admin/QuestionBank
         public async Task<IActionResult> QuestionList(string key, string sortOrder, int page)
         {

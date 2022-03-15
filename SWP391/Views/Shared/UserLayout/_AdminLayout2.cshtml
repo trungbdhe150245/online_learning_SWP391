@@ -277,7 +277,11 @@
                             <i class="fa fa-external-link"></i> <span>Quizzes List</span>
                         </a>
                     </li>
-
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "UserBlog" ? "active" : "")">
+                        <a asp-controller="UserBlog">
+                            <i class="fa fa-arrow-circle-o-right"></i> <span>Blog</span>
+                        </a>
+                    </li>
                 </ul>
             </section>
             <!-- /.sidebar -->

@@ -1,114 +1,72 @@
-﻿@using SWP391.Models;
-@model IEnumerable<SWP391.Models.Quiz>
+﻿@model IEnumerable<SWP391.Models.Quiz>
 
-@{ ViewData["Title"] = "QuizzesList";
-    Paginated pager = new Paginated();
-
-    int pageNo = 0;
-    if (ViewBag.Paginated != null)
-    {
-        pager = ViewBag.Paginated;
-        pageNo = pager.CurrentPage;
-    }
-
-    int count = 0;
+@{
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/UserLayout/_AdminLayout2.cshtml";
 }
 
-
-<h2>Quizzes List (for expert/admin)</h2>
+<h1>Index</h1>
 
 <p>
-    <a asp-action="Create"><button class="btn btn-success">Create New</button></a>
+    <a asp-action="Create">Create New</a>
 </p>
-<form asp-controller="Quizs" asp-action="Index">
-    <div class="search-something">
-        <input type="text" name="key">
-        <button class="btn-primary" type="submit">Search</button>
-    </div>
-</form>
-
-
-<table class="table table-striped text-center">
-    <thead class="thead-dark">
-        <tr style="font-weight:bold;">
-            <td>ID</td>
-            <td>
-                Quiz Name
-            </td>
-            <td>Subject</td>
-
-            <td>
-                Level
-            </td>
-            <td>
-                Total Question
-            </td>
-            <td>
-                Duration<br />
-                (minutes)
-            </td>
-            <td>
-                Quiz Type
-            </td>
-            <td>
-                Action
-            </td>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuizType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuizLevel)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.QuizId)
-                </td>
-                <td style="font-weight:bold">
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Topic.TopicName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.QuizLevel.QuizLevelName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.QuestionNum)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Duration)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.QuizType.QuizTypeName)
-                </td>
-
-                <td>
-                    <a asp-action="QuizDetails" asp-route-id="@item.QuizId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.QuizId">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Topic.TopicId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizType.QuizTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizLevel.QuizLevelId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.QuizId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.QuizId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.QuizId">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
-
-
-<div class="col-xs-12">
-    @if (pager.TotalPages > 0)
-    {
-        <ul class="pagination justify-content-end">
-            <li class="page-item @(pager.CurrentPage <= 1 ? "hidden" : "")">
-                <a class="page-link" asp-action="Index" asp-controller="Quizs" asp-route-page="@(pager.CurrentPage - 1)"> Previous </a>
-            </li>
-            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
-            {
-                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
-                    <a class="page-link" asp-action="Index" asp-controller="Quizs" asp-route-page="@pge"> @pge </a>
-                </li>
-            }
-            <li class="page-item @(pager.CurrentPage == pager.EndPage ? "hidden" : "")">
-                <a class="page-link" asp-action="Index" asp-controller="Quizs" asp-route-page="@(pager.CurrentPage + 1)"> Next </a>
-            </li>
-        </ul>
-    }
-</div>
