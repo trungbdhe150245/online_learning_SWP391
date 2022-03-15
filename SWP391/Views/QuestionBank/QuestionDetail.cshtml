@@ -8,15 +8,18 @@
 
 }
 
-<h2>Edit</h2>
+<h2>Question Detail</h2>
 
-<h4>Question_Bank</h4>
 <hr />
 <div class="row">
     <div class="col-md-6">
         <form asp-action="QuestionDetail">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="QuestionId" />
+            <div asp-validation-summary="ModelOnly" class="text-green"></div>
+            <div class="form-group">
+                <label asp-for="QuestionId" class="form-label text-green">Question ID</label>
+                <input  asp-for="QuestionId" class="form-control" readonly/>
+                <span asp-validation-for="QuestionId" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Content" class="form-label text-danger">Question Content</label>
                 <textarea asp-for="Content" class="form-control" rows="5" cols="50"></textarea>
@@ -51,7 +54,7 @@
                     <span asp-validation-for="OptionD" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="form-group">
                 <label asp-for="Answer" class="form-label text-green"></label>
                 <input asp-for="Answer" class="form-control" />
                 <span asp-validation-for="Answer" class="text-danger"></span>
@@ -85,7 +88,7 @@
                 <select asp-for="StatusId" class="form-control" asp-items="ViewBag.Status_Id"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </form>
     </div>
