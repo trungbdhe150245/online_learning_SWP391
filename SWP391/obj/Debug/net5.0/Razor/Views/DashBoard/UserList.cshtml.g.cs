@@ -27,7 +27,7 @@ using SWP391.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8b46bc87da94d88966bf8946ad09d8be1c58288c", @"/Views/DashBoard/UserList.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ec3be411a2a9623845ef9e0a4ca5737761f0f38c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"54e882c67d784dd57ad5d07672f78e3d5358b785", @"/Views/_ViewImports.cshtml")]
     public class Views_DashBoard_UserList : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<AppUser>>
     {
         #pragma warning disable 1998

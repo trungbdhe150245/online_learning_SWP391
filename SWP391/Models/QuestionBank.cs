@@ -10,7 +10,7 @@ namespace SWP391.Models
         public string Answer { get; set; }
         public string Content { get; set; }
         public string Explanation { get; set; }
-        public float Weight { get; set; }
+        public float Weight { get; set; } 
         public virtual QuizLevel QuizLevel { get; set; }
         public int QuizLevelId { get; set; }
         public virtual Course Course { get; set; }
