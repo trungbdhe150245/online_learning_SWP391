@@ -51,7 +51,7 @@ namespace SWP391.Controllers
                     questions = questions.OrderBy(s => s.Content).ToList();
                     break;
             }
-            const int pageSize = 4;
+            const int pageSize = 10;
             if (page < 1)
             {
                 page = 1;
@@ -86,7 +86,7 @@ namespace SWP391.Controllers
 
                 _context.Add(questionBank);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("QuestionList");
             }
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseId", questionBank.CourseId);
             ViewData["QuizLevelId"] = new SelectList(_context.QuizLevels, "QuizLevelId", "QuizLevelId", questionBank.QuizLevelId);
