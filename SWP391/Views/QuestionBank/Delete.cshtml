@@ -8,7 +8,12 @@
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="text-danger">Are you sure you want to delete this?</h3>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="QuestionId" />
+    <input type="submit" value="Delete" class="btn btn-default" /> |
+    <a asp-action="QuestionList">Back to List</a>
+</form>
 <div>
     <h4>Question_Bank</h4>
     <hr />
@@ -51,9 +56,5 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="QuestionId" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="QuestionList">Back to List</a>
-    </form>
+    
 </div>
