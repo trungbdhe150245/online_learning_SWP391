@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,10 +23,14 @@ namespace SWP391.Controllers
     {
         private readonly LearningDbContext _db;
         private readonly IWebHostEnvironment WebHostEnvironment;
-        public CourseController(LearningDbContext db, IWebHostEnvironment webHostEnvironment)
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        public CourseController(LearningDbContext db, IWebHostEnvironment webHostEnvironment, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _db = db;
             WebHostEnvironment = webHostEnvironment;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult CourseList(string key, string sortOrder, string cate, int page)
@@ -41,6 +46,19 @@ namespace SWP391.Controllers
             dynamic dy = new ExpandoObject();
             dy.categories = GetCategories();
             dy.course = GetCourse(id);
+
+            var user = _userManager.GetUserAsync(User).Result;
+            List<CourseOwner> list = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
+            bool isMyCourse = false;
+            foreach (var item in list)
+            {
+                if(item.CourseId.Equals(id))
+                {
+                    isMyCourse = true;
+                    break;
+                }
+            }
+            this.ViewBag.ismyCourse = isMyCourse;
             return View(dy);
         }
 

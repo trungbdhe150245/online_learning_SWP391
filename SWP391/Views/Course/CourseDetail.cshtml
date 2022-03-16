@@ -8,6 +8,7 @@
 @{
     var course = Model.course;
     var cate = ViewBag.Category;
+    var isMyCourse = ViewBag.ismyCourse;
 }
 
 @{
@@ -66,24 +67,35 @@
                 <div class="row d-flex flex-row-reverse">
                     <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
                         <div class="course-detail-bx">
-                            <div class="course-price">
-                                @*<del>$190</del>*@
-                                <h4 class="price">$@course.Price</h4>
-                            </div>
-                            <div class="course-buy-now text-center">
-                                @{
-                                    if (FindByID() && your_cart.Count != 0)
-                                    {
-                                        <h5 class="text-danger">Added to cart!</h5>
+                            @if (!isMyCourse)
+                            {
+                                <div class="course-price">
+                                    <h4 class="price">$@course.Price</h4>
+                                </div>
+                                <div class="course-buy-now text-center">
+                                    @{
+                                        if (FindByID() && your_cart.Count != 0)
+                                        {
+                                            <h5 class="text-danger">Added to cart!</h5>
+                                        }
+                                        else
+                                        {
+                                            <a asp-route="addcart"
+                                               asp-route-courseId="@(course.CourseId)"
+                                               class="btn radius-xl text-uppercase">Add to cart</a>
+                                        }
                                     }
-                                    else
-                                    {
-                                        <a asp-route="addcart"
-                                           asp-route-courseId="@(course.CourseId)"
-                                           class="btn radius-xl text-uppercase">Add to cart</a>
-                                    }
-                                }
-                            </div>
+                                </div>
+                            }
+                            else
+                            {
+                                @*<div class="course-price">
+                                    <h4 class="price">You purchased this course</h4>
+                                </div>*@
+                                <div class="course-buy-now text-center">
+                                    <a class="btn radius-xl text-uppercase">Go to course</a>
+                                </div>
+                            }
                             <div class="teacher-bx">
                                 <div class="teacher-info">
                                     <div class="teacher-thumb">
