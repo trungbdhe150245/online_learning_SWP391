@@ -37,7 +37,11 @@ namespace SWP391.Controllers
         {
             dynamic dy = new ExpandoObject();
             dy.categories = GetCategories();
+            var courses = Search(key, sortOrder, cate, page).ToList();
             dy.courses = Search(key, sortOrder, cate, page);
+            var user = _userManager.GetUserAsync(User).Result;
+            List<CourseOwner> list = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
+            this.ViewBag.CourseOwners = list;
             return View(dy);
         }
 
@@ -61,6 +65,19 @@ namespace SWP391.Controllers
             this.ViewBag.ismyCourse = isMyCourse;
             return View(dy);
         }
+
+        //bool isMyCourse(AppUser user)
+        //{
+        //    List<CourseOwner> list = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
+        //    foreach (var item in list)
+        //    {
+        //        if (item.CourseId.Equals(id))
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         public IActionResult CreateCourse()
         {

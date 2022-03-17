@@ -4,11 +4,15 @@
     Paginated pager = new Paginated();
     int pageNo = 0;
     string cate = ViewBag.Category;
+    var courseowners = ViewBag.CourseOwners;
+    int count = 0;
     if (ViewBag.Paginated != null)
     {
         pager = ViewBag.Paginated;
         pageNo = pager.CurrentPage;
-    } }
+    }
+}
+
 
 <div class="page-content bg-white">
     <!-- inner page banner -->
@@ -130,10 +134,26 @@
                                                     <li><i class="fa fa-star"></i></li>
                                                 </ul>
                                             </div>
-                                            <div class="price">
-                                                @*<del>$190</del>*@
-                                                <h5>$@course.Price</h5>
-                                            </div>
+                                            @foreach (var item in courseowners)
+                                            {
+                                                if (item.CourseId == course.CourseId)
+                                                {
+                                                    count++;
+                                                }
+                                            }
+                                            @if (count == 1)
+                                            {
+                                                <div class="price">
+                                                    <h5>You have already paid for this course</h5>
+                                                </div>
+                                                count = 0;
+                                            }
+                                            else
+                                            {
+                                                <div class="price">
+                                                    <h5>$@course.Price</h5>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
                                 </div>
