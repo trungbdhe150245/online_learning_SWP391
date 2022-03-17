@@ -41,5 +41,13 @@ namespace SWP391.Controllers
         {
             return View();
         }
+
+        [Route("/Membership")]
+        [Route("/Home/Membership")]
+        public IActionResult Membership() 
+        {
+            List<PricePackage> packages = (from pricepackage in _db.PricePackages select pricepackage).ToList();
+            return View(packages);
+        }
     }
 }

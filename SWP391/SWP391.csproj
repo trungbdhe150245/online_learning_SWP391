@@ -11,12 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Views\Membership\Index0" />
     <None Remove="Views\Payment\Purchase0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Views\Membership\Index0" />
     <Content Include="Views\Payment\Purchase0" />
   </ItemGroup>
 
