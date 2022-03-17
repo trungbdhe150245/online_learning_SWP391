@@ -134,26 +134,42 @@
                                                     <li><i class="fa fa-star"></i></li>
                                                 </ul>
                                             </div>
-                                            @foreach (var item in courseowners)
+                                            @if (courseowners != null)
                                             {
-                                                if (item.CourseId == course.CourseId)
+                                                @foreach (var item in courseowners)
                                                 {
-                                                    count++;
+                                                    if (item.CourseId == course.CourseId)
+                                                    {
+                                                        count++;
+                                                    }
+                                                }
+                                                @if (count == 1)
+                                                {
+                                                    <div class="price">
+                                                        <h5>You have already paid for this course</h5>
+                                                    </div>
+                                                    count = 0;
                                                 }
                                             }
-                                            @if (count == 1)
-                                            {
-                                                <div class="price">
-                                                    <h5>You have already paid for this course</h5>
-                                                </div>
-                                                count = 0;
-                                            }
-                                            else
-                                            {
-                                                <div class="price">
-                                                    <h5>$@course.Price</h5>
-                                                </div>
-                                            }
+                                            @*@foreach (var item in courseowners)
+                                                {
+                                                    if (item.CourseId == course.CourseId)
+                                                    {
+                                                        count++;
+                                                    }
+                                                }
+                                                @if (count == 1)
+                                                {
+                                                    <div class="price">
+                                                        <h5>You have already paid for this course</h5>
+                                                    </div>
+                                                    count = 0;
+                                                }
+                                                else
+                                                {*@
+                                            <div class="price">
+                                                <h5>$@course.Price</h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

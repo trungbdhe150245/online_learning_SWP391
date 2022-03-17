@@ -40,8 +40,11 @@ namespace SWP391.Controllers
             var courses = Search(key, sortOrder, cate, page).ToList();
             dy.courses = Search(key, sortOrder, cate, page);
             var user = _userManager.GetUserAsync(User).Result;
-            List<CourseOwner> list = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
-            this.ViewBag.CourseOwners = list;
+            if (user != null)
+            {
+                List<CourseOwner> list = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
+                this.ViewBag.CourseOwners = list;
+            }
             return View(dy);
         }
 
@@ -52,32 +55,23 @@ namespace SWP391.Controllers
             dy.course = GetCourse(id);
 
             var user = _userManager.GetUserAsync(User).Result;
-            List<CourseOwner> list = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
             bool isMyCourse = false;
-            foreach (var item in list)
+            if (user != null)
             {
-                if(item.CourseId.Equals(id))
+                List<CourseOwner> list = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
+                foreach (var item in list)
                 {
-                    isMyCourse = true;
-                    break;
+                    if (item.CourseId.Equals(id))
+                    {
+                        isMyCourse = true;
+                        break;
+                    }
                 }
             }
             this.ViewBag.ismyCourse = isMyCourse;
             return View(dy);
         }
 
-        //bool isMyCourse(AppUser user)
-        //{
-        //    List<CourseOwner> list = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
-        //    foreach (var item in list)
-        //    {
-        //        if (item.CourseId.Equals(id))
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
 
         public IActionResult CreateCourse()
         {
@@ -153,7 +147,7 @@ namespace SWP391.Controllers
             var search = hc.GetAsync("Index");
             search.Wait();
             var readdata = search.Result;
-            if(readdata.IsSuccessStatusCode)
+            if (readdata.IsSuccessStatusCode)
             {
                 var display = readdata.Content.ReadAsAsync<IList<Course>>();
                 display.Wait();
@@ -229,12 +223,12 @@ namespace SWP391.Controllers
             return c;
         }
 
-        
+
 
 
         [HttpGet]
         [Route("/Course/{id}/Lesson")]
-        public IActionResult Lesson(string id) 
+        public IActionResult Lesson(string id)
         {
             //var course_detail = from course in _db.Courses where course.CourseId.Equals(id) join topic in _db.Topics
             //                    on course equals topic.Course join lesson in _db.Lessons
@@ -247,28 +241,32 @@ namespace SWP391.Controllers
             //                        Topic = lesson.Topic,
             //                        VideoURL = lesson.VideoURL
             //                    };
-            var course_details = from course in _db.Courses where course.CourseId.Equals(id) join topic in _db.Topics
-                                on course equals topic.Course 
-                                // join lesson in _db.Lessons
-                                //on topic equals lesson.Topic
-                                 select new Topic {
+            var course_details = from course in _db.Courses
+                                 where course.CourseId.Equals(id)
+                                 join topic in _db.Topics
+on course equals topic.Course
+                                 // join lesson in _db.Lessons
+                                 //on topic equals lesson.Topic
+                                 select new Topic
+                                 {
                                      TopicId = topic.TopicId,
-                                     Lessons = (from lesson in _db.Lessons where lesson.TopicId.Equals(topic.TopicId)
-                                               select new Lesson
-                                               {
-                                                   LessonId = lesson.LessonId,
-                                                   LessonName = lesson.LessonName,
-                                                   LessonOrder = lesson.LessonOrder,
-                                                   Script = lesson.Script,
-                                                   VideoURL = lesson.VideoURL,
-                                                   Topic = topic
-                                               }).ToList(),
+                                     Lessons = (from lesson in _db.Lessons
+                                                where lesson.TopicId.Equals(topic.TopicId)
+                                                select new Lesson
+                                                {
+                                                    LessonId = lesson.LessonId,
+                                                    LessonName = lesson.LessonName,
+                                                    LessonOrder = lesson.LessonOrder,
+                                                    Script = lesson.Script,
+                                                    VideoURL = lesson.VideoURL,
+                                                    Topic = topic
+                                                }).ToList(),
                                      Course = topic.Course,
                                      TopicName = topic.TopicName,
                                      TopicOrder = topic.TopicOrder,
                                      Quizzes = topic.Quizzes
 
-                                };
+                                 };
             return View(course_details.ToList());
         }
         /// add course to cart
