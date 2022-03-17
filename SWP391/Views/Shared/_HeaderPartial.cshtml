@@ -23,9 +23,11 @@
 
 @if (!CurrentURL.Contains("Manage") && !CurrentURL.Contains("Membership") && !CurrentURL.Contains("About") && !CurrentURL.Contains("CreateCourse") && !CurrentURL.Contains("Lesson"))
 {
-	sub_class = "header-transparent";
-} else {
-	sub_class = "";
+    //sub_class = "header-transparent";
+    sub_class = "";
+}
+else {
+    sub_class = "";
 }
 
 <header class="@("header rs-nav " + sub_class)">
