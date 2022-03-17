@@ -178,6 +178,7 @@ namespace SWP391.Data
                 entity.Property(pp => pp.PricePackageName).HasColumnType("varchar(255)");
                 entity.Property(pp => pp.Description).HasColumnType("text");
                 entity.Property(pp => pp.Price).HasColumnType("float");
+                entity.Property(pp => pp.Properties).HasColumnType("text");
                 entity.HasKey(pp => pp.PricePackageId);
                 entity.HasOne(pp => pp.Status)
                         .WithMany(s => s.PricePackages)

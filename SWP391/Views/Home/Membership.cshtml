@@ -1,6 +1,7 @@
 ﻿@model List<SWP391.Models.PricePackage>
 @{
-        Layout = "_Layout";
+    Layout = "_Layout";
+    List<string[]> properties = (List<string[]>)ViewBag.Properties;
 }
     <div class="page-content bg-white">
         <!-- inner page banner -->
@@ -35,16 +36,17 @@
                     <div class="pricingtable-row">
                         <div class="row">
                             @{ string class_inner = "";}
-                            @foreach (var pricepackage in Model)
-                            {
+                            @{ var iters = Model.Zip(properties, (x, y) => new { X = x, Y = y }); }
+                                @foreach (var iter in iters)
+                                {
 
-                                if(pricepackage.PricePackageId == 2)
-                                {
-                                    class_inner = " pricingtable-highlight";
-                                } else
-                                {
-                                    class_inner = "";   
-                                }
+                                    if(iter.X.PricePackageId == 2)
+                                    {
+                                        class_inner = " pricingtable-highlight";
+                                    } else
+                                    {
+                                        class_inner = "";
+                                    }
 
                                 <div class="col-sm-12 col-md-4 col-lg-4 m-b40">
                                     <div class="pricingtable-wrapper">
@@ -52,22 +54,35 @@
                                             <div class="pricingtable-main">
                                                 <div class="pricingtable-price">
                                                     <span class="priceing-doller">$</span>
-                                                    <span class="pricingtable-bx">@pricepackage.Price</span>
-                                                    <span class="pricingtable-type">3 Month @*@pricepackage.lifetime*@</span>
+                                                    <span class="pricingtable-bx">@iter.X.Price</span>
+                                                    <span class="pricingtable-type">@iter.Y[0].Trim()</span>
                                                 </div>
                                                 <div class="pricingtable-title">
-                                                    <h2>@pricepackage.PricePackageName</h2>
-                                                    <p>@pricepackage.Description</p>
+                                                    <h2>@iter.X.PricePackageName</h2>
+                                                    <p>@iter.X.Description</p>
                                                 </div>
                                             </div>
                                             <ul class="pricingtable-features">
-                                                <li>One Time Fee</li>
-                                                <li>3 User</li>
-                                                <li>Lifetime Availability</li>
-                                                <li>Non Featured</li>
-                                                <li>30 days Listing</li>
-                                                <li>24/7 Support</li>
-                                                <li>Select</li>
+                                                @if (!iter.Y[1].Trim().Equals(""))
+                                                {
+                                                    <li>@iter.Y[1].Trim()</li>
+                                                }
+                                                @if (!iter.Y[2].Trim().Equals(""))
+                                                {
+                                                    <li>@iter.Y[2].Trim()</li>
+                                                }
+                                                @if (!iter.Y[3].Trim().Equals(""))
+                                                {
+                                                    <li>@iter.Y[3].Trim()</li>
+                                                }
+                                                @if (!iter.Y[4].Trim().Equals(""))
+                                                {
+                                                    <li>@iter.Y[4].Trim()</li>
+                                                }
+                                                @if (!iter.Y[5].Trim().Equals(""))
+                                                {
+                                                    <li>@iter.Y[5].Trim()</li>
+                                                }
                                             </ul>
                                             <div class="pricingtable-footer">
                                                 <a href="#" class="btn radius-xl">Subcribe</a>

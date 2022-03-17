@@ -47,6 +47,13 @@ namespace SWP391.Controllers
         public IActionResult Membership() 
         {
             List<PricePackage> packages = (from pricepackage in _db.PricePackages select pricepackage).ToList();
+            List<string[]> properties = new List<string[]>();
+            foreach(var package in packages)
+            {
+                string[] property = package.Properties.Split("|");
+                properties.Add(property);
+            }
+            ViewBag.Properties = properties;
             return View(packages);
         }
     }

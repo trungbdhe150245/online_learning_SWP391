@@ -12,6 +12,7 @@ namespace SWP391.Models
         public string Description { get; set; }
 
         public float Price { get; set; }
+        public string Properties { get; set; }
         //public int Duration { get; set; }
         //public DateTime? StartTime { get; set; }
 
