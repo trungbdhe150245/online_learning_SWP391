@@ -9,6 +9,7 @@
     var course = Model.course;
     var cate = ViewBag.Category;
     var isMyCourse = ViewBag.ismyCourse;
+    int count = 0;
 }
 
 @{
@@ -90,8 +91,8 @@
                             else
                             {
                                 @*<div class="course-price">
-                                    <h4 class="price">You purchased this course</h4>
-                                </div>*@
+                                        <h4 class="price">You purchased this course</h4>
+                                    </div>*@
                                 <div class="course-buy-now text-center">
                                     <a class="btn radius-xl text-uppercase">Go to course</a>
                                 </div>
@@ -184,69 +185,25 @@
                         <div class="m-b30" id="curriculum">
                             <h4>Curriculum</h4>
                             <ul class="curriculum-list">
-                                <li>
-                                    <h5>First Level</h5>
-                                    <ul>
-                                        <li>
-                                            <div class="curriculum-list-box">
-                                                <span>Lesson 1.</span> Introduction to UI Design
-                                            </div>
-                                            <span>120 minutes</span>
-                                        </li>
-                                        <li>
-                                            <div class="curriculum-list-box">
-                                                <span>Lesson 2.</span> User Research and Design
-                                            </div>
-                                            <span>60 minutes</span>
-                                        </li>
-                                        <li>
-                                            <div class="curriculum-list-box">
-                                                <span>Lesson 3.</span> Evaluating User Interfaces Part 1
-                                            </div>
-                                            <span>85 minutes</span>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <h5>Second Level</h5>
-                                    <ul>
-                                        <li>
-                                            <div class="curriculum-list-box">
-                                                <span>Lesson 1.</span> Prototyping and Design
-                                            </div>
-                                            <span>110 minutes</span>
-                                        </li>
-                                        <li>
-                                            <div class="curriculum-list-box">
-                                                <span>Lesson 2.</span> UI Design Capstone
-                                            </div>
-                                            <span>120 minutes</span>
-                                        </li>
-                                        <li>
-                                            <div class="curriculum-list-box">
-                                                <span>Lesson 3.</span> Evaluating User Interfaces Part 2
-                                            </div>
-                                            <span>120 minutes</span>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <h5>Final</h5>
-                                    <ul>
-                                        <li>
-                                            <div class="curriculum-list-box">
-                                                <span>Part 1.</span> Final Test
-                                            </div>
-                                            <span>120 minutes</span>
-                                        </li>
-                                        <li>
-                                            <div class="curriculum-list-box">
-                                                <span>Part 2.</span> Online Test
-                                            </div>
-                                            <span>120 minutes</span>
-                                        </li>
-                                    </ul>
-                                </li>
+                                @foreach (var t in course.Topics)
+                                {
+                                    <li>
+                                        <h5>@t.TopicName</h5>
+                                        <ul>
+                                            @foreach (var l in t.Lessons)
+                                            {
+                                                count++;
+                                                <li>
+                                                    <div class="curriculum-list-box">
+                                                        <span>Lesson @count</span> @l.LessonName
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+
+                                    </li>
+                                    count = 0;
+                                }
                             </ul>
                         </div>
                         <div class="" id="instructor">

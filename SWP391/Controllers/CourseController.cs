@@ -52,8 +52,8 @@ namespace SWP391.Controllers
         {
             dynamic dy = new ExpandoObject();
             dy.categories = GetCategories();
-            dy.course = GetCourse(id);
-
+            //dy.course = GetCourse(id);
+            var coursed = GetCourse(id);
             var user = _userManager.GetUserAsync(User).Result;
             bool isMyCourse = false;
             if (user != null)
@@ -68,6 +68,14 @@ namespace SWP391.Controllers
                     }
                 }
             }
+            var listtopics = _db.Topics.Where(t => t.CourseId.Equals(id)).ToList();
+            foreach (var t in listtopics)
+            {
+                var listless = _db.Lessons.Where(l => l.TopicId.Equals(t.TopicId)).ToList();
+                t.Lessons = listless;
+            }
+            coursed.Topics = listtopics;
+            dy.course = coursed;
             this.ViewBag.ismyCourse = isMyCourse;
             return View(dy);
         }
