@@ -5,12 +5,15 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using SWP391.Data;
 using SWP391.Models;
 using SWP391.Utility;
 using SWP391.Utility.BraintreeService;
 using System;
+using System.IO;
+
 namespace SWP391
 {
     public class Startup
@@ -106,7 +109,11 @@ namespace SWP391
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "CourseImg")),
+                RequestPath = "/CourseImg"
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

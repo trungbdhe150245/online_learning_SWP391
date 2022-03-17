@@ -64,6 +64,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CourseImg\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
