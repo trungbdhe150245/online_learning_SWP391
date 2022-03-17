@@ -47,7 +47,6 @@ namespace SWP391.Controllers
             }
             return View(dy);
         }
-
         public IActionResult CourseDetail(string id)
         {
             dynamic dy = new ExpandoObject();
@@ -252,7 +251,7 @@ namespace SWP391.Controllers
             var course_details = from course in _db.Courses
                                  where course.CourseId.Equals(id)
                                  join topic in _db.Topics
-on course equals topic.Course
+                                on course equals topic.Course
                                  // join lesson in _db.Lessons
                                  //on topic equals lesson.Topic
                                  select new Topic
@@ -278,7 +277,7 @@ on course equals topic.Course
             return View(course_details.ToList());
         }
         /// add course to cart
-        [Route("addcart/{courseId}", Name = "addcart")]
+        [Route("Addcart/{courseId}", Name = "addcart")]
         public IActionResult AddToCart([FromRoute] string courseId)
         {
 
@@ -320,16 +319,21 @@ on course equals topic.Course
 
 
         // Remove item in cart
-        [Route("/removecart/{courseId}", Name = "removecart")]
+        [Route("/Removecart/{courseId}", Name = "removecart")]
         public IActionResult RemoveCart([FromRoute] string courseId)
         {
+            var cart = GetCartItems();
+            var course = cart.Find(p => p.CourseId == courseId);
+            cart.Remove(course);
 
+
+            SaveCartSession(cart);
             // Remove 1 entry of Cart ...
             return RedirectToAction(nameof(Cart));
         }
 
         /// Update
-        [Route("/updatecart", Name = "updatecart")]
+        [Route("/Updatecart", Name = "updatecart")]
         [HttpPost]
         public IActionResult UpdateCart([FromForm] string courseId)
         {
@@ -347,13 +351,13 @@ on course equals topic.Course
 
 
         // Display cart
-        [Route("/cart", Name = "cart")]
+        [Route("/Cart", Name = "cart")]
         public IActionResult Cart()
         {
             return View(GetCartItems());
         }
 
-        [Route("/checkout")]
+        [Route("/Checkout")]
         public IActionResult CheckOut()
         {
             // Order handler
@@ -379,10 +383,11 @@ on course equals topic.Course
         }
 
         // Xóa cart khỏi session
-        void ClearCart()
+        public IActionResult ClearCart()
         {
             var session = HttpContext.Session;
             session.Remove(CARTKEY);
+            return RedirectToAction(nameof(Cart));
         }
 
         // Lưu Cart (Danh sách CartItem) vào session

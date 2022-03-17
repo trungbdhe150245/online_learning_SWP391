@@ -4,7 +4,6 @@
     ViewData["Title"] = "CART";
 }
 <div class="page-content bg-white">
-    <!-- Page Heading Box ==== -->
     <div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner/banner3.jpg);">
         <div class="container">
             <div class="page-banner-entry">
@@ -20,22 +19,13 @@
             </ul>
         </div>
     </div>
-    <!-- Page Heading Box END ==== -->
-    <!-- Page Content Box ==== -->
     <div class="content-block">
-        <!-- About Us ==== -->
 
         @{ double total = 0;
             var index = 1;}
         <div class="section-area section-sp1">
             <div class="container">
                 <div class="row">
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a asp-controller="Product" asp-action="Checkout" class="btn btn-secondary">Purchase @(total.ToString())$</a>
-                        <a class="btn btn-danger" style="background-color:red;">Empty cart</a>
-                        <a asp-controller="Product" asp-action="Checkout" class="btn btn-success" style="background-color:greenyellow;">Go back</a>
-
-                    </div>
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
@@ -54,71 +44,24 @@
                                 <td>@(course.Title)</td>
                                 <td>@(course.Price.ToString())$</td>
                                 <td>
-                                    <a asp-route="removecart" asp-route-productid="@course.CourseId"
+                                    <a asp-route="Removecart" asp-route-courseId="@course.CourseId"
                                        class="btn btn-danger">Remove Entry</a>
-                                    <a asp-route="removecart" asp-route-productid="@course.CourseId"
+                                    <a asp-controller="Course" asp-action="CourseDetail" asp-route-id="@course.CourseId"
                                        class="btn btn-danger">Go To Course</a>
                                 </td>
                             </tr>
                         }
                     </table>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="" class="btn btn-secondary">Purchase @(total.ToString())$</a>
+                        <a asp-controller="Course" asp-action="ClearCart" class="btn btn-secondary" style="background-color:red;">Empty cart</a>
+                        <a asp-controller="Course" asp-action="CourseList" class="btn btn-secondary" style="background-color:deeppink;">Continue shopping</a>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Testimonials END ==== -->
     </div>
-    <!-- Page Content Box END ==== -->
 </div>
-
-
-
-@*@if (Model.Count > 0)
-{
-    double total = 0;
-    int stt = 1;
-
-    <table class="table">
-        <tr>
-            <th>#</th>
-            <th>Sản phẩm</th>
-            <th>Giá</th>
-            <th>Thành tiền</th>
-            <th></th>
-        </tr>
-        @foreach (var cartitem in Model)
-        {
-            var thanhtien = cartitem.Price;
-            total += thanhtien;
-
-            <tr>
-                <td>@(stt++)</td>
-                <td>@cartitem.Title</td>
-                <td>@(cartitem.Price.ToString("n0"))</td>
-                <td>@(thanhtien.ToString())</td>
-                <td>
-                    <a asp-route="removecart" asp-route-productid="@cartitem.CourseId"
-                       class="btn btn-danger">Xóa</a>
-                </td>
-            </tr>
-        }
-        <tr>
-            <td colspan="4" class="text-right">Tổng tiền</td>
-            <td>@(total.ToString())</td>
-            <td></td>
-        </tr>
-    </table>
-
-    <a asp-controller="Product" asp-action="Checkout" class="btn btn-success">Gửi đơn hàng</a>
-
-}
-
-}
-else
-{
-<p class="alert alert-danger">Giỏ hàng trống</p>
-}*@
-
 
 
 @section Scripts {
