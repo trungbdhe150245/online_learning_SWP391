@@ -24,6 +24,27 @@ namespace SWP391.Controllers
             return View();
         }
 
+        [HttpPost]
+        [Route("/Payment/{id}")]
+        public IActionResult PurchaseMembership(string id)
+        {
+            var gateway = _braintreeService.GetGateway();
+            var clientToken = gateway.ClientToken.Generate();  //Genarate a token
+            ViewBag.ClientToken = clientToken;
+            var package = _learningDbContext.PricePackages.Find(id);
+            return View(package);
+        }
+
+        [HttpPost]
+        [Route("/Payment/{id}")]
+        public IActionResult PurchaseCart()
+        {
+            return Ok("");
+        }
+
+
+
+
         public IActionResult Purchase(int id)
         {
             var gateway = _braintreeService.GetGateway();
