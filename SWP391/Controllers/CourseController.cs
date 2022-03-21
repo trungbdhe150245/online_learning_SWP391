@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Braintree;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +21,10 @@ using System.Threading.Tasks;
 
 namespace SWP391.Controllers
 {
-    public class Products <T> where T: Course
+    public class Products <T>
     {
         public int Id { get; set; }
+        public string[] Ids { get; set; }
         public List<T> products { get; set; }
         public string Nonce { get; set; }
         public double Price { get; set; }
@@ -30,7 +32,7 @@ namespace SWP391.Controllers
         {
 
         }
-        public Products(List<T> p, string n) => (products, Nonce) = (p, n);
+        public Products(List<T> p, string n, string[] n1) => (products, Nonce, Ids) = (p, n, n1);
     }
 
     public class CourseController : Controller
@@ -343,27 +345,18 @@ namespace SWP391.Controllers
                     break;
                 }
             }
-
             if (add)
             {
-                //return this.PartialView("~/Views/Shared/CustomLayout/_ModalCart.cshtml");
                 return RedirectToRoute(nameof(cart));
-
-                //RedirectToAction(nameof(Cart));
             }
             else
             {
-                //  Thêm mới
                 cart.Add(course);
             }
-
-            // Lưu cart vào Session
             SaveCartSession(cart);
             return RedirectToAction(nameof(Cart));
         }
 
-
-        // Remove item in cart
         [Route("/Removecart/{courseId}", Name = "removecart")]
         public IActionResult RemoveCart([FromRoute] string courseId)
         {
@@ -373,21 +366,17 @@ namespace SWP391.Controllers
 
 
             SaveCartSession(cart);
-            // Remove 1 entry of Cart ...
             return RedirectToAction(nameof(Cart));
         }
 
-        /// Update
         [Route("/Updatecart", Name = "updatecart")]
         [HttpPost]
         public IActionResult UpdateCart([FromForm] string courseId)
         {
-            // Update quantity ...
             var cart = GetCartItems();
             var cartitem = cart.Find(p => p.CourseId.Equals(courseId));
             if (cartitem != null)
             {
-                // Đã tồn tại, tăng thêm 1
                 return null;
             }
             SaveCartSession(cart);
@@ -395,12 +384,11 @@ namespace SWP391.Controllers
         }
 
 
-        // Display cart
         [Route("/Cart", Name = "cart")]
         public IActionResult Cart()
         {
             var gateway = _braintreeService.GetGateway();
-            var clientToken = gateway.ClientToken.Generate();  //Genarate a token
+            var clientToken = gateway.ClientToken.Generate();  
             ViewBag.ClientToken = clientToken;
             Products<Course> products = new Products<Course>() {Id = new Random().Next(), products = GetCartItems(), Nonce = ""};
             return View(products);
@@ -409,16 +397,11 @@ namespace SWP391.Controllers
         [Route("/Checkout")]
         public IActionResult CheckOut()
         {
-            // Order handler
             return View();
         }
 
-
-
-        // Key lưu chuỗi json của Cart
         public const string CARTKEY = "cart";
 
-        // Lấy cart từ Session (danh sách CartItem)
         List<Course> GetCartItems()
         {
 
@@ -430,21 +413,49 @@ namespace SWP391.Controllers
             }
             return new List<Course>();
         }
-
-        // Xóa cart khỏi session
         public IActionResult ClearCart()
         {
             var session = HttpContext.Session;
             session.Remove(CARTKEY);
             return RedirectToAction(nameof(Cart));
         }
-
-        // Lưu Cart (Danh sách CartItem) vào session
         void SaveCartSession(List<Course> ls)
         {
             var session = HttpContext.Session;
             string jsoncart = JsonConvert.SerializeObject(ls);
             session.SetString(CARTKEY, jsoncart);
+        }
+
+        [HttpPost]
+        public IActionResult CheckoutCourse(Products<Course> model)
+        {
+            var gateway = _braintreeService.GetGateway();
+            var request = new TransactionRequest
+            {
+                Amount = Convert.ToDecimal(model.Price),
+                PaymentMethodNonce = model.Nonce,
+                Options = new TransactionOptionsRequest
+                {
+                    SubmitForSettlement = true
+                }
+            };
+            Result<Transaction> result = gateway.Transaction.Sale(request);
+            if (result.IsSuccess())
+            {
+
+                foreach (var course in model.Ids)
+                {
+                    CourseOwner courseOwner = new CourseOwner { CourseId = course, CourseOwnerId = _userManager.GetUserAsync(User).Result.Id , PurchaseTime = DateTime.Parse(String.Format("{0:MM/dd/yyyy}", DateTime.Now.Date))};
+                    _db.CourseOwners.Add(courseOwner);
+                    _db.SaveChanges();
+                }
+                ClearCart();
+                return View("Cart");
+            }
+            else
+            {
+                return View("Cart");
+            }
         }
 
     }

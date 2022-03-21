@@ -297,6 +297,7 @@ namespace SWP391.Data
                 entity.HasKey(s => s.SlideId);
             });
         }
+        public DbSet<UserPricePackage> UserPricePackages { get; set; }
         public DbSet<Attempt> Attempts { get; set; }
         public DbSet<AttemptDetailed> AttemptDetaileds { get; set; }
         public DbSet<Blog> Blogs { get; set; }

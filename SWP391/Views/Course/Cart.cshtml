@@ -39,25 +39,25 @@
         <div class="section-area section-sp1">
             <div class="row d-flex flex-row-reverse">
                 <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
-                    
+
 
                     <section>
                         <div class="bt-drop-in-wrapper">
                             <div id="bt-dropin"></div>
                         </div>
                     </section>
-                   
+
                 </div>
                 <div class="col-lg-9 col-md-8 col-sm-12">
                     <div class="content-block">
 
                         @{ double total = 0;
-                            var index = 1;}
+                            var index = 0;}
                         <h2 style="text-align:center">@ViewData["Title"]</h2>
                         <div class="container">
-                            <form id="payment-form" method="post" asp-controller="Home" asp-action="Checkout">
+                            <form id="payment-form" method="post" asp-controller="Course" asp-action="CheckoutCourse">
                                 @Html.HiddenFor(n => n.Id)
-                                
+
                                 <div class="row">
                                     <table class="table">
                                         <thead class="thead-dark">
@@ -69,29 +69,34 @@
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
-                                        @foreach (var course in Model.products)
+                                        @if (Model != null)
                                         {
-                                            total += course.Price;
-                                            <tr>
-                                                <td>@(index++)</td>
-                                                <td>@(course.Title)</td>
-                                                <td>@(course.Price.ToString())$</td>
-                                                <td>
-                                                    <a asp-route="Removecart" asp-route-courseId="@course.CourseId"
-                                                       class="btn btn-danger">Remove Entry</a>
-                                                    <a asp-controller="Course" asp-action="CourseDetail" asp-route-id="@course.CourseId"
-                                                       class="btn btn-danger">Go To Course</a>
-                                                </td>
-                                            </tr>
+                                            @foreach (var course in Model.products)
+                                            {
+                                                total += course.Price;
+                                                <tr>
+                                                    <td>@(index++)</td>
+                                                    <td>@(course.Title)</td>
+                                                    <td>@(course.Price.ToString())$</td>
+                                                    <td>
+                                                        <a asp-route="Removecart" asp-route-courseId="@course.CourseId"
+                                                           class="btn btn-danger">Remove Entry</a>
+                                                        <a asp-controller="Course" asp-action="CourseDetail" asp-route-id="@course.CourseId"
+                                                           class="btn btn-danger">Go To Course</a>
+                                                    </td>
 
+                                                </tr>
+                                                <input asp-for="@Model.Ids[Model.products.IndexOf(course)]" value="@course.CourseId" hidden />
+                                            }
                                         }
                                     </table>
                                     @Html.HiddenFor(n => n.Nonce, new { @id = "nonce" })
-                                    
+
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @if (!cart.Equals("0"))
                                         {
-                                            <input asp-for="@Model.Price" value="@total.ToString()" hidden/>
+
+                                            <input asp-for="@Model.Price" value="@total.ToString()" hidden />
                                             <button type="submit" class="btn btn-secondary">Purchase @(total.ToString())$</button>
                                         }
                                         <a asp-controller="Course" asp-action="ClearCart" class="btn btn-secondary" style="background-color:red;">Empty cart</a>

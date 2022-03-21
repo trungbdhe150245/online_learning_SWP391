@@ -2,6 +2,7 @@
 @{
     Layout = "_Layout";
     List<string[]> properties = (List<string[]>)ViewBag.Properties;
+    ViewData["Title"] = "MEMBERSHIP";
 }
     <div class="page-content bg-white">
         <!-- inner page banner -->
@@ -33,60 +34,63 @@
                         </div>
                     </div>
                     <div class="pricingtable-row">
-                        <div class="row">
-                            @{ string class_inner = "";}
-                            @{ var iters = Model.Zip(properties, (x, y) => new { X = x, Y = y }); }
+                            <div class="row">
+
+                                @{ string class_inner = "";}
+                                @{ var iters = Model.Zip(properties, (x, y) => new { X = x, Y = y }); }
                                 @foreach (var iter in iters)
                                 {
 
-                                    if(iter.X.PricePackageId == 2)
+                                    if (iter.X.PricePackageId == 2)
                                     {
                                         class_inner = " pricingtable-highlight";
-                                    } else
+                                    }
+                                    else
                                     {
                                         class_inner = "";
                                     }
 
-                                <div class="col-sm-12 col-md-4 col-lg-4 m-b40">
-                                    <div class="pricingtable-wrapper">
-                                        <div class="@("pricingtable-inner" + class_inner)">
-                                            <div class="pricingtable-main">
-                                                <div class="pricingtable-price">
-                                                    <span class="priceing-doller">$</span>
-                                                    <span class="pricingtable-bx">@iter.X.Price</span>
-                                                    <span class="pricingtable-type">@iter.Y[0].Trim()</span>
+                                    <div class="col-sm-12 col-md-4 col-lg-4 m-b40">
+                                        <div class="pricingtable-wrapper">
+                                            <div class="@("pricingtable-inner" + class_inner)">
+                                                <div class="pricingtable-main">
+                                                    <div class="pricingtable-price">
+                                                        <span class="priceing-doller">$</span>
+                                                        <span class="pricingtable-bx">@iter.X.Price</span>
+                                                        <span class="pricingtable-type">@iter.Y[0].Trim()</span>
+                                                    </div>
+                                                    <div class="pricingtable-title">
+                                                        <h2>@iter.X.PricePackageName</h2>
+                                                        <p>@iter.X.Description</p>
+                                                    </div>
                                                 </div>
-                                                <div class="pricingtable-title">
-                                                    <h2>@iter.X.PricePackageName</h2>
-                                                    <p>@iter.X.Description</p>
+                                                <ul class="pricingtable-features">
+                                                    @if (!iter.Y[1].Trim().Equals(""))
+                                                    {
+                                                        <li>@iter.Y[1].Trim()</li>
+                                                    }
+                                                    @if (!iter.Y[2].Trim().Equals(""))
+                                                    {
+                                                        <li>@iter.Y[2].Trim()</li>
+                                                    }
+                                                    @if (!iter.Y[3].Trim().Equals(""))
+                                                    {
+                                                        <li>@iter.Y[3].Trim()</li>
+                                                    }
+                                                    @if (!iter.Y[4].Trim().Equals(""))
+                                                    {
+                                                        <li>@iter.Y[4].Trim()</li>
+                                                    }
+                                                </ul>
+                                                <div class="pricingtable-footer">
+                                                    <a asp-controller="Home" asp-action="OneMembership" asp-route-membershipid="@iter.X.PricePackageId.ToString()"
+                                                       class="btn radius-xl">Subcribe</a>
                                                 </div>
-                                            </div>
-                                            <ul class="pricingtable-features">
-                                                @if (!iter.Y[1].Trim().Equals(""))
-                                                {
-                                                    <li>@iter.Y[1].Trim()</li>
-                                                }
-                                                @if (!iter.Y[2].Trim().Equals(""))
-                                                {
-                                                    <li>@iter.Y[2].Trim()</li>
-                                                }
-                                                @if (!iter.Y[3].Trim().Equals(""))
-                                                {
-                                                    <li>@iter.Y[3].Trim()</li>
-                                                }
-                                                @if (!iter.Y[4].Trim().Equals(""))
-                                                {
-                                                    <li>@iter.Y[4].Trim()</li>
-                                                }
-                                            </ul>
-                                            <div class="pricingtable-footer">
-                                                <a asp-controller="PaymentController" asp-action="PurchaseMembership"
-                                                   asp-route-id="@iter.X.PricePackageId.ToString()" class="btn radius-xl">Subcribe</a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                    }
+                                }
+
                             </div>
                         </div>
                     </div>

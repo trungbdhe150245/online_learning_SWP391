@@ -1,4 +1,5 @@
 ﻿using Braintree;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SWP391.Data;
@@ -12,16 +13,24 @@ using System.Linq;
 
 namespace SWP391.Controllers
 {
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Nonce { get; set; }
+        public PricePackage PricePackage { get; set; }
+    }
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IBraintreeService _braintreeService;
+        private readonly UserManager<AppUser> _userManager;
         private readonly LearningDbContext _db;
-        public HomeController(ILogger<HomeController> logger, LearningDbContext db, IBraintreeService braintreeService)
+        public HomeController(ILogger<HomeController> logger, LearningDbContext db, IBraintreeService braintreeService, UserManager<AppUser> userManager)
         {
             _logger = logger;
             _db = db;
             _braintreeService = braintreeService;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -50,7 +59,6 @@ namespace SWP391.Controllers
 
         
         [Route("/Membership")]
-        [Route("/Home/Membership")]
         public IActionResult Membership() 
         {
             List<PricePackage> packages = (from pricepackage in _db.PricePackages select pricepackage).ToList();
@@ -64,14 +72,29 @@ namespace SWP391.Controllers
             return View(packages);
         }
 
-        //[ServiceFilter(typeof(Filter))]
-        [HttpPost]
-        public IActionResult Checkout(Products<Course> model)
+        [Route("/Membership/{membershipid}")]
+        public IActionResult OneMembership(string membershipid)
+        {
+            var gateway = _braintreeService.GetGateway();
+            var clientToken = gateway.ClientToken.Generate();  //Genarate a token
+            ViewBag.ClientToken = clientToken;
+            Product product = new Product
+            {
+                Id = new Random().Next(),
+                PricePackage = (from pricepackage in _db.PricePackages 
+                                where pricepackage.PricePackageId.Equals(Int32.Parse(membershipid)) select pricepackage).FirstOrDefault(),
+                Nonce = ""
+            };
+            return View(product);
+        }
+
+        [Route("/Membership/Checkout")]
+        public IActionResult CheckoutMembership(Product model)
         {
             var gateway = _braintreeService.GetGateway();
             var request = new TransactionRequest
             {
-                Amount = Convert.ToDecimal(model.Price),
+                Amount = Convert.ToDecimal(model.PricePackage.Price),
                 PaymentMethodNonce = model.Nonce,
                 Options = new TransactionOptionsRequest
                 {
@@ -81,12 +104,17 @@ namespace SWP391.Controllers
             Result<Transaction> result = gateway.Transaction.Sale(request);
             if (result.IsSuccess())
             {
-                return Ok("Success");
+                UserPricePackage userPricePackage = new UserPricePackage {PricePackageId = model.PricePackage.PricePackageId, UserId = _userManager.GetUserAsync(User).Result.Id,  SubcribeDate = DateTime.Parse(String.Format("{0:MM/dd/yyyy}", DateTime.Now.Date))};
+                _db.UserPricePackages.Add(userPricePackage);
+                _db.SaveChanges();
+                return /*RedirectToAction("Index");*/ Ok("Success");
             }
             else
             {
-                return Ok("Failure" + (model.Nonce == null));
+                return Ok("Failed");
             }
         }
+
+
     }
 }
