@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Braintree;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SWP391.Data;
 using SWP391.Models;
+using SWP391.Utility;
+using SWP391.Utility.BraintreeService;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,11 +15,13 @@ namespace SWP391.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IBraintreeService _braintreeService;
         private readonly LearningDbContext _db;
-        public HomeController(ILogger<HomeController> logger, LearningDbContext db)
+        public HomeController(ILogger<HomeController> logger, LearningDbContext db, IBraintreeService braintreeService)
         {
             _logger = logger;
             _db = db;
+            _braintreeService = braintreeService;
         }
 
         public IActionResult Index()
@@ -42,6 +48,7 @@ namespace SWP391.Controllers
             return View();
         }
 
+        
         [Route("/Membership")]
         [Route("/Home/Membership")]
         public IActionResult Membership() 
@@ -55,6 +62,31 @@ namespace SWP391.Controllers
             }
             ViewBag.Properties = properties;
             return View(packages);
+        }
+
+        //[ServiceFilter(typeof(Filter))]
+        [HttpPost]
+        public IActionResult Checkout()
+        {
+            var gateway = _braintreeService.GetGateway();
+            var request = new TransactionRequest
+            {
+                Amount = Convert.ToDecimal("250"),
+                PaymentMethodNonce = "",
+                Options = new TransactionOptionsRequest
+                {
+                    SubmitForSettlement = true
+                }
+            };
+            Result<Transaction> result = gateway.Transaction.Sale(request);
+            if (result.IsSuccess())
+            {
+                return Ok("Success");
+            }
+            else
+            {
+                return Ok("Failure 250");
+            }
         }
     }
 }

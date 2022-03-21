@@ -17,6 +17,7 @@ namespace SWP391.Models
         public string Title { get; set; }
         public double Price { get; set; }
         public int SlideId { get; set; }
+        public string Nonce { get; set; }
         public virtual Slide Slide { get; set; }
         public virtual Category Category { get; set; }
         public int CategoryId { get; set; }

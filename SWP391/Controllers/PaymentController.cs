@@ -2,11 +2,25 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SWP391.Data;
+using SWP391.Models;
 using SWP391.Utility.BraintreeService;
 using System;
 
 namespace SWP391.Controllers
 {
+
+    public class Product<T>
+    {
+        public T product { get; set; }
+        public string Nonce { get; set; }
+
+        public Product(T p, string n) => (product, Nonce) = (p, n);
+
+        public Product()
+        {
+        }
+    }
+
     public class PaymentController : Controller
     {
         private readonly IBraintreeService _braintreeService;
@@ -25,14 +39,15 @@ namespace SWP391.Controllers
         }
 
         [HttpPost]
-        [Route("/Payment/{id}")]
+        //[Route("/Payment/{id}")]
         public IActionResult PurchaseMembership(string id)
         {
             var gateway = _braintreeService.GetGateway();
             var clientToken = gateway.ClientToken.Generate();  //Genarate a token
             ViewBag.ClientToken = clientToken;
             var package = _learningDbContext.PricePackages.Find(id);
-            return View(package);
+            Product<PricePackage> product = new Product<PricePackage> { product = package, Nonce = ""};
+            return View(product);
         }
 
         [HttpPost]
@@ -76,7 +91,7 @@ namespace SWP391.Controllers
             }
             else
             {
-                return View("Failure");
+                return View("Failure" + "1000");
             }
         }
     }

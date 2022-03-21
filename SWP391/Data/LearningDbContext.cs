@@ -117,6 +117,7 @@ namespace SWP391.Data
                 entity.Property(c => c.ShortDescription).HasColumnType("varchar(500)");
                 entity.Property(c => c.Title).HasColumnType("varchar(255)");
                 entity.Property(c => c.ThumbnailURL).HasColumnType("text");
+                entity.Property(c => c.Nonce).HasColumnType("text").IsRequired(false);
                 entity.HasKey(c => c.CourseId);
                 entity.HasOne(c => c.Status)
                         .WithMany(s => s.Courses)

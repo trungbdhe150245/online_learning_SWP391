@@ -8,6 +8,7 @@ using Nancy.Json;
 using Newtonsoft.Json;
 using SWP391.Data;
 using SWP391.Models;
+using SWP391.Utility.BraintreeService;
 using SWP391.Views.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -25,12 +26,14 @@ namespace SWP391.Controllers
         private readonly IWebHostEnvironment WebHostEnvironment;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        public CourseController(LearningDbContext db, IWebHostEnvironment webHostEnvironment, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        private readonly IBraintreeService _braintreeService;
+        public CourseController(IBraintreeService braintreeService, LearningDbContext db, IWebHostEnvironment webHostEnvironment, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _db = db;
             WebHostEnvironment = webHostEnvironment;
             _userManager = userManager;
             _signInManager = signInManager;
+            _braintreeService = braintreeService;
         }
 
         public IActionResult CourseList(string key, string sortOrder, string cate, int page)
@@ -237,23 +240,10 @@ namespace SWP391.Controllers
         [Route("/Course/{id}/Lesson")]
         public IActionResult Lesson(string id)
         {
-            //var course_detail = from course in _db.Courses where course.CourseId.Equals(id) join topic in _db.Topics
-            //                    on course equals topic.Course join lesson in _db.Lessons
-            //                    on topic equals lesson.Topic
-            //                    select new Lesson {
-            //                        LessonId = lesson.LessonId,
-            //                        LessonName = lesson.LessonName,
-            //                        LessonOrder = lesson.LessonOrder,
-            //                        Script = lesson.Script,
-            //                        Topic = lesson.Topic,
-            //                        VideoURL = lesson.VideoURL
-            //                    };
             var course_details = from course in _db.Courses
                                  where course.CourseId.Equals(id)
                                  join topic in _db.Topics
-                                on course equals topic.Course
-                                 // join lesson in _db.Lessons
-                                 //on topic equals lesson.Topic
+                                 on course equals topic.Course
                                  select new Topic
                                  {
                                      TopicId = topic.TopicId,
@@ -276,6 +266,28 @@ namespace SWP391.Controllers
                                  };
             return View(course_details.ToList());
         }
+        [HttpGet]
+        [Route("/Quiz/Topic/{topicid}/Attempt")]
+        public IActionResult QuizAttempt(string topicid)
+        {
+            var topic_quiz = (from quiz in _db.Quizzes where quiz.TopicId.Equals(topicid) join attempt in _db.Attempts on quiz equals attempt.Quiz
+                              into gj from x in gj.DefaultIfEmpty()
+                              select new Quiz {
+                                    QuizId = quiz.QuizId,
+                                    Description = quiz.Description,
+                                    Duration = quiz.Duration,
+                                    Name = quiz.Name,
+                                    QuestionNum = quiz.QuestionNum,
+                                    TopicId = quiz.TopicId,
+                                    QuizType = (from tp in _db.QuizTypes where tp.QuizTypeId.Equals(quiz.QuizTypeId) select tp).FirstOrDefault(),
+                                    QuizLevel = (from lv in _db.QuizLevels where lv.QuizLevelId.Equals(quiz.QuizLevelId) select lv).FirstOrDefault(),
+                                    Attempts = (from at in _db.Attempts where at.QuizId.Equals(quiz.QuizId) select at).ToList()
+                              }).ToList();
+            ViewData["TopicName"] = (from tp in _db.Topics where tp.TopicId.Equals(topicid) select tp.TopicName).FirstOrDefault();
+            return View(topic_quiz);
+        }
+
+
         /// add course to cart
         [Route("Addcart/{courseId}", Name = "addcart")]
         public IActionResult AddToCart([FromRoute] string courseId)
@@ -354,6 +366,9 @@ namespace SWP391.Controllers
         [Route("/Cart", Name = "cart")]
         public IActionResult Cart()
         {
+            var gateway = _braintreeService.GetGateway();
+            var clientToken = gateway.ClientToken.Generate();  //Genarate a token
+            ViewBag.ClientToken = clientToken;
             return View(GetCartItems());
         }
 

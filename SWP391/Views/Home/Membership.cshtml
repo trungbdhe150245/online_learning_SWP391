@@ -30,7 +30,6 @@
                     <div class="row">
                         <div class="col-md-12 heading-bx text-center">
                             <h2 class="title-head text-uppercase m-b0">Set a plan, start learning and <br /> <span> unlock your potential</span></h2>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
                         </div>
                     </div>
                     <div class="pricingtable-row">
@@ -85,8 +84,8 @@
                                                 }
                                             </ul>
                                             <div class="pricingtable-footer">
-                                                <a asp-controller="Payment" asp-action="PurchaseMembership"
-                                                   asp-route-id="@iter.X.PricePackageId" class="btn radius-xl">Subcribe</a>
+                                                <a asp-controller="PaymentController" asp-action="PurchaseMembership"
+                                                   asp-route-id="@iter.X.PricePackageId.ToString()" class="btn radius-xl">Subcribe</a>
                                             </div>
                                         </div>
                                     </div>
