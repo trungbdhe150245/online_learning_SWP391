@@ -13,7 +13,6 @@ namespace SWP391.Models
         public string UserId { get; set; }
         public virtual PricePackage PricePackage{ get; set; }
         public int PricePackageId { get; set; }
-        public int RemainingDay { get; set; }
         public DateTime SubcribeDate { get; set; }
     }
 }

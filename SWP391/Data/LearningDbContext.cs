@@ -189,7 +189,6 @@ namespace SWP391.Data
             });
             modelBuilder.Entity<UserPricePackage>(entity =>
             {
-                entity.Property(upp => upp.RemainingDay).HasColumnType("int");
                 entity.Property(upp => upp.SubcribeDate).HasColumnType("datetime2");
                 entity.HasOne(upp => upp.User)
                         .WithMany(u => u.UserPricePackages)
