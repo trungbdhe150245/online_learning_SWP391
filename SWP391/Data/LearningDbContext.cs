@@ -241,17 +241,11 @@ namespace SWP391.Data
                         .HasForeignKey("QuizLevelId")
                         .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
-                //*******
                 entity.HasOne(q => q.Topic)
                         .WithMany(t => t.Quizzes)
                         .HasForeignKey("TopicId")
                         .IsRequired(false)
                         .OnDelete(DeleteBehavior.NoAction);
-                //*******
-                //entity.HasOne(q => q.Course)
-                //        .WithMany(c => c.Quizzes)
-                //        .HasForeignKey("CourseId")
-                //        .OnDelete(DeleteBehavior.NoAction);
             });
             modelBuilder.Entity<QuizLevel>(entity =>
             {
