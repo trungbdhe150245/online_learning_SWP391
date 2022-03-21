@@ -60,18 +60,18 @@
     margin-left: 10px;
 }
 
-.form-search {
+/*.form-search {
 	position: absolute;
 	width: 30%;
 	background-color: chocolate;
 	z-index: 1000;
-	border-radius: 10px;
+	border-radius: 10px;*/
 	/* border-collapse: separate; */
-	overflow: hidden;
+	/*overflow: hidden;
 	padding: 0px;
 	margin-top: 4px;
 	display:none;
-}
+}*/
 
 .search-item {
 	padding: 12px;
