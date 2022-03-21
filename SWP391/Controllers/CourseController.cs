@@ -288,6 +288,26 @@ namespace SWP391.Controllers
         }
 
 
+        [HttpGet]
+        [Route("/Quiz/{quizid}/Attempts")]
+        public IActionResult AttemptDetail(string quizid) 
+        {
+            var attempt_detailed = (from at in _db.Attempts
+                                    where at.QuizId.Equals(quizid)
+                                    select new Attempt
+                                    {
+                                        AttemptId = at.AttemptId,
+                                        Quiz = (from q in _db.Quizzes where q.QuizId.Equals(quizid) select q).FirstOrDefault(),
+                                        StartTime = at.StartTime,
+                                        TotalMark = at.TotalMark,
+                                        User = _userManager.GetUserAsync(User).Result,
+                                        AttemptDetaileds = (from ad in _db.AttemptDetaileds where ad.AttemptId.Equals(at.AttemptId) select ad).ToList()
+                                    }).ToList();
+            //ViewData["QuestionAnswer"] = (from qb in _db.QuestionBanks join ad in _db.AttemptDetaileds)
+            return View(attempt_detailed);
+        }
+
+
         /// add course to cart
         [Route("Addcart/{courseId}", Name = "addcart")]
         public IActionResult AddToCart([FromRoute] string courseId)

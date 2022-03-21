@@ -1,0 +1,58 @@
+﻿@model List<SWP391.Models.Attempt>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "ATTEMPT DETAILED";
+}
+
+<div class="page-content bg-white">
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li>Attempt</li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-block">
+        <div class="section-area section-sp1">
+            <h2 style="text-align:center">Record</h2>
+            <div class="container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">AttemptID</th>
+                            <th scope="col">Start time</th>
+                            <th scope="col">Estimated time</th>
+                            <th scope="col">Total Mark</th>
+                            <th scope="col">Question Preview</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count > 0)
+                        {
+                            foreach (var at in Model)
+                            {
+                                <tr>
+                                    <td>@at.AttemptId</td>
+                                    <td>@at.StartTime</td>
+                                    <td>Esti...</td>
+                                    <td>Total....</td>
+                                    @*<td>@at.AttemptDetaileds.ElementAt(0)</td>*@
+                                </tr>
+                                foreach (var ad in at.AttemptDetaileds)
+                                {
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+                @Model.Count
+            </div>
+        </div>
+    </div>
+</div>
