@@ -1,4 +1,4 @@
-﻿@model List<SWP391.Models.Course>
+﻿@model SWP391.Controllers.Products<Course>
 @using Microsoft.AspNetCore.Http
 @using Newtonsoft.Json
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -39,11 +39,14 @@
         <div class="section-area section-sp1">
             <div class="row d-flex flex-row-reverse">
                 <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
+                    
+
                     <section>
                         <div class="bt-drop-in-wrapper">
                             <div id="bt-dropin"></div>
                         </div>
                     </section>
+                   
                 </div>
                 <div class="col-lg-9 col-md-8 col-sm-12">
                     <div class="content-block">
@@ -53,6 +56,8 @@
                         <h2 style="text-align:center">@ViewData["Title"]</h2>
                         <div class="container">
                             <form id="payment-form" method="post" asp-controller="Home" asp-action="Checkout">
+                                @Html.HiddenFor(n => n.Id)
+                                
                                 <div class="row">
                                     <table class="table">
                                         <thead class="thead-dark">
@@ -64,7 +69,7 @@
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
-                                        @foreach (var course in Model)
+                                        @foreach (var course in Model.products)
                                         {
                                             total += course.Price;
                                             <tr>
@@ -78,12 +83,15 @@
                                                        class="btn btn-danger">Go To Course</a>
                                                 </td>
                                             </tr>
-                                            
+
                                         }
                                     </table>
+                                    @Html.HiddenFor(n => n.Nonce, new { @id = "nonce" })
+                                    
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         @if (!cart.Equals("0"))
                                         {
+                                            <input asp-for="@Model.Price" value="@total.ToString()" hidden/>
                                             <button type="submit" class="btn btn-secondary">Purchase @(total.ToString())$</button>
                                         }
                                         <a asp-controller="Course" asp-action="ClearCart" class="btn btn-secondary" style="background-color:red;">Empty cart</a>
@@ -142,7 +150,7 @@
                     return;
                 }
 
-                //document.querySelector('#nonce').value = payload.nonce;
+                document.querySelector('#nonce').value = payload.nonce;
                 form.submit();
             });
         });

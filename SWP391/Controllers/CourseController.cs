@@ -20,6 +20,19 @@ using System.Threading.Tasks;
 
 namespace SWP391.Controllers
 {
+    public class Products <T> where T: Course
+    {
+        public int Id { get; set; }
+        public List<T> products { get; set; }
+        public string Nonce { get; set; }
+        public double Price { get; set; }
+        public Products()
+        {
+
+        }
+        public Products(List<T> p, string n) => (products, Nonce) = (p, n);
+    }
+
     public class CourseController : Controller
     {
         private readonly LearningDbContext _db;
@@ -389,7 +402,8 @@ namespace SWP391.Controllers
             var gateway = _braintreeService.GetGateway();
             var clientToken = gateway.ClientToken.Generate();  //Genarate a token
             ViewBag.ClientToken = clientToken;
-            return View(GetCartItems());
+            Products<Course> products = new Products<Course>() {Id = new Random().Next(), products = GetCartItems(), Nonce = ""};
+            return View(products);
         }
 
         [Route("/Checkout")]

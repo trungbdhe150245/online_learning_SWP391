@@ -66,13 +66,13 @@ namespace SWP391.Controllers
 
         //[ServiceFilter(typeof(Filter))]
         [HttpPost]
-        public IActionResult Checkout()
+        public IActionResult Checkout(Products<Course> model)
         {
             var gateway = _braintreeService.GetGateway();
             var request = new TransactionRequest
             {
-                Amount = Convert.ToDecimal("250"),
-                PaymentMethodNonce = "",
+                Amount = Convert.ToDecimal(model.Price),
+                PaymentMethodNonce = model.Nonce,
                 Options = new TransactionOptionsRequest
                 {
                     SubmitForSettlement = true
@@ -85,7 +85,7 @@ namespace SWP391.Controllers
             }
             else
             {
-                return Ok("Failure 250");
+                return Ok("Failure" + (model.Nonce == null));
             }
         }
     }
