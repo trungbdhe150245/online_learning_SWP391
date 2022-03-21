@@ -16,46 +16,41 @@
 
 
     <div class="container">
-        <div class="row">
-            <form id="payment-form" method="post" asp-controller="Home" asp-action="CheckoutMembership">
+        <form id="payment-form" method="post" asp-controller="Home" asp-action="CheckoutMembership">
+            <div class="row">
                 @Html.HiddenFor(n => n.Id)
                 <div class="col-lg-8 col-md-7 col-sm-12">
                     <div class="courses-post">
                         <div class="ttr-post-info">
                             <div class="ttr-post-title ">
-                                <h2 class="post-title">Good Intentions or Good Results?</h2>
+                                <h1 class="post-title">Plan: @Model.PricePackage.PricePackageName</h1>
                             </div>
-                            <div class="ttr-post-text">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                            </div>
+                                
+                        </div>
+                        <div class="ttr-post-text">
+                            <p>@Model.PricePackage.Properties</p>
                         </div>
                         <button type="submit" class="btn btn-primary">Purchase</button>
                     </div>
 
 
-
-                    <div class="row">
-                        <div>@Model.PricePackage.PricePackageName</div>
-
-                    </div>
                     @Html.HiddenFor(n => n.Nonce, new { @id = "nonce" })
-                    <input asp-for="@Model.PricePackage.PricePackageId" value="@Model.PricePackage.PricePackageId" hidden/>
-                    <input asp-for="@Model.PricePackage.Price" value="@Model.PricePackage.Price" hidden/>
-                    
+                    <input asp-for="@Model.PricePackage.PricePackageId" value="@Model.PricePackage.PricePackageId" hidden />
+                    <input asp-for="@Model.PricePackage.Price" value="@Model.PricePackage.Price" hidden />
+
                 </div>
-            </form>
                 <div class="col-lg-4 col-md-5 col-sm-12 m-b30">
-                    <div class="bg-primary text-white contact-info-bx m-b30">
-                        <section>
-                            <div class="bt-drop-in-wrapper">
-                                <div id="bt-dropin"></div>
-                            </div>
-                        </section>
-                        
-                    </div>
+                    <section>
+                        <div class="bt-drop-in-wrapper">
+                            <div id="bt-dropin"></div>
+                        </div>
+                    </section>
                 </div>
-            
-        </div>
+            </div>
+        </form>
+
+
+
     </div>
 </div>
 
