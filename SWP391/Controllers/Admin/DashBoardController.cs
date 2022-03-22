@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 
 namespace SWP391.Controllers.Admin
 {
-    [ServiceFilter(typeof(Filter))]
     public class DashBoardController : Controller
     {
         private readonly LearningDbContext _db;

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace SWP391.Utility
 {
-    public class Filter : IActionFilter
+    public class MyFilter : IActionFilter
     {
         public void OnActionExecuted(ActionExecutedContext context)
         {

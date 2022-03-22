@@ -58,7 +58,7 @@ namespace SWP391
             //{
             //	config.Filters.Add(new Filter());
             //});
-            services.AddScoped<Filter>();
+            services.AddScoped<MyFilter>();
 
 
             services.AddOptions();

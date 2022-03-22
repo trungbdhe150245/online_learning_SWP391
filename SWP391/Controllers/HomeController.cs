@@ -1,4 +1,5 @@
 ﻿using Braintree;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,6 +21,7 @@ namespace SWP391.Controllers
         public string Nonce { get; set; }
         public PricePackage PricePackage { get; set; }
     }
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -34,6 +36,7 @@ namespace SWP391.Controllers
             _userManager = userManager;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             IEnumerable<Course> courses = _db.Courses.Where(c => c.SlideId == 1);
@@ -82,14 +85,9 @@ namespace SWP391.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        [Route("/About")]
-        [Route("/Home/About")]
-        public IActionResult About()
-        {
-            return View();
-        }
 
 
+        [AllowAnonymous]
         [Route("/Membership")]
         public IActionResult Membership()
         {
@@ -104,6 +102,7 @@ namespace SWP391.Controllers
             return View(packages);
         }
 
+        [ServiceFilter(typeof(MyFilter))]
         [Route("/Membership/{membershipid}")]
         public IActionResult OneMembership(string membershipid)
         {
@@ -121,6 +120,7 @@ namespace SWP391.Controllers
             return View(product);
         }
 
+        [ServiceFilter(typeof(MyFilter))]
         [Route("/Membership/Checkout")]
         public IActionResult CheckoutMembership(Product model)
         {
