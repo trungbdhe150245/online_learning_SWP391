@@ -17,6 +17,7 @@
         // Sử dụng tiếp Layout chung /Pages/Shared/_Layout.cshtml
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
+    var user = UserManager.GetUserAsync(User).Result;
 }
 
 
@@ -54,7 +55,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
                         <div class="profile-bx text-center">
                             <div class="user-profile-thumb">
-                                <img src="~/img/1.png" alt="" />
+                                <img src="~/img/@user.ProfilePictureURL" alt="" />
                             </div>
                             <div class="profile-info">
                                 <h4>@UserManager.GetUserName(User).ToUpper()</h4>
