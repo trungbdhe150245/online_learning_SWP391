@@ -51,22 +51,20 @@
                                 <h5><a href="#">@course.Title</a></h5>
                                 <span>@course.Category.CategoryValue</span>
                             </div>
-                            <div class="cours-more-info">
-                                <div class="review">
-                                    <span>3 Review</span>
-                                    <ul class="cours-star">
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
+                            @if (course.UserId != null)
+                            {
+                                <div class="cours-more-info row">
+                                    <div class="col-6">
+                                        <button class="btn btn-success" style="width: 100%">Edit</button>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-danger" style="width: 100%">Delete</button>
+
+                                    </div>
+
                                 </div>
-                                @*<div class="price">
-                                        <del>$190</del>
-                                        <h5>$120</h5>
-                                    </div>*@
-                            </div>
+                            }
                         </div>
                     </li>
                 }

@@ -38,8 +38,37 @@ namespace SWP391.Controllers
         {
             IEnumerable<Course> courses = _db.Courses.Where(c => c.SlideId == 1);
             this.ViewBag.Course = courses;
-            //UserPricePackage up = _db.UserPricePackages.FirstOrDefault(u => u.UserId.Equals(_userManager.GetUserAsync(User).Result.Id));
-            //this.ViewBag.UPP = up;
+            UserPricePackage up = new UserPricePackage();
+            var user = _userManager.GetUserAsync(User).Result;
+            //if (user != null)
+            //{
+            //    up = _db.UserPricePackages.FirstOrDefault(u => u.UserId.Equals(user.Id));
+            //    this.ViewBag.UPP = up;
+            //}
+
+            List<Blog> blogs = _db.Blogs.Where(b => b.SlideId == 1).OrderByDescending(b => b.CreatedDate).ToList();
+            foreach (var b in blogs)
+            {
+                string shortdesc = b.Content.Split(",").ToList().First();
+                b.Content = shortdesc;
+                foreach (var u in _userManager.Users)
+                {
+                    if (b.UserId.Equals(u.Id))
+                    {
+                        b.User = u;
+                        break;
+                    }
+                }
+            }
+            if (user != null)
+            {
+                List<UserPricePackage> upp = _db.UserPricePackages.Where(u => u.UserId.Equals(user.Id)).ToList();
+                this.ViewBag.UP = upp.Count;
+                var user_roles = _db.UserRoles.FirstOrDefault(u => u.UserId.Equals(user.Id) && u.RoleId.Equals("ROLE2"));
+                this.ViewBag.userAdmin = user_roles;
+            }
+
+            this.ViewBag.Blogs = blogs;
             return View();
         }
 
@@ -53,13 +82,20 @@ namespace SWP391.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        
+        [Route("/About")]
+        [Route("/Home/About")]
+        public IActionResult About()
+        {
+            return View();
+        }
+
+
         [Route("/Membership")]
-        public IActionResult Membership() 
+        public IActionResult Membership()
         {
             List<PricePackage> packages = (from pricepackage in _db.PricePackages select pricepackage).ToList();
             List<string[]> properties = new List<string[]>();
-            foreach(var package in packages)
+            foreach (var package in packages)
             {
                 string[] property = package.Properties.Split("|");
                 properties.Add(property);
@@ -72,13 +108,14 @@ namespace SWP391.Controllers
         public IActionResult OneMembership(string membershipid)
         {
             var gateway = _braintreeService.GetGateway();
-            var clientToken = gateway.ClientToken.Generate();  
+            var clientToken = gateway.ClientToken.Generate();  //Genarate a token
             ViewBag.ClientToken = clientToken;
             Product product = new Product
             {
                 Id = new Random().Next(),
-                PricePackage = (from pricepackage in _db.PricePackages 
-                                where pricepackage.PricePackageId.Equals(Int32.Parse(membershipid)) select pricepackage).FirstOrDefault(),
+                PricePackage = (from pricepackage in _db.PricePackages
+                                where pricepackage.PricePackageId.Equals(Int32.Parse(membershipid))
+                                select pricepackage).FirstOrDefault(),
                 Nonce = ""
             };
             return View(product);
@@ -100,18 +137,18 @@ namespace SWP391.Controllers
             Result<Transaction> result = gateway.Transaction.Sale(request);
             if (result.IsSuccess())
             {
-                UserPricePackage userPricePackage = new UserPricePackage {PricePackageId = model.PricePackage.PricePackageId, UserId = _userManager.GetUserAsync(User).Result.Id,  SubcribeDate = DateTime.Parse(String.Format("{0:MM/dd/yyyy}", DateTime.Now.Date))};
+                UserPricePackage userPricePackage = new UserPricePackage { PricePackageId = model.PricePackage.PricePackageId, UserId = _userManager.GetUserAsync(User).Result.Id, SubcribeDate = DateTime.Parse(String.Format("{0:MM/dd/yyyy}", DateTime.Now.Date)) };
                 _db.UserPricePackages.Add(userPricePackage);
                 List<string> roleIds = (from r in _db.Roles select r.Id).ToList();
-                foreach(var id in roleIds)
+                foreach (var id in roleIds)
                 {
-                    if(id.Contains(model.PricePackage.PricePackageId.ToString()))
+                    if (id.Contains(model.PricePackage.PricePackageId.ToString()))
                     {
                         _db.UserRoles.Add(new IdentityUserRole<string>() { RoleId = id, UserId = _userManager.GetUserAsync(User).Result.Id });
                         break;
                     }
                 }
-                
+
                 _db.SaveChanges();
                 return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
                 {

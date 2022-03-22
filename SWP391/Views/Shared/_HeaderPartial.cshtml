@@ -1,27 +1,35 @@
-﻿<header class="header rs-nav">
-		@await Html.PartialAsync("_LoginPartial")
-		<div class="sticky-header navbar-expand-lg">
-            <div class="menu-bar clearfix">
-                <div class="container clearfix">
-					<div class="menu-logo">
-						<a asp-controller="Home" asp-action="Index"><img src="~/assets/images/logo/logo.png" alt=""></a>
-					</div>
-                    <button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
-						<span></span>
-						<span></span>
-						<span></span>
-					</button>
-                    <div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
-						<div class="menu-logo">
-							<a asp-controller="Home" asp-action="Index"><img src="~/assets/images/logo/logo.png" alt=""></a>
-						</div>
-                        <ul class="nav navbar-nav">
-                            <li class="add-mega-menu"><a asp-controller="Course" asp-action="CourseList">Courses</a></li>
-                            <li><a asp-controller="Blog" asp-action="BlogList">Blogs</a></li>
-                            <li><a asp-controller="DashBoard" asp-action="DashBoard">Dashboard</a></li>
-                        </ul>
+﻿@{
+    var ups = ViewBag.UP;
+    var admin = ViewBag.userAdmin;
+}
+<header class="header rs-nav">
+    @await Html.PartialAsync("_LoginPartial")
+    <div class="sticky-header navbar-expand-lg">
+        <div class="menu-bar clearfix">
+            <div class="container clearfix">
+                <div class="menu-logo">
+                    <a asp-controller="Home" asp-action="Index"><img src="~/assets/images/logo/logo.png" alt=""></a>
+                </div>
+                <button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
+                    <div class="menu-logo">
+                        <a asp-controller="Home" asp-action="Index"><img src="~/assets/images/logo/logo.png" alt=""></a>
                     </div>
+                    <ul class="nav navbar-nav">
+                        <li class="add-mega-menu"><a asp-controller="Course" asp-action="CourseList">Courses</a></li>
+                        <li><a asp-controller="Blog" asp-action="BlogList">Blogs</a></li>
+                        @if (admin != null)
+                        {
+                            <li><a asp-controller="DashBoard" asp-action="DashBoard">Dashboard</a></li>
+                        }
+                        <li><a asp-controller="user" asp-action="profile">Profile</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
+    </div>
 </header>

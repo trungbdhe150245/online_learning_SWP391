@@ -37,17 +37,7 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
         {
             var user = await _userManager.GetUserAsync(User);
             List<Course> courses = new List<Course>();
-            //List<CourseOwner> courseOwners = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
-            //foreach (var c in courseOwners)
-            //{
-            //    Course course = _db.Courses.Find(c.CourseId);
-            //    if (course != null)
-            //    {
-            //        Category category = _db.Categories.Find(course.CategoryId);
-            //        course.Category = category;
-            //        courses.Add(course);
-            //    }
-            //}
+            
             if (keyy == 2)
             {
                 courses = _db.Courses.Where(c => c.UserId.Equals(user.Id)).ToList();
@@ -72,6 +62,8 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                     }
                 }
             }
+
+
             const int pageSize = 3;
             if (pge < 1)
             {

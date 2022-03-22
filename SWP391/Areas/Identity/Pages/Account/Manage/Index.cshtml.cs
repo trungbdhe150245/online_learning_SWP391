@@ -74,7 +74,7 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             //Username = userName;
             //FullName = user.FullName;
             //ProfilePictureURL = user.ProfilePictureURL;
-           
+
 
             Input = new InputModel
             {
@@ -125,21 +125,23 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-           
-            string wwwroot = _WebHostEnvironment.WebRootPath;
-            string filename = Path.GetFileNameWithoutExtension(Input.ImgFile.FileName);
-            string ex = Path.GetExtension(Input.ImgFile.FileName);
-            Input.ProfilePictureURL = filename = filename + DateTime.Now.ToString("yymmssfff") + ex;
-            string path = Path.Combine(wwwroot + "/img/", filename);
-            using (var filestream = new FileStream(path, FileMode.Create))
+            if (Input.ImgFile != null)
             {
-                await Input.ImgFile.CopyToAsync(filestream);
+                string wwwroot = _WebHostEnvironment.WebRootPath;
+                string filename = Path.GetFileNameWithoutExtension(Input.ImgFile.FileName);
+                string ex = Path.GetExtension(Input.ImgFile.FileName);
+                Input.ProfilePictureURL = filename = filename + DateTime.Now.ToString("yymmssfff") + ex;
+                string path = Path.Combine(wwwroot + "/img/", filename);
+                using (var filestream = new FileStream(path, FileMode.Create))
+                {
+                    await Input.ImgFile.CopyToAsync(filestream);
+                }
+                user.ProfilePictureURL = Input.ProfilePictureURL;
             }
             Username = Input.UserName;
             user.FullName = Input.FullName;
-            user.ProfilePictureURL = Input.ProfilePictureURL;
             user.PhoneNumber = Input.PhoneNumber;
-            user.ImgFile = Input.ImgFile;
+            //user.ImgFile = Input.ImgFile;
             user.Address = Input.Address;
             await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
