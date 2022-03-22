@@ -11,6 +11,7 @@
         pager = Model.Paginated;
         pageNo = pager.CurrentPage;
     }
+    var key = ViewData["Key"];
 }
 
 <h4>@ViewData["Title"]</h4>
@@ -19,20 +20,20 @@
     <div class="profile-head">
         <h3>My Courses</h3>
         <div class="feature-filters style1 ml-auto">
-            <ul class="filters" data-toggle="buttons">
-                <li data-filter="" class="btn active">
-                    <input type="radio">
-                    <a href="#"><span>All</span></a>
-                </li>
+            <a asp-action="course" asp-controller="user" asp-route-keyy="1"><span>Current Course</span></a>
+            <a asp-action="course" asp-controller="user" asp-route-keyy="2"><span>My Course</span></a>
+            <!--<ul class="filters" data-toggle="buttons">
+                <li data-filter="" class="btn active">-->
+            @*<input type="radio">*@
+            <!--</li>
                 <li data-filter="publish" class="btn">
                     <input type="radio">
-                    <a href="#"><span>Publish</span></a>
                 </li>
                 <li data-filter="pending" class="btn">
                     <input type="radio">
                     <a href="#"><span>Pending</span></a>
                 </li>
-            </ul>
+            </ul>-->
         </div>
     </div>
     <div class="courses-filter">
@@ -44,7 +45,7 @@
                         <div class="cours-bx">
                             <div class="action-box">
                                 <img src="~/CourseImg/@course.ThumbnailURL" alt="">
-                                <a asp-action="CourseDetail" asp-controller="Course" asp-route-id="@course.CourseId" class="btn">Read More</a>
+                                <a asp-action="CourseDetail" asp-controller="Course" asp-route-id="@course.CourseId" asp-route-keyy="@key" class="btn">Read More</a>
                             </div>
                             <div class="info-bx text-center">
                                 <h5><a href="#">@course.Title</a></h5>
@@ -62,9 +63,9 @@
                                     </ul>
                                 </div>
                                 @*<div class="price">
-                                    <del>$190</del>
-                                    <h5>$120</h5>
-                                </div>*@
+                                        <del>$190</del>
+                                        <h5>$120</h5>
+                                    </div>*@
                             </div>
                         </div>
                     </li>
@@ -77,16 +78,16 @@
                 {
                     <ul class="pagination">
                         <li class="previous @(pager.CurrentPage <= 1 ? "visible-paging" : "")">
-                            <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@(pager.CurrentPage - 1)" asp-route-cate="@cate"><i class="ti-arrow-left"></i> Prev</a>
+                            <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@(pager.CurrentPage - 1)" asp-route-cate="@cate" asp-route-keyy="@key"><i class="ti-arrow-left"></i> Prev</a>
                         </li>
                         @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
                         {
                             <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
-                                <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@pge" asp-route-cate="@cate"> @pge </a>
+                                <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@pge" asp-route-cate="@cate" asp-route-keyy="@key"> @pge </a>
                             </li>
                         }
                         <li class="next @(pager.CurrentPage == pager.EndPage ? "visible-paging" : "")">
-                            <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@(pager.CurrentPage + 1)" asp-route-cate="@cate">Next <i class="ti-arrow-right"></i></a>
+                            <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@(pager.CurrentPage + 1)" asp-route-cate="@cate" asp-route-keyy="@key">Next <i class="ti-arrow-right"></i></a>
                         </li>
                     </ul>
                 }

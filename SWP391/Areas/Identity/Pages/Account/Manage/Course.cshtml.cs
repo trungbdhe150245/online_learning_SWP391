@@ -33,22 +33,46 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
         public List<Course> Courses { get; set; }
         public Paginated Paginated { get; set; }
 
-        private async Task LoadAsync(int pge)
+        private async Task LoadAsync(int pge, int keyy)
         {
             var user = await _userManager.GetUserAsync(User);
-            List<CourseOwner> courseOwners = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
             List<Course> courses = new List<Course>();
-            foreach (var c in courseOwners)
+            //List<CourseOwner> courseOwners = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
+            //foreach (var c in courseOwners)
+            //{
+            //    Course course = _db.Courses.Find(c.CourseId);
+            //    if (course != null)
+            //    {
+            //        Category category = _db.Categories.Find(course.CategoryId);
+            //        course.Category = category;
+            //        courses.Add(course);
+            //    }
+            //}
+            if (keyy == 2)
             {
-                Course course = _db.Courses.Find(c.CourseId);
-                if (course != null)
+                courses = _db.Courses.Where(c => c.UserId.Equals(user.Id)).ToList();
+                foreach (var c in courses)
                 {
-                    Category category = _db.Categories.Find(course.CategoryId);
-                    course.Category = category;
-                    courses.Add(course);
+                    Category cate = _db.Categories.Find(c.CategoryId);
+                    c.Category = cate;
+                }
+
+            }
+            else
+            {
+                List<CourseOwner> courseOwners = _db.CourseOwners.Where(c => c.User.Id.Equals(user.Id)).ToList();
+                foreach (var c in courseOwners)
+                {
+                    Course course = _db.Courses.Find(c.CourseId);
+                    if (course != null)
+                    {
+                        Category category = _db.Categories.Find(course.CategoryId);
+                        course.Category = category;
+                        courses.Add(course);
+                    }
                 }
             }
-            const int pageSize = 1;
+            const int pageSize = 3;
             if (pge < 1)
             {
                 pge = 1;
@@ -58,13 +82,12 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             var pager = new Paginated(resCount, pge, pageSize);
             Paginated = pager;
             int recSkip = (pge - 1) * pageSize;
-
             var data = courses.Skip(recSkip).Take(pager.PageSize).OrderBy(s => s.SlideId);
-
+            this.ViewData["Key"] = keyy;
             Courses = data.ToList();
         }
 
-        public async Task<IActionResult> OnGetAsync(int pge)
+        public async Task<IActionResult> OnGetAsync(int pge, int keyy)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -72,7 +95,7 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            await LoadAsync(pge);
+            await LoadAsync(pge, keyy);
             return Page();
         }
 
