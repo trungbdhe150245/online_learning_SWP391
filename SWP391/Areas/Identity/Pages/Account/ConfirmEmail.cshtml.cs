@@ -37,7 +37,7 @@ namespace SWP391.Areas.Identity.Pages.Account
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound($"Không tồn tại User - '{userId}'.");
+                return NotFound($"User not exist - '{userId}'.");
             }
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
@@ -53,15 +53,15 @@ namespace SWP391.Areas.Identity.Pages.Account
                 return ViewComponent(MessagePage.COMPONENTNAME,
                     new MessagePage.Message()
                     {
-                        Title = "Xác thực email",
-                        HtmlContent = "Đã xác thực thành công, đang chuyển hướng",
+                        Title = "Email verification",
+                        HtmlContent = "Verification success, redirecting..",
                         UrlRedirect = (returnUrl != null) ? returnUrl : Url.Page("/Index")
                     }
                 );
             }
             else
             {
-                StatusMessage = "Lỗi xác nhận email";
+                StatusMessage = "Email verification error.";
             }
             return Page();
         }

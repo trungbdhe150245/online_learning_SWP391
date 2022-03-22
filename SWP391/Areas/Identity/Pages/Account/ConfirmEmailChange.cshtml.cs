@@ -46,7 +46,7 @@ namespace SWP391.Areas.Identity.Pages.Account
             if (!result.Succeeded)
             {
                 StatusMessage = "Error changing email.";
-                return Page();
+                return RedirectToPage("/User/Profile");
             }
 
             // In our UI email and user name are one and the same, so when we update the email
@@ -59,14 +59,14 @@ namespace SWP391.Areas.Identity.Pages.Account
                 if (!setUserNameResult.Succeeded)
                 {
                     StatusMessage = "Error changing user name.";
-                    return Page();
+                    return RedirectToPage("/User/Profile");
                 }
             }
 
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Thank you for confirming your email change.";
-            return Page();
+            return RedirectToPage("/User/Profile");
         }
     }
 }

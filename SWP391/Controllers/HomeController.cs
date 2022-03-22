@@ -52,13 +52,6 @@ namespace SWP391.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        [Route("/About")]
-        [Route("/Home/About")]
-        public IActionResult About()
-        {
-            return View();
-        }
-
         
         [Route("/Membership")]
         public IActionResult Membership() 
@@ -108,6 +101,16 @@ namespace SWP391.Controllers
             {
                 UserPricePackage userPricePackage = new UserPricePackage {PricePackageId = model.PricePackage.PricePackageId, UserId = _userManager.GetUserAsync(User).Result.Id,  SubcribeDate = DateTime.Parse(String.Format("{0:MM/dd/yyyy}", DateTime.Now.Date))};
                 _db.UserPricePackages.Add(userPricePackage);
+                List<string> roleIds = (from r in _db.Roles select r.Id).ToList();
+                foreach(var id in roleIds)
+                {
+                    if(id.Contains(model.PricePackage.PricePackageId.ToString()))
+                    {
+                        _db.UserRoles.Add(new IdentityUserRole<string>() { RoleId = id, UserId = _userManager.GetUserAsync(User).Result.Id });
+                        break;
+                    }
+                }
+                
                 _db.SaveChanges();
                 return /*RedirectToAction("Index");*/ Ok("Success");
             }
