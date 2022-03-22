@@ -71,7 +71,7 @@ namespace SWP391.Controllers
         public IActionResult OneMembership(string membershipid)
         {
             var gateway = _braintreeService.GetGateway();
-            var clientToken = gateway.ClientToken.Generate();  //Genarate a token
+            var clientToken = gateway.ClientToken.Generate();  
             ViewBag.ClientToken = clientToken;
             Product product = new Product
             {
