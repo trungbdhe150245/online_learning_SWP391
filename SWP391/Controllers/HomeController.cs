@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using XTLASPNET;
 
 namespace SWP391.Controllers
 {
@@ -112,11 +113,23 @@ namespace SWP391.Controllers
                 }
                 
                 _db.SaveChanges();
-                return /*RedirectToAction("Index");*/ Ok("Success");
+                return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
+                {
+
+                    Title = "Bought successfully :D",
+                    HtmlContent = "Enjoy learning <3",
+                    UrlRedirect = "/Index"
+                });
             }
             else
             {
-                return Ok("Failed");
+                return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
+                {
+
+                    Title = "Bought failed :D",
+                    HtmlContent = "Try again later : (",
+                    UrlRedirect = "/Index"
+                });
             }
         }
     }
