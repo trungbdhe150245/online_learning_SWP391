@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SWP391.Data.LearningDbContext">
+    <Position X="2.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CABAAAQEQgAAAAAAAAAAAQAAFEAAEAAAAAAQIDEAKAA=</HashCode>
+      <FileName>Data\LearningDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SWP391.Models.AppUser">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAQAAAAAIAAAAAAAAAAEEAAAAACAAAAIBEAIAA=</HashCode>
+      <FileName>Models\AppUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SWP391.Areas.Identity.Pages.Account.ResetPasswordModel">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="SWP391.Areas.Identity.Pages.Account.ResetPasswordModel.InputModel" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Areas\Identity\Pages\Account\ResetPassword.cshtml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAEAAAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Areas\Identity\Pages\Account\ResetPassword.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

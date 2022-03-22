@@ -24,7 +24,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
 
     <!-- PAGE TITLE HERE ============================================= -->
-    <title>EduChamp : Education HTML Template </title>
+    <title>@ViewBag.Title</title>
 
     <!-- MOBILE SPECIFIC ============================================= -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,22 +48,11 @@
 
 </head>
 <body id="bg">
-    <div class="page-wraper">
-        <div id="loading-icon-bx"></div>
-        <div class="account-form">
-            <div class="account-head" style="background-image:url(assets/images/background/bg2.jpg);">
-                <a href="index.html"><img src="assets/images/logo-white-2.png" alt=""></a>
-            </div>
-            <div class="account-form-inner">
-                <div class="account-container">
-                    <div class="error-page">
-                        @RenderBody()
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div>
+        @RenderBody()
     </div>
 </body>
+
 </html>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/vendors/bootstrap/js/popper.min.js"></script>
@@ -80,3 +69,6 @@
 <script src="assets/js/functions.js"></script>
 <script src="assets/js/contact.js"></script>
 <script src='assets/vendors/switcher/switcher.js'></script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

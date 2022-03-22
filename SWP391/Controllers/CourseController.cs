@@ -331,10 +331,6 @@ namespace SWP391.Controllers
             var course = _db.Courses
                            .Where(c => c.CourseId.Equals(courseId))
                             .FirstOrDefault();
-            //if (course == null)
-            //    return NotFound("Course not found!");
-
-            //Putin cart
             var cart = GetCartItems();
             bool add = false;
             foreach (var product in cart)
@@ -456,6 +452,13 @@ namespace SWP391.Controllers
             {
                 return View("Cart");
             }
+        }
+
+        [Route("/Course/Attempt/{quizid}")]
+        public IActionResult Attempt(string quizid) 
+        {
+
+            return View();
         }
 
     }

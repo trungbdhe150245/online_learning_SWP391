@@ -3,83 +3,14 @@
 
 @{
     ViewData["Title"] = "LOGIN";
-    Layout = "~/Views/Shared/CustomLayout/_LayoutLogin.cshtml";
+    Layout = "~/Views/Shared/CustomLayout/_LayoutBigPic.cshtml";
 }
-@*<div class="row">
-    <div class="col-md-4">
-    <section>
-    <form id="account" method="post">
-    <h4>Enter your information to login</h4>
-    <hr />
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-    <label asp-for="Input.UserNameOrEmail"></label>
-    <input asp-for="Input.UserNameOrEmail" class="form-control" />
-    <span asp-validation-for="Input.UserNameOrEmail" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <label asp-for="Input.Password"></label>
-    <input asp-for="Input.Password" class="form-control" />
-    <span asp-validation-for="Input.Password" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-    <div class="checkbox">
-    <label asp-for="Input.RememberMe">
-    <input asp-for="Input.RememberMe" />
-    @Html.DisplayNameFor(m => m.Input.RememberMe)
-    </label>
-    </div>
-    </div>
-    <div class="form-group">
-    <button type="submit" class="btn btn-primary">Login</button>
-    </div>
-    <div class="form-group">
-    <p>
-    <a id="forgot-password" asp-page="./ForgotPassword">Forgot password?</a>
-    </p>
-    <p>
-    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Don't have an account? Register.</a>
-    </p>
-    </div>
-    </form>
-    </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-    <section>
-    <h4>Login with.</h4>
-    <hr />
-    @{
-    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-    {
-    <div>
-    <p>
-    Not yet config services. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-    </p>
-    </div>
-    }
-    else
-    {
-    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-    <div>
-    <p>
-    @foreach (var provider in Model.ExternalLogins)
-    {
-    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-    }
-    </p>
-    </div>
-    </form>
-    }
-    }
-    </section>
-    </div>
-    </div>*@
 
     <div class="page-wraper">
         <div id="loading-icon-bx"></div>
         <div class="account-form">
             <div class="account-head" style="background-image:url(assets/images/background/bg2.jpg);">
-                <a href="index.html"><img src="assets/images/logo-white-2.png" alt=""></a>
+                <a asp-controller="Home" asp-action="Index"><img src="~/assets/images/logo/logo.png"  alt=""></a>
             </div>
             <div class="account-form-inner">
                 <div class="account-container">
@@ -97,7 +28,6 @@
                                         <label asp-for="Input.UserNameOrEmail"></label>
                                         <input asp-for="Input.UserNameOrEmail" class="form-control" />
                                     </div>
-                                    @*<span asp-validation-for="Input.UserNameOrEmail" class="text-danger"></span>*@
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -106,19 +36,12 @@
                                         <label asp-for="Input.Password"></label>
                                         <input asp-for="Input.Password" class="form-control" />
                                     </div>
-                                        @*<span asp-validation-for="Input.Password" class="text-danger"></span>*@
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group form-forget">
                                     <div class="custom-control custom-checkbox">
-@*                                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                                        <label class="custom-control-label" for="customControlAutosizing">Remember me</label>*@
-
-                                               
-                                            
                                             <input  type="checkbox" class="custom-control-input" id="customControlAutosizing" asp-for="Input.RememberMe" />
-@*                                            @Html.DisplayNameFor(m => m.Input.RememberMe)*@
                                             <label class="custom-control-label" for="customControlAutosizing" asp-for="Input.RememberMe"></label>
                                            
                                     </div>
@@ -127,13 +50,6 @@
                             </div>
                             <div class="col-lg-12 m-b30">
                                 <button name="submit" type="submit" value="Submit" class="btn button-md">Login</button>
-                            </div>
-                            <div class="col-lg-12">
-                                <h6>Login with Social media</h6>
-                                <div class="d-flex">
-                                    <a class="btn flex-fill m-r5 facebook" href="#"><i class="fa fa-facebook"></i>Facebook</a>
-                                    <a class="btn flex-fill m-l5 google-plus" href="#"><i class="fa fa-google-plus"></i>Google Plus</a>
-                                </div>
                             </div>
                         </div>
                     </form>
