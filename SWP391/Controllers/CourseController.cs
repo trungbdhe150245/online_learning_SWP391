@@ -1,4 +1,5 @@
 ﻿using Braintree;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -9,6 +10,7 @@ using Nancy.Json;
 using Newtonsoft.Json;
 using SWP391.Data;
 using SWP391.Models;
+using SWP391.Utility;
 using SWP391.Utility.BraintreeService;
 using SWP391.Views.ViewModel;
 using System;
@@ -322,9 +324,9 @@ namespace SWP391.Controllers
             return View(attempt_detailed);
         }
 
-
+        [AllowAnonymous]
         /// add course to cart
-        [Route("Addcart/{courseId}", Name = "addcart")]
+        [Route("AddCart/{courseId}", Name = "addcart")]
         public IActionResult AddToCart([FromRoute] string courseId)
         {
 
@@ -352,8 +354,8 @@ namespace SWP391.Controllers
             SaveCartSession(cart);
             return RedirectToAction(nameof(Cart));
         }
-
-        [Route("/Removecart/{courseId}", Name = "removecart")]
+        [AllowAnonymous]
+        [Route("/RemoveCart/{courseId}", Name = "removecart")]
         public IActionResult RemoveCart([FromRoute] string courseId)
         {
             var cart = GetCartItems();
@@ -364,8 +366,8 @@ namespace SWP391.Controllers
             SaveCartSession(cart);
             return RedirectToAction(nameof(Cart));
         }
-
-        [Route("/Updatecart", Name = "updatecart")]
+        [AllowAnonymous]
+        [Route("/UpdateCart", Name = "updatecart")]
         [HttpPost]
         public IActionResult UpdateCart([FromForm] string courseId)
         {
@@ -379,7 +381,7 @@ namespace SWP391.Controllers
             return RedirectToAction(nameof(Cart));
         }
 
-
+        [AllowAnonymous]
         [Route("/Cart", Name = "cart")]
         public IActionResult Cart()
         {
@@ -390,14 +392,15 @@ namespace SWP391.Controllers
             return View(products);
         }
 
-        [Route("/Checkout")]
-        public IActionResult CheckOut()
-        {
-            return View();
-        }
+
+        //[Route("/Checkout")]
+        //public IActionResult CheckOut()
+        //{
+        //    return View();
+        //}
 
         public const string CARTKEY = "cart";
-
+        [AllowAnonymous]
         List<Course> GetCartItems()
         {
 
@@ -409,19 +412,21 @@ namespace SWP391.Controllers
             }
             return new List<Course>();
         }
+        [AllowAnonymous]
         public IActionResult ClearCart()
         {
             var session = HttpContext.Session;
             session.Remove(CARTKEY);
             return RedirectToAction(nameof(Cart));
         }
+        [AllowAnonymous]
         void SaveCartSession(List<Course> ls)
         {
             var session = HttpContext.Session;
             string jsoncart = JsonConvert.SerializeObject(ls);
             session.SetString(CARTKEY, jsoncart);
         }
-
+        [ServiceFilter(typeof(MyFilter))]
         [HttpPost]
         public IActionResult CheckoutCourse(Products<Course> model)
         {
