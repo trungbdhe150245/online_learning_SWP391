@@ -8,6 +8,7 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace SWP391.Areas.Identity.Pages.Account.Manage
@@ -60,6 +61,9 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
             [NotMapped]
             [DisplayName("Upload Image")]
             public IFormFile ImgFile { get; set; }
+            [MaxLength(255)]
+            [Display(Name = "User Name")]
+            public string UserName { set; get; }
         }
 
         //LẤY THÔNG TIN CỦA USER
@@ -67,17 +71,19 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            Username = userName;
-            FullName = user.FullName;
-            ProfilePictureURL = user.ProfilePictureURL;
+            //Username = userName;
+            //FullName = user.FullName;
+            //ProfilePictureURL = user.ProfilePictureURL;
            
 
             Input = new InputModel
             {
+                UserName = userName,
                 PhoneNumber = phoneNumber,
                 Address = user.Address,
                 FullName = user.FullName,
                 ProfilePictureURL = user.ProfilePictureURL,
+                ImgFile = user.ImgFile
             };
         }
 
@@ -119,10 +125,22 @@ namespace SWP391.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            user.Address = Input.Address;
+           
+            string wwwroot = _WebHostEnvironment.WebRootPath;
+            string filename = Path.GetFileNameWithoutExtension(Input.ImgFile.FileName);
+            string ex = Path.GetExtension(Input.ImgFile.FileName);
+            Input.ProfilePictureURL = filename = filename + DateTime.Now.ToString("yymmssfff") + ex;
+            string path = Path.Combine(wwwroot + "/img/", filename);
+            using (var filestream = new FileStream(path, FileMode.Create))
+            {
+                await Input.ImgFile.CopyToAsync(filestream);
+            }
+            Username = Input.UserName;
             user.FullName = Input.FullName;
             user.ProfilePictureURL = Input.ProfilePictureURL;
-
+            user.PhoneNumber = Input.PhoneNumber;
+            user.ImgFile = Input.ImgFile;
+            user.Address = Input.Address;
             await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
