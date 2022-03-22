@@ -7,6 +7,7 @@ using SWP391.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Threading.Tasks;
+using XTLASPNET;
 
 namespace SWP391.Areas.Identity.Pages.Account
 {
@@ -73,7 +74,7 @@ namespace SWP391.Areas.Identity.Pages.Account
             if (user == null)
             {
                 // Không thấy user
-                return RedirectToPage("./ResetPasswordConfirmation");
+                return RedirectToPage("./ForgotPasswordConfirmation");
             }
             // Đặt lại passowrd chu user - có kiểm tra mã token khi đổi
             var result = await _userManager.ResetPasswordAsync(user, Input.Code, Input.Password);
@@ -81,7 +82,13 @@ namespace SWP391.Areas.Identity.Pages.Account
             if (result.Succeeded)
             {
                 // Chuyển đến trang thông báo đã reset thành công
-                return RedirectToPage("./ResetPasswordConfirmation");
+                //return RedirectToPage("./ResetPasswordConfirmation");
+                return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
+                {
+                    Title = "Go to login page",
+                    HtmlContent = "Password has been reseted.",
+                    UrlRedirect = "/Login"
+                });
             }
 
             foreach (var error in result.Errors)

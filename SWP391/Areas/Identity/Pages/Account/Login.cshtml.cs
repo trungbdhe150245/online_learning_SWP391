@@ -93,8 +93,8 @@ namespace SWP391.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(
                         user.UserName,
                         Input.Password,
-                        Input.RememberMe,           // Có lưu cookie - khi đóng trình duyệt vẫn nhớ
-                        true                        // CÓ ÁP DỤNG LOCKOUT
+                        Input.RememberMe,           
+                        true                        
                     );
 
 
@@ -113,7 +113,6 @@ namespace SWP391.Areas.Identity.Pages.Account
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    // Nếu cấu hình đăng nhập hai yếu tố thì chuyển hướng đến LoginWith2fa
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
                 if (result.IsLockedOut)

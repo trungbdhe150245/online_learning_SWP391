@@ -53,14 +53,13 @@ namespace SWP391.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                // Gửi email
                 await _emailSender.SendEmailAsync(
                     Input.Email,
                     "Reset password",
                     $"To reset password for this account <a href='{callbackUrl}'>click here</a>.");
 
-                // Chuyển đến trang thông báo đã gửi mail để reset password
                 return RedirectToPage("./ForgotPasswordConfirmation");
+                
             }
 
             return Page();

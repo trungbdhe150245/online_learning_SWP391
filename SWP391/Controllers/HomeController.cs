@@ -37,8 +37,8 @@ namespace SWP391.Controllers
         {
             IEnumerable<Course> courses = _db.Courses.Where(c => c.SlideId == 1);
             this.ViewBag.Course = courses;
-            UserPricePackage up = _db.UserPricePackages.FirstOrDefault(u => u.UserId.Equals(_userManager.GetUserAsync(User).Result.Id));
-            this.ViewBag.UPP = up;
+            //UserPricePackage up = _db.UserPricePackages.FirstOrDefault(u => u.UserId.Equals(_userManager.GetUserAsync(User).Result.Id));
+            //this.ViewBag.UPP = up;
             return View();
         }
 
@@ -116,7 +116,5 @@ namespace SWP391.Controllers
                 return Ok("Failed");
             }
         }
-
-
     }
 }
