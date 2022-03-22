@@ -94,7 +94,7 @@
                                         <h4 class="price">You purchased this course</h4>
                                     </div>*@
                                 <div class="course-buy-now text-center">
-                                    <a class="btn radius-xl text-uppercase">Go to course</a>
+                                    <a asp-controller="Course" asp-action="Lesson" asp-route-id="@Model.course.CourseId" class="btn radius-xl text-uppercase">Go to course</a>
                                 </div>
                             }
                             <div class="teacher-bx">
