@@ -19,6 +19,8 @@
     {
         cart = "0";
     }
+
+    var roles = SignInManager.IsSignedIn(User) ? UserManager.GetRolesAsync(UserManager.GetUserAsync(Context.User).Result).Result : null;
 }
 
 
@@ -33,9 +35,33 @@
             </div>
             <div class="topbar-right">
                 <ul>
-                    <li>
-                        <a id="membership" asp-action="Membership" asp-controller="Home" title="Membership">Subcription <i class="fa-solid fa-crown"></i></a>
-                    </li>
+                    @if (roles != null)
+                    {
+                        if (roles.Contains("Super Admin") || (roles.Contains("Admin") && roles.Contains("Super Admin")))
+                        {
+                            <li>
+                                <a id="membership" asp-action="Membership" asp-controller="Home" title="Membership" class="text-danger">Super Admin <i class="fa-solid fa-crown"></i></a>
+                            </li>
+                        }
+                        else if (roles.Contains("Admin") && !roles.Contains("Super Admin"))
+                        {
+                            <li>
+                                <a id="membership" asp-action="Membership" asp-controller="Home" title="Membership" class="text-success">Admin <i class="fa-solid fa-pencil-square"></i></a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a id="membership" asp-action="Membership" asp-controller="Home" title="Membership" class="text-secondary">Basic <i class="fa-solid fa-book"></i></a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li>
+                            <a id="membership" asp-action="Membership" asp-controller="Home" title="Membership" class="text-primary">Subcription</a>
+                        </li>
+                    }
                     <li>
 
                         <a asp-route="cart">Cart(@cart)</a>
@@ -43,7 +69,6 @@
                     </li>
                     @if (SignInManager.IsSignedIn(User))
                     {
-
                         <li>
                             <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile: @UserManager.GetUserName(User)</a>
                         </li>

@@ -31,22 +31,3 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 
-function download(file, text) {
-    //creating an invisible element
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', file);
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-}
-
-var btn_mop = document.getElementsByClassName("btn_mop");
-for (var btn of btn_mop) {
-    btn.addEventListener("click", function () {
-        var text = this.previousSibling.previousSibling
-        var filename = "Note.txt";
-        download(filename, text.value)
-    });
-}
-

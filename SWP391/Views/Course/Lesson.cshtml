@@ -8,31 +8,15 @@
     Layout = "_Layout";
 }
 
-<style>
-    #border_wrap {
-        width: 100%; /* Same width than the video tag */
-        /* Same height than the video tag */
-        padding: 2px; /* If you want a 1px border add a padding of 2px, 2px border / 4px padding, etc */
-        background-color: black; /* Change the color you want for the border here */
-    }
-</style>
+
 
 <div class="page-content bg-white">
-    <!-- inner page banner -->
-    <div class="page-banner ovbl-dark" style="background-image:@($"url(~/img/{Model.ElementAt(0).Course.ThumbnailURL});")">@*assets/images/banner/banner1.jpg*@
-        <div class="container">
-            
-            <div class="page-banner-entry">
-                <h1 class="text-white">@(Model.ElementAt(0).Course.Title)</h1>
-            </div>
-        </div>
-    </div>
     <!-- Breadcrumb row -->
     <div class="breadcrumb-row">
         <div class="container">
             <ul class="list-inline">
-                <li><a href="#">Home</a></li>
-                <li>Courses Details</li>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li>Courses Lessons: @(Model.ElementAt(0).Course.Title)</li>
             </ul>
         </div>
     </div>
@@ -41,6 +25,7 @@
     <div class="content-block">
         <!-- About Us -->
         <div class="section-area section-sp1">
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-7 col-sm-12">
@@ -53,14 +38,13 @@
                                 <h3 class="title">@(Model.ElementAt(0).Lessons.ElementAt(0).LessonName)</h3>
                             </div>
                             <div class="row lesson-main">
-                                <div class="btn-group" role="group" aria-label="Basic example">
+                                <div class="btn-group" role="group">
                                     <button onclick="scriptToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                         Script
                                     </button>
                                     <button onclick="noteToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
                                         Note
                                     </button>
-                                    <button type="button" class="btn btn-outline-danger">Report</button>
                                 </div>
                             </div>
 
@@ -71,10 +55,8 @@
                             </div>
                             <div class="collapse" id="collapseExample2">
                                 <div class="card card-body">
-                                    <h4>Note here<br /><small class="">You can download your note</small></h4>
-                                    <textarea class="text_mop" style="margin-bottom:10px" rows=5></textarea>
-                                    <input type="button" class="btn_mop btn-primary btn" style="margin-left:78%;text-align:center;" value="Download" aria-hidden="true" />
-
+                                    <textarea class="text_mop" id="summernoteEditor"></textarea>
+                                    <button type="button" class="btn-primary btn" value="save" id="save">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -108,9 +90,9 @@
                                             @:</ul>
                                             <br />
                                             <div class="list-group">
-                                                    <a asp-controller="Course" asp-action="QuizAttempt" asp-route-topicid="@topic.TopicId" class="list-group-item list-group-item-primary">
-                                                        Quiz
-                                                    </a>
+                                                <a asp-controller="Course" asp-action="QuizAttempt" asp-route-topicid="@topic.TopicId" class="list-group-item list-group-item-primary">
+                                                    Quiz
+                                                </a>
                                             </div>
                                         @:</div>
                                     @:</div>
@@ -123,30 +105,70 @@
                 </div>
             </div>
         </div>
+
+
+
     </div>
-    <!-- contact area END -->
 
 </div>
 
 
-
-<style>
-    .accordion .collapse .card-body .vid video {
-        width: 100px;
-        border-radius: 5px;
-    }
-</style>
-
-<style>
-    .lesson-container {
-        margin: 0 5%;
-    }
-
-    .lesson-main {
-        margin: 0 0 10px 0;
-    }
-</style>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" @*integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"*@ crossorigin="anonymous"></script>
-<script src="~/js/lesson.js" asp-append-version="true"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<link href="~/css/lesson.css" rel="stylesheet">
+
+@section Scripts {
+    <script src="~/js/lesson.js"></script>
+    <script src="~/lib/summernote/summernote-bs4.min.js"></script>
+    <link href="~/lib/summernote/summernote-bs4.min.css" rel="stylesheet">
+
+    <script>
+        $(document).ready(function () {
+            $('#summernoteEditor').summernote({
+                height: 200,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]
+            });
+        });
+    </script>
+
+}
+<script>
+
+    function saveTextAsFile() {
+        var textToWrite = document.getElementById("summernoteEditor").value;
+        var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
+        var fileNameToSaveAs = "Note.html"; //filename.extension
+
+        var downloadLink = document.createElement("a");
+        downloadLink.download = fileNameToSaveAs;
+        downloadLink.innerHTML = "Download File";
+        if (window.webkitURL != null) {
+            // Chrome allows the link to be clicked without actually adding it to the DOM.
+            downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+        } else {
+            // Firefox requires the link to be added to the DOM before it can be clicked.
+            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+            downloadLink.onclick = destroyClickedElement;
+            downloadLink.style.display = "none";
+            document.body.appendChild(downloadLink);
+        }
+
+        downloadLink.click();
+    }
+
+    var button = document.getElementById('save');
+    button.addEventListener('click', saveTextAsFile);
+
+    function destroyClickedElement(event) {
+        // remove the link from the DOM
+        document.body.removeChild(event.target);
+    }
+</script>

@@ -1,0 +1,26 @@
+﻿
+#border_wrap {
+    width: 100%; /* Same width than the video tag */
+    /* Same height than the video tag */
+    padding: 2px; /* If you want a 1px border add a padding of 2px, 2px border / 4px padding, etc */
+    background-color: black; /* Change the color you want for the border here */
+}
+
+
+
+
+.accordion .collapse .card-body .vid video {
+    width: 100px;
+    border-radius: 5px;
+}
+
+
+.lesson-container {
+    margin: 0 5%;
+}
+
+.lesson-main {
+    margin: 0 0 10px 0;
+}
+
+
