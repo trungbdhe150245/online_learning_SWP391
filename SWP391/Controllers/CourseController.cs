@@ -577,6 +577,7 @@ namespace SWP391.Controllers
                 _db.AttemptDetaileds.Add(atd);
             }
             _db.SaveChanges();
+            ViewBag.ToTalMark = int.Parse(total_mark.ToString());
             return RedirectToAction("AttemptDetail", "Course", new { quizid = model[0].QuizId });
         }
     }

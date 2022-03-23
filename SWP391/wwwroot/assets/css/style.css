@@ -2224,7 +2224,7 @@ button.back-to-top {
 .section-sp1{
 	padding-top:80px;
 	padding-bottom:50px;
-	z-index: 1000;
+	z-index: 1;
 }
 
 .is-active {
