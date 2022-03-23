@@ -6,7 +6,6 @@ namespace SWP391.Views.ViewModel
 {
     public class NewCourseVM
     {
-        int i;
 
         public Course Course { get; set; }
 

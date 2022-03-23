@@ -24,17 +24,17 @@
             <a asp-action="course" asp-controller="user" asp-route-keyy="1"><span>Current Course</span></a>
             <a asp-action="course" asp-controller="user" asp-route-keyy="2"><span>My Course</span></a>
             <!--<ul class="filters" data-toggle="buttons">
-        <li data-filter="" class="btn active">-->
+            <li data-filter="" class="btn active">-->
             @*<input type="radio">*@
             <!--</li>
-        <li data-filter="publish" class="btn">
-            <input type="radio">
-        </li>
-        <li data-filter="pending" class="btn">
-            <input type="radio">
-            <a href="#"><span>Pending</span></a>
-        </li>
-    </ul>-->
+                <li data-filter="publish" class="btn">
+                    <input type="radio">
+                </li>
+                <li data-filter="pending" class="btn">
+                    <input type="radio">
+                    <a href="#"><span>Pending</span></a>
+                </li>
+            </ul>-->
         </div>
     </div>
     <div class="courses-filter">
@@ -42,11 +42,12 @@
             <ul id="masonry" class="ttr-gallery-listing magnific-image row">
                 @foreach (var course in Model.Courses)
                 {
+                    var myModal = "myModal" + course.CourseId;
                     <li class="action-card col-xl-4 col-lg-6 col-md-12 col-sm-6 publish">
                         <div class="cours-bx">
                             <div class="action-box">
                                 <img src="~/CourseImg/@course.ThumbnailURL" alt="">
-                                <a asp-action="CourseDetail" asp-controller="Course" asp-route-id="@course.CourseId" asp-route-keyy="@key" class="btn">Read More</a>
+                                <a asp-action="CourseDetail" asp-controller="Course" asp-route-id="@course.CourseId" class="btn">Read More</a>
                             </div>
                             <div class="info-bx text-center">
                                 <h5><a href="#">@course.Title</a></h5>
@@ -56,17 +57,16 @@
                             {
                                 <div class="cours-more-info row">
                                     <div class="col-6">
-                                        <button class="btn btn-success" style="width: 100%">Edit</button>
-
+                                        <a asp-action="EditCourse" asp-controller="UserCourse" asp-route-id="@course.CourseId" class="btn btn-success" style="width: 100%">Edit</a>
                                     </div>
                                     <div class="col-6">
-                                        <button type="button" class="btn btn-danger btn-sm" data-course-id="@course.CourseId" data-toggle="modal" data-target="#confirm-delete">Delete</button>
+                                        <button type="button" class="btn btn-danger btn-ok btn-sm" data-course-id="@course.CourseId" data-toggle="modal" data-target="#@myModal">Delete</button>
                                     </div>
 
                                 </div>
                             }
                         </div>
-                        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog modal-sm" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -149,18 +149,7 @@
             vertical-align: middle;
         }
     </style>
+    <script src="/assets/js/jquery.min.js"></script>
     <script>
-        $('#confirm-delete').on('click', '.btn-ok', function (e) {
-            var $modalDiv = $(e.delegateTarget);
-            var id = $(this).data('itemId');
-            $modalDiv.addClass('loading');
-            $.post('/RepFilters/Delete/' + id).then(function () {
-                $modalDiv.modal('hide').removeClass('loading');
-            });
-        });
-        $('#confirm-delete').on('show.bs.modal', function (e) {
-            var data = $(e.relatedTarget).data();
-            $('.description', this).text(data.itemDescription);
-            $('.btn-ok', this).data('itemId', data.itemId);
-        });
+        
     </script>

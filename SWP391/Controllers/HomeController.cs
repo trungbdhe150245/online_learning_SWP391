@@ -49,7 +49,7 @@ namespace SWP391.Controllers
             //    up = _db.UserPricePackages.FirstOrDefault(u => u.UserId.Equals(user.Id));
             //    this.ViewBag.UPP = up;
             //}
-
+            this.ViewBag.Count1 = courses.Count();
             List<Blog> blogs = _db.Blogs.Where(b => b.SlideId == 1).OrderByDescending(b => b.CreatedDate).ToList();
             foreach (var b in blogs)
             {

@@ -2,7 +2,6 @@
 @{
     //ViewData["Title"] = "Admin Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    int i = 1;
 }
 
 <main class="ttr-wrapper">
@@ -22,7 +21,7 @@
                         <h4>Add listing</h4>
                     </div>
                     <div class="widget-inner">
-                        <form class="edit-profile m-b30" method="post" asp-action="CreateCourse" asp-controller="DashBoard" enctype="multipart/form-data">
+                        <form class="edit-profile m-b30" method="post" asp-action="EditCourse" asp-controller="UserCourse" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="ml-auto">
@@ -71,6 +70,13 @@
                                     </select>
                                     <span asp-validation-for="@Model.Course.CategoryId" class="text-danger"></span>
                                 </div>
+                                <div class="form-group col-6">
+                                    <label asp-for="@Model.Course.ThumbnailURL" class="col-form-label"></label>
+                                    <div>
+                                        <input class="form-control" asp-for="@Model.Course.ThumbnailURL" hidden>
+                                    </div>
+                                    <img src="~/CourseImg/@Model.Course.ThumbnailURL" />
+                                </div>
                                 <div class="seperator"></div>
 
                                 @*<div class="col-12">
@@ -78,7 +84,7 @@
                 <h3>2. Topic info</h3>
             </div>
         </div>*@
-        @*<div class="col-12">
+                                @*<div class="col-12">
         <button type="button" data-url="@Url.Action("CreateTopic","UserCourse")" class="addService btn">Add Topic</button>
         </div>
         <div id="Topic" class="row">
@@ -146,3 +152,4 @@
     });
     
 </script>
+

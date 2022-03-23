@@ -43,6 +43,11 @@ namespace SWP391.Controllers.Admin
         {
             var obj = GetCurrentUser();
             IEnumerable<Course> list = _db.Courses.Where(c => c.StatusId == 3);
+            foreach (var c in list)
+            {
+                Category cate = _db.Categories.Find(c.CategoryId);
+                c.Category = cate;
+            }
             ViewBag.CourseRegis = list;
             return View(list);
         }
@@ -89,23 +94,25 @@ namespace SWP391.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateCourse(NewCourseVM obj)
         {
+            var user = _userManager.GetUserAsync(User).Result;
             if (ModelState.IsValid)
             {
                 string wwwroot = _WebHostEnvironment.WebRootPath;
                 string filename = Path.GetFileNameWithoutExtension(obj.Course.ImgFile.FileName);
                 string ex = Path.GetExtension(obj.Course.ImgFile.FileName);
-                obj.Course.ThumbnailURL = filename = filename + DateTime.Now.ToString("yymmssfff") + ex;
+                obj.Course.ThumbnailURL = filename = filename + ex;
                 string path = Path.Combine(wwwroot + "/img/", filename);
                 using (var filestream = new FileStream(path, FileMode.Create))
                 {
                     await obj.Course.ImgFile.CopyToAsync(filestream);
                 }
                 //obj.Course.CourseId = id.ToString();
-                //obj.Course.StatusId = 3;
-                //obj.Course.SlideId = 20;
+                obj.Course.StatusId = 3;
+                obj.Course.SlideId = 1;
+                obj.Course.UserId = user.Id;
                 _db.Courses.Add(obj.Course);
-                //_db.SaveChanges();
-                return RedirectToAction("~/Index");
+                _db.SaveChanges();
+                return RedirectToAction("course","user");
             }
             return View(obj);
         }
