@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SWP391.Migrations
 {
-    public partial class ChangeTopicKeys : Migration
+    public partial class ExtendRangeId1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -144,6 +144,7 @@ namespace SWP391.Migrations
                     PricePackageName = table.Column<string>(type: "varchar(255)", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
+                    Properties = table.Column<string>(type: "text", nullable: true),
                     StatusId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -209,6 +210,7 @@ namespace SWP391.Migrations
                     Title = table.Column<string>(type: "varchar(255)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
                     SlideId = table.Column<int>(type: "int", nullable: false),
+                    Nonce = table.Column<string>(type: "text", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     StatusId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
@@ -329,7 +331,6 @@ namespace SWP391.Migrations
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PricePackageId = table.Column<int>(type: "int", nullable: false),
-                    RemainingDay = table.Column<int>(type: "int", nullable: false),
                     SubcribeDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -517,7 +518,7 @@ namespace SWP391.Migrations
                 name: "Attempts",
                 columns: table => new
                 {
-                    AttemptId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    AttemptId = table.Column<string>(type: "varchar(50)", nullable: false),
                     TotalMark = table.Column<double>(type: "float", nullable: false),
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
@@ -564,7 +565,7 @@ namespace SWP391.Migrations
                 name: "AttemptDetaileds",
                 columns: table => new
                 {
-                    AttemptId = table.Column<string>(type: "varchar(10)", nullable: false),
+                    AttemptId = table.Column<string>(type: "varchar(50)", nullable: false),
                     QuestionBankId = table.Column<string>(type: "varchar(10)", nullable: false),
                     UserAnswer = table.Column<string>(type: "text", nullable: true)
                 },

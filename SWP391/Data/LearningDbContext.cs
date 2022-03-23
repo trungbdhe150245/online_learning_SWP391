@@ -22,7 +22,7 @@ namespace SWP391.Data
             }
             modelBuilder.Entity<Attempt>(entity =>
             {
-                entity.Property(a => a.AttemptId).HasColumnType("varchar(10)");
+                entity.Property(a => a.AttemptId).HasColumnType("varchar(50)");
                 entity.Property(a => a.TotalMark).HasColumnType("float");
                 entity.Property(a => a.StartTime).HasColumnType("datetime2");
 

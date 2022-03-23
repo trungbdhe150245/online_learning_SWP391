@@ -16,12 +16,10 @@
         <div class="section-area section-sp1">
             @*<form asp-controller="Course" asp-action="Attempt" method="post">*@
                 <h2 style="text-align:center">@ViewData["TopicName"]</h2>
-                @{var table_index = 1;}
                 <div class="container">
                     <table class="table table-hover">
-                        <thead>
+                        <thead style="background-color: #00c5dc">
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">QuizName</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Total qs</th>
@@ -40,21 +38,20 @@
                                 foreach (var quiz in Model)
                                 {
                                     <tr>
-                                        <td scope="row">@(table_index++)</td>
-                                        <td>@(quiz.Name)</td>
-                                        <td>@(quiz.Description)</td>
-                                        <td>@(quiz.QuestionNum)</td>
-                                        <td>@(quiz.Duration)</td>
-                                        <td>@(quiz.QuizLevel.QuizLevelName)</td>
+                                        <td scope="row">@(quiz.Name)</td>
+                                        <td scope="row">@(quiz.Description)</td>
+                                        <td scope="row">@(quiz.QuestionNum)</td>
+                                        <td scope="row">@(quiz.Duration)</td>
+                                        <td scope="row">@(quiz.QuizLevel.QuizLevelName)</td>
                                         @if (quiz.Attempts.Count > 0)
                                         {
                                             <td>@(String.Format("{0:MM/dd/yyyy}", quiz.Attempts.ElementAt(quiz.Attempts.Count - 1).StartTime))</td>
                                             <td>@(quiz.Attempts.ElementAt(quiz.Attempts.Count - 1).TotalMark)</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                                                <button type="button" class="btn blue" data-toggle="modal" data-target="#exampleModalLong">
                                                     Attempt
                                                 </button>
-                                                <a asp-controller="Course" asp-action="AttemptDetail" asp-route-quizid="@quiz.QuizId" class="btn btn-primary">Results</a>
+                                                <a asp-controller="Course" asp-action="AttemptDetail" asp-route-quizid="@quiz.QuizId" class="btn blue">Results</a>
                                             </td>
                                         }
                                         else
@@ -62,14 +59,14 @@
                                             <td>-</td>
                                             <td>-</td>
                                             <td>
-                                                <a asp-controller="Course" asp-action="QuizAttempt" class="btn btn-primary">Attempt</a>
+                                                <a asp-controller="Course" asp-action="QuizAttempt" class="btn blue">Attempt</a>
                                             </td>
                                         }
                                         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Attempt</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -88,7 +85,7 @@
                                                     @*<input asp-for="@Model.ElementAt(Model.IndexOf(quiz)).QuizId" value="@quiz.QuizId"/>*@
                                                     <div class="modal-footer">
                                                         @*<button type="submit" class="btn btn-primary">Go!</button>*@
-                                                        <a class="btn btn-primary" asp-controller="Course" asp-action="Attempt" asp-route-quizid="@quiz.QuizId">Go!</a>
+                                                        <a class="btn blue" asp-controller="Course" asp-action="Attempt" asp-route-quizid="@quiz.QuizId">Go!</a>
                                                     </div>
                                                 </div>
                                             </div>

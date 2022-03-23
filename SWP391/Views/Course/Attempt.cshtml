@@ -31,17 +31,17 @@
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>Start</td>
-                                <td>Not yet</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
                                 <td>Time</td>
                                 <td>
                                     <div>
                                         <span id="time">01:00</span>
                                     </div>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Date</td>
+                                <td>@String.Format("{0:MM/dd/yyyy}", DateTime.Now.Date)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -50,17 +50,16 @@
                             <li><a id="1" class="btn info blue">1</a></li>
                             <li><a id="2" class="btn info  blue">2</a></li>
                         </ul>
-                        <button class="btn blue">Start</button>
                     </div>
                 </div>
 
                 <div class="col-lg-9 col-md-8 col-sm-12">
 
                     @if (Model.Count > 0)
-                    {
-                        string sub;
-                        int counter = 0;
-                        string attr;
+                                {
+                                    string sub;
+                                    int counter = 0;
+                                    string attr;
                         <form asp-controller="Course" asp-action="RecordAttempt" method="post" id="myform">
                             @for (int i = 0; i < Model.Count; i++)
                             {
@@ -96,6 +95,7 @@
                                         @Html.HiddenFor(m => Model[i].QuizId)
                                         @Html.HiddenFor(m => Model[i].QuestionBank.Answer)
                                         @Html.HiddenFor(m => Model[i].QuestionBank.QuestionId)
+                                        @Html.HiddenFor(m => Model[i].QuestionBank.Weight)
 
 
 
@@ -106,9 +106,7 @@
                                 </div>
 
                             }
-                            @*@Html.Hidden(m => Model[0].QuizId);*@
-                            @*<input hidden asp-for="@Model.First().QuizId" value="@Model.First().QuizId" />*@
-                            <button type="submit" class="btn active" id="submit">Submit</button>
+                            <button type="submit" class="btn blue" id="submit">Submit</button>
                         </form>
 
                     }

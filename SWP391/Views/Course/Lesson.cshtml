@@ -32,10 +32,10 @@
                             </div>
                             <div class="row lesson-main">
                                 <div class="btn-group" role="group">
-                                    <button onclick="scriptToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    <button onclick="scriptToggle()" class="btn blue" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                         Script
                                     </button>
-                                    <button onclick="noteToggle()" class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                                    <button onclick="noteToggle()" class="btn blue" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
                                         Note
                                     </button>
                                 </div>
@@ -49,7 +49,7 @@
                             <div class="collapse" id="collapseExample2">
                                 <div class="card card-body">
                                     <textarea class="text_mop" id="summernoteEditor"></textarea>
-                                    <button type="button" class="btn-primary btn" value="save" id="save">Save</button>
+                                    <button type="button" class="btn blue" value="save" id="save">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -60,9 +60,9 @@
                             @foreach (var topic in Model)
                             {
                                 @:<div class="card">
-                                    <div class="card-header" id="@("headingOne" + Model.IndexOf(topic))" style="background-color: rgb(247 178 5)">
+                                    <div class="card-header" id="@("headingOne" + Model.IndexOf(topic))" style="background-color: #00c5dc">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="@("#collapseOne" + Model.IndexOf(topic))" aria-expanded="true" aria-controls="collapseOne">
+                                            <button class="btn blue" type="button" data-toggle="collapse" data-target="@("#collapseOne" + Model.IndexOf(topic))" aria-expanded="true" aria-controls="collapseOne">
                                                 @(topic.TopicName)
                                             </button>
                                         </h2>

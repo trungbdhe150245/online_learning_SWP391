@@ -10,8 +10,8 @@ using SWP391.Data;
 namespace SWP391.Migrations
 {
     [DbContext(typeof(LearningDbContext))]
-    [Migration("20220317145143_Nonce")]
-    partial class Nonce
+    [Migration("20220323183502_ExtendRangeId1")]
+    partial class ExtendRangeId1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -229,7 +229,7 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Attempt", b =>
                 {
                     b.Property<string>("AttemptId")
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("QuizId")
                         .HasColumnType("varchar(10)");
@@ -255,7 +255,7 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.AttemptDetailed", b =>
                 {
                     b.Property<string>("AttemptId")
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("QuestionBankId")
                         .HasColumnType("varchar(10)");
@@ -674,9 +674,6 @@ namespace SWP391.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("PricePackageId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RemainingDay")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("SubcribeDate")

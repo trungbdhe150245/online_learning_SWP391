@@ -227,7 +227,7 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.Attempt", b =>
                 {
                     b.Property<string>("AttemptId")
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("QuizId")
                         .HasColumnType("varchar(10)");
@@ -253,7 +253,7 @@ namespace SWP391.Migrations
             modelBuilder.Entity("SWP391.Models.AttemptDetailed", b =>
                 {
                     b.Property<string>("AttemptId")
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("QuestionBankId")
                         .HasColumnType("varchar(10)");

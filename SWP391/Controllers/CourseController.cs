@@ -522,14 +522,49 @@ namespace SWP391.Controllers
             }
             ViewBag.Quiz = qs_ids;
             return View(questions.Result);
-            //return Ok(quiz.Count);
         }
 
         [HttpPost]
         public IActionResult RecordAttempt(List<QuizQuestion> model) 
         {
-            
-            return Ok(System.Text.Json.JsonSerializer.Serialize(model)) ;
+            DateTime now = DateTime.Now;
+            List<AttemptDetailed> atds = new List<AttemptDetailed>();
+            float total_mark = 0;
+            for (int i = 0; i < model.Count; i++)
+            {
+                AttemptDetailed atd = new AttemptDetailed()
+                {
+                    UserAnswer = Request.Form[model[i].QuestionBank.QuestionId].ToString(),
+                    QuestionBankId = model[i].QuestionBank.QuestionId,
+                    AttemptId = $"{model[0].QuizId}|{String.Format("{0:MM/dd/yyyy HH:mm:ss}", now).Replace(" ", "")}|{_userManager.GetUserAsync(User).Result.UserName}"
+                };
+                if (Request.Form[model[i].QuestionBank.QuestionId].ToString().Equals(model[i].QuestionBank.Answer))
+                {
+                    total_mark += model[i].QuestionBank.Weight;
+                }
+                atds.Add(atd);
+            }
+
+
+            var first = (from a in _db.Attempts select a.AttemptId).First();
+            Attempt at = new Attempt()
+            {
+                AttemptId = $"{model[0].QuizId}|{String.Format("{0:MM/dd/yyyy HH:mm:ss}", now).Replace(" ", "")}|{_userManager.GetUserAsync(User).Result.UserName}",
+                Quiz = (from q in _db.Quizzes where q.QuizId.Equals(model[0].QuizId) select q).FirstOrDefault(),
+                QuizId = model[0].QuizId,
+                User = _userManager.GetUserAsync(User).Result,
+                UserId = _userManager.GetUserId(User),
+                StartTime = DateTime.Now.Date,
+                TotalMark = total_mark};
+
+            _db.Attempts.Add(at);
+            foreach(var atd in atds)
+            {
+                _db.AttemptDetaileds.Add(atd);
+            }
+            _db.SaveChanges();
+
+            return Ok();
         }
     }
 }
