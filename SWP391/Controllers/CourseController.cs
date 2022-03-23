@@ -253,7 +253,7 @@ namespace SWP391.Controllers
 
         [ServiceFilter(typeof(MyFilter))]
 
-        [HttpGet]
+        //[HttpGet]
         [Route("/Course/{id}/Lesson")]
         public IActionResult Lesson(string id)
         {

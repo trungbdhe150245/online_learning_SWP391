@@ -13,7 +13,7 @@ namespace SWP391.Utility
         public void OnActionExecuting(ActionExecutingContext context)
         {
 
-            if (!context.HttpContext.User.Identity.IsAuthenticated && context.HttpContext.Request.Cookies["user"] == null)
+            if (!context.HttpContext.User.Identity.IsAuthenticated && context.HttpContext.User != null)
             {
                 context.Result = new RedirectResult($"~/login");
             }
