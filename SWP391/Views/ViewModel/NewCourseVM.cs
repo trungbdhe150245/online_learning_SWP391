@@ -6,7 +6,15 @@ namespace SWP391.Views.ViewModel
 {
     public class NewCourseVM
     {
+        int i;
+
         public Course Course { get; set; }
+
+        public Topic Topic { get; set; }
+
+        public Lesson Lesson { get; set; }
+
+        public List<Topic> Topics { get; set; }
 
         public IEnumerable<SelectListItem> TypeDropDown { get; set; }
     }

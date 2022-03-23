@@ -77,6 +77,23 @@
 	padding: 12px;
 }
 
+.list-topic {
+	display: flex;
+	align-items:center;
+}
+
+.list-topic span {
+	margin-right:12px;
+}
+
+.btn-delete {
+	margin-top: 35px;
+}
+
+.topic-item {
+	margin-right: 12px;
+}
+
 .nav-search-bar {
 	background-color: rgba(255,255,255,0.95);
 	position: fixed;

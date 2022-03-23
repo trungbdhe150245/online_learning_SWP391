@@ -81,6 +81,7 @@ namespace SWP391.Controllers.Admin
                     Text = i.CategoryValue,
                     Value = i.CategoryId.ToString()
                 })
+
             };
             return View(newCourseVM);
         }
@@ -88,7 +89,6 @@ namespace SWP391.Controllers.Admin
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateCourse(NewCourseVM obj)
         {
-            int id = 30;
             if (ModelState.IsValid)
             {
                 string wwwroot = _WebHostEnvironment.WebRootPath;
@@ -100,12 +100,11 @@ namespace SWP391.Controllers.Admin
                 {
                     await obj.Course.ImgFile.CopyToAsync(filestream);
                 }
-                obj.Course.CourseId = id.ToString();
-                id++;
-                obj.Course.StatusId = 3;
-                obj.Course.SlideId = 20;
+                //obj.Course.CourseId = id.ToString();
+                //obj.Course.StatusId = 3;
+                //obj.Course.SlideId = 20;
                 _db.Courses.Add(obj.Course);
-                _db.SaveChanges();
+                //_db.SaveChanges();
                 return RedirectToAction("~/Index");
             }
             return View(obj);

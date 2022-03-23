@@ -20,20 +20,21 @@
     <div class="profile-head">
         <h3>My Courses</h3>
         <div class="feature-filters style1 ml-auto">
+            <a asp-action="CreateCourse" asp-controller="DashBoard"><span>Create Course</span></a>
             <a asp-action="course" asp-controller="user" asp-route-keyy="1"><span>Current Course</span></a>
             <a asp-action="course" asp-controller="user" asp-route-keyy="2"><span>My Course</span></a>
             <!--<ul class="filters" data-toggle="buttons">
-                <li data-filter="" class="btn active">-->
+        <li data-filter="" class="btn active">-->
             @*<input type="radio">*@
             <!--</li>
-                <li data-filter="publish" class="btn">
-                    <input type="radio">
-                </li>
-                <li data-filter="pending" class="btn">
-                    <input type="radio">
-                    <a href="#"><span>Pending</span></a>
-                </li>
-            </ul>-->
+        <li data-filter="publish" class="btn">
+            <input type="radio">
+        </li>
+        <li data-filter="pending" class="btn">
+            <input type="radio">
+            <a href="#"><span>Pending</span></a>
+        </li>
+    </ul>-->
         </div>
     </div>
     <div class="courses-filter">
@@ -59,37 +60,107 @@
 
                                     </div>
                                     <div class="col-6">
-                                        <button class="btn btn-danger" style="width: 100%">Delete</button>
-
+                                        <button type="button" class="btn btn-danger btn-sm" data-course-id="@course.CourseId" data-toggle="modal" data-target="#confirm-delete">Delete</button>
                                     </div>
 
                                 </div>
                             }
                         </div>
+                        <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete: <span class="description"></span>
+                                    </div>
+                                    <form method="post" asp-action="Delete" asp-controller="UserCourse">
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <input type="submit" asp-action="Delete" asp-controller="UserCourse" asp-route-id="@course.CourseId" value="Delete" class="btn btn-danger" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 }
+
             </ul>
-        </div>
-        <div class="col-lg-12 m-b20">
-            <div class="pagination-bx rounded-sm gray clearfix">
-                @if (pager.TotalPages > 0)
-                {
-                    <ul class="pagination">
-                        <li class="previous @(pager.CurrentPage <= 1 ? "visible-paging" : "")">
-                            <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@(pager.CurrentPage - 1)" asp-route-cate="@cate" asp-route-keyy="@key"><i class="ti-arrow-left"></i> Prev</a>
-                        </li>
-                        @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
-                        {
-                            <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
-                                <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@pge" asp-route-cate="@cate" asp-route-keyy="@key"> @pge </a>
+            @*<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete: <span class="description"></span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" value="Delete" class="btn btn-danger" />
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            <div class="col-lg-12 m-b20">
+                <div class="pagination-bx rounded-sm gray clearfix">
+                    @if (pager.TotalPages > 0)
+                    {
+                        <ul class="pagination">
+                            <li class="previous @(pager.CurrentPage <= 1 ? "visible-paging" : "")">
+                                <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@(pager.CurrentPage - 1)" asp-route-cate="@cate" asp-route-keyy="@key"><i class="ti-arrow-left"></i> Prev</a>
                             </li>
-                        }
-                        <li class="next @(pager.CurrentPage == pager.EndPage ? "visible-paging" : "")">
-                            <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@(pager.CurrentPage + 1)" asp-route-cate="@cate" asp-route-keyy="@key">Next <i class="ti-arrow-right"></i></a>
-                        </li>
-                    </ul>
-                }
+                            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                            {
+                                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                                    <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@pge" asp-route-cate="@cate" asp-route-keyy="@key"> @pge </a>
+                                </li>
+                            }
+                            <li class="next @(pager.CurrentPage == pager.EndPage ? "visible-paging" : "")">
+                                <a class="page-link" asp-action="course" asp-controller="user" asp-route-pge="@(pager.CurrentPage + 1)" asp-route-cate="@cate" asp-route-keyy="@key">Next <i class="ti-arrow-right"></i></a>
+                            </li>
+                        </ul>
+                    }
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <style>
+        .modal {
+            text-align: center;
+            padding: 0 !important;
+        }
+
+            .modal:before {
+                content: '';
+                display: inline-block;
+                height: 100%;
+                vertical-align: middle;
+                margin-right: -4px;
+            }
+
+        .modal-dialog {
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        $('#confirm-delete').on('click', '.btn-ok', function (e) {
+            var $modalDiv = $(e.delegateTarget);
+            var id = $(this).data('itemId');
+            $modalDiv.addClass('loading');
+            $.post('/RepFilters/Delete/' + id).then(function () {
+                $modalDiv.modal('hide').removeClass('loading');
+            });
+        });
+        $('#confirm-delete').on('show.bs.modal', function (e) {
+            var data = $(e.relatedTarget).data();
+            $('.description', this).text(data.itemDescription);
+            $('.btn-ok', this).data('itemId', data.itemId);
+        });
+    </script>

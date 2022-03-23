@@ -1,0 +1,25 @@
+﻿@model Topic
+<div class="col-12 list-topic">
+    <span>Topic</span>
+    <div class="form-group topic-item">
+        <label asp-for="@Model.TopicId" class="col-form-label"></label>
+        <div>
+            <input class="form-control topic-item" asp-for="@Model.TopicId">
+        </div>
+    </div>
+    <div class="form-group topic-item">
+        <label asp-for="@Model.TopicOrder" class="col-form-label"></label>
+        <div>
+            <input class="form-control" asp-for="@Model.TopicOrder" min="1">
+        </div>
+    </div>
+    <div class="form-group topic-item">
+        <label asp-for="@Model.TopicName" class="col-form-label"></label>
+        <div>
+            <input class="form-control" asp-for="@Model.TopicName">
+        </div>
+    </div>
+    <div class="form-group topic-item">
+        <button type="button" class="addService btn btn-delete deleteService">Delete</button>
+    </div>
+</div>
