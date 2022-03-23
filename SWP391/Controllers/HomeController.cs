@@ -138,14 +138,25 @@ namespace SWP391.Controllers
             Result<Transaction> result = gateway.Transaction.Sale(request);
             if (result.IsSuccess())
             {
+                var roles = _userManager.GetRolesAsync(_userManager.GetUserAsync(User).Result).Result;
                 UserPricePackage userPricePackage = new UserPricePackage { PricePackageId = model.PricePackage.PricePackageId, UserId = _userManager.GetUserAsync(User).Result.Id, SubcribeDate = DateTime.Parse(String.Format("{0:MM/dd/yyyy}", DateTime.Now.Date)) };
                 _db.UserPricePackages.Add(userPricePackage);
+                if(model.PricePackage.PricePackageId == 2 && !roles.Contains("Admin"))
+                {
+                    UserPricePackage bonus = new UserPricePackage { PricePackageId = 3, UserId = _userManager.GetUserAsync(User).Result.Id, SubcribeDate = DateTime.Parse(String.Format("{0:MM/dd/yyyy}", DateTime.Now.Date)) };
+                    _db.UserPricePackages.Add(bonus);
+                }
+
                 List<string> roleIds = (from r in _db.Roles select r.Id).ToList();
                 foreach (var id in roleIds)
                 {
                     if (id.Contains(model.PricePackage.PricePackageId.ToString()))
                     {
                         _db.UserRoles.Add(new IdentityUserRole<string>() { RoleId = id, UserId = _userManager.GetUserAsync(User).Result.Id });
+                        if(id.Contains("2") && !roles.Contains("Admin"))
+                        {
+                            _db.UserRoles.Add(new IdentityUserRole<string>() { RoleId = "ROLE3", UserId = _userManager.GetUserAsync(User).Result.Id });
+                        }
                         break;
                     }
                 }

@@ -27,16 +27,16 @@ namespace SWP391.Areas.Identity.Pages.Account
 
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out");
+            return RedirectToPage("Index");
 
-
-            return ViewComponent(MessagePage.COMPONENTNAME,
-                new MessagePage.Message()
-                {
-                    Title = "Logged out",
-                    HtmlContent = "Logged out successfully",
-                    UrlRedirect = (returnUrl != null) ? returnUrl : Url.Page("/Index")
-                }
-            );
+            //return ViewComponent(MessagePage.COMPONENTNAME,
+            //    new MessagePage.Message()
+            //    {
+            //        Title = "Logged out",
+            //        HtmlContent = "Logged out successfully",
+            //        UrlRedirect = (returnUrl != null) ? returnUrl : Url.Page("/Index")
+            //    }
+            //);
         }
     }
 }
