@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-
-@model List<SWP391.Models.Topic>
+﻿@model List<SWP391.Models.Topic>
 @{
     ViewData["Title"] = "LESSON";
     Layout = "_Layout";
@@ -20,10 +16,7 @@
             </ul>
         </div>
     </div>
-    <!-- Breadcrumb row END -->
-    <!-- inner page banner END -->
     <div class="content-block">
-        <!-- About Us -->
         <div class="section-area section-sp1">
 
             <div class="container">
@@ -145,16 +138,14 @@
     function saveTextAsFile() {
         var textToWrite = document.getElementById("summernoteEditor").value;
         var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
-        var fileNameToSaveAs = "Note.html"; //filename.extension
+        var fileNameToSaveAs = "Note.html";
 
         var downloadLink = document.createElement("a");
         downloadLink.download = fileNameToSaveAs;
         downloadLink.innerHTML = "Download File";
         if (window.webkitURL != null) {
-            // Chrome allows the link to be clicked without actually adding it to the DOM.
             downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
         } else {
-            // Firefox requires the link to be added to the DOM before it can be clicked.
             downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
             downloadLink.onclick = destroyClickedElement;
             downloadLink.style.display = "none";
@@ -168,7 +159,6 @@
     button.addEventListener('click', saveTextAsFile);
 
     function destroyClickedElement(event) {
-        // remove the link from the DOM
         document.body.removeChild(event.target);
     }
 </script>

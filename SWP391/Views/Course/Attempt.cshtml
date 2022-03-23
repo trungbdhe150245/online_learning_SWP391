@@ -1,0 +1,423 @@
+﻿@model List<SWP391.Models.QuizQuestion>
+@{
+    ViewData["Title"] = "ATTEMPT";
+    Layout = "_Layout";
+}
+<div class="breadcrumb-row">
+    <div class="container">
+        <ul class="list-inline">
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li>Attempt: @Model.ElementAt(0).Quiz.Name - @Model.ElementAt(0).Quiz.Topic.TopicName </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="content-block">
+    <!-- About Us -->
+    <div class="section-area section-sp1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Component</th>
+                                <th scope="col">Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Start</td>
+                                <td>Not yet</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Time</td>
+                                <td>
+                                    <div>
+                                        <div id="timer"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Answered</td>
+                                <td>- / @Model.Count</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-lg-9 col-md-8 col-sm-12">
+
+                    @if (Model.Count > 0)
+                    {
+                        foreach (var question in Model)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12 col-sm-12 m-b20">
+                                    <h5><button class="btn blue" style="float:left;font-size:10px">Weight: @question.QuestionBank.Weight</button>@question.QuestionBank.Content </h5>
+                                    <input type="radio" />
+                                </div>
+                            </div>
+                        }
+
+                    }
+
+
+                    @*<div class="action-box">
+                            <img src="assets/images/courses/pic1.jpg" alt="">
+                            <a href="#" class="btn">Read More</a>
+                        </div>
+                        <div class="info-bx text-center">
+                            <h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
+                            <span>Programming</span>
+                        </div>
+                        <div class="cours-more-info">
+                            <div class="review">
+                                <span>3 Review</span>
+                                <ul class="cours-star">
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                            </div>
+                            <div class="price">
+                                <del>$190</del>
+                                <h5>$120</h5>
+                            </div>*@
+
+
+                    <div class="col-lg-12 m-b20">
+                        <div class="pagination-bx rounded-sm gray clearfix">
+                            <ul class="pagination">
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<style>
+        .btn {
+            display: inline-block;
+        }
+    </style>*@
+
+@*<input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <ul class="list-group" id="myList">
+        <li class="list-group-item">First item</li>
+        <li class="list-group-item">Second item</li>
+        <li class="list-group-item">Third item</li>
+        <li class="list-group-item">Fourth</li>
+    </ul>*@
+
+<div class="row">
+
+    <div class="col-xs-10" style="margin-bottom:0px">
+        @*<input class="form-control" id="myInput" type="text" placeholder="Search..">*@
+        <div class="lmao" style="margin-top:20px">
+            <div class="col-xs-6">
+
+                <div class="col-sm-6">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" id="formSave" class="btn btn-secondary" data-toggle="modal" data-target="#startModal">Start</button>
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#resetModal">Reset</button>
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#submitModal">Submit</button>
+                        <button type="button" class="btn btn-secondary yellow" data-toggle="modal" data-target="#exampleModalLong">
+                            Instruction
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6">
+                    @*<div class="col-sm-2">
+                            <button type="button" class="btn btn-primary">Start</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-danger">Reset</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-success">Submit</button>
+                        </div>*@
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-xs-8">
+        <div class="col-xs-6">
+            <h1>lamo</h1>
+        </div>
+        <div class="col-xs-4" style="float:right; text-align:right">
+            <div class="btn-group" style="float:right">
+                <button class="btn btn-secondary" style="pointer-events:none">
+                    Point: null / null
+                </button>
+                <button class="btn btn-danger">Report question</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-xs-8">
+        <div class="col-xs-10">
+            <div id="div1" class="infoDiv" name="div1" style="display:none;">
+                <h1>MCQ quiz</h1>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q" id="option1">
+                    <label class="form-check-label" for="option1">Option 1</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="q" id="option2">
+                    <label class="form-check-label" for="option2">Option 2</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="q" id="option3" class="form-check-input">
+                    <label class="form-check-label" for="option3">Option 3</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="q" id="option4" class="form-check-input">
+                    <label class="form-check-label" for="option4">Option 4</label>
+                </div>
+            </div>
+            <div id="div2" class="infoDiv" style="display:none;">
+                <h1>constructed-response</h1>
+                <input type="text" name="div2" />
+            </div>
+            <div id="div3" class="infoDiv" style="display:none;">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                    <textarea class="form-control" id="div2" rows="3" name="div2"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <span class="vertical-line"></span>
+        </div>
+    </div>
+
+    <div class="col-xs-4" style="padding-left:5px">
+        <div class="col-xs-6 form-group" style="padding-left:5px">
+            <div>
+                <label style="font-size:20px">Timer</label>
+                <div id="timer"></div>
+            </div>
+            <div hidden>
+                <button id="start-button">Start</button>
+                <button id="stop-button">Stop</button>
+                <button id="reset-button">Reset</button>
+            </div>
+            <div class="form-group btn-group" role="group">
+                <div style="font-size:20px">
+                    <label>Navigation</label>
+                </div>
+
+                <button type="button" class="btn btn-secondary info" id="1">1</button>
+                <button type="button" class="btn btn-secondary info" id="2">2</button>
+                <button type="button" class="btn btn-secondary info" id="3">3</button>
+                <button type="button" class="btn btn-secondary info" id="4">4</button>
+                <button type="button" class="btn btn-secondary info" id="1">1</button>
+                <button type="button" class="btn btn-secondary info" id="2">2</button>
+                <button type="button" class="btn btn-secondary info" id="3">3</button>
+                <button type="button" class="btn btn-secondary info" id="4">4</button>
+                <button type="button" class="btn btn-secondary info" id="1">1</button>
+                <button type="button" class="btn btn-secondary info" id="2">2</button>
+                <button type="button" class="btn btn-secondary info" id="3">3</button>
+                <button type="button" class="btn btn-secondary info" id="4">4</button>
+            </div>
+
+            @*<p id="p1">lamof</p>*@
+            @*<div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text" id="btnGroupAddon"></div>
+                    </div>
+                </div>*@
+
+        </div>
+
+    </div>
+</div>
+
+@*<p>Click the button to turn the confirm on and off</p>
+    <div style="display: None">
+        <button id="theButton">true</button>
+    </div>*@
+
+
+@*<label for="db">Type whatever</label>*@
+@*<input type="text" name="amount" />*@
+@*<div id="yeah" style="display:none;">
+        <input type="submit" />
+    </div>*@
+@*<div class="form-group">
+        <div>
+            <label style="font-size:20px">Question size</label>
+        </div>
+        <input type="number" class="custom-select my-1 mr-sm-2" min="1.2" max="2.6" step=".2" id="slider" value="1.2" />
+
+    </div>*@
+
+<script src="~/js/timer.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myList li").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".info").click(function (event) {
+            $(".infoDiv").hide();
+            var id = $(event.target).attr('id');
+            $("#div" + id).show();
+        });
+    });
+</script>
+@section Scripts {
+    <script>
+        var test = true;
+
+        function otherTest() {
+            return true;
+        }
+
+        addEventListener('beforeunload', function (event) {
+            if (!test || !otherTest()) {
+                event.returnValue = 'You have unsaved changes.';
+            }
+
+        });
+
+        document.getElementById('theButton').addEventListener('click', function (event) {
+            test = !test;
+            this.innerHTML = test.toString();
+        });
+
+    </script>
+    <script>
+        var question_constructed = ["div1", "div2", "div3", "q4"]
+
+        $.each(question_constructed, function (index, value) {
+            //$('textarea#message').val()
+            //$('textarea[name="product_question"]', this).val()
+            $('textarea[name=' + value + ']').keyup(function () {
+                if ($(this).val().length)
+                    //$('#yeah').show();
+                    $("#" + (index + 1)).attr('class', 'btn btn-primary info');
+                //else
+                //    $("#" + (index + 1)).attr('class', 'btn btn-secondary info');
+            });
+        });
+
+        var question_mcq = ["q", "q2", "q3", "q4"]
+        $.each(question_mcq, function (index, value) {
+            $("input[name=" + value + "]").on('change', function () {
+                if ($(this).attr('checked')) {
+                    $("#" + (index + 1)).attr('class', 'btn btn-primary info');
+                }
+                else {
+                    $("#" + (index + 1)).attr('class', 'btn btn-secondary info');
+                }
+            });
+        });
+
+
+        $.each(['div', 'p'], function (index, value) {
+
+            $('input').on('input', function () {
+                var v = $(this).val();
+                $("#" + value + 1).css('font-size', v + 'em');
+            });
+            //$('p').css('font-size', v + 'em')
+        });
+
+                                                    //$('input[name=amount]').keyup(function () {
+                                                    //    if ($(this).val().length)
+                                                    //        //$('#yeah').show();
+                                                    //        $("#2").attr('class', 'btn btn-primary info');
+                                                    //    else
+                                                    //        $("#2").attr('class', 'btn btn-secondary info');
+                                                    //});
+
+    </script>
+
+
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+    .vertical-line {
+        display: inline-block;
+        border-left: 1px solid #ccc;
+        height: 125px;
+    }
+
+    .col-xs-2 {
+        width: 0px;
+        padding: 0px;
+        margin: 0px;
+        float: right;
+    }
+</style>
+

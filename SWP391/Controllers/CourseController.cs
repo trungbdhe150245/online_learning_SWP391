@@ -459,11 +459,64 @@ namespace SWP391.Controllers
             }
         }
 
+
+
+
         [Route("/Course/Attempt/{quizid}")]
         public IActionResult Attempt(string quizid) 
         {
-
-            return View();
+            //var quiz = (from q in _db.Quizzes
+            //            where q.QuizId.Equals(quizid)
+            //            join qqb in _db.QuizQuestions on q equals qqb.Quiz
+            //            join qb in _db.QuestionBanks on qqb.QuestionBank equals qb
+            //            select new QuizDetailed
+            //            {   
+            //                QuizId = qb.QuestionId,
+            //                Description = q.Description,
+            //                Duration = q.Duration,
+            //                Name = q.Name,
+            //                Num = q. QuestionNum,
+            //                //Mark = q.Mark,
+            //                Content =  qb.Content,
+            //                Explanation = qb.Explanation,
+            //                Weight = qb.Weight,
+            //                Options = new String[] { qb.OptionA, qb.OptionB, qb.OptionC, qb.OptionD}
+            //            }).ToList();
+            
+            var questions = (from q in _db.Quizzes
+                             where q.QuizId.Equals(quizid)
+                             join qqb in _db.QuizQuestions on q equals qqb.Quiz
+                             join qb in _db.QuestionBanks on qqb.QuestionBank equals qb
+                             select new QuizQuestion
+                             {
+                                Quiz = new Quiz() 
+                                { 
+                                    QuizId = quizid, 
+                                    Description = q.Description, 
+                                    Duration = q.Duration,
+                                    Name = q.Name, 
+                                    QuestionNum = q.QuestionNum, 
+                                    QuizType = (from qt in _db.QuizTypes where qt.QuizTypeId.Equals(q.QuizTypeId) select qt).SingleOrDefault(),
+                                    Topic = (from tp in _db.Topics where tp.TopicId.Equals(q.TopicId) select tp).SingleOrDefault(),
+                                    QuizLevel = (from ql in _db.QuizLevels where ql.QuizLevelId.Equals(q.QuizLevelId) select ql).SingleOrDefault()
+                                },
+                                QuestionBank = new QuestionBank() 
+                                {
+                                    QuestionId = qb.QuestionId,
+                                    Answer = qb.Answer,
+                                    Content = qb.Content,
+                                    Explanation = qb.Explanation,
+                                    Weight = qb.Weight,
+                                    QuizLevel = (from ql in _db.QuizLevels where ql.QuizLevelId.Equals(qb.QuizLevelId) select ql).SingleOrDefault(),
+                                    OptionA = qb.OptionA,
+                                    OptionB = qb.OptionB,
+                                    OptionC = qb.OptionC,
+                                    OptionD = qb.OptionD
+                                }
+                             }).ToListAsync();
+            //ViewData["Quiz"] = quiz;
+            return View(questions.Result);
+            //return Ok(quiz.Count);
         }
 
     }
