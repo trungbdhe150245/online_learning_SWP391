@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 
 namespace SWP391.Controllers
 {
-    public class Products <T>
+    public class Products<T>
     {
         public int Id { get; set; }
         public string[] Ids { get; set; }
@@ -287,18 +287,19 @@ namespace SWP391.Controllers
         [Route("/Quiz/Topic/{topicid}/Attempt")]
         public IActionResult QuizAttempt(string topicid)
         {
-            var topic_quiz = (from quiz in _db.Quizzes where quiz.TopicId.Equals(topicid) join attempt in _db.Attempts on quiz equals attempt.Quiz
-                              into gj from x in gj.DefaultIfEmpty()
-                              select new Quiz {
-                                    QuizId = quiz.QuizId,
-                                    Description = quiz.Description,
-                                    Duration = quiz.Duration,
-                                    Name = quiz.Name,
-                                    QuestionNum = quiz.QuestionNum,
-                                    TopicId = quiz.TopicId,
-                                    QuizType = (from tp in _db.QuizTypes where tp.QuizTypeId.Equals(quiz.QuizTypeId) select tp).FirstOrDefault(),
-                                    QuizLevel = (from lv in _db.QuizLevels where lv.QuizLevelId.Equals(quiz.QuizLevelId) select lv).FirstOrDefault(),
-                                    Attempts = (from at in _db.Attempts where at.QuizId.Equals(quiz.QuizId) select at).ToList()
+            var topic_quiz = (from quiz in _db.Quizzes
+                              where quiz.TopicId.Equals(topicid)
+                              select new Quiz
+                              {
+                                  QuizId = quiz.QuizId,
+                                  Description = quiz.Description,
+                                  Duration = quiz.Duration,
+                                  Name = quiz.Name,
+                                  QuestionNum = quiz.QuestionNum,
+                                  TopicId = quiz.TopicId,
+                                  QuizType = (from tp in _db.QuizTypes where tp.QuizTypeId.Equals(quiz.QuizTypeId) select tp).FirstOrDefault(),
+                                  QuizLevel = (from lv in _db.QuizLevels where lv.QuizLevelId.Equals(quiz.QuizLevelId) select lv).FirstOrDefault(),
+                                  Attempts = (from at in _db.Attempts where at.QuizId.Equals(quiz.QuizId) select at).ToList()
                               }).ToList();
             ViewData["TopicName"] = (from tp in _db.Topics where tp.TopicId.Equals(topicid) select tp.TopicName).FirstOrDefault();
             return View(topic_quiz);
@@ -307,7 +308,7 @@ namespace SWP391.Controllers
 
         [HttpGet]
         [Route("/Quiz/{quizid}/Attempts")]
-        public IActionResult AttemptDetail(string quizid) 
+        public IActionResult AttemptDetail(string quizid)
         {
             var attempt_detailed = (from at in _db.Attempts
                                     where at.QuizId.Equals(quizid)
@@ -318,8 +319,21 @@ namespace SWP391.Controllers
                                         StartTime = at.StartTime,
                                         TotalMark = at.TotalMark,
                                         User = _userManager.GetUserAsync(User).Result,
-                                        AttemptDetaileds = (from ad in _db.AttemptDetaileds where ad.AttemptId.Equals(at.AttemptId) select ad).ToList()
+                                        AttemptDetaileds = null
                                     }).ToList();
+
+            foreach(var dt in attempt_detailed)
+            {
+                dt.AttemptDetaileds = (from a in _db.AttemptDetaileds
+                                       where a.AttemptId.Equals(dt.AttemptId)
+                                       select new AttemptDetailed
+                                       {
+                                           UserAnswer = (from a1 in _db.AttemptDetaileds where a.Equals(a1) select a1.UserAnswer).Single(),
+                                           AttemptId = dt.AttemptId,
+                                           Attempt = dt,
+                                           QuestionBank = (from qb in _db.QuestionBanks where a.QuestionBank.Equals(qb) select qb).Single()
+                                       }).ToList();
+            }
             //ViewData["QuestionAnswer"] = (from qb in _db.QuestionBanks join ad in _db.AttemptDetaileds)
             return View(attempt_detailed);
         }
@@ -386,9 +400,9 @@ namespace SWP391.Controllers
         public IActionResult Cart()
         {
             var gateway = _braintreeService.GetGateway();
-            var clientToken = gateway.ClientToken.Generate();  
+            var clientToken = gateway.ClientToken.Generate();
             ViewBag.ClientToken = clientToken;
-            Products<Course> products = new Products<Course>() {Id = new Random().Next(), products = GetCartItems(), Nonce = ""};
+            Products<Course> products = new Products<Course>() { Id = new Random().Next(), products = GetCartItems(), Nonce = "" };
             return View(products);
         }
 
@@ -446,7 +460,7 @@ namespace SWP391.Controllers
 
                 foreach (var course in model.Ids)
                 {
-                    CourseOwner courseOwner = new CourseOwner { CourseId = course, CourseOwnerId = _userManager.GetUserAsync(User).Result.Id , PurchaseTime = DateTime.Parse(String.Format("{0:MM/dd/yyyy}", DateTime.Now.Date))};
+                    CourseOwner courseOwner = new CourseOwner { CourseId = course, CourseOwnerId = _userManager.GetUserAsync(User).Result.Id, PurchaseTime = DateTime.Parse(String.Format("{0:MM/dd/yyyy}", DateTime.Now.Date)) };
                     _db.CourseOwners.Add(courseOwner);
                     _db.SaveChanges();
                 }
@@ -463,7 +477,7 @@ namespace SWP391.Controllers
 
 
         [Route("/Course/Attempt/{quizid}")]
-        public IActionResult Attempt(string quizid) 
+        public IActionResult Attempt(string quizid)
         {
             //var quiz = (from q in _db.Quizzes
             //            where q.QuizId.Equals(quizid)
@@ -482,41 +496,41 @@ namespace SWP391.Controllers
             //                Weight = qb.Weight,
             //                Options = new String[] { qb.OptionA, qb.OptionB, qb.OptionC, qb.OptionD}
             //            }).ToList();
-            
+
             var questions = (from q in _db.Quizzes
                              where q.QuizId.Equals(quizid)
                              join qqb in _db.QuizQuestions on q equals qqb.Quiz
                              join qb in _db.QuestionBanks on qqb.QuestionBank equals qb
                              select new QuizQuestion
                              {
-                                Quiz = new Quiz() 
-                                { 
-                                    QuizId = quizid, 
-                                    Description = q.Description, 
-                                    Duration = q.Duration,
-                                    Name = q.Name, 
-                                    QuestionNum = q.QuestionNum, 
-                                    QuizType = (from qt in _db.QuizTypes where qt.QuizTypeId.Equals(q.QuizTypeId) select qt).SingleOrDefault(),
-                                    Topic = (from tp in _db.Topics where tp.TopicId.Equals(q.TopicId) select tp).SingleOrDefault(),
-                                    QuizLevel = (from ql in _db.QuizLevels where ql.QuizLevelId.Equals(q.QuizLevelId) select ql).SingleOrDefault()
-                                },
-                                QuestionBank = new QuestionBank() 
-                                {
-                                    QuestionId = qb.QuestionId,
-                                    Answer = qb.Answer,
-                                    Content = qb.Content,
-                                    Explanation = qb.Explanation,
-                                    Weight = qb.Weight,
-                                    QuizLevel = (from ql in _db.QuizLevels where ql.QuizLevelId.Equals(qb.QuizLevelId) select ql).SingleOrDefault(),
-                                    OptionA = qb.OptionA,
-                                    OptionB = qb.OptionB,
-                                    OptionC = qb.OptionC,
-                                    OptionD = qb.OptionD
-                                },
-                                QuizId = q.QuizId
+                                 Quiz = new Quiz()
+                                 {
+                                     QuizId = quizid,
+                                     Description = q.Description,
+                                     Duration = q.Duration,
+                                     Name = q.Name,
+                                     QuestionNum = q.QuestionNum,
+                                     QuizType = (from qt in _db.QuizTypes where qt.QuizTypeId.Equals(q.QuizTypeId) select qt).SingleOrDefault(),
+                                     Topic = (from tp in _db.Topics where tp.TopicId.Equals(q.TopicId) select tp).SingleOrDefault(),
+                                     QuizLevel = (from ql in _db.QuizLevels where ql.QuizLevelId.Equals(q.QuizLevelId) select ql).SingleOrDefault()
+                                 },
+                                 QuestionBank = new QuestionBank()
+                                 {
+                                     QuestionId = qb.QuestionId,
+                                     Answer = qb.Answer,
+                                     Content = qb.Content,
+                                     Explanation = qb.Explanation,
+                                     Weight = qb.Weight,
+                                     QuizLevel = (from ql in _db.QuizLevels where ql.QuizLevelId.Equals(qb.QuizLevelId) select ql).SingleOrDefault(),
+                                     OptionA = qb.OptionA,
+                                     OptionB = qb.OptionB,
+                                     OptionC = qb.OptionC,
+                                     OptionD = qb.OptionD
+                                 },
+                                 QuizId = q.QuizId
                              }).ToListAsync();
-            string[] qs_ids =new string[questions.Result.Count];
-            for(int i = 0; i < questions.Result.Count; i++)
+            string[] qs_ids = new string[questions.Result.Count];
+            for (int i = 0; i < questions.Result.Count; i++)
             {
                 qs_ids[i] = questions.Result.ElementAt(i).QuestionBank.QuestionId;
             }
@@ -525,7 +539,7 @@ namespace SWP391.Controllers
         }
 
         [HttpPost]
-        public IActionResult RecordAttempt(List<QuizQuestion> model) 
+        public IActionResult RecordAttempt(List<QuizQuestion> model)
         {
             DateTime now = DateTime.Now;
             List<AttemptDetailed> atds = new List<AttemptDetailed>();
@@ -546,7 +560,6 @@ namespace SWP391.Controllers
             }
 
 
-            var first = (from a in _db.Attempts select a.AttemptId).First();
             Attempt at = new Attempt()
             {
                 AttemptId = $"{model[0].QuizId}|{String.Format("{0:MM/dd/yyyy HH:mm:ss}", now).Replace(" ", "")}|{_userManager.GetUserAsync(User).Result.UserName}",
@@ -555,16 +568,16 @@ namespace SWP391.Controllers
                 User = _userManager.GetUserAsync(User).Result,
                 UserId = _userManager.GetUserId(User),
                 StartTime = DateTime.Now.Date,
-                TotalMark = total_mark};
+                TotalMark = total_mark
+            };
 
             _db.Attempts.Add(at);
-            foreach(var atd in atds)
+            foreach (var atd in atds)
             {
                 _db.AttemptDetaileds.Add(atd);
             }
             _db.SaveChanges();
-
-            return Ok();
+            return RedirectToAction("AttemptDetail", "Course", new { quizid = model[0].QuizId });
         }
     }
 }
