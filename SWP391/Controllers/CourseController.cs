@@ -512,12 +512,24 @@ namespace SWP391.Controllers
                                     OptionB = qb.OptionB,
                                     OptionC = qb.OptionC,
                                     OptionD = qb.OptionD
-                                }
+                                },
+                                QuizId = q.QuizId
                              }).ToListAsync();
-            //ViewData["Quiz"] = quiz;
+            string[] qs_ids =new string[questions.Result.Count];
+            for(int i = 0; i < questions.Result.Count; i++)
+            {
+                qs_ids[i] = questions.Result.ElementAt(i).QuestionBank.QuestionId;
+            }
+            ViewBag.Quiz = qs_ids;
             return View(questions.Result);
             //return Ok(quiz.Count);
         }
 
+        [HttpPost]
+        public IActionResult RecordAttempt(List<QuizQuestion> model) 
+        {
+            
+            return Ok(System.Text.Json.JsonSerializer.Serialize(model)) ;
+        }
     }
 }

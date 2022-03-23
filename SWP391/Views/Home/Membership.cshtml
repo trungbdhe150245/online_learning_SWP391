@@ -1,105 +1,131 @@
 ﻿@model List<SWP391.Models.PricePackage>
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 @{
     Layout = "_Layout";
     List<string[]> properties = (List<string[]>)ViewBag.Properties;
     ViewData["Title"] = "MEMBERSHIP";
+    var roles = SignInManager.IsSignedIn(User) ? UserManager.GetRolesAsync(UserManager.GetUserAsync(Context.User).Result).Result : null;
 }
-    <div class="page-content bg-white">
-        <div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner/banner2.jpg);">
-            <div class="container">
-                <div class="page-banner-entry">
-                    <h1 class="text-white">Membership</h1>
-                </div>
+<div class="page-content bg-white">
+    <div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner/banner2.jpg);">
+        <div class="container">
+            <div class="page-banner-entry">
+                <h1 class="text-white">Membership</h1>
             </div>
         </div>
-        <div class="breadcrumb-row">
-            <div class="container">
-                <ul class="list-inline">
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li>Membership</li>
-                </ul>
-            </div>
+    </div>
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li>Membership</li>
+            </ul>
         </div>
-        <div class="content-block">
-            <div class="section-area section-sp2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 heading-bx text-center">
-                            <h2 class="title-head text-uppercase m-b0">Set a plan, start learning and <br /> <span> unlock your potential</span></h2>
-                        </div>
+    </div>
+    <div class="content-block">
+        <div class="section-area section-sp2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 heading-bx text-center">
+                        <h2 class="title-head text-uppercase m-b0">Set a plan, start learning and <br /> <span> unlock your potential</span></h2>
                     </div>
-                    <div class="pricingtable-row">
-                            <div class="row">
+                </div>
+                <div class="pricingtable-row">
+                    <div class="row">
 
-                                @{ string class_inner = "";}
-                                @{ var iters = Model.Zip(properties, (x, y) => new { X = x, Y = y }); }
-                                @foreach (var iter in iters)
-                                {
+                        @{ string class_inner = "";}
+                        @{ var iters = Model.Zip(properties, (x, y) => new { X = x, Y = y }); }
+                        @foreach (var iter in iters)
+                        {
 
-                                    if (iter.X.PricePackageId == 2)
-                                    {
-                                        class_inner = " pricingtable-highlight";
-                                    }
-                                    else
-                                    {
-                                        class_inner = "";
-                                    }
+                            if (iter.X.PricePackageId == 2)
+                            {
+                                class_inner = " pricingtable-highlight";
+                            }
+                            else
+                            {
+                                class_inner = "";
+                            }
 
-                                    <div class="col-sm-12 col-md-4 col-lg-4 m-b40">
-                                        <div class="pricingtable-wrapper">
-                                            <div class="@("pricingtable-inner" + class_inner)">
-                                                <div class="pricingtable-main">
-                                                    <div class="pricingtable-price">
-                                                        <span class="priceing-doller">$</span>
-                                                        <span class="pricingtable-bx">@iter.X.Price</span>
-                                                        <span class="pricingtable-type">@iter.Y[0].Trim()</span>
-                                                    </div>
-                                                    <div class="pricingtable-title">
-                                                        <h2>@iter.X.PricePackageName</h2>
-                                                        <p>@iter.X.Description</p>
-                                                    </div>
-                                                </div>
-                                                <ul class="pricingtable-features">
-                                                    @if (!iter.Y[1].Trim().Equals(""))
-                                                    {
-                                                        <li>@iter.Y[1].Trim()</li>
-                                                    }
-                                                    @if (!iter.Y[2].Trim().Equals(""))
-                                                    {
-                                                        <li>@iter.Y[2].Trim()</li>
-                                                    }
-                                                    @if (!iter.Y[3].Trim().Equals(""))
-                                                    {
-                                                        <li>@iter.Y[3].Trim()</li>
-                                                    }
-                                                    @if (!iter.Y[4].Trim().Equals(""))
-                                                    {
-                                                        <li>@iter.Y[4].Trim()</li>
-                                                    }
-                                                </ul>
-                                                <div class="pricingtable-footer">
-                                                    @if(iter.X.PricePackageId != 1) 
-                                                    { 
-                                                        <a asp-controller="Home" asp-action="OneMembership" asp-route-membershipid="@iter.X.PricePackageId.ToString()"
-                                                            class="btn radius-xl">Subcribe</a>
-                                                    }
-                                                    else 
-                                                    { 
-                                                        <h5 style="color:crimson">Subcribed!</h5>
-                                                    }
-                                                </div>
+                            <div class="col-sm-12 col-md-4 col-lg-4 m-b40">
+                                <div class="pricingtable-wrapper">
+                                    <div class="@("pricingtable-inner" + class_inner)">
+                                        <div class="pricingtable-main">
+                                            <div class="pricingtable-price">
+                                                <span class="priceing-doller">$</span>
+                                                <span class="pricingtable-bx">@iter.X.Price</span>
+                                                <span class="pricingtable-type">@iter.Y[0].Trim()</span>
+                                            </div>
+                                            <div class="pricingtable-title">
+                                                <h2>@iter.X.PricePackageName</h2>
+                                                <p>@iter.X.Description</p>
                                             </div>
                                         </div>
-                                    </div>
-                                }
+                                        <ul class="pricingtable-features">
+                                            @if (!iter.Y[1].Trim().Equals(""))
+                                            {
+                                                <li>@iter.Y[1].Trim()</li>
+                                            }
+                                            @if (!iter.Y[2].Trim().Equals(""))
+                                            {
+                                                <li>@iter.Y[2].Trim()</li>
+                                            }
+                                            @if (!iter.Y[3].Trim().Equals(""))
+                                            {
+                                                <li>@iter.Y[3].Trim()</li>
+                                            }
+                                            @if (!iter.Y[4].Trim().Equals(""))
+                                            {
+                                                <li>@iter.Y[4].Trim()</li>
+                                            }
+                                        </ul>
+                                        <div class="pricingtable-footer">
+                                            @if (iter.X.PricePackageId != 1)
+                                            {
+                                                if (roles != null)
+                                                {
+                                                    if (!roles.Contains("Super Admin") && iter.X.PricePackageId == 2)
+                                                    {
+                                                        <a asp-controller="Home" asp-action="OneMembership" asp-route-membershipid="@iter.X.PricePackageId.ToString()"
+                                                           class="btn radius-xl">Subcribe</a>
+                                                    }
+                                                    else if (!roles.Contains("Admin") && iter.X.PricePackageId == 3 && !roles.Contains("Super Admin") || roles == null)
+                                                    {
+                                                        <a asp-controller="Home" asp-action="OneMembership" asp-route-membershipid="@iter.X.PricePackageId.ToString()"
+                                                           class="btn radius-xl">Subcribe</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h5 style="color:crimson">Subcribed!</h5>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <a asp-controller="Home" asp-action="OneMembership" asp-route-membershipid="@iter.X.PricePackageId.ToString()"
+                                                       class="btn radius-xl">Subcribe</a>
+                                                }
+                                            }
 
+                                            else
+                                            {
+                                                <h5 style="color:crimson">Subcribed!</h5>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        }
+
                     </div>
                 </div>
             </div>
         </div>
-    
+    </div>
+</div>
+
 
 
 

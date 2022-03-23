@@ -36,7 +36,8 @@ namespace SWP391.Controllers
             _userManager = userManager;
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
+        //[Route("/Home/Index")]
         public IActionResult Index()
         {
             IEnumerable<Course> courses = _db.Courses.Where(c => c.SlideId == 1);
@@ -150,23 +151,11 @@ namespace SWP391.Controllers
                 }
 
                 _db.SaveChanges();
-                return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
-                {
-
-                    Title = "Bought successfully :D",
-                    HtmlContent = "Enjoy learning <3",
-                    UrlRedirect = "/Index"
-                });
+                return RedirectToAction("Membership");
             }
             else
             {
-                return ViewComponent(MessagePage.COMPONENTNAME, new MessagePage.Message()
-                {
-
-                    Title = "Bought failed :D",
-                    HtmlContent = "Try again later : (",
-                    UrlRedirect = "/Index"
-                });
+                return RedirectToAction("Membership");
             }
         }
     }

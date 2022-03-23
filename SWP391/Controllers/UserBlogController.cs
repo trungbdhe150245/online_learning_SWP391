@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SWP391.Data;
 using SWP391.Models;
+using SWP391.Utility;
 
 namespace SWP391.Controllers
 {
+    [ServiceFilter(typeof(MyFilter))]
     public class UserBlogController : Controller
     {
         private readonly LearningDbContext _context;
