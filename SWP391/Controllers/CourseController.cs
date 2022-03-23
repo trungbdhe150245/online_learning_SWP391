@@ -251,7 +251,7 @@ namespace SWP391.Controllers
         }
 
 
-
+        [ServiceFilter(typeof(MyFilter))]
 
         [HttpGet]
         [Route("/Course/{id}/Lesson")]
@@ -283,6 +283,7 @@ namespace SWP391.Controllers
                                  };
             return View(course_details.ToList());
         }
+        [ServiceFilter(typeof(MyFilter))]
         [HttpGet]
         [Route("/Quiz/Topic/{topicid}/Attempt")]
         public IActionResult QuizAttempt(string topicid)
@@ -305,7 +306,7 @@ namespace SWP391.Controllers
             return View(topic_quiz);
         }
 
-
+        [ServiceFilter(typeof(MyFilter))]
         [HttpGet]
         [Route("/Quiz/{quizid}/Attempts")]
         public IActionResult AttemptDetail(string quizid)
@@ -475,7 +476,7 @@ namespace SWP391.Controllers
 
 
 
-
+        [ServiceFilter(typeof(MyFilter))]
         [Route("/Course/Attempt/{quizid}")]
         public IActionResult Attempt(string quizid)
         {
@@ -538,6 +539,7 @@ namespace SWP391.Controllers
             return View(questions.Result);
         }
 
+        [ServiceFilter(typeof(MyFilter))]
         [HttpPost]
         public IActionResult RecordAttempt(List<QuizQuestion> model)
         {
