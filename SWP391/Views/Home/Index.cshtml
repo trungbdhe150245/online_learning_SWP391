@@ -34,7 +34,7 @@
                         data-param9="" data-param10=""
                         data-description="Science says that Women are generally happier">
                         <!-- MAIN IMAGE -->
-                        <img src="assets/images/slider/slide1.jpg" alt=""
+                        <img src="~/assets/images/slider/nha-alpha.jpg" alt=""
                              data-bgposition="center center"
                              data-bgfit="cover"
                              data-bgrepeat="no-repeat"
@@ -150,7 +150,7 @@
                         data-param9="" data-param10=""
                         data-description="Science says that Women are generally happier">
                         <!-- MAIN IMAGE -->
-                        <img src="assets/images/slider/slide2.jpg" alt=""
+                        <img src="~/assets/images/slider/download.jpg" alt=""
                              data-bgposition="center center"
                              data-bgfit="cover"
                              data-bgrepeat="no-repeat"
@@ -302,9 +302,9 @@
                     <div class="col-md-12 text-center text-white">
                         <h2>Online Courses To Learn</h2>
                         <h5>Own Your Feature Learning New Skills Online</h5>
-                        <form class="cours-search">
+                        <form asp-action="CourseList" asp-controller="Course" class="cours-search">
                             <div class="input-group">
-                                <input id="search-input" type="text" class="form-control" placeholder="What do you want to learn today?	">
+                                <input id="search-input" type="text" name="key" class="form-control" placeholder="What do you want to learn today?	">
                                 <div class="input-group-append">
                                     <button class="btn" type="submit">Search</button>
                                 </div>
